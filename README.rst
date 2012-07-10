@@ -12,21 +12,21 @@ rsync -rvhz --progress --partial ftp...
 Each repo should...
 ===================
  + metadata.yml
-   - author
-   - title
-   - publishing info
-   - provinence
+   + author
+   + title
+   + publishing info
+   + provinence
  + book_name.{rst|tei|txt}
-   - book text in a master source format
+   + book text in a master source format
  + license.txt
-   - PG license information
-   - transcriber, converter credits
+   + PG license information
+   + transcriber, converter credits
  + README.rst
-   - generic GITenburg info
-   - generic PG info
-   - book specific info
-   - desc and links to toolchains
-   - desc and links to generated versions for ebook readers
+   + generic GITenburg info
+   + generic PG info
+   + book specific info
+   + desc and links to toolchains
+   + desc and links to generated versions for ebook readers
 
 Smart comments:
 ===============

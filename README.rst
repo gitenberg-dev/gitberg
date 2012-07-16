@@ -36,6 +36,10 @@ https://groups.google.com/forum/?fromgroups#!topic/prj-alexandria/VhKbMyH9kcA
 
 File formats:
 =============
+A list of file formats and their freqency is in the docs folder, generated via:
+
+    find -type f|rev|cut -d\. -f1|grep -v "/" |rev|sort -f|uniq -c|sort -nr
+
 .tei
 ~~~~
 a master format

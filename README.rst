@@ -50,3 +50,7 @@ http://code.google.com/p/hrit/source/browse/rst2xml-tei.py?repo=tei-rest
 ~~~~
 a master format
 Research toolchain for rst >> whatever
+
+Future
+------
+ + http://armypubs.army.mil/doctrine/

@@ -1,9 +1,11 @@
 #!/usr/bin/python
 """
 """
+import codecs
 import os
 import cPickle as pickle
-import yaml
+import json
+import pprint
 
 import git
 import github3
@@ -65,27 +67,26 @@ def create_metadata_yaml(book, folder):
         :book: rdfparse.Ebook instance
         :folder: root folder of a git repo/book where the yaml file will be added
     """
-    filename = 'metadata.yaml'
+    filename = 'metadata.json'
     keys = ['lang', 'mdate', 'bookid', 'author', 'title', 'subj']
     metadata = {}
 
     for key in keys:
-        metadata[key] = getattr(book, key)
+        metadata[unicode(key)] = getattr(book, key).decode("utf-8")
 
     print os.path.join(folder, filename)
-    """
-    fp = file(os.path.join(folder, filename), 'w')
-    yaml.dump(metadata, fp, default_flow_style=False)
+    fp = codecs.open(os.path.join(folder, filename), 'w', 'utf-8')
+    json.dump(metadata, fp, indent=4, ensure_ascii=False)
     fp.close()
-    """
     return True
 
 if __name__=='__main__':
     #update_catalog()
     catalog = load_catalog()
+    count = 0
     for book in catalog:
         print '\n'
-        print book.title
+        count += 1
+        print count
         folder = get_file_path(book)
-        print folder
-        create_metadata_yaml
+        create_metadata_yaml(book, folder)

@@ -4,7 +4,8 @@ Estimated 1.6 million files
 Reported 650 GB total
 ~40,000 + books
 
-[link to issues](./issues)
+`link to issues`_
+.. _link to issues: ./issues
 
 How are we getting the files?
 =============================

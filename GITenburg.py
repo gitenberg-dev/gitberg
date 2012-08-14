@@ -6,6 +6,7 @@ import os
 import cPickle as pickle
 import json
 import pprint
+import subprocess
 
 import git
 import github3
@@ -43,24 +44,50 @@ def get_file_path(book):
     folder = os.path.split(zip_path)[0]
     return folder
 
+def git_add(file_name, folder):
+    #git_add('exampleFile.txt', '/usr/local/example_git_repo_dir')
+    cmd = ['git', 'add', file_name]
+    p = subprocess.Popen(cmd, cwd=folder)
+    p.wait()
+
+def git_commit(message, folder):
+    #git_commit('exampleFile.txt', '/usr/local/example_git_repo_dir')
+    cmd = ['git', 'commit', '-m', '"'+message+'"']
+    p = subprocess.Popen(cmd, cwd=folder)
+    p.wait()
+
+def get_add_remote_origin(remote, folder):
+    #git_add_remote_origin(u'git@github.com:sethwoodworth/test.git', '/usr/local/example_git_repo_dir')
+    cmd = ['git', 'remote', 'add', 'origin', remote]
+    p = subprocess.Popen(cmd, cwd=folder)
+    p.wait()
+
 def make_local_repo(folder):
     """ Create a repo and add any file not in IGNORE_FILES """
     # TODO: check if there is a .git subfolder already
+    print folder
     repo = git.Repo.init(folder)
+    print repo
+    print repo.untracked_files
     for file in repo.untracked_files:
+        print file
+        file_path = os.path.join(folder, file)
         file_type = os.path.splitext(file)[1]
         if file_type not in IGNORE_FILES:
-            repo.index.add(file)
-        repo.index.commit("initial Project Gutenberg import")
-
-def get_team(org):
-    return org.list_teams()[0]
+            git_add(file_path, folder)
+            #repo.index.add(file_path)
+        #print repo.index
+    #repo.index.commit("initial Project Gutenberg import")
+    git_commit("initial Project Gutenberg import", folder)
+    return repo
 
 def create_github_repo(title):
     """ takes a github title, creates a repo under the GITenberg account """
     gh = github3.login(username=GH_USER, password=GH_PASSWORD)
     org = gh.organization(login='GITenberg')
     team = org.list_teams()[0] # only one team in the github repo
+    repo = team.create_repo(title)
+    return repo.ssh_url
 
 def create_metadata_yaml(book, folder):
     """ Create a yaml metadata file that describes the repo
@@ -75,18 +102,27 @@ def create_metadata_yaml(book, folder):
         metadata[unicode(key)] = getattr(book, key).decode("utf-8")
 
     print os.path.join(folder, filename)
-    fp = codecs.open(os.path.join(folder, filename), 'w', 'utf-8')
-    json.dump(metadata, fp, indent=4, ensure_ascii=False)
-    fp.close()
-    return True
+    try:
+        fp = codecs.open(os.path.join(folder, filename), 'w', 'utf-8')
+        json.dump(metadata, fp, indent=4, ensure_ascii=False)
+        fp.close()
+        return True
+    except:
+        print "that file isn't in our local yet"
+        return False
 
-if __name__=='__main__':
-    #update_catalog()
-    catalog = load_catalog()
+def do_stuff(catalog):
     count = 0
     for book in catalog:
         print '\n'
         count += 1
-        print count
         folder = get_file_path(book)
-        create_metadata_yaml(book, folder)
+        print count
+        print folder
+        #create_metadata_yaml(book, folder)
+        make_local_repo(folder)
+
+if __name__=='__main__':
+    #update_catalog()
+    catalog = load_catalog()
+    do_stuff(catalog)

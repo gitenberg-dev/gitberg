@@ -94,7 +94,7 @@ def create_github_repo(book):
     gh = github3.login(username=GH_USER, password=GH_PASSWORD)
     org = gh.organization(login='GITenberg')
     team = org.list_teams()[0] # only one team in the github repo
-    _desc = u'%s by %s\n%s\n is a Project Gutenberg book, now on Github.' % (book.title, book.author, book.subj)
+    _desc = u'%s by %s\n is a Project Gutenberg book, now on Github.' % (book.title, book.author)
     repo_title = "%s_%s" % (book.title, book.bookid)
     repo = org.create_repo(repo_title, description=_desc, homepage=u'http://GITenberg.github.com/', private=False, has_issues=True, has_wiki=False, has_downloads=True, team_id=int(team.id))
 
@@ -146,7 +146,7 @@ def do_stuff(catalog):
     file = codecs.open('README_template.rst', 'r', 'utf-8')
     readme_template = file.read()
     file.close()
-    for book in catalog[64:65]:
+    for book in catalog[65:68]:
         print '\n'
         count += 1
         folder = get_file_path(book)

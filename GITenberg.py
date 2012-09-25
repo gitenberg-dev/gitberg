@@ -5,10 +5,8 @@ import codecs
 import os
 import cPickle as pickle
 import json
-import pprint
+import shutil
 import subprocess
-import urllib
-import urllib2
 
 import git
 import github3
@@ -89,47 +87,19 @@ def make_local_repo(folder):
     git_commit("Creating repo from Project Gutenberg import", folder)
     return repo
 
-def _old_create_github_repo(title):
-    """ takes a github title, creates a repo under the GITenberg account """
-    gh = github3.login(username=GH_USER, password=GH_PASSWORD)
-    org = gh.organization(login='GITenberg')
-    team = org.list_teams()[0] # only one team in the github repo
-    team.create_repo( name=title, \
-        description= u'A Project Gutenberg book, now on Github. \
-        See [GITenberg](http=//GITenberg.github.com/) for more information',
-        homepage=u'http://GITenberg.github.com/', private=False,
-        has_issues=True, has_wiki=False,\
-        has_downloads=True, team_id=str(team.id))
-    print "\nOrg: %s\n" % org.id
-    #repo = team.create_repo(title, team_id=team.id)
-    #https://api.github.com/repos/octocat/Hello-World
-    url = u'https://api.github.com/orgs/GITenburg/repos'
-    values = {'name': title,
-        'description': u'A Project Gutenberg book, now on Github. \
-        See [GITenberg](http://GITenberg.github.com/) for more information',
-        'homepage': u'http://GITenberg.github.com/', 'private': False,
-        'has_issues': True, 'has_wiki': False,
-         'has_downloads': True, 'team_id': str(team.id)}
-    data = urllib.urlencode(values)
-    req = urllib2.Request(url, data)
-    res = urllib2.urlopen(req)
-
-    return res
-
-def create_github_repo(title, bookid):
+def create_github_repo(book):
     """ takes a github title, creates a repo under the GITenberg account
         using github3.py
     """
     gh = github3.login(username=GH_USER, password=GH_PASSWORD)
     org = gh.organization(login='GITenberg')
     team = org.list_teams()[0] # only one team in the github repo
-    _desc = u'%s is a Project Gutenberg book, now on Github.  See [GITenberg](http://GITenberg.github.com/) for more information' % title
-    repo_title = "%s_%s" % (title, bookid)
+    _desc = u'%s by %s\n%s\n is a Project Gutenberg book, now on Github.' % (book.title, book.author, book.subj)
+    repo_title = "%s_%s" % (book.title, book.bookid)
     repo = org.create_repo(repo_title, description=_desc, homepage=u'http://GITenberg.github.com/', private=False, has_issues=True, has_wiki=False, has_downloads=True, team_id=int(team.id))
 
     print repo.html_url
     return repo
-
 
 def create_metadata_json(book, folder):
     """ Create a json metadata file that describes the repo
@@ -153,25 +123,40 @@ def create_metadata_json(book, folder):
         print "that file isn't in our local yet"
         return False
 
-def add_remote_origin(git_url, folder):
-    """ Take a local git repo, add a remote origin to it
-        :git_url: a git@github.com repo url with push privs
-        :folder: root folder of the local git repo
-    """
-    pass
+def create_readme(book, folder, template):
+    """ Create a readme file with book specific information """
+    filename = 'README.rst'
+    fp = codecs.open(os.path.join(folder, filename), 'w+', 'utf-8')
+    readme_text = template.format(title=book.title, author=book.author, bookid=book.bookid, \
+                lang=book.lang, subj=book.subj)
+    fp.write(readme_text)
+    fp.close()
+    return True
+
+def copy_files(folder):
+    """ Copy the LICENSE and CONTRIBUTING files to each folder repo """
+    files = [u'./LICENSE', u'./CONTRIBUTING.md']
+    for file in files:
+        shutil.copy(file, folder)
+    return True
 
 
 def do_stuff(catalog):
     count = 0
-    for book in catalog[60:62]:
+    file = codecs.open('README_template.rst', 'r', 'utf-8')
+    readme_template = file.read()
+    file.close()
+    for book in catalog[64:65]:
         print '\n'
         count += 1
         folder = get_file_path(book)
         print "loop count:\t %s" % count
         print "folder path:\t%s" % folder
         create_metadata_json(book, folder)
+        create_readme(book, folder, readme_template)
+        copy_files(folder)
         make_local_repo(folder)
-        repo = create_github_repo(book.title, book.bookid)
+        repo = create_github_repo(book)
         git_add_remote_origin(repo.ssh_url, folder)
         git_push_origin_master(folder)
 

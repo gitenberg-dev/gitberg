@@ -86,7 +86,7 @@ def make_local_repo(folder):
             #repo.index.add(file_path)
         #print repo.index
     #repo.index.commit("initial Project Gutenberg import")
-    git_commit("initial Project Gutenberg import", folder)
+    git_commit("Creating repo from Project Gutenberg import", folder)
     return repo
 
 def _old_create_github_repo(title):
@@ -123,18 +123,18 @@ def create_github_repo(title, bookid):
     gh = github3.login(username=GH_USER, password=GH_PASSWORD)
     org = gh.organization(login='GITenberg')
     team = org.list_teams()[0] # only one team in the github repo
-    _desc = u'%s is a Project Gutenberg book, now on Github.  See [GITenberg](http=//GITenberg.github.com/) for more information' % title
+    _desc = u'%s is a Project Gutenberg book, now on Github.  See [GITenberg](http://GITenberg.github.com/) for more information' % title
     repo_title = "%s_%s" % (title, bookid)
-    repo = org.create_repo(repo_title, description=_desc, homepage=u'http=//GITenberg.github.com/', private=False, has_issues=True, has_wiki=False, has_downloads=True, team_id=int(team.id))
+    repo = org.create_repo(repo_title, description=_desc, homepage=u'http://GITenberg.github.com/', private=False, has_issues=True, has_wiki=False, has_downloads=True, team_id=int(team.id))
 
     print repo.html_url
     return repo
 
 
-def create_metadata_yaml(book, folder):
-    """ Create a yaml metadata file that describes the repo
+def create_metadata_json(book, folder):
+    """ Create a json metadata file that describes the repo
         :book: rdfparse.Ebook instance
-        :folder: root folder of a git repo/book where the yaml file will be added
+        :folder: root folder of a git repo/book where the json file will be added
     """
     filename = 'metadata.json'
     keys = ['lang', 'mdate', 'bookid', 'author', 'title', 'subj']
@@ -163,13 +163,13 @@ def add_remote_origin(git_url, folder):
 
 def do_stuff(catalog):
     count = 0
-    for book in catalog[50:53]:
+    for book in catalog[60:62]:
         print '\n'
         count += 1
         folder = get_file_path(book)
         print "loop count:\t %s" % count
         print "folder path:\t%s" % folder
-        create_metadata_yaml(book, folder)
+        create_metadata_json(book, folder)
         make_local_repo(folder)
         repo = create_github_repo(book.title, book.bookid)
         git_add_remote_origin(repo.ssh_url, folder)

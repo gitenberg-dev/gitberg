@@ -127,7 +127,8 @@ def create_readme(book, folder, template):
     """ Create a readme file with book specific information """
     filename = 'README.rst'
     fp = codecs.open(os.path.join(folder, filename), 'w+', 'utf-8')
-    readme_text = template.format(book)
+    readme_text = template.format(title=book.title, author=book.author, bookid=book.bookid, \
+                lang=book.lang, subj=book.subj)
     fp.write(readme_text)
     fp.close()
     return True

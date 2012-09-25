@@ -24,7 +24,7 @@ ARCHIVE_ROOT    = u'/media/gitenberg'
 
 
 def update_catalog(pickle_path=PICKLE_PATH):
-    """ Use an imported repo to parse the Gutenberg XML index into a pickle 
+    """ Use an imported repo to parse the Gutenberg XML index into a pickle
         This saves it to the file noted in PICKLE_PATH
     """
     mycat = rdfparse.Gutenberg(pickle_path)
@@ -89,7 +89,7 @@ def make_local_repo(folder):
     git_commit("initial Project Gutenberg import", folder)
     return repo
 
-def create_github_repo(title):
+def _old_create_github_repo(title):
     """ takes a github title, creates a repo under the GITenberg account """
     gh = github3.login(username=GH_USER, password=GH_PASSWORD)
     org = gh.organization(login='GITenberg')
@@ -97,7 +97,7 @@ def create_github_repo(title):
     team.create_repo( name=title, \
         description= u'A Project Gutenberg book, now on Github. \
         See [GITenberg](http=//GITenberg.github.com/) for more information',
-        homepage=u'http=//GITenberg.github.com/', private=False,
+        homepage=u'http://GITenberg.github.com/', private=False,
         has_issues=True, has_wiki=False,\
         has_downloads=True, team_id=str(team.id))
     print "\nOrg: %s\n" % org.id
@@ -115,6 +115,21 @@ def create_github_repo(title):
     res = urllib2.urlopen(req)
 
     return res
+
+def create_github_repo(title, bookid):
+    """ takes a github title, creates a repo under the GITenberg account
+        using github3.py
+    """
+    gh = github3.login(username=GH_USER, password=GH_PASSWORD)
+    org = gh.organization(login='GITenberg')
+    team = org.list_teams()[0] # only one team in the github repo
+    _desc = u'%s is a Project Gutenberg book, now on Github.  See [GITenberg](http=//GITenberg.github.com/) for more information' % title
+    repo_title = "%s_%s" % (title, bookid)
+    repo = org.create_repo(repo_title, description=_desc, homepage=u'http=//GITenberg.github.com/', private=False, has_issues=True, has_wiki=False, has_downloads=True, team_id=int(team.id))
+
+    print repo.html_url
+    return repo
+
 
 def create_metadata_yaml(book, folder):
     """ Create a yaml metadata file that describes the repo
@@ -143,20 +158,21 @@ def add_remote_origin(git_url, folder):
         :git_url: a git@github.com repo url with push privs
         :folder: root folder of the local git repo
     """
+    pass
 
 
 def do_stuff(catalog):
     count = 0
-    for book in catalog[5:11]:
+    for book in catalog[50:53]:
         print '\n'
         count += 1
         folder = get_file_path(book)
-        print count
-        print folder
-        #create_metadata_yaml(book, folder)
+        print "loop count:\t %s" % count
+        print "folder path:\t%s" % folder
+        create_metadata_yaml(book, folder)
         make_local_repo(folder)
-        git_url = create_github_repo(book.title)
-        git_add_remote_origin(git_url, folder)
+        repo = create_github_repo(book.title, book.bookid)
+        git_add_remote_origin(repo.ssh_url, folder)
         git_push_origin_master(folder)
 
 if __name__=='__main__':

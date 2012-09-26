@@ -146,7 +146,7 @@ def do_stuff(catalog):
     file = codecs.open('README_template.rst', 'r', 'utf-8')
     readme_template = file.read()
     file.close()
-    for book in catalog[65:68]:
+    for book in catalog[11235:12236]:
         print '\n'
         count += 1
         folder = get_file_path(book)

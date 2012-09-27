@@ -5,7 +5,10 @@ Alexander the Great Makers of History
 :Author: Abbott, Jacob, 1803-1879
 :Language: en
 :LOC: DF
-:Subject: |Generals -- Greece -- Biography -- Juvenile literature|Alexander, the Great, 356-323 B.C. -- Juvenile literature|Greece -- History -- Macedonian expansion, 359-323 B.C. -- Juvenile literature
+:Subject: 
+Generals -- Greece -- Biography -- Juvenile literature
+Alexander, the Great, 356-323 B.C. -- Juvenile literature
+Greece -- History -- Macedonian expansion, 359-323 B.C. -- Juvenile literature
 :Book id: 30624
 
 This is a git repository of the source files for the book Alexander the Great Makers of History by Abbott, Jacob, 1803-1879. This book is in the Public Domain, see the LICENSE file for details.

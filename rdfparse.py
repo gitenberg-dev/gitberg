@@ -89,9 +89,9 @@ class CatalogueDocumentHandler (xml.sax.handler.ContentHandler):
         self.bookid = ''
         self.title = 'Unknown'
         self.author = 'Unknown'
-        self.lang = ''
-        self.subj = []
+	self.subj = []
 	self.loc = ''
+        self.lang = ''
         self.filename = ''
         self.mdate = ''
         self.content = ''
@@ -118,7 +118,7 @@ class CatalogueDocumentHandler (xml.sax.handler.ContentHandler):
         if name == 'pgterms:etext':
             self.book_dict[self.bookid] = Ebook(self.bookid,
                                       self.title, self.author,
-                                      self.lang, self.subj, self.loc)
+                                      self.subj, self.loc, self.lang)
             self.init()
         elif name == 'pgterms:file':
             if self.isText and self.isZip:

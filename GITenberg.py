@@ -14,8 +14,8 @@ import github3
 import rdfparse
 from filetypes import IGNORE_FILES
 
-from secrets import GH_USER
-from secrets import GH_PASSWORD
+#from secrets import GH_USER
+#from secrets import GH_PASSWORD
 
 PICKLE_PATH     = u'./catalog.pickle'
 ARCHIVE_ROOT    = u'/media/gitenberg'
@@ -107,7 +107,7 @@ def create_metadata_json(book, folder):
         :folder: root folder of a git repo/book where the json file will be added
     """
     filename = 'metadata.json'
-    keys = ['lang', 'mdate', 'bookid', 'author', 'title', 'subj']
+    keys = ['lang', 'mdate', 'bookid', 'author', 'title', 'subj', 'loc']
     metadata = {}
 
     for key in keys:

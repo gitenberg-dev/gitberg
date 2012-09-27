@@ -125,10 +125,15 @@ def create_metadata_json(book, folder):
 
 def create_readme(book, folder, template):
     """ Create a readme file with book specific information """
-    filename = 'README.rst'
+    filename = getattr(book, 'title') + '.rst'
+    #now for kudgy subject preprocessing
+    s = ''
+    for subject in book.subj:
+	    s = s + '|'
+	    s = s + subject
     fp = codecs.open(os.path.join(folder, filename), 'w+', 'utf-8')
     readme_text = template.format(title=book.title, author=book.author, bookid=book.bookid, \
-                lang=book.lang, subj=book.subj)
+                lang=book.lang, subj=s, loc = book.loc)
     fp.write(readme_text)
     fp.close()
     return True

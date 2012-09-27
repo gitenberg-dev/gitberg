@@ -148,7 +148,7 @@ class CatalogueDocumentHandler (xml.sax.handler.ContentHandler):
 	    #print self.cleanup(self.content)
             self.subj.append(self.cleanup(self.content))
             self.content = ''
-            self.intext = False
+            #self.intext = False
 	elif name == 'dcterms:LCC':
 	    self.loc = self.cleanup(self.content)
             self.content = ''

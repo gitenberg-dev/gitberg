@@ -106,12 +106,12 @@ def create_metadata_json(book, folder):
         :book: rdfparse.Ebook instance
         :folder: root folder of a git repo/book where the json file will be added
     """
-    filename = 'metadata.json'
+    filename = getattr(book, 'title') + '.json'
     keys = ['lang', 'mdate', 'bookid', 'author', 'title', 'subj', 'loc']
     metadata = {}
 
     for key in keys:
-        metadata[unicode(key)] = getattr(book, key).decode("utf-8")
+        metadata[unicode(key)] = getattr(book, key)#.decode("utf-8")
 
     print os.path.join(folder, filename)
     try:

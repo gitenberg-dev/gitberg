@@ -129,7 +129,7 @@ def create_readme(book, folder, template):
     #now for kudgy subject preprocessing
     s = ''
     for subject in book.subj:
-	    s = s + '|    '
+	    s = s + '    | '
 	    s = s + subject
 	    s = s + '\n'
     fp = codecs.open(os.path.join(folder, filename), 'w+', 'utf-8')

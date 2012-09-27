@@ -5,7 +5,8 @@
 :Author: {author}
 :Language: {lang}
 :LOC: {loc}
-:Subject: {subj}
+:Subject:
+{subj}
 :Book id: {bookid}
 
 This is a git repository of the source files for the book {title} by {author}. This book is in the Public Domain, see the LICENSE file for details.

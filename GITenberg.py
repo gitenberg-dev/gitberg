@@ -14,8 +14,8 @@ import github3
 import rdfparse
 from filetypes import IGNORE_FILES
 
-from secrets import GH_USER
-from secrets import GH_PASSWORD
+#from secrets import GH_USER
+#from secrets import GH_PASSWORD
 
 PICKLE_PATH     = u'./catalog.pickle'
 ARCHIVE_ROOT    = u'/media/gitenberg'
@@ -100,8 +100,8 @@ def create_github_repo(book):
     try:
         repo = org.create_repo(repo_title, description=_desc, homepage=u'http://GITenberg.github.com/', private=False, has_issues=True, has_wiki=False, has_downloads=True, team_id=int(team.id))
     except github3.GitHubError as g:
+	print g.errors
         pass
-    print g.errors
 
     print repo.html_url
     return repo
@@ -135,13 +135,15 @@ def create_readme(book, folder, template):
     s = u""
     s = ''.join(u"    | {0}\n".format(s) for s in book.subj)
     fp = codecs.open(os.path.join(folder, filename), 'w+', 'utf-8')
-    bdict = {}
-    bdict['lang'] = book.lang.decode('utf-8')
-    bdict['title'] = book.title.decode('utf-8')
-    bdict['author'] = book.author.decode('utf-8')
-    bdict['loc'] = book.loc.decode('utf-8')
-    readme_text = template.format(title=bdict['title'], author=bdict['author'], bookid=book.bookid, \
-                lang=bdict['lang'], subj=bdict['subj'], loc=bdict['loc'])
+    bdict = {
+				'lang' : book.lang,#.decode('utf-8'),
+				'subj' : s,#.decode('utf-8'),
+				'loc' : book.loc,#.decode('utf-8'),
+				'title' : book.title,#.decode('utf-8'),
+				'author' : book.author,#.decode('utf-8'),
+				'bookid' : book.bookid#.decode('utf-8')
+				}
+    readme_text = template.format(**bdict)
     fp.write(readme_text)
     fp.close()
     return True

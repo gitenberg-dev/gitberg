@@ -14,8 +14,8 @@ import github3
 import rdfparse
 from filetypes import IGNORE_FILES
 
-from secrets import GH_USER
-from secrets import GH_PASSWORD
+#from secrets import GH_USER
+#from secrets import GH_PASSWORD
 
 PICKLE_PATH     = u'./catalog.pickle'
 ARCHIVE_ROOT    = u'/media/gitenberg'
@@ -136,12 +136,12 @@ def create_readme(book, folder, template):
     s = ''.join(u"    | {0}\n".format(s) for s in book.subj)
     fp = codecs.open(os.path.join(folder, filename), 'w+', 'utf-8')
     bdict = {
-				'lang' : book.lang.decode('utf-8'),
-				'subj' : s.decode('utf-8'),
-				'loc' : book.loc.decode('utf-8'),
-				'title' : book.title.decode('utf-8'),
-				'author' : book.author.decode('utf-8'),
-				'bookid' : book.bookid.decode('utf-8')
+				'lang' : book.lang,#.decode('utf-8'),
+				'subj' : s,#.decode('utf-8'),
+				'loc' : book.loc,#.decode('utf-8'),
+				'title' : book.title,#.decode('utf-8'),
+				'author' : book.author,#.decode('utf-8'),
+				'bookid' : book.bookid#.decode('utf-8')
 				}
     readme_text = template.format(**bdict)
     fp.write(readme_text)

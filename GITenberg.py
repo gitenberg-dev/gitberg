@@ -135,14 +135,15 @@ def create_readme(book, folder, template):
     s = u""
     s = ''.join(u"    | {0}\n".format(s) for s in book.subj)
     fp = codecs.open(os.path.join(folder, filename), 'w+', 'utf-8')
-    bdict = {}
-    bdict['lang'] = book.lang.decode('utf-8')
-    bdict['subj'] = s.decode('utf-8')
-    bdict['loc'] = book.loc.decode('utf-8')
-    bdict['title'] = book.title.decode('utf-8')
-    bdict['author'] = book.author.decode('utf-8')
-    readme_text = template.format(title=bdict['title'], author=bdict['author'], bookid=book.bookid, \
-                lang=bdict['lang'], subj=bdict['subj'], loc=bdict['loc'])
+    bdict = {
+				'lang' : book.lang.decode('utf-8'),
+				'subj' : s.decode('utf-8'),
+				'loc' : book.loc.decode('utf-8'),
+				'title' : book.title.decode('utf-8'),
+				'author' : book.author.decode('utf-8'),
+				'bookid' : book.bookid.decode('utf-8')
+				}
+    readme_text = template.format(**bdict)
     fp.write(readme_text)
     fp.close()
     return True

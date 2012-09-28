@@ -95,13 +95,19 @@ def create_github_repo(book):
     org = gh.organization(login='GITenberg')
     team = org.list_teams()[0] # only one team in the github repo
     _desc = u'%s by %s\n is a Project Gutenberg book, now on Github.' % (book.title.decode('utf-8'), book.author.decode('utf-8'))
-    repo_title = "%s_%s" % (book.title.decode('utf-8'), book.bookid)
+    _title = book.title.decode('utf-8')
+    title_length = 99 - len(str(book.bookid))
+    if len(_title) > title_length:
+        # if the title was shortened, replace the trailing _ with an ellipsis
+        repo_title = "%s…%s" % (_title[:title_length], book.bookid)
+    else:
+        repo_title = "%s_%s" % (_title[:title_length], book.bookid)
 
     try:
         repo = org.create_repo(repo_title, description=_desc, homepage=u'http://GITenberg.github.com/', private=False, has_issues=True, has_wiki=False, has_downloads=True, team_id=int(team.id))
     except github3.GitHubError as g:
+        print g.errors
         pass
-    print g.errors
 
     print repo.html_url
     return repo
@@ -153,6 +159,8 @@ def copy_files(folder):
 
 def write_index(book, repo_url):
     """ append to an index file """
+    # TODO: Don't be lazy, create a real csv with all of the book data
+    # or better yet, since the server and the status is stateful, sqlite
     fp = open('./index.csv', 'a')
     fp.write(u"%s\t%s" % ( repo_url, book.bookid))
     fp.close()

@@ -127,11 +127,8 @@ def create_readme(book, folder, template):
     """ Create a readme file with book specific information """
     filename = getattr(book, 'bookid') + '.rst'
     #now for kudgy subject preprocessing
-    s = ''
-    for subject in book.subj:
-	    s = s + '    | '
-	    s = s + subject
-	    s = s + '\n'
+    s = u""
+    s = ''.join(u"    | {0}\n".format(s) for s in book.subj)
     fp = codecs.open(os.path.join(folder, filename), 'w+', 'utf-8')
     readme_text = template.format(title=book.title.decode('utf-8', 'replace'), author=book.author.decode('utf-8', 'replace'), bookid=book.bookid.decode('utf-8', 'replace'), lang=book.lang.decode('utf-8', 'replace'), subj=s.decode('utf-8', 'replace'), loc=book.loc.decode('utf-8', 'replace'))
     fp.write(readme_text)

@@ -14,8 +14,8 @@ import github3
 import rdfparse
 from filetypes import IGNORE_FILES
 
-#from secrets import GH_USER
-#from secrets import GH_PASSWORD
+from secrets import GH_USER
+from secrets import GH_PASSWORD
 
 PICKLE_PATH     = u'./catalog.pickle'
 ARCHIVE_ROOT    = u'/media/gitenberg'
@@ -94,9 +94,14 @@ def create_github_repo(book):
     gh = github3.login(username=GH_USER, password=GH_PASSWORD)
     org = gh.organization(login='GITenberg')
     team = org.list_teams()[0] # only one team in the github repo
-    _desc = u'%s by %s\n is a Project Gutenberg book, now on Github.' % (book.title, book.author)
-    repo_title = "%s_%s" % (book.title, book.bookid)
-    repo = org.create_repo(repo_title, description=_desc, homepage=u'http://GITenberg.github.com/', private=False, has_issues=True, has_wiki=False, has_downloads=True, team_id=int(team.id))
+    _desc = u'%s by %s\n is a Project Gutenberg book, now on Github.' % (book.title.decode('utf-8'), book.author.decode('utf-8'))
+    repo_title = "%s_%s" % (book.title.decode('utf-8'), book.bookid)
+
+    try:
+        repo = org.create_repo(repo_title, description=_desc, homepage=u'http://GITenberg.github.com/', private=False, has_issues=True, has_wiki=False, has_downloads=True, team_id=int(team.id))
+    except github3.GitHubError as g:
+        pass
+    print g.errors
 
     print repo.html_url
     return repo
@@ -130,7 +135,14 @@ def create_readme(book, folder, template):
     s = u""
     s = ''.join(u"    | {0}\n".format(s) for s in book.subj)
     fp = codecs.open(os.path.join(folder, filename), 'w+', 'utf-8')
-    readme_text = template.format(title=book.title.decode('utf-8', 'replace'), author=book.author.decode('utf-8', 'replace'), bookid=book.bookid.decode('utf-8', 'replace'), lang=book.lang.decode('utf-8', 'replace'), subj=s.decode('utf-8', 'replace'), loc=book.loc.decode('utf-8', 'replace'))
+    bdict = {}
+    bdict['lang'] = book.lang.decode('utf-8')
+    bdict['subj'] = s.decode('utf-8')
+    bdict['loc'] = book.loc.decode('utf-8')
+    bdict['title'] = book.title.decode('utf-8')
+    bdict['author'] = book.author.decode('utf-8')
+    readme_text = template.format(title=bdict['title'], author=bdict['author'], bookid=book.bookid, \
+                lang=bdict['lang'], subj=bdict['subj'], loc=bdict['loc'])
     fp.write(readme_text)
     fp.close()
     return True
@@ -142,13 +154,20 @@ def copy_files(folder):
         shutil.copy(file, folder)
     return True
 
+def write_index(book, repo_url):
+    """ append to an index file """
+    fp = open('./index.csv', 'a')
+    fp.write(u"%s\t%s" % ( repo_url, book.bookid))
+    fp.close()
+
+
 
 def do_stuff(catalog):
     count = 0
     file = codecs.open('README_template.rst', 'r', 'utf-8')
     readme_template = file.read()
     file.close()
-    for book in catalog[11235:12236]:
+    for book in catalog[15006:15200]:
         print '\n'
         count += 1
         folder = get_file_path(book)
@@ -161,6 +180,7 @@ def do_stuff(catalog):
         repo = create_github_repo(book)
         git_add_remote_origin(repo.ssh_url, folder)
         git_push_origin_master(folder)
+	write_index(book, repo.ssh_url)
 
 if __name__=='__main__':
     #update_catalog()

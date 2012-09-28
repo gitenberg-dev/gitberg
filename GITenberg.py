@@ -100,8 +100,8 @@ def create_github_repo(book):
     try:
         repo = org.create_repo(repo_title, description=_desc, homepage=u'http://GITenberg.github.com/', private=False, has_issues=True, has_wiki=False, has_downloads=True, team_id=int(team.id))
     except github3.GitHubError as g:
+	print g.errors
         pass
-    print g.errors
 
     print repo.html_url
     return repo

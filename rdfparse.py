@@ -20,7 +20,7 @@ import sys, tempfile, urllib, xml.sax, xml.sax.handler
 from platform import system
 
 class Ebook:
-    def __init__(self, bookid, title, author, subj, loc, lang=None, filename=None, mdate=None):
+    def __init__(self, bookid, title, author, subj, loc=None, lang=None, filename=None, mdate=None):
         self.bookid = bookid
         self.title = title
         self.author = author
@@ -41,7 +41,6 @@ class Gutenberg:
         #except: return False
 	try: localfh = open('./catalog.rdf.bz2', 'r')
 	except: return False
-	#print 'opened'
         decompressor = bz2.BZ2Decompressor()
         book_dict = {}
         handler = CatalogueDocumentHandler(sys.stdout, book_dict)
@@ -49,16 +48,13 @@ class Gutenberg:
         parser.setContentHandler(handler)
         chunksize = 1024 * 2
         offset = chunksize
-	#print 'prepped, attempting read'
         data = localfh.read(chunksize)
-	#print data
         while data != '':
             out = decompressor.decompress(data)
             if out != '':
                 parser.feed(out)
             data = localfh.read(chunksize)
         parser.close()
-	#print 'closed'
         for book in book_dict.values():
             if book.filename == None:
                 del book_dict[book.bookid]

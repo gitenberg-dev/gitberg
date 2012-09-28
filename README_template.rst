@@ -4,7 +4,7 @@
 :Title: {title}
 :Author: {author}
 :Language: {lang}
-:LOC: {loc}
+:LCC: {loc}
 :Subject:
 {subj}
 :Book id: {bookid}

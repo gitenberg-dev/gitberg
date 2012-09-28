@@ -170,6 +170,7 @@ class CatalogueDocumentHandler (xml.sax.handler.ContentHandler):
         words = words.split()
         words = ' '.join(words)
         words = words.encode('utf-8','replace')
+        words = words.decode('utf-8')
         return words
 
 class InvalidURLError (Exception):

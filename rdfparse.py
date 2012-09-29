@@ -24,12 +24,12 @@ class Ebook:
         self.bookid = bookid
         self.title = title
         self.author = author
-	self.subj = subj
-	self.loc = loc
+        self.subj = subj
+        self.loc = loc
         self.lang = lang
-	self.filename = filename
-	self.mdate = mdate
-                
+        self.filename = filename
+        self.mdate = mdate
+
 class Gutenberg:
     def __init__(self, pickle_path,
             catalog_url="http://www.gutenberg.org/feeds/catalog.rdf.bz2"):
@@ -39,8 +39,8 @@ class Gutenberg:
     def updatecatalogue(self):
         #try: remotefh = urllib.urlopen(self.catalog_url)
         #except: return False
-	try: localfh = open('./catalog.rdf.bz2', 'r')
-	except: return False
+    try: localfh = open('./catalog.rdf.bz2', 'r')
+    except: return False
         decompressor = bz2.BZ2Decompressor()
         book_dict = {}
         handler = CatalogueDocumentHandler(sys.stdout, book_dict)
@@ -85,8 +85,8 @@ class CatalogueDocumentHandler (xml.sax.handler.ContentHandler):
         self.bookid = ''
         self.title = 'Unknown'
         self.author = 'Unknown'
-	self.subj = []
-	self.loc = ''
+        self.subj = []
+        self.loc = ''
         self.lang = ''
         self.filename = ''
         self.mdate = ''
@@ -110,7 +110,7 @@ class CatalogueDocumentHandler (xml.sax.handler.ContentHandler):
             self.bookid = str(attrs.getValue('rdf:resource')[6:])
 
     def endElement(self, name):
-	#print "subj: %s" % type(self.subj)
+    #print "subj: %s" % type(self.subj)
         if name == 'pgterms:etext':
             self.book_dict[self.bookid] = Ebook(self.bookid,
                                       self.title, self.author,
@@ -141,12 +141,12 @@ class CatalogueDocumentHandler (xml.sax.handler.ContentHandler):
             self.intext = False
         elif name == 'dcterms:LCSH':
             #if self.subj: self.subj = self.subj + ", "
-	    #print self.cleanup(self.content)
+        #print self.cleanup(self.content)
             self.subj.append(self.cleanup(self.content))
             self.content = ''
             #self.intext = False
-	elif name == 'dcterms:LCC':
-	    self.loc = self.cleanup(self.content)
+    elif name == 'dcterms:LCC':
+        self.loc = self.cleanup(self.content)
             self.content = ''
             self.intext = False
         elif name == 'dcterms:modified':

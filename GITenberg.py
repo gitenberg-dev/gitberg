@@ -14,8 +14,8 @@ import github3
 import rdfparse
 from filetypes import IGNORE_FILES
 
-#from secrets import GH_USER
-#from secrets import GH_PASSWORD
+from secrets import GH_USER
+from secrets import GH_PASSWORD
 
 PICKLE_PATH     = u'./catalog.pickle'
 ARCHIVE_ROOT    = u'/media/gitenberg'
@@ -120,7 +120,7 @@ def create_metadata_json(book, folder):
 
     print os.path.join(folder, filename)
     try:
-        fp = codecs.open(os.path.join(folder, filename), 'a', 'utf-8')
+        fp = codecs.open(os.path.join(folder, filename), 'w', 'utf-8')
         json.dump(metadata, fp, indent=4, ensure_ascii=False)
         fp.close()
         return True

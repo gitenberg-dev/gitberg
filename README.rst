@@ -54,6 +54,8 @@ http://code.google.com/p/hrit/source/browse/rst2xml-tei.py?repo=tei-rest
 a master format
 Research toolchain for rst >> whatever
 
+dp rst manual http://pgrst.pglaf.org/publish/181/181-h.html
+
 Future
 ------
  + http://armypubs.army.mil/doctrine/

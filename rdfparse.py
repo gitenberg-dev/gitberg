@@ -32,15 +32,15 @@ class Ebook:
 
 class Gutenberg:
     def __init__(self, pickle_path,
-            catalog_url="http://www.gutenberg.org/feeds/catalog.rdf.bz2"):
+        catalog_url="http://www.gutenberg.org/feeds/catalog.rdf.bz2"):
         self.pickle_path = pickle_path
         self.catalog_url = catalog_url
 
     def updatecatalogue(self):
         #try: remotefh = urllib.urlopen(self.catalog_url)
         #except: return False
-    try: localfh = open('./catalog.rdf.bz2', 'r')
-    except: return False
+        try: localfh = open('./catalog.rdf.bz2', 'r')
+        except: return False
         decompressor = bz2.BZ2Decompressor()
         book_dict = {}
         handler = CatalogueDocumentHandler(sys.stdout, book_dict)
@@ -145,8 +145,8 @@ class CatalogueDocumentHandler (xml.sax.handler.ContentHandler):
             self.subj.append(self.cleanup(self.content))
             self.content = ''
             #self.intext = False
-    elif name == 'dcterms:LCC':
-        self.loc = self.cleanup(self.content)
+        elif name == 'dcterms:LCC':
+            self.loc = self.cleanup(self.content)
             self.content = ''
             self.intext = False
         elif name == 'dcterms:modified':

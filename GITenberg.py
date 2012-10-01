@@ -117,12 +117,12 @@ def create_metadata_json(book, folder):
         :book: rdfparse.Ebook instance
         :folder: root folder of a git repo/book where the json file will be added
     """
-    filename = 'metadata.json'
-    keys = ['lang', 'mdate', 'bookid', 'author', 'title', 'subj']
+    filename = getattr(book, 'title') + '.json'
+    keys = ['lang', 'mdate', 'bookid', 'author', 'title', 'subj', 'loc']
     metadata = {}
 
     for key in keys:
-        metadata[unicode(key)] = getattr(book, key).decode("utf-8")
+        metadata[unicode(key)] = getattr(book, key)#.decode("utf-8")
 
     print os.path.join(folder, filename)
     try:
@@ -137,14 +137,19 @@ def create_metadata_json(book, folder):
 def create_readme(book, folder, template):
     """ Create a readme file with book specific information """
     filename = 'README.rst'
+    #now for kudgy subject preprocessing
+    s = u""
+    s = ''.join(u"    | {0}\n".format(s) for s in book.subj)
     fp = codecs.open(os.path.join(folder, filename), 'w+', 'utf-8')
-    bdict = {}
-    bdict['lang'] = book.lang.decode('utf-8')
-    bdict['subj'] = book.subj.decode('utf-8')
-    bdict['title'] = book.title.decode('utf-8')
-    bdict['author'] = book.author.decode('utf-8')
-    readme_text = template.format(title=bdict['title'], author=bdict['author'], bookid=book.bookid, \
-                lang=bdict['lang'], subj=bdict['subj'])
+    bdict = {
+                'lang' : book.lang,#.decode('utf-8'),
+                'subj' : s,#.decode('utf-8'),
+                'loc' : book.loc,#.decode('utf-8'),
+                'title' : book.title,#.decode('utf-8'),
+                'author' : book.author,#.decode('utf-8'),
+                'bookid' : book.bookid#.decode('utf-8')
+                }
+    readme_text = template.format(**bdict)
     fp.write(readme_text)
     fp.close()
     return True
@@ -155,6 +160,13 @@ def copy_files(folder):
     for file in files:
         shutil.copy(file, folder)
     return True
+
+def write_index(book, repo_url):
+    """ append to an index file """
+    fp = open('./index.csv', 'a')
+    fp.write(u"%s\t%s" % ( repo_url, book.bookid))
+    fp.close()
+
 
 
 def write_index(book, repo_url):

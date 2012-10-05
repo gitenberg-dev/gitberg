@@ -6,6 +6,7 @@ import codecs
 import os
 import cPickle as pickle
 import json
+from re import sub
 import shutil
 import subprocess
 
@@ -90,10 +91,7 @@ def make_local_repo(folder):
 
 def github_sanitize_string(string):
     """ Takes a string and sanitizes it for Github's url name format """
-    string = string.replace(' ', '-')
-    string = string.replace(',', '-')
-    string = string.replace('\'', '-')
-    return string
+    return sub("[ ',]+", '-', string)
 
 def create_github_repo(book):
     """ takes a github title, creates a repo under the GITenberg account
@@ -104,11 +102,11 @@ def create_github_repo(book):
     team = org.list_teams()[0] # only one team in the github repo
     print book.title, type(book.title)
     _desc = u'%s by %s\n is a Project Gutenberg book, now on Github.' % (book.title, book.author)
-    _title = book.title.decode('utf-8')
-    title_length = 99 - len(str(book.bookid))
+    _title = book.title
+    title_length = 99 - len(str(book.bookid)) - 1
     if len(_title) > title_length:
         # if the title was shortened, replace the trailing _ with an ellipsis
-        repo_title = "%s…%s" % (_title[:title_length], book.bookid)
+        repo_title = "%s__%s" % (_title[:title_length], book.bookid)
     else:
         repo_title = "%s_%s" % (_title[:title_length], book.bookid)
 
@@ -189,7 +187,7 @@ def do_stuff(catalog):
     readme_template = file.read()
     file.close()
     catalog.sort(key=lambda x: int(x.bookid))
-    for book in catalog[108:200]:
+    for book in catalog[129:200]:
         print '\n'
         count += 1
         folder = get_file_path(book)

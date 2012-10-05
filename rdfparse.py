@@ -20,24 +20,26 @@ import sys, tempfile, urllib, xml.sax, xml.sax.handler
 from platform import system
 
 class Ebook:
-    def __init__(self, bookid, title, author, lang=None, subj=None,
-                 filename=None, mdate=None):
+    def __init__(self, bookid, title, author, subj, loc=None, lang=None, filename=None, mdate=None):
         self.bookid = bookid
         self.title = title
         self.author = author
-        self.lang = lang
         self.subj = subj
+        self.loc = loc
+        self.lang = lang
         self.filename = filename
         self.mdate = mdate
-                
+
 class Gutenberg:
     def __init__(self, pickle_path,
-            catalog_url="http://www.gutenberg.org/feeds/catalog.rdf.bz2"):
+        catalog_url="http://www.gutenberg.org/feeds/catalog.rdf.bz2"):
         self.pickle_path = pickle_path
         self.catalog_url = catalog_url
 
     def updatecatalogue(self):
-        try: remotefh = urllib.urlopen(self.catalog_url)
+        #try: remotefh = urllib.urlopen(self.catalog_url)
+        #except: return False
+        try: localfh = open('./catalog.rdf.bz2', 'r')
         except: return False
         decompressor = bz2.BZ2Decompressor()
         book_dict = {}
@@ -46,12 +48,12 @@ class Gutenberg:
         parser.setContentHandler(handler)
         chunksize = 1024 * 2
         offset = chunksize
-        data = remotefh.read(chunksize)
+        data = localfh.read(chunksize)
         while data != '':
             out = decompressor.decompress(data)
             if out != '':
                 parser.feed(out)
-            data = remotefh.read(chunksize)
+            data = localfh.read(chunksize)
         parser.close()
         for book in book_dict.values():
             if book.filename == None:
@@ -83,8 +85,9 @@ class CatalogueDocumentHandler (xml.sax.handler.ContentHandler):
         self.bookid = ''
         self.title = 'Unknown'
         self.author = 'Unknown'
+        self.subj = []
+        self.loc = ''
         self.lang = ''
-        self.subj = ''
         self.filename = ''
         self.mdate = ''
         self.content = ''
@@ -107,10 +110,11 @@ class CatalogueDocumentHandler (xml.sax.handler.ContentHandler):
             self.bookid = str(attrs.getValue('rdf:resource')[6:])
 
     def endElement(self, name):
+    #print "subj: %s" % type(self.subj)
         if name == 'pgterms:etext':
             self.book_dict[self.bookid] = Ebook(self.bookid,
                                       self.title, self.author,
-                                      self.lang, self.subj)
+                                      self.subj, self.loc, self.lang)
             self.init()
         elif name == 'pgterms:file':
             if self.isText and self.isZip:
@@ -135,9 +139,14 @@ class CatalogueDocumentHandler (xml.sax.handler.ContentHandler):
             self.lang = self.cleanup(self.content)
             self.content = ''
             self.intext = False
-        elif name == 'dc:subject':
-            if self.subj: self.subj = self.subj + ", "
-            self.subj = self.subj + self.cleanup(self.content)
+        elif name == 'dcterms:LCSH':
+            #if self.subj: self.subj = self.subj + ", "
+        #print self.cleanup(self.content)
+            self.subj.append(self.cleanup(self.content))
+            self.content = ''
+            #self.intext = False
+        elif name == 'dcterms:LCC':
+            self.loc = self.cleanup(self.content)
             self.content = ''
             self.intext = False
         elif name == 'dcterms:modified':
@@ -161,6 +170,7 @@ class CatalogueDocumentHandler (xml.sax.handler.ContentHandler):
         words = words.split()
         words = ' '.join(words)
         words = words.encode('utf-8','replace')
+        words = words.decode('utf-8')
         return words
 
 class InvalidURLError (Exception):

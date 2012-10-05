@@ -20,7 +20,7 @@ import sys, tempfile, urllib, xml.sax, xml.sax.handler
 from platform import system
 
 class Ebook:
-    def __init__(self, bookid, title, author, subj, rights, toc=None, alttitle=None, friendlytitle=None, contribs = None, pgcat=None, loc=None, lang=None, filename=None, mdate=None):
+    def __init__(self, bookid, title, author, subj, rights=None, toc=None, alttitle=None, friendlytitle=None, contribs = None, pgcat=None, loc=None, lang=None, filename=None, mdate=None):
         self.bookid = bookid
         self.title = title
         self.author = author

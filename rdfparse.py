@@ -176,7 +176,7 @@ class CatalogueDocumentHandler (xml.sax.handler.ContentHandler):
             self.content = ''
             self.intext = False
         elif name == 'dc:tableOfContents':
-            self.pgcat = self.cleanup(self.content)
+            self.toc = self.cleanup(self.content)
             self.content = ''
             self.intext = False
         elif name == 'dcterms:LCSH':

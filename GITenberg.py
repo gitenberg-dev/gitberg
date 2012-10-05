@@ -111,7 +111,8 @@ def create_github_repo(book):
         print g.errors
         for error in g.errors:
             if 'message' in error and u'name already exists on this account' == error['message']:
-                repo = gh.repository(org.name, repo_title)
+                github_repo_title = repo_title.replace(' ', '-')
+                repo = gh.repository(org.name, github_repo_title)
 
     print repo.html_url
     return repo
@@ -179,7 +180,7 @@ def do_stuff(catalog):
     readme_template = file.read()
     file.close()
     catalog.sort(key=lambda x: int(x.bookid))
-    for book in catalog[57:100]:
+    for book in catalog[58:100]:
         print '\n'
         count += 1
         folder = get_file_path(book)

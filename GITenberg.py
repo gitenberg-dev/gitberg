@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 """
 """
 import codecs
@@ -175,7 +176,8 @@ def do_stuff(catalog):
     file = codecs.open('README_template.rst', 'r', 'utf-8')
     readme_template = file.read()
     file.close()
-    for book in catalog[15006:15200]:
+    catalog.sort(key=lambda x: int(x.bookid))
+    for book in catalog[1:100]:
         print '\n'
         count += 1
         folder = get_file_path(book)

@@ -23,7 +23,6 @@ def authenticate():
 
 
 def upload_files(repo):
-    #r = session.repository('sethwoodworth', 'GITenberg')
     for k in LOCATION:
         dl = repo.create_download(k, *LOCATION[k])
         if dl:
@@ -37,13 +36,15 @@ def upload_files(repo):
 def delete_existing(repo):
     for k in EXISTING:
         if not EXISTING[k]:
-            return
+            continue
 
         dl = repo.download(EXISTING[k])
         if dl.delete():
             print("File {0} deleted.".format(dl.name))
+            EXISTING[k] = 0
         else:
             print("ERROR: File {0} was not deleted.".format(dl.name))
+    write_config()
 
 
 def update_old_files(repo):
@@ -62,8 +63,8 @@ def read_config():
 
 def write_config():
     with open('docs/download_ids', 'w') as fd:
-        for k in EXISTING:
-            fd.write('{0}: {1}'.format(k, EXISTING[k]))
+        lines = ['{0}: {1}\n'.format(*t) for t in list(EXISTING.items())]
+        fd.writelines(lines)
 
 
 commands = {
@@ -80,8 +81,7 @@ def main():
     elif argv[1] in commands:
         read_config()
         g = authenticate()
-        #r = g.repository('sethwoodworth', 'GITenberg')
-        r = g.repository('sigmavirus24', 'GITenberg')
+        r = g.repository('sethwoodworth', 'GITenberg')
         commands[argv[1]](r)
 
 

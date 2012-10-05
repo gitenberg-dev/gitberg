@@ -22,6 +22,8 @@ from secrets import GH_PASSWORD
 PICKLE_PATH     = u'./catalog.pickle'
 ARCHIVE_ROOT    = u'/media/gitenberg'
 
+import pdb
+
 
 def update_catalog(pickle_path=PICKLE_PATH):
     """ Use an imported repo to parse the Gutenberg XML index into a pickle
@@ -89,9 +91,17 @@ def make_local_repo(folder):
     git_commit("Creating repo from Project Gutenberg import", folder)
     return repo
 
-def github_sanitize_string(string):
+def github_sanitize_string(book):
     """ Takes a string and sanitizes it for Github's url name format """
-    return sub("[ ',]+", '-', string)
+    print book.title, type(book.title)
+    _title = sub("[ ',]+", '-', book.title)
+    title_length = 99 - len(str(book.bookid)) - 1
+    if len(_title) > title_length:
+        # if the title was shortened, replace the trailing _ with an ellipsis
+        repo_title = "%s__%s" % (_title[:title_length], book.bookid)
+    else:
+        repo_title = "%s_%s" % (_title[:title_length], book.bookid)
+    return repo_title
 
 def create_github_repo(book):
     """ takes a github title, creates a repo under the GITenberg account
@@ -102,20 +112,14 @@ def create_github_repo(book):
     team = org.list_teams()[0] # only one team in the github repo
     print book.title, type(book.title)
     _desc = u'%s by %s\n is a Project Gutenberg book, now on Github.' % (book.title, book.author)
-    _title = book.title
-    title_length = 99 - len(str(book.bookid)) - 1
-    if len(_title) > title_length:
-        # if the title was shortened, replace the trailing _ with an ellipsis
-        repo_title = "%s__%s" % (_title[:title_length], book.bookid)
-    else:
-        repo_title = "%s_%s" % (_title[:title_length], book.bookid)
+    repo_title = github_sanitize_string(book)
 
     try:
         repo = org.create_repo(repo_title, description=_desc, homepage=u'http://GITenberg.github.com/', private=False, has_issues=True, has_wiki=False, has_downloads=True, team_id=int(team.id))
     except github3.GitHubError as g:
         for error in g.errors:
             if 'message' in error and u'name already exists on this account' == error['message']:
-                github_repo_title = github_sanitize_string(repo_title)
+                github_repo_title = github_sanitize_string(book)
                 repo = gh.repository(org.name, github_repo_title)
         if not repo:
             print g.errors

@@ -94,7 +94,7 @@ def create_github_repo(book):
     gh = github3.login(username=GH_USER, password=GH_PASSWORD)
     org = gh.organization(login='GITenberg')
     team = org.list_teams()[0] # only one team in the github repo
-    _desc = u'%s by %s\n is a Project Gutenberg book, now on Github.' % (book.title.decode('utf-8'), book.author.decode('utf-8'))
+    _desc = u'%s by %s\n is a Project Gutenberg book, now on Github.' % (book.title, book.author)
     repo_title = "%s_%s" % (book.title.decode('utf-8'), book.bookid)
 
     try:
@@ -111,7 +111,7 @@ def create_metadata_json(book, folder):
         :book: rdfparse.Ebook instance
         :folder: root folder of a git repo/book where the json file will be added
     """
-    filename = getattr(book, 'title') + '.json'
+    filename = 'metadata.json'
     keys = ['lang', 'mdate', 'bookid', 'author', 'title', 'subj', 'loc']
     metadata = {}
 
@@ -160,15 +160,6 @@ def write_index(book, repo_url):
     fp = open('./index.csv', 'a')
     fp.write(u"%s\t%s" % ( repo_url, book.bookid))
     fp.close()
-
-
-
-def write_index(book, repo_url):
-    """ append to an index file """
-    fp = open('./index.csv', 'a')
-    fp.write(u"%s\t%s" % ( repo_url, book.bookid))
-    fp.close()
-
 
 
 def do_stuff(catalog):

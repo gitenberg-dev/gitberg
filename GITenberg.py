@@ -88,6 +88,13 @@ def make_local_repo(folder):
     git_commit("Creating repo from Project Gutenberg import", folder)
     return repo
 
+def github_sanitize_string(string):
+    """ Takes a string and sanitizes it for Github's url name format """
+    string = string.replace(' ', '-')
+    string = string.replace(',', '-')
+    string = string.replace('\'', '-')
+    return string
+
 def create_github_repo(book):
     """ takes a github title, creates a repo under the GITenberg account
         using github3.py
@@ -110,7 +117,7 @@ def create_github_repo(book):
     except github3.GitHubError as g:
         for error in g.errors:
             if 'message' in error and u'name already exists on this account' == error['message']:
-                github_repo_title = repo_title.replace(' ', '-')
+                github_repo_title = github_sanitize_string(repo_title)
                 repo = gh.repository(org.name, github_repo_title)
         if not repo:
             print g.errors
@@ -182,7 +189,7 @@ def do_stuff(catalog):
     readme_template = file.read()
     file.close()
     catalog.sort(key=lambda x: int(x.bookid))
-    for book in catalog[58:100]:
+    for book in catalog[108:200]:
         print '\n'
         count += 1
         folder = get_file_path(book)

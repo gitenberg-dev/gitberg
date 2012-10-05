@@ -95,7 +95,8 @@ def create_github_repo(book):
     gh = github3.login(username=GH_USER, password=GH_PASSWORD)
     org = gh.organization(login='GITenberg')
     team = org.list_teams()[0] # only one team in the github repo
-    _desc = u'%s by %s\n is a Project Gutenberg book, now on Github.' % (book.title.decode('utf-8'), book.author.decode('utf-8'))
+    print book.title, type(book.title)
+    _desc = u'%s by %s\n is a Project Gutenberg book, now on Github.' % (book.title, book.author)
     _title = book.title.decode('utf-8')
     title_length = 99 - len(str(book.bookid))
     if len(_title) > title_length:
@@ -108,7 +109,9 @@ def create_github_repo(book):
         repo = org.create_repo(repo_title, description=_desc, homepage=u'http://GITenberg.github.com/', private=False, has_issues=True, has_wiki=False, has_downloads=True, team_id=int(team.id))
     except github3.GitHubError as g:
         print g.errors
-        pass
+        for error in g.errors:
+            if 'message' in error and u'name already exists on this account' == error['message']:
+                repo = gh.repository(org.name, repo_title)
 
     print repo.html_url
     return repo
@@ -170,14 +173,13 @@ def write_index(book, repo_url):
     fp.write(u"%s\t%s" % ( repo_url, book.bookid))
     fp.close()
 
-
 def do_stuff(catalog):
     count = 0
     file = codecs.open('README_template.rst', 'r', 'utf-8')
     readme_template = file.read()
     file.close()
     catalog.sort(key=lambda x: int(x.bookid))
-    for book in catalog[1:100]:
+    for book in catalog[57:100]:
         print '\n'
         count += 1
         folder = get_file_path(book)

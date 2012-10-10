@@ -191,19 +191,22 @@ def do_stuff(catalog):
     file.close()
     catalog.sort(key=lambda x: int(x.bookid))
     for book in catalog[1191:2000]:
-        print '\n'
-        count += 1
-        folder = get_file_path(book)
-        print "loop count:\t %s" % count
-        print "folder path:\t%s" % folder
-        create_metadata_json(book, folder)
-        create_readme(book, folder, readme_template)
-        copy_files(folder)
-        make_local_repo(folder)
-        repo = create_github_repo(book)
-        git_add_remote_origin(repo.ssh_url, folder)
-        git_push_origin_master(folder)
-        write_index(book, repo.ssh_url)
+        if 'right' in book.rights:
+            pass
+        else:
+            print '\n'
+            count += 1
+            folder = get_file_path(book)
+            print "loop count:\t %s" % count
+            print "folder path:\t%s" % folder
+            create_metadata_json(book, folder)
+            create_readme(book, folder, readme_template)
+            copy_files(folder)
+            make_local_repo(folder)
+            repo = create_github_repo(book)
+            git_add_remote_origin(repo.ssh_url, folder)
+            git_push_origin_master(folder)
+            write_index(book, repo.ssh_url)
 
 if __name__=='__main__':
     #update_catalog()

@@ -93,7 +93,6 @@ def make_local_repo(folder):
 
 def github_sanitize_string(book):
     """ Takes a string and sanitizes it for Github's url name format """
-    print book.title, type(book.title)
     _title = sub("[ ',]+", '-', book.title)
     title_length = 99 - len(str(book.bookid)) - 1
     if len(_title) > title_length:
@@ -109,8 +108,8 @@ def create_github_repo(book):
     """
     gh = github3.login(username=GH_USER, password=GH_PASSWORD)
     org = gh.organization(login='GITenberg')
+    print "ratelimit: " + str(org.ratelimit_remaining)
     team = org.list_teams()[0] # only one team in the github repo
-    print book.title, type(book.title)
     _desc = u'%s by %s\n is a Project Gutenberg book, now on Github.' % (book.title, book.author)
     repo_title = github_sanitize_string(book)
 
@@ -191,7 +190,7 @@ def do_stuff(catalog):
     readme_template = file.read()
     file.close()
     catalog.sort(key=lambda x: int(x.bookid))
-    for book in catalog[129:200]:
+    for book in catalog[1191:2000]:
         print '\n'
         count += 1
         folder = get_file_path(book)

@@ -1,1 +1,2 @@
 GitPython==0.3.2.RC1
+github3.py>=0.1b0

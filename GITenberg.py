@@ -332,12 +332,14 @@ if __name__=='__main__':
             nargs=1,
             action='callback',
             callback=option_callback,
+            type='str',
             )
     opts.add_option('-D', '--delete-git',
             help='Delete `.git` directories in range [x,y]',
             nargs=1,
             action='callback',
             callback=option_callback,
+            type='str',
             )
     opts.add_option('-u', '--update',
             help=('Checks for changes in git directories and commits them.'
@@ -345,5 +347,6 @@ if __name__=='__main__':
             nargs=1,
             action='callback',
             callback=option_callback,
+            type='str',
             )
     opts.parse_args()

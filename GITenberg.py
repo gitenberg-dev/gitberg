@@ -16,8 +16,8 @@ import github3
 import rdfparse
 from filetypes import IGNORE_FILES
 
-from secrets import GH_USER
-from secrets import GH_PASSWORD
+#from secrets import GH_USER
+#from secrets import GH_PASSWORD
 
 PICKLE_PATH     = u'./catalog.pickle'
 ARCHIVE_ROOT    = u'/media/gitenberg'
@@ -155,14 +155,46 @@ def create_readme(book, folder, template):
     #now for kudgy subject preprocessing
     s = u""
     s = ''.join(u"    | {0}\n".format(s) for s in book.subj)
+    readme_meta = u""
+    #begin mass appending for the superblock"
+    if(book.title != ''):
+        readme_meta += ":Title: "
+        readme_meta += book.title
+        readme_meta += "\n"
+    if(book.author != ''):
+        readme_meta += ":Author: "
+        readme_meta += book.author
+        readme_meta += "\n"
+    if(book.desc != ''):
+        readme_meta += ":Description: "
+        readme_meta += book.desc
+        readme_meta += "\n"
+    if(book.lang != ''):
+        readme_meta += ":Language: "
+        readme_meta += book.lang
+        readme_meta += "\n"
+    if(book.loc != ''):
+        readme_meta += ":LCC: "
+        readme_meta += book.loc
+        readme_meta += "\n"
+    #This one gets special handling due to severe pre-processing --- the kludgy preprocessing bit
+    if(s != ''):
+        readme_meta += ":Subject:\n"
+        readme_meta += s
+        readme_meta += "\n"
+    if(book.bookid != ''):
+        readme_meta += ":Book ID: "
+        readme_meta += book.bookid
+        readme_meta += "\n"
+        
+    print readme_meta
+
     fp = codecs.open(os.path.join(folder, filename), 'w+', 'utf-8')
     bdict = {
-                'lang' : book.lang,#.decode('utf-8'),
-                'subj' : s,#.decode('utf-8'),
-                'loc' : book.loc,#.decode('utf-8'),
-                'title' : book.title,#.decode('utf-8'),
-                'author' : book.author,#.decode('utf-8'),
-                'bookid' : book.bookid#.decode('utf-8')
+                'title' : book.title,
+                'readme_meta' : readme_meta,
+                'author' : book.author,
+                'bookid' : book.bookid
                 }
     readme_text = template.format(**bdict)
     fp.write(readme_text)

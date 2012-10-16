@@ -16,8 +16,8 @@ import github3
 import rdfparse
 from filetypes import IGNORE_FILES
 
-#from secrets import GH_USER
-#from secrets import GH_PASSWORD
+from secrets import GH_USER
+from secrets import GH_PASSWORD
 
 PICKLE_PATH     = u'./catalog.pickle'
 ARCHIVE_ROOT    = u'/media/gitenberg'
@@ -154,30 +154,20 @@ def create_readme(book, folder, template):
     filename = 'README.rst'
     
     #now for kudgy subject preprocessing because subjects can have multiple items
-    s = u""
-    s = ''.join(u"    | {0}\n".format(s) for s in book.subj)
+    s = u''.join(u"    | {0}\n".format(su) for su in book.subj)
     #and more because LOC (the LCC code) can Also have multiple items
-    l = u""
-    l = ''.join(u"    | {0}\n".format(s) for s in book.loc)
+    l = u''.join(u"    | {0}\n".format(lc) for lc in book.loc)
     
     readme_meta = u""
     #begin mass appending for the superblock"
     if book.title != '':
-        readme_meta += ":Title: "
-        readme_meta += book.title
-        readme_meta += "\n"
+        readme_meta += ":Title: %s\n" % book.title
     if book.author != '':
-        readme_meta += ":Author: "
-        readme_meta += book.author
-        readme_meta += "\n"
+        readme_meta += ":Author: %s\n" % book.author
     if book.desc != '':
-        readme_meta += ":Description: "
-        readme_meta += book.desc
-        readme_meta += "\n"
+        readme_meta += ":Description: %s\n" % book.desc
     if book.lang != '':
-        readme_meta += ":Language: "
-        readme_meta += book.lang
-        readme_meta += "\n"
+        readme_meta += ":Language: %s\n" % book.lang
     #This one gets special handling due to severe pre-processing --- the kludgy preprocessing bit
     if l != '':
         readme_meta += ":LCC:\n"
@@ -187,9 +177,7 @@ def create_readme(book, folder, template):
         readme_meta += ":Subject:\n"
         readme_meta += s
     if book.bookid != '':
-        readme_meta += ":Book ID: "
-        readme_meta += book.bookid
-        readme_meta += "\n"
+        readme_meta += ":Book ID: %s\n" % book.bookid
 
     fp = codecs.open(os.path.join(folder, filename), 'w+', 'utf-8')
     bdict = {

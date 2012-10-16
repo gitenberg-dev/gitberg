@@ -3,13 +3,14 @@
 """
 """
 import codecs
-import sys
-import os
 import cPickle as pickle
 import json
+from optparse import OptionParser
+import os
 from re import sub
 import shutil
 import subprocess
+import sys
 
 import git
 import github3
@@ -23,8 +24,6 @@ from secrets import GH_PASSWORD
 PICKLE_PATH     = u'./catalog.pickle'
 ARCHIVE_ROOT    = u'/media/gitenberg'
 
-import pdb
-from optparse import OptionParser
 
 
 def update_catalog(pickle_path=PICKLE_PATH):
@@ -85,7 +84,8 @@ def make_local_repo(folder):
     """ Create a repo and add any file not in IGNORE_FILES """
     # TODO: check if there is a .git subfolder already
     print folder
-    repo = git.Repo.init(folder)
+    # this is the one place we use the `git` module import
+    repo = git.Repo.init(folder) 
     print repo
     print repo.untracked_files
     for file in repo.untracked_files:

@@ -264,6 +264,7 @@ def run_tests():
 
 
 def delete_git_dirs(start, end):
+    catalog = sorted(load_catalog(), key=lambda x: int(x.bookid))
     assert start < end
     for book in catalog[start:end]:
         delete_git(get_file_path(book))

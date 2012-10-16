@@ -230,11 +230,19 @@ def do_stuff(catalog):
 
 def upload_books(start, end):
     assert start < end
+
+    file = codecs.open('README_template.rst', 'r', 'utf-8')
+    readme_template = file.read()
+    file.close()
+
+    catalog = load_catalog()
+    catalog.sort(key=lambda x: int(x.bookid))
+
     for book in catalog[start:end]:
-        upload_book(book)
+        upload_book(book, readme_template)
 
 
-def upload_book(book):
+def upload_book(book, readme_template):
     if 'right' in book.rights:
         return
     print('\n')
@@ -303,9 +311,7 @@ def option_callback(opt_obj, opt_str, opt_val, parser):
 
 
 if __name__=='__main__':
-    #update_catalog()
     catalog = load_catalog()
-    #do_stuff(catalog)
     opts = OptionParser(usage='%prog [options]')
     opts.add_option('-U', '--update-catalog',
             help='Update catalog.pickle and exit',
@@ -320,7 +326,7 @@ if __name__=='__main__':
             callback=option_callback,
             )
     opts.add_option('-r', '--run',
-            help='Run books in the range [x,y]'
+            help='Run books in the range [x,y]',
             nargs=1,
             action='callback',
             callback=option_callback,
@@ -333,7 +339,7 @@ if __name__=='__main__':
             )
     opts.add_option('-u', '--update',
             help=('Checks for changes in git directories and commits them.'
-                ' Range: [x,y]')
+                ' Range: [x,y]'),
             nargs=1,
             action='callback',
             callback=option_callback,

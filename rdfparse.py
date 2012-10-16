@@ -100,7 +100,7 @@ class CatalogueDocumentHandler (xml.sax.handler.ContentHandler):
         self.friendlytitle =''
         self.contribs = []
         self.pgcat = ''
-        self.loc = ''
+        self.loc = []
         self.lang = ''
         self.filename = ''
         self.mdate = ''
@@ -186,15 +186,11 @@ class CatalogueDocumentHandler (xml.sax.handler.ContentHandler):
             self.content = ''
             self.intext = False
         elif name == 'dcterms:LCSH':
-            #if self.subj: self.subj = self.subj + ", "
-        #print self.cleanup(self.content)
             self.subj.append(self.cleanup(self.content))
             self.content = ''
-            #self.intext = False
         elif name == 'dcterms:LCC':
-            self.loc = self.cleanup(self.content)
+            self.loc.append(self.cleanup(self.content))
             self.content = ''
-            self.intext = False
         elif name == 'dcterms:modified':
             self.mdate = self.cleanup(self.content)
             self.content = ''

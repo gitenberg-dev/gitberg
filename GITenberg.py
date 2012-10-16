@@ -156,6 +156,9 @@ def create_readme(book, folder, template):
     #now for kudgy subject preprocessing because subjects can have multiple items
     s = u""
     s = ''.join(u"    | {0}\n".format(s) for s in book.subj)
+    #and more because LOC (the LCC code) can Also have multiple items
+    l = u""
+    l = ''.join(u"    | {0}\n".format(s) for s in book.loc)
     
     readme_meta = u""
     #begin mass appending for the superblock"
@@ -175,10 +178,10 @@ def create_readme(book, folder, template):
         readme_meta += ":Language: "
         readme_meta += book.lang
         readme_meta += "\n"
+    #This one gets special handling due to severe pre-processing --- the kludgy preprocessing bit
     if(book.loc != ''):
-        readme_meta += ":LCC: "
-        readme_meta += book.loc
-        readme_meta += "\n"
+        readme_meta += ":LCC:\n"
+        readme_meta += l
     #This one gets special handling due to severe pre-processing --- the kludgy preprocessing bit
     if(s != ''):
         readme_meta += ":Subject:\n"

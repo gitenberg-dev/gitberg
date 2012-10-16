@@ -107,6 +107,8 @@ def create_github_repo(book):
         using github3.py
     """
     gh = github3.login(username=GH_USER, password=GH_PASSWORD)
+    if hasattr(gh, 'set_user_agent'):
+        gh.set_user_agent('Project GITenberg: http://gitenberg.github.com/')
     org = gh.organization(login='GITenberg')
     print "ratelimit: " + str(org.ratelimit_remaining)
     team = org.list_teams()[0] # only one team in the github repo

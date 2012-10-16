@@ -229,6 +229,7 @@ def do_stuff(catalog):
 
 
 def upload_books(start, end):
+    catalog = sorted(load_catalog(), key=lambda x: int(x.bookid))
     assert start < end
 
     file = codecs.open('README_template.rst', 'r', 'utf-8')
@@ -273,6 +274,7 @@ def delete_git(folder):
 
 
 def update_indices(start, end):
+    catalog = sorted(load_catalog(), key=lambda x: int(x.bookid))
     assert start < end
     for book in catalog[start:end]:
         update_git_index(get_file_path(book))
@@ -311,7 +313,6 @@ def option_callback(opt_obj, opt_str, opt_val, parser):
 
 
 if __name__=='__main__':
-    catalog = load_catalog()
     opts = OptionParser(usage='%prog [options]')
     opts.add_option('-U', '--update-catalog',
             help='Update catalog.pickle and exit',

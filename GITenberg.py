@@ -152,9 +152,11 @@ def create_metadata_json(book, folder):
 def create_readme(book, folder, template):
     """ Create a readme file with book specific information """
     filename = 'README.rst'
-    #now for kudgy subject preprocessing
+    
+    #now for kudgy subject preprocessing because subjects can have multiple items
     s = u""
     s = ''.join(u"    | {0}\n".format(s) for s in book.subj)
+    
     readme_meta = u""
     #begin mass appending for the superblock"
     if(book.title != ''):
@@ -181,13 +183,10 @@ def create_readme(book, folder, template):
     if(s != ''):
         readme_meta += ":Subject:\n"
         readme_meta += s
-        readme_meta += "\n"
     if(book.bookid != ''):
         readme_meta += ":Book ID: "
         readme_meta += book.bookid
         readme_meta += "\n"
-        
-    print readme_meta
 
     fp = codecs.open(os.path.join(folder, filename), 'w+', 'utf-8')
     bdict = {

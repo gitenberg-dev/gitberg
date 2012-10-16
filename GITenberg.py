@@ -162,31 +162,31 @@ def create_readme(book, folder, template):
     
     readme_meta = u""
     #begin mass appending for the superblock"
-    if(book.title != ''):
+    if book.title != '':
         readme_meta += ":Title: "
         readme_meta += book.title
         readme_meta += "\n"
-    if(book.author != ''):
+    if book.author != '':
         readme_meta += ":Author: "
         readme_meta += book.author
         readme_meta += "\n"
-    if(book.desc != ''):
+    if book.desc != '':
         readme_meta += ":Description: "
         readme_meta += book.desc
         readme_meta += "\n"
-    if(book.lang != ''):
+    if book.lang != '':
         readme_meta += ":Language: "
         readme_meta += book.lang
         readme_meta += "\n"
     #This one gets special handling due to severe pre-processing --- the kludgy preprocessing bit
-    if(book.loc != ''):
+    if l != '':
         readme_meta += ":LCC:\n"
         readme_meta += l
     #This one gets special handling due to severe pre-processing --- the kludgy preprocessing bit
-    if(s != ''):
+    if s != '':
         readme_meta += ":Subject:\n"
         readme_meta += s
-    if(book.bookid != ''):
+    if book.bookid != '':
         readme_meta += ":Book ID: "
         readme_meta += book.bookid
         readme_meta += "\n"

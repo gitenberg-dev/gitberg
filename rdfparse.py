@@ -20,11 +20,12 @@ import sys, tempfile, urllib, xml.sax, xml.sax.handler
 from platform import system
 
 class Ebook:
-    def __init__(self, bookid, title, author, subj, rights=None, toc=None, alttitle=None, friendlytitle=None, contribs = None, pgcat=None, loc=None, lang=None, filename=None, mdate=None):
+    def __init__(self, bookid, title, author, subj, desc=None, rights=None, toc=None, alttitle=None, friendlytitle=None, contribs = None, pgcat=None, loc=None, lang=None, filename=None, mdate=None):
         self.bookid = bookid
         self.title = title
         self.author = author
         self.subj = subj
+        self.desc = desc
         self.rights = rights
         self.toc = toc
         self.alttitle = alttitle
@@ -92,6 +93,7 @@ class CatalogueDocumentHandler (xml.sax.handler.ContentHandler):
         self.title = 'Unknown'
         self.author = 'Unknown'
         self.subj = []
+        self.desc = ''
         self.rights = ''
         self.toc =''
         self.alttitle =[]
@@ -119,7 +121,7 @@ class CatalogueDocumentHandler (xml.sax.handler.ContentHandler):
                       'dc:format', 'dcterms:modified', 'dc:rights',
                       'dc:contributor', 'dc:alternative',
                       'pgterms:friendlytitle', 'pgterms:category',
-                      'dc:tableOfContents']:
+                      'dc:tableOfContents', 'dc:description']:
             self.intext = True
         elif name == 'dcterms:isFormatOf':
             self.bookid = str(attrs.getValue('rdf:resource')[6:])
@@ -129,7 +131,7 @@ class CatalogueDocumentHandler (xml.sax.handler.ContentHandler):
         if name == 'pgterms:etext':
             self.book_dict[self.bookid] = Ebook(self.bookid,
                                       self.title, self.author,
-                                      self.subj, self.rights, self.toc,
+                                      self.subj, self.desc, self.rights, self.toc,
                                       self.alttitle, self.friendlytitle,
                                       self.contribs, self.pgcat,
                                       self.loc, self.lang)
@@ -155,6 +157,10 @@ class CatalogueDocumentHandler (xml.sax.handler.ContentHandler):
             self.intext = False
         elif name == 'dc:language':
             self.lang = self.cleanup(self.content)
+            self.content = ''
+            self.intext = False
+        elif name == 'dc:description':
+            self.desc = self.cleanup(self.content)
             self.content = ''
             self.intext = False
         elif name == 'dc:rights':

@@ -308,9 +308,9 @@ def option_callback(opt_obj, opt_str, opt_val, parser):
     elif opt_str in ('-t', '--tests'):
         sys.exit(run_tests())
     elif opt_str in ('-r', '--run'):
-        upload_books(*parse_range(opt_str))
+        upload_books(*parse_range(opt_val))
     elif opt_str in ('-D', '--delete-git'):
-        delete_git_dirs(*parse_range(opt_str))
+        delete_git_dirs(*parse_range(opt_val))
 
 
 if __name__=='__main__':

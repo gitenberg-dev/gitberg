@@ -216,6 +216,19 @@ def copy_files(folder):
     for file in files:
         shutil.copy(file, folder)
     return True
+    
+def create_newtype_folder(book):
+    prefix = '/media/gitenberg/'
+    middle = "/".join([digit for digit in book.bookid[:-1]])
+    end = '/%s' % book.bookid
+    book_dir = prefix + middle + end
+    try:
+        os.makedirs(book_dir)
+    except OSError as exc:
+        if exc.errno == errno.EEXIST:
+            pass
+        else: raise
+    return True
 
 
 def write_index(book, repo_url):

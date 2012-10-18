@@ -218,10 +218,9 @@ def copy_files(folder):
     return True
     
 def create_etext_folder(book):
-    prefix = '/media/gitenberg/'
     middle = "/".join([digit for digit in book.bookid[:-1]])
     end = '/%s' % book.bookid
-    book_dir = prefix + middle + end
+    book_dir = ARCHIVE_ROOT + '/' + middle + end
     
     try:
         os.makedirs(book_dir)
@@ -230,9 +229,9 @@ def create_etext_folder(book):
             pass
         else: raise
 
-    file = book.filename[book.filename.rfind('/'):]
+    file = book.filename[book.filename.rindex('/')+1:]
     try:
-        os.rename(prefix+book.filename, book_dir+file)
+        os.rename(ARCHIVE_ROOT+'/'+book.filename, book_dir+'/'+file)
     except OSError as exc:
         pass
 

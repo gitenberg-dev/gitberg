@@ -170,17 +170,39 @@ def create_metadata_json(book, folder):
 def create_readme(book, folder, template):
     """ Create a readme file with book specific information """
     filename = 'README.rst'
-    #now for kudgy subject preprocessing
-    s = u""
-    s = ''.join(u"    | {0}\n".format(s) for s in book.subj)
+    
+    #now for kudgy subject preprocessing because subjects can have multiple items
+    s = u''.join(u"    | {0}\n".format(su) for su in book.subj)
+    #and more because LOC (the LCC code) can Also have multiple items
+    l = u''.join(u"    | {0}\n".format(lc) for lc in book.loc)
+    
+    readme_meta = u""
+    #begin mass appending for the superblock"
+    if book.title != '':
+        readme_meta += ":Title: %s\n" % book.title
+    if book.author != '':
+        readme_meta += ":Author: %s\n" % book.author
+    if book.desc != '':
+        readme_meta += ":Description: %s\n" % book.desc
+    if book.lang != '':
+        readme_meta += ":Language: %s\n" % book.lang
+    #This one gets special handling due to severe pre-processing --- the kludgy preprocessing bit
+    if l != '':
+        readme_meta += ":LCC:\n"
+        readme_meta += l
+    #This one gets special handling due to severe pre-processing --- the kludgy preprocessing bit
+    if s != '':
+        readme_meta += ":Subject:\n"
+        readme_meta += s
+    if book.bookid != '':
+        readme_meta += ":Book ID: %s\n" % book.bookid
+
     fp = codecs.open(os.path.join(folder, filename), 'w+', 'utf-8')
     bdict = {
-                'lang' : book.lang,#.decode('utf-8'),
-                'subj' : s,#.decode('utf-8'),
-                'loc' : book.loc,#.decode('utf-8'),
-                'title' : book.title,#.decode('utf-8'),
-                'author' : book.author,#.decode('utf-8'),
-                'bookid' : book.bookid#.decode('utf-8')
+                'title' : book.title,
+                'readme_meta' : readme_meta,
+                'author' : book.author,
+                'bookid' : book.bookid
                 }
     readme_text = template.format(**bdict)
     fp.write(readme_text)

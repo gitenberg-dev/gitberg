@@ -217,17 +217,25 @@ def copy_files(folder):
         shutil.copy(file, folder)
     return True
     
-def create_newtype_folder(book):
+def create_etext_folder(book):
     prefix = '/media/gitenberg/'
     middle = "/".join([digit for digit in book.bookid[:-1]])
     end = '/%s' % book.bookid
     book_dir = prefix + middle + end
+    
     try:
         os.makedirs(book_dir)
     except OSError as exc:
         if exc.errno == errno.EEXIST:
             pass
         else: raise
+
+    file = book.filename[book.filename.rfind('/'):]
+    try:
+        os.rename(prefix+book.filename, book_dir+file)
+    except OSError as exc:
+        pass
+
     return True
 
 

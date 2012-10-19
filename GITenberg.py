@@ -215,6 +215,31 @@ def copy_files(folder):
     for _file in files:
         shutil.copy(_file, folder)
     return True
+    
+def create_etext_folder(book):
+    """creates a new-type folder and moves the file into it"""
+    book_dir = get_new_folder_name(book)
+    
+    try:
+        os.makedirs(book_dir)
+    except OSError as exc:
+        if exc.errno == errno.EEXIST:
+            pass
+        else: raise
+
+    file = book.filename[book.filename.rindex('/')+1:]
+    try:
+        os.rename(ARCHIVE_ROOT+'/'+book.filename, book_dir+'/'+file)
+    except OSError as exc:
+        pass #this should be handled better!
+    return True
+    
+def get_new_folder_name(book):
+    """generates a new-type folder for books in old-type ie. etext folders"""
+    middle = "/".join([digit for digit in book.bookid[:-1]])
+    end = '/%s' % book.bookid
+    book_dir = ARCHIVE_ROOT + '/' + middle + end
+    return book_dir
 
 
 def write_index(book, repo_url):

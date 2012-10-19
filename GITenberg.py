@@ -210,7 +210,7 @@ def create_readme(book, folder, template):
 
 def copy_files(folder):
     """ Copy the LICENSE and CONTRIBUTING files to each folder repo """
-    files = [u'./LICENSE', u'./CONTRIBUTING.md']
+    files = [u'./templates/LICENSE', u'./templates/CONTRIBUTING.md']
     for _file in files:
         shutil.copy(_file, folder)
     return True
@@ -233,7 +233,7 @@ def upload_books(start, end):
     assert start < end
     catalog = sorted(load_catalog(), key=lambda x: int(x.bookid))
 
-    _file = codecs.open('README_template.rst', 'r', 'utf-8')
+    _file = codecs.open('./templates/README.rst', 'r', 'utf-8')
     readme_template = _file.read()
     _file.close()
 

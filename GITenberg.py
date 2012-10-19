@@ -218,9 +218,8 @@ def copy_files(folder):
     return True
     
 def create_etext_folder(book):
-    middle = "/".join([digit for digit in book.bookid[:-1]])
-    end = '/%s' % book.bookid
-    book_dir = ARCHIVE_ROOT + '/' + middle + end
+    """creates a new-type folder and moves the file into it"""
+    book_dir = get_new_folder_name(book)
     
     try:
         os.makedirs(book_dir)
@@ -233,11 +232,11 @@ def create_etext_folder(book):
     try:
         os.rename(ARCHIVE_ROOT+'/'+book.filename, book_dir+'/'+file)
     except OSError as exc:
-        pass
-
+        pass #this should be handled better!
     return True
     
 def get_new_folder_name(book):
+    """generates a new-type folder for books in old-type ie. etext folders"""
     middle = "/".join([digit for digit in book.bookid[:-1]])
     end = '/%s' % book.bookid
     book_dir = ARCHIVE_ROOT + '/' + middle + end

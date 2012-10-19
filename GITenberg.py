@@ -150,11 +150,12 @@ def create_metadata_json(book, folder):
         :folder: root folder of a git repo/book where the json file will be added
     """
     filename = 'metadata.json'
-    keys = ['lang', 'mdate', 'bookid', 'author', 'title', 'subj', 'loc']
+    keys = ['lang', 'mdate', 'bookid', 'author', 'title', 'subj', 'loc',
+            'pgcat', 'desc', 'toc', 'alttitle', 'friendlytitle']
     metadata = {}
 
     for key in keys:
-        metadata[unicode(key)] = getattr(book, key)#.decode("utf-8")
+        metadata[unicode(key)] = getattr(book, key)
 
     print os.path.join(folder, filename)
     try:

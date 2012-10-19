@@ -236,6 +236,12 @@ def create_etext_folder(book):
         pass
 
     return True
+    
+def get_new_folder_name(book):
+    middle = "/".join([digit for digit in book.bookid[:-1]])
+    end = '/%s' % book.bookid
+    book_dir = ARCHIVE_ROOT + '/' + middle + end
+    return book_dir
 
 
 def write_index(book, repo_url):

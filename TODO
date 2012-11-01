@@ -1,5 +1,0 @@
-Subtle problems
-
- + File encodings are US-ASCII, various ISOs, UTF8. Standardize to utf8
- + Line endings can be CR LF (windows) or just CR (unix)
- + File names can't be book titles, because not all OS' have unicode friendly file name representations

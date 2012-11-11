@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-"""
-"""
+""" A script for moving Project Gutenberg ebooks to Github. """
 import codecs
 import cPickle as pickle
 import json
@@ -308,6 +307,10 @@ def delete_git_dirs(start, end):
 def delete_git(folder):
     """ Delete the local .git directory of a book folder """
     raise NotImplementedError
+    # find the remote git repo url
+    # issue a delete on the remote
+    # delete metadata.json, README.rst, CONTRIBUTING, LICENSE
+    # delete the .git directory
 
 
 def update_indices(start, end):

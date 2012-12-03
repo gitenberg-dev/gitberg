@@ -20,6 +20,8 @@ from filetypes import IGNORE_FILES
 from secrets import GH_USER
 from secrets import GH_PASSWORD
 
+import models
+
 PICKLE_PATH     = u'./catalog.pickle'
 ARCHIVE_ROOT    = u'/media/gitenberg'
 
@@ -165,6 +167,26 @@ def create_metadata_json(book, folder):
     except:
         print "that file isn't in our local yet"
         return False
+        
+def create_metadata_sql(catalog):
+        session = models.get_session()
+        for book in catalog:
+                b = models.Book()
+                b.id = book.bookid
+                b.lang = book.lang
+                b.mdate = book.mdate
+                b.bookid = book.bookid
+                b.author = book.author
+                b.title = book.title
+                b.subj = book.subj
+                b.loc = book.loc
+                b.pgcat = book.pgcat
+                b.desc = book.desc
+                b.toc = book.toc
+                b.alttitle = book.alttitle
+                b.friendlytitle = book.friendlytitle
+                session.add(b)
+        session.commit()
 
 
 def create_readme(book, folder, template):

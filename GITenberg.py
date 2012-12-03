@@ -172,18 +172,17 @@ def create_metadata_sql(catalog):
         session = models.get_session()
         for book in catalog:
                 b = models.Book()
-                b.id = book.bookid
                 b.lang = book.lang
                 b.mdate = book.mdate
                 b.bookid = book.bookid
                 b.author = book.author
                 b.title = book.title
-                b.subj = book.subj
-                b.loc = book.loc
+                b.subj = unicode(book.subj)
+                b.loc = unicode(book.loc)
                 b.pgcat = book.pgcat
                 b.desc = book.desc
                 b.toc = book.toc
-                b.alttitle = book.alttitle
+                b.alttitle = unicode(book.alttitle)
                 b.friendlytitle = book.friendlytitle
                 session.add(b)
         session.commit()

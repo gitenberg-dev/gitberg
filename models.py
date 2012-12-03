@@ -30,7 +30,7 @@ class Book(Base):
     author  = Column(Unicode(255))
     title   = Column(Unicode(255))
     subj    = Column(Unicode(255))
-    loc     = Column(String(30))
+    loc     = Column(Unicode(30))
     pgcat   = Column(Unicode(30))
     desc    = Column(Unicode(1024))
     toc     = Column(Unicode(5000))

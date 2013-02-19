@@ -2,28 +2,93 @@ from lxml.etree import parse
 
 class Ebook():
     #not sure if init is needed?
-    def __init__(self, bookid, title, author, subj, desc=None, rights=None, toc=None, alttitle=None, friendlytitle=None, contribs = None, pgcat=None, loc=None, lang=None, filename=None, mdate=None):
+    def __init__(self, bookid, title, author, subj, desc=None, rights=None, toc=None, alttitle=None, friendlytitle=None, contribs = None, pgcat=None, loc=None, lang=None):#, filename=None, mdate=None):
         self.bookid = bookid
-        self.title = title
+        self.title = title #multiple elements
         self.author = author
-        self.subj = subj
+        self.subj = subj #multiple elements
         self.desc = desc
         self.rights = rights
         self.toc = toc
-        self.alttitle = alttitle
+        self.alttitle = alttitle #multiple elements
         self.friendlytitle = friendlytitle
-        self.contribs = contribs
+        self.contribs = contribs #multiple elements
         self.pgcat = pgcat
-        self.loc = loc
+        self.loc = loc #multiple elements
         self.lang = lang
-        self.filename = filename
-        self.mdate = mdate
+        #self.filename = filename
+        #self.mdate = mdate
+        
+    def isBag(element):
+        if(element.tag == '{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Bag'):
+            return True
+        else:
+            try:
+                if(element[0].tag == '{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Bag'):
+                    return True
+                else:
+                    return False
+            except:
+                return False
+        return False
+        
+        return False
 
     def set_bookID(self, element):
         self.bookid = element.text[5:]
 
+    def set_title(self, element):
+        #self.title.append(element.text)
+        self.title = element.text #do it this way to preserve
+
     def set_author(self, element):
         self.author = element.text
+
+    def set_subject(self, element):
+        #check if multi-element or not
+        if(isBag(element[0])):
+            for item in element[0]:
+                tag = element[0].tag
+                func = self.subject_split[tag]
+                self.func(element[0][0])
+        else:
+            tag = element[0].tag
+            func = self.subject_split[tag]
+            self.func(element[0][0])
+        
+    def set_loc(self, element):
+        self.loc.append(element.text)
+
+    def set_subj(self, element):
+        self.subj.append(element.text)
+
+    def set_desc(self, element):
+        self.desc = element.text
+
+    def set_rights(self, element):
+        self.rights = element.text
+
+    def set_toc(self, element):
+        self.toc = element.text
+
+    def set_alt_title(self, element):
+        if(isBag(element)):
+            for item in element:
+                self.alttitle.append(item[0].text)
+        self.alttitle.append(element.text)
+
+    def set_friendlytitle(self, element):
+        self.friendlytitle = element.text
+
+    def set_contributor(self, element):
+        if(isBag(element)):
+            for item in element:
+                self.contribs.append(item[0].text)
+        self.contribs.append(element.text)
+
+    def set_language(self, element):
+        self.lang = element[0][0].text
+
 
     lookup_table = {
         '{http://purl.org/dc/elements/1.1/}creator': self.set_author,
@@ -34,8 +99,13 @@ class Ebook():
         '{http://purl.org/dc/elements/1.1/}title': self.set_title,
         '{http://purl.org/dc/elements/1.1/}rights': self.set_rights,
         '{http://purl.org/dc/elements/1.1/}tableOfContents': self.set_toc,
-        '{http://purl.org/dc/elements/1.1/}alternative': self.set_alt_titles,
+        '{http://purl.org/dc/elements/1.1/}alternative': self.set_alt_title,
         '{http://purl.org/dc/elements/1.1/}language': self.set_language
+        }
+        
+    subject_split = {
+        '{http://purl.org/dc/terms/}LCC': self.set_loc,
+        '{http://purl.org/dc/terms/}LCSH': self.set_subj
         }
 
 def parse_ebook(etree_book):

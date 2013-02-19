@@ -19,18 +19,17 @@ class Ebook():
         #self.filename = filename
         #self.mdate = mdate
         
-    def isBag(self, element):
+    @staticmethod
+    def is_bag(element):
         if(element.tag == '{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Bag'):
             return True
-        else:
-            try:
+        elif(len(element) != 0):
                 if(element[0].tag == '{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Bag'):
                     return True
                 else:
                     return False
-            except:
-                return False
-        return False
+        else:
+            return False
         
         return False
 
@@ -39,16 +38,14 @@ class Ebook():
 
     def set_title(self, element):
         #self.title.append(element.text)
-        self.title = element.text #do it this way to preserve
-        #print element.text
-        #print element
+        self.title = element.text #do it this way to preserve original form
 
     def set_author(self, element):
         self.author = element.text
 
     def set_subject(self, element):
         #check if multi-element or not
-        if(self.isBag(element[0])):
+        if(Ebook.is_bag(element[0])):
             for item in element[0]:
                 self.subject_split[item[0].tag](self, element[0][0])
         else:
@@ -70,7 +67,7 @@ class Ebook():
         self.toc = element.text
 
     def set_alt_title(self, element):
-        if(self.isBag(element)):
+        if(Ebook.is_bag(element)):
             for item in element:
                 self.alttitle.append(item[0].text)
         self.alttitle.append(element.text)
@@ -79,14 +76,14 @@ class Ebook():
         self.friendlytitle = element.text
 
     def set_contributor(self, element):
-        if(self.isBag(element)):
+        if(Ebook.is_bag(element)):
             for item in element:
                 self.contribs.append(item[0].text)
         self.contribs.append(element.text)
 
     def set_language(self, element):
         self.lang = element[0][0].text
-        
+
     def set_null(self, element):
         a=1
 
@@ -118,12 +115,7 @@ def parse_ebook(etree_book):
     new_book.set_bookID(etree_book.values()[0])
     
     for child in etree_book.getchildren():
-        # get the signiture of the element, ie 'pg:author' via child.tag
-        #tag = child.tag
-        # get the function out of the lookup_table that matches 'tag'
-        #func = new_book.lookup_table[tag]
-        # call the function on the child element
-        #func(child)
+
         new_book.lookup_table[child.tag](new_book, child)
         
     return new_book
@@ -132,7 +124,7 @@ def parse_ebook(etree_book):
         #new_book.lookup_table[child.tag](element)
         
 def parse_catalog():
-    catalog = parse('c:\catalog.rdf') #CHANGE THIS ON LIVE
+    catalog = parse('./catalog.rdf') #CHANGE THIS ON LIVE
     book_tag = '{http://www.gutenberg.org/rdfterms/}etext'
     file_tag = '{http://www.gutenberg.org/rdfterms/}file'
     books = catalog.findall(book_tag)

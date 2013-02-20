@@ -1,4 +1,5 @@
 from lxml.etree import parse
+import cPickle
 
 class Ebook():
     #not sure if init is needed?
@@ -18,7 +19,7 @@ class Ebook():
         self.lang = u''#lang
         #self.filename = filename
         #self.mdate = mdate
-        
+
     @staticmethod
     def is_bag(element):
         if(element.tag == '{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Bag'):
@@ -84,6 +85,9 @@ class Ebook():
     def set_language(self, element):
         self.lang = element[0][0].text
 
+    def set_category(self, element):
+        self.pgcat = element[0][0].text
+
     def set_null(self, element):
         a=1
 
@@ -101,9 +105,9 @@ class Ebook():
         '{http://purl.org/dc/elements/1.1/}publisher': set_null,
         '{http://purl.org/dc/elements/1.1/}created': set_null,
         '{http://www.gutenberg.org/rdfterms/}downloads': set_null,
-        '{http://purl.org/dc/elements/1.1/}type': set_null
+        '{http://purl.org/dc/elements/1.1/}type': set_category
         }
-        
+
     subject_split = {
         '{http://purl.org/dc/terms/}LCC': set_loc,
         '{http://purl.org/dc/terms/}LCSH': set_subj
@@ -111,18 +115,13 @@ class Ebook():
 
 def parse_ebook(etree_book):
     new_book = Ebook()
-    
     new_book.set_bookID(etree_book.values()[0])
-    
-    for child in etree_book.getchildren():
 
+    for child in etree_book.getchildren():
         new_book.lookup_table[child.tag](new_book, child)
-        
+
     return new_book
 
-        # or all in one line
-        #new_book.lookup_table[child.tag](element)
-        
 def parse_catalog():
     catalog = parse('./catalog.rdf') #CHANGE THIS ON LIVE
     book_tag = '{http://www.gutenberg.org/rdfterms/}etext'
@@ -134,3 +133,10 @@ def parse_catalog():
         book_list.append(parse_ebook(book))
     print len(book_list)
     return book_list
+
+def make_pickle():
+    books = parse_catalog()
+    pickle = open('./catalog.pickle', 'wb')
+    cPickle.dump(books, pickle, -1)
+    pickle.close()
+    return True

@@ -33,6 +33,13 @@ class Ebook():
             return False
         
         return False
+    
+    @staticmethod
+    def leaf_element(element):
+        leaf = element
+        while(len(leaf.getchildren()) != 0):
+            leaf = leaf[0]
+        return leaf
 
     def set_bookID(self, element):
         self.bookid = element[5:]
@@ -48,7 +55,7 @@ class Ebook():
         #check if multi-element or not
         if(Ebook.is_bag(element[0])):
             for item in element[0]:
-                self.subject_split[item[0].tag](self, element[0][0])
+                self.subject_split[item[0].tag](self, Ebook.leaf_element(item))
         else:
             self.subject_split[element[0].tag](self, element[0][0])
         
@@ -83,10 +90,12 @@ class Ebook():
         self.contribs.append(element.text)
 
     def set_language(self, element):
-        self.lang = element[0][0].text
+        #self.lang = element[0][0].text
+        self.lang = Ebook.leaf_element(element).text
 
     def set_category(self, element):
-        self.pgcat = element[0][0].text
+        #self.pgcat = element[0][0].text
+        self.pgcat = Ebook.leaf_element(element).text
 
     def set_null(self, element):
         a=1

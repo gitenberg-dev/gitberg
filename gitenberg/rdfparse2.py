@@ -5,7 +5,7 @@ class Ebook():
     #not sure if init is needed?
     def __init__(self):#, bookid, title, author, subj, desc=None, rights=None, toc=None, alttitle=None, friendlytitle=None, contribs = None, pgcat=None, loc=None, lang=None):#, filename=None, mdate=None):
         self.bookid = u''#bookid #none til subj
-        self.title = u''#title #multiple elements
+        self.title = u''#title #multiple elements, so this SHOULD be an array
         self.author = u''#author
         self.subj = []#subj #multiple elements
         self.desc = u''#desc
@@ -20,6 +20,29 @@ class Ebook():
         #self.filename = filename
         #self.mdate = mdate
 
+    def __setitem__(self, key, element):
+        if(key == 'bookid'):
+            self.__dict__[key] = element[5:]
+        elif(key in ['title', 'author', 'desc', 'rights', 'toc', 'friendlytitle', 'pgcat', 'lang']):
+            self.__dict__[key] =  Ebook.leaf_element(element).text
+        elif(key == 'subject'):
+            if(Ebook.is_bag(element[0])):
+                for item in element[0]:
+                    self.__dict__[self.subject_split[item[0].tag]].append(Ebook.leaf_element(item).text)
+            else:
+                self.__dict__[self.subject_split[element[0].tag]].append(element[0][0].text)
+        elif(key in ['alttitle', 'contribs']): #this should also contain title as there can be multiple title elements
+            if(Ebook.is_bag(element)):
+                for item in element:
+                    self.__dict__[key].append(item[0].text)
+            else:
+                self.__dict__[key].append(element.text)
+        else:
+            a = 1
+
+    def __getitem__(self, key):
+        return self.__dict__[key]
+
     @staticmethod
     def is_bag(element):
         if(element.tag == '{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Bag'):
@@ -31,7 +54,6 @@ class Ebook():
                     return False
         else:
             return False
-        
         return False
     
     @staticmethod
@@ -41,93 +63,34 @@ class Ebook():
             leaf = leaf[0]
         return leaf
 
-    def set_bookID(self, element):
-        self.bookid = element[5:]
-
-    def set_title(self, element):
-        #self.title.append(element.text)
-        self.title = element.text #do it this way to preserve original form
-
-    def set_author(self, element):
-        self.author = element.text
-
-    def set_subject(self, element):
-        #check if multi-element or not
-        if(Ebook.is_bag(element[0])):
-            for item in element[0]:
-                self.subject_split[item[0].tag](self, Ebook.leaf_element(item))
-        else:
-            self.subject_split[element[0].tag](self, element[0][0])
-        
-    def set_loc(self, element):
-        self.loc.append(element.text)
-
-    def set_subj(self, element):
-        self.subj.append(element.text)
-
-    def set_desc(self, element):
-        self.desc = element.text
-
-    def set_rights(self, element):
-        self.rights = element.text
-
-    def set_toc(self, element):
-        self.toc = element.text
-
-    def set_alt_title(self, element):
-        if(Ebook.is_bag(element)):
-            for item in element:
-                self.alttitle.append(item[0].text)
-        self.alttitle.append(element.text)
-
-    def set_friendlytitle(self, element):
-        self.friendlytitle = element.text
-
-    def set_contributor(self, element):
-        if(Ebook.is_bag(element)):
-            for item in element:
-                self.contribs.append(item[0].text)
-        self.contribs.append(element.text)
-
-    def set_language(self, element):
-        #self.lang = element[0][0].text
-        self.lang = Ebook.leaf_element(element).text
-
-    def set_category(self, element):
-        #self.pgcat = element[0][0].text
-        self.pgcat = Ebook.leaf_element(element).text
-
-    def set_null(self, element):
-        a=1
-
     lookup_table = {
-        '{http://purl.org/dc/elements/1.1/}creator': set_author,
-        '{http://www.gutenberg.org/rdfterms/}friendlytitle': set_friendlytitle,
-        '{http://purl.org/dc/elements/1.1/}description': set_desc,
-        '{http://purl.org/dc/elements/1.1/}subject': set_subject,
-        '{http://purl.org/dc/elements/1.1/}contributor': set_contributor,
-        '{http://purl.org/dc/elements/1.1/}title': set_title,
-        '{http://purl.org/dc/elements/1.1/}rights': set_rights,
-        '{http://purl.org/dc/elements/1.1/}tableOfContents': set_toc,
-        '{http://purl.org/dc/elements/1.1/}alternative': set_alt_title,
-        '{http://purl.org/dc/elements/1.1/}language': set_language,
-        '{http://purl.org/dc/elements/1.1/}publisher': set_null,
-        '{http://purl.org/dc/elements/1.1/}created': set_null,
-        '{http://www.gutenberg.org/rdfterms/}downloads': set_null,
-        '{http://purl.org/dc/elements/1.1/}type': set_category
+        '{http://purl.org/dc/elements/1.1/}creator': 'author',
+        '{http://www.gutenberg.org/rdfterms/}friendlytitle': 'friendlytitle',
+        '{http://purl.org/dc/elements/1.1/}description': 'desc',
+        '{http://purl.org/dc/elements/1.1/}subject': 'subject',
+        '{http://purl.org/dc/elements/1.1/}contributor': 'contribs',
+        '{http://purl.org/dc/elements/1.1/}title': 'title',
+        '{http://purl.org/dc/elements/1.1/}rights': 'rights',
+        '{http://purl.org/dc/elements/1.1/}tableOfContents': 'toc',
+        '{http://purl.org/dc/elements/1.1/}alternative': 'alttitle',
+        '{http://purl.org/dc/elements/1.1/}language': 'lang',
+        '{http://purl.org/dc/elements/1.1/}publisher': 'null',
+        '{http://purl.org/dc/elements/1.1/}created': 'null',
+        '{http://www.gutenberg.org/rdfterms/}downloads': 'null',
+        '{http://purl.org/dc/elements/1.1/}type': 'pgcat'
         }
 
     subject_split = {
-        '{http://purl.org/dc/terms/}LCC': set_loc,
-        '{http://purl.org/dc/terms/}LCSH': set_subj
+        '{http://purl.org/dc/terms/}LCC': 'loc',
+        '{http://purl.org/dc/terms/}LCSH': 'subj'
         }
 
 def parse_ebook(etree_book):
     new_book = Ebook()
-    new_book.set_bookID(etree_book.values()[0])
+    new_book['bookid'] = etree_book.values()[0]
 
     for child in etree_book.getchildren():
-        new_book.lookup_table[child.tag](new_book, child)
+        new_book[new_book.lookup_table[child.tag]] = child#(new_book, child)
 
     return new_book
 

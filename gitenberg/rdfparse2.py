@@ -6,7 +6,7 @@ class Ebook():
     def __init__(self):#, bookid, title, author, subj, desc=None, rights=None, toc=None, alttitle=None, friendlytitle=None, contribs = None, pgcat=None, loc=None, lang=None):#, filename=None, mdate=None):
         self.bookid = u''#bookid #none til subj
         self.title = u''#title #multiple elements, so this SHOULD be an array
-        self.author = u''#author
+        self.author = u''#author #multiple elements, so this SHOULD be an array
         self.subj = []#subj #multiple elements
         self.desc = u''#desc
         self.rights = u''#rights
@@ -30,13 +30,13 @@ class Ebook():
                 for item in element[0]:
                     self.__dict__[self.subject_split[item[0].tag]].append(Ebook.leaf_element(item).text)
             else:
-                self.__dict__[self.subject_split[element[0].tag]].append(element[0][0].text)
-        elif(key in ['alttitle', 'contribs']): #this should also contain title as there can be multiple title elements
+                self.__dict__[self.subject_split[element[0].tag]].append(Ebook.leaf_element(element).text)
+        elif(key in ['alttitle', 'contribs']): #this should also contain title and author as they can have multiple elements
             if(Ebook.is_bag(element)):
                 for item in element:
-                    self.__dict__[key].append(item[0].text)
+                    self.__dict__[key].append(Ebook.leaf_element(item).text)
             else:
-                self.__dict__[key].append(element.text)
+                self.__dict__[key].append(Ebook.leaf_element(element).text)
         else:
             a = 1
 

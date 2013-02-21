@@ -111,12 +111,6 @@ class Gutenberg:
         for book in books:
             page = self.parse_ebook(book)
             book_dict[page['bookid']] = page
-            #book_list.append(self.parse_ebook(book))
-        #print len(book_list)
-        print 'books completed, parsing files'
-        format_tag = '{http://purl.org/dc/elements/1.1}format'
-        etext_tag = '{http://purl.org/dc/terms/}isFormatOf'
-        mdate_tag = '{http://purl.org/dc/terms/}modified'
         for file in files:
             is_text = False
             is_zip = False

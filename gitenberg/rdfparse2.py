@@ -41,7 +41,10 @@ class Ebook():
             a = 1
 
     def __getitem__(self, key):
-        return self.__dict__[key]
+        try:
+            return self.__dict__[key]
+        except:
+            return None
 
     @staticmethod
     def is_bag(element):

@@ -17,8 +17,8 @@ class Ebook():
         self.pgcat = u''#pgcat
         self.loc = []#loc #multiple elements
         self.lang = u''#lang
-        #self.filename = filename
-        #self.mdate = mdate
+        self.filename = u''#filename
+        self.mdate = u''#mdate
 
     def __setitem__(self, key, element):
         if(key == 'bookid'):
@@ -33,7 +33,7 @@ class Ebook():
                 self.__dict__[self.subject_split[element[0].tag]].append(Ebook.leaf_element(element).text)
         elif(key in ['alttitle', 'contribs']): #this should also contain title and author as they can have multiple elements
             if(Ebook.is_bag(element)):
-                for item in element:
+                for item in element[0]:
                     self.__dict__[key].append(Ebook.leaf_element(item).text)
             else:
                 self.__dict__[key].append(Ebook.leaf_element(element).text)
@@ -107,13 +107,33 @@ class Gutenberg:
         file_tag = '{http://www.gutenberg.org/rdfterms/}file'
         books = catalog.findall(book_tag)
         files = catalog.findall(file_tag)
-        book_list = []
+        book_dict = {}
         for book in books:
-            book_list.append(self.parse_ebook(book))
+            page = self.parse_ebook(book)
+            book_dict[page['bookid']] = page
+            #book_list.append(self.parse_ebook(book))
         #print len(book_list)
-        return book_list
+        print 'books completed, parsing files'
+        format_tag = '{http://purl.org/dc/elements/1.1}format'
+        etext_tag = '{http://purl.org/dc/terms/}isFormatOf'
+        mdate_tag = '{http://purl.org/dc/terms/}modified'
+        for file in files:
+            is_text = False
+            is_zip = False
+            if(('format' in file[0].tag) and ('format' in file[1].tag)):
+                if((file[0][0][0].text.startswith('text/plain')) or (file[1][0][0].text.startswith('text/plain'))):
+                    is_text = True
+                if((file[0][0][0].text == 'application/zip') or (file[1][0][0].text == 'application/zip')):
+                    is_zip = True
+            if(is_zip and is_text):
+                file_mdate = file[-2][0][0].text
+                file_etext = file[-1].values()[0][6:]
+                if(file_mdate > book_dict[file_etext]['mdate']):
+                    book_dict[file_etext]['mdate'] = file_mdate
+                    book_dict[file_etext]['filename'] = file.values()[0][file.values()[0].rfind('/')+1:]
+        return book_dict
 
-    def updatecatalogue(self,):
+    def updatecatalogue(self):
         books = self.parse_catalog()
         pickle = open(self.pickle_path, 'wb')
         cPickle.dump(books, pickle, -1)

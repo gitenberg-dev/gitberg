@@ -37,6 +37,8 @@ class Ebook():
                     self.__dict__[key].append(Ebook.leaf_element(item).text)
             else:
                 self.__dict__[key].append(Ebook.leaf_element(element).text)
+        elif(key in ['mdate', 'filename']):
+            self.__dict__[key] = element
         else:
             a = 1
 
@@ -107,10 +109,13 @@ class Gutenberg:
         file_tag = '{http://www.gutenberg.org/rdfterms/}file'
         books = catalog.findall(book_tag)
         files = catalog.findall(file_tag)
+        #add all books to the dictionary
         book_dict = {}
         for book in books:
             page = self.parse_ebook(book)
             book_dict[page['bookid']] = page
+            
+        #now add file info to books
         for file in files:
             is_text = False
             is_zip = False
@@ -125,7 +130,24 @@ class Gutenberg:
                 if(file_mdate > book_dict[file_etext]['mdate']):
                     book_dict[file_etext]['mdate'] = file_mdate
                     book_dict[file_etext]['filename'] = file.values()[0][file.values()[0].rfind('/')+1:]
-        return book_dict
+                    
+        #now we cull books that do not have a plaintext file in a zip associated to them
+        for book in book_dict.values():
+            if book['filename'] == '':
+                del book_dict[book.bookid]
+        sorted_ids = sorted(book_dict,
+                      lambda x,y: cmp("%s%s" % (book_dict[x]['author'].lower(),
+                                                book_dict[x]['title'].lower()),
+                                      "%s%s" % (book_dict[y]['author'].lower(),
+                                                book_dict[y]['title'].lower())))
+        book_list = []
+        bid = sorted_ids.pop(0)
+        while bid:
+            book_list.append(book_dict.pop(bid))
+            try: bid = sorted_ids.pop(0)
+            except: bid = None
+        
+        return book_list
 
     def updatecatalogue(self):
         books = self.parse_catalog()

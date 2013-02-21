@@ -85,30 +85,34 @@ class Ebook():
         '{http://purl.org/dc/terms/}LCSH': 'subj'
         }
 
-def parse_ebook(etree_book):
-    new_book = Ebook()
-    new_book['bookid'] = etree_book.values()[0]
+class Gutenberg:
+    def __init__(self, pickle_path):
+        self.pickle_path = pickle_path
 
-    for child in etree_book.getchildren():
-        new_book[new_book.lookup_table[child.tag]] = child#(new_book, child)
+    def parse_ebook(self, etree_book):
+        new_book = Ebook()
+        new_book['bookid'] = etree_book.values()[0]
 
-    return new_book
+        for child in etree_book.getchildren():
+            new_book[new_book.lookup_table[child.tag]] = child#(new_book, child)
 
-def parse_catalog():
-    catalog = parse('./catalog.rdf') #CHANGE THIS ON LIVE
-    book_tag = '{http://www.gutenberg.org/rdfterms/}etext'
-    file_tag = '{http://www.gutenberg.org/rdfterms/}file'
-    books = catalog.findall(book_tag)
-    files = catalog.findall(file_tag)
-    book_list = []
-    for book in books:
-        book_list.append(parse_ebook(book))
-    print len(book_list)
-    return book_list
+        return new_book
 
-def make_pickle():
-    books = parse_catalog()
-    pickle = open('./catalog.pickle', 'wb')
-    cPickle.dump(books, pickle, -1)
-    pickle.close()
-    return True
+    def parse_catalog(self):
+        catalog = parse('./catalog.rdf') #CHANGE THIS ON LIVE
+        book_tag = '{http://www.gutenberg.org/rdfterms/}etext'
+        file_tag = '{http://www.gutenberg.org/rdfterms/}file'
+        books = catalog.findall(book_tag)
+        files = catalog.findall(file_tag)
+        book_list = []
+        for book in books:
+            book_list.append(self.parse_ebook(book))
+        #print len(book_list)
+        return book_list
+
+    def updatecatalogue(self,):
+        books = self.parse_catalog()
+        pickle = open(self.pickle_path, 'wb')
+        cPickle.dump(books, pickle, -1)
+        pickle.close()
+        return True

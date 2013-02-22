@@ -22,23 +22,23 @@ class Ebook():
 
     def __setitem__(self, key, element):
         if(key == 'bookid'):
-            self.__dict__[key] = element[5:]
+            self.__dict__[key] = Ebook.cleanup(element[5:])
         elif(key in ['title', 'author', 'desc', 'rights', 'toc', 'friendlytitle', 'pgcat', 'lang']):
-            self.__dict__[key] =  Ebook.leaf_element(element).text
+            self.__dict__[key] =  Ebook.cleanup(Ebook.leaf_element(element).text)
         elif(key == 'subject'):
             if(Ebook.is_bag(element[0])):
                 for item in element[0]:
-                    self.__dict__[self.subject_split[item[0].tag]].append(Ebook.leaf_element(item).text)
+                    self.__dict__[self.subject_split[item[0].tag]].append(Ebook.cleanup(Ebook.leaf_element(item).text))
             else:
-                self.__dict__[self.subject_split[element[0].tag]].append(Ebook.leaf_element(element).text)
+                self.__dict__[self.subject_split[element[0].tag]].append(Ebook.cleanup(Ebook.leaf_element(element).text))
         elif(key in ['alttitle', 'contribs']): #this should also contain title and author as they can have multiple elements
             if(Ebook.is_bag(element)):
                 for item in element[0]:
-                    self.__dict__[key].append(Ebook.leaf_element(item).text)
+                    self.__dict__[key].append(Ebook.cleanup(Ebook.leaf_element(item).text))
             else:
-                self.__dict__[key].append(Ebook.leaf_element(element).text)
+                self.__dict__[key].append(Ebook.cleanup(Ebook.leaf_element(element).text))
         elif(key in ['mdate', 'filename']):
-            self.__dict__[key] = element
+            self.__dict__[key] = Ebook.cleanup(element)
         else:
             a = 1
 
@@ -47,6 +47,14 @@ class Ebook():
             return self.__dict__[key]
         except:
             return None
+
+    @staticmethod
+    def cleanup(self, words):
+        words = words.split()
+        words = ' '.join(words)
+        words = words.encode('utf-8','replace')
+        words = words.decode('utf-8')
+        return words
 
     @staticmethod
     def is_bag(element):

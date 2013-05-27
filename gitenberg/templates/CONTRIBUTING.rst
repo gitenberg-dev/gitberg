@@ -7,4 +7,4 @@ We _love_ to get contributions, and there are a number of ways you can get invol
 
 If you would like to help, vist the contributing_ section of our website for more information.
 
-.. _contributing: http://gutenberg.github.com/#contributing
+.. _contributing: http://gitenberg.github.io/#contributing

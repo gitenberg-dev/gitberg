@@ -7,7 +7,7 @@ Reported 650 GB total
 
 Links to:  `Home Page`_ - `Book Repositories`_ - Issues_
 
-.. _Home PAge: http://gitenberg.github.io
+.. _Home Page: http://gitenberg.github.io
 .. _Book Repositories: https://github.com/GITenberg/repositories
 .. _Issues: https://github.com/sethwoodworth/GITenberg/issues
 

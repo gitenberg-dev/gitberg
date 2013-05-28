@@ -5,9 +5,11 @@ Estimated 1.6 million files
 Reported 650 GB total
 ~40,000 + books
 
-`link to issues`_
+Links to:  `Home Page`_ - `Book Repositories`_ - Issues_
 
-.. _link to issues: https://github.com/sethwoodworth/GITenberg/issues
+.. _Home Page: http://gitenberg.github.io
+.. _Book Repositories: https://github.com/GITenberg/repositories
+.. _Issues: https://github.com/sethwoodworth/GITenberg/issues
 
 How are we getting the files?
 =============================

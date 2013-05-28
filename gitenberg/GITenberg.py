@@ -11,14 +11,14 @@ import shutil
 import subprocess
 import sys
 
-import git
-import github3
+#import git
+#import github3
 
-import rdfparse
+import rdfparse2
 from filetypes import IGNORE_FILES
 
-from secrets import GH_USER
-from secrets import GH_PASSWORD
+#from secrets import GH_USER
+#from secrets import GH_PASSWORD
 
 import models
 
@@ -31,7 +31,7 @@ def update_catalog(pickle_path=PICKLE_PATH):
     """ Use an imported repo to parse the Gutenberg XML index into a pickle
         This saves it to the file noted in PICKLE_PATH
     """
-    mycat = rdfparse.Gutenberg(pickle_path)
+    mycat = rdfparse2.Gutenberg(pickle_path)
     success = mycat.updatecatalogue()
     print success
 

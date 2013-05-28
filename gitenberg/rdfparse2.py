@@ -49,7 +49,7 @@ class Ebook():
             return None
 
     @staticmethod
-    def cleanup(self, words):
+    def cleanup(words):
         words = words.split()
         words = ' '.join(words)
         words = words.encode('utf-8','replace')

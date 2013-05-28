@@ -50,6 +50,8 @@ class Ebook():
 
     @staticmethod
     def cleanup(words):
+	if words is None:
+		return ''
         words = words.split()
         words = ' '.join(words)
         words = words.encode('utf-8','replace')

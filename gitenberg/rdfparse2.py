@@ -24,7 +24,10 @@ class Ebook():
         if(key == 'bookid'):
             self.__dict__[key] = Ebook.cleanup(element[5:])
         elif(key in ['title', 'author', 'desc', 'rights', 'toc', 'friendlytitle', 'pgcat', 'lang']):
-            self.__dict__[key] =  Ebook.cleanup(Ebook.leaf_element(element).text)
+            if Ebook.leaf_element(element).text is None:
+                self.__dict__[key] =  Ebook.cleanup(Ebook.leaf_element(element).values()[0])
+            else:
+                self.__dict__[key] =  Ebook.cleanup(Ebook.leaf_element(element).text)
         elif(key == 'subject'):
             if(Ebook.is_bag(element[0])):
                 for item in element[0]:
@@ -50,8 +53,8 @@ class Ebook():
 
     @staticmethod
     def cleanup(words):
-	if words is None:
-		return ''
+	#if words is None:
+	#	return ''
         words = words.split()
         words = ' '.join(words)
         words = words.encode('utf-8','replace')

@@ -1,0 +1,22 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+Usage:
+    gitenbook.py (fetch | make | push) BOOKID
+"""
+
+from docopt import docopt
+from gitenberg import fetch, make, push
+from gitenberg import __version__
+
+if __name__ == '__main__':
+    arguments = docopt(__doc__, version=__version__)
+
+    if arguments['fetch']:
+        fetch(arguments['BOOKID'])
+
+    elif arguments['make']:
+        make(arguments['BOOKID'])
+
+    elif arguments['push']:
+        push(arguments['BOOKID'])

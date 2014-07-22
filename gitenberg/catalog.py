@@ -13,6 +13,7 @@ MIRRORS = {'default': 'ftp://ftp.ibiblio.org/pub/docs/books/gutenberg/'}
 class EbookRecord():
 
     RDF_LIBRARY = './rdf_library'
+    HTML_REGEX = re.compile('<[^<]+?>')
 
     def __init__(self, book_id):
         self.book_id = book_id
@@ -37,9 +38,8 @@ class EbookRecord():
         return prop
 
     def _clean_prop(self, prop):
-        HTML_REGEX = '<[^<]+?>'
         prop = str(prop)
-        prop = re.sub(HTML_REGEX, '', prop)
+        prop = self.HTML_REGEX.sub('', prop)
         prop = prop.replace('\n', '')
         prop = ' '.join(prop.split())
         return prop

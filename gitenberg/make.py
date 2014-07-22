@@ -4,6 +4,7 @@
 Makes an organized git repo of a book folder
 """
 
+import codecs
 import os
 
 import git
@@ -22,9 +23,11 @@ from .filetypes import IGNORE_FILES
 # add those templated files on 2nd commit
 
 
-def make_local_repo(book_id):
+def path_to_library_book(book_id):
     library_path = './library'
-    book_path = '{0}/{1}'.format(library_path, book_id)
+    return '{0}/{1}'.format(library_path, book_id)
+
+def make_local_repo(book_path):
 
     og_directory = str(sh.pwd()).strip('\n')
     # cd this way has side effects, ^ lets me go back
@@ -56,13 +59,28 @@ def make_local_repo(book_id):
 
 
 class TemplateLoader():
-    def __init__(self, book_id):
-        self.ebook_record = EbookRecord(book_id)
+    def __init__(self, book_id, book_path):
+        self.meta = EbookRecord(book_id)
+        self.book_path = book_path
 
-        self.env = jinja2.Environment(loader=jinja2.PackageLoader('gitenberg', 'templates'))
+        package_loader = jinja2.PackageLoader('gitenberg', 'templates')
+        self.env = jinja2.Environment(loader=package_loader)
+        self.template_readme()
+
+    def template_readme(self):
+        template = self.env.get_template('README.rst.j2')
+        readme_text = template.render(title=self.meta.title, author=self.meta.author)
+        print type(self.meta.title), self.meta.title
+        print type(self.meta.author), self.meta.author
+
+        readme_path = "{0}/{1}".format(self.book_path, 'README.rst')
+        with codecs.open(readme_path, 'w', 'utf-8') as readme_file:
+            readme_file.write(readme_text)
+
 
 
 
 def make(book_id):
-    make_local_repo(book_id)
-    t = TemplateLoader(book_id)
+    book_path = path_to_library_book(book_id)
+    make_local_repo(book_path)
+    TemplateLoader(book_id, book_path)

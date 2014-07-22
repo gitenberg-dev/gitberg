@@ -38,7 +38,7 @@ class EbookRecord():
         return prop
 
     def _clean_prop(self, prop):
-        prop = str(prop)
+        prop = unicode(prop)
         prop = self.HTML_REGEX.sub('', prop)
         prop = prop.replace('\n', '')
         prop = ' '.join(prop.split())

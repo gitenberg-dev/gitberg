@@ -9,9 +9,6 @@ import os
 
 import sh
 
-from .catalog import EbookRecord
-
-
 ## Path functions
 def path_to_pg_book(book_id):
     """ turns an ebook_id into a string of paths
@@ -40,7 +37,6 @@ class Book():
         self.library_path = library_path
 
         self.make_shelf_in_library()
-        ebook = EbookRecord(book_id)
         self.rsync_files_from_remote()
 
 

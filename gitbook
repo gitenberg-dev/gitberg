@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Usage:
-    gitenbook.py (fetch | make | push) BOOKID
+    gitbook (fetch | make | push) BOOKID
 """
 
 from docopt import docopt

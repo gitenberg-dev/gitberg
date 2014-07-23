@@ -6,10 +6,12 @@ Makes an organized git repo of a book folder
 
 import codecs
 import os
+from os.path import abspath, dirname
 
 import git
 import jinja2
 import sh
+import shutil
 
 from .catalog import EbookRecord
 from .filetypes import IGNORE_FILES
@@ -58,7 +60,7 @@ def make_local_repo(book_path):
         sh.cd(str(og_directory))
 
 
-class TemplateLoader():
+class NewFilesHandler():
     def __init__(self, book_id, book_path):
         self.meta = EbookRecord(book_id)
         self.book_path = book_path
@@ -66,21 +68,26 @@ class TemplateLoader():
         package_loader = jinja2.PackageLoader('gitenberg', 'templates')
         self.env = jinja2.Environment(loader=package_loader)
         self.template_readme()
+        self.copy_files()
 
     def template_readme(self):
         template = self.env.get_template('README.rst.j2')
         readme_text = template.render(title=self.meta.title, author=self.meta.author)
-        print type(self.meta.title), self.meta.title
-        print type(self.meta.author), self.meta.author
+        #print type(self.meta.title), self.meta.title
+        #print type(self.meta.author), self.meta.author
 
         readme_path = "{0}/{1}".format(self.book_path, 'README.rst')
         with codecs.open(readme_path, 'w', 'utf-8') as readme_file:
             readme_file.write(readme_text)
 
-
-
+    def copy_files(self):
+        """ Copy the LICENSE and CONTRIBUTING files to each folder repo """
+        files = [u'LICENSE', u'CONTRIBUTING.rst']
+        this_dir = dirname(abspath(__file__))
+        for _file in files:
+            sh.cp('{0}/templates/{1}'.format(this_dir,_file), '{0}/'.format(self.book_path))
 
 def make(book_id):
     book_path = path_to_library_book(book_id)
     make_local_repo(book_path)
-    TemplateLoader(book_id, book_path)
+    NewFilesHandler(book_id, book_path)

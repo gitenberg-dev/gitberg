@@ -9,6 +9,21 @@ import sh
 # sourced from http://www.gutenberg.org/MIRRORS.ALL
 MIRRORS = {'default': 'ftp://ftp.ibiblio.org/pub/docs/books/gutenberg/'}
 
+class CdContext():
+    """ A context manager using `sh` to cd to a directory and back
+        `with CdContext(new path to go to)`
+    """
+
+    def __init__(self, path):
+        self._og_directory = str(sh.pwd()).strip('\n')
+        self._dest_directory = path
+
+    def __enter__(self):
+        sh.cd(self._dest_directory)
+
+    def __exit__(self, exception_type, exception_value, traceback):
+        sh.cd(self._og_directory)
+
 
 class EbookRecord():
 

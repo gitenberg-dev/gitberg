@@ -41,31 +41,47 @@ class CdContext():
         sh.cd(self._og_directory)
 
 
-def make_local_repo(book_path):
+class LocalRepo():
 
-    with CdContext(book_path):
+    def __init__(self, book_id, book_path):
+        self.book_id = book_id
+        self.book_path = book_path
 
-        repo = git.Repo.init('./')
+    def add_file(self, filename):
+        filetype = os.path.splitext(filename)[1]
+        if filetype not in IGNORE_FILES:
+            sh.git('add', filename)
 
-        for _file in repo.untracked_files:
-            filetype = os.path.splitext(_file)[1]
-            if filetype not in IGNORE_FILES:
-                sh.git('add', _file)
+    def commit(self, message):
+        with CdContext(self.book_path):
+            try:
+                # note the double quotes around the message
+                sh.git(
+                    'commit',
+                    '-m',
+                    '"{message}"'.format(message=message)
+                )
+            except sh.ErrorReturnCode_1:
+                print "Commit aborted for {0} with msg {1}".format(self.book_id, message)
 
-        try:
-            # note the double quotes
-            sh.git('commit', '-m', '"Initial import from Project Gutenberg"')
-        except sh.ErrorReturnCode_1:
-            print "we have already created this repo locally, aborting"
+    def add_all_files(self):
+
+        with CdContext(self.book_path):
+            repo = git.Repo.init('./')
+            for _file in repo.untracked_files:
+                self.add_file(_file)
 
 
 class NewFilesHandler():
     """ NewFilesHandler - templates and copies additional files to book repos
 
     """
+    README_FILENAME = 'README.rst'
+
     def __init__(self, book_id, book_path):
         self.meta = EbookRecord(book_id)
         self.book_path = book_path
+        self.added_files = []
 
         package_loader = jinja2.PackageLoader('gitenberg', 'templates')
         self.env = jinja2.Environment(loader=package_loader)
@@ -78,9 +94,10 @@ class NewFilesHandler():
         #print type(self.meta.title), self.meta.title
         #print type(self.meta.author), self.meta.author
 
-        readme_path = "{0}/{1}".format(self.book_path, 'README.rst')
+        readme_path = "{0}/{1}".format(self.book_path, self.README_FILENAME)
         with codecs.open(readme_path, 'w', 'utf-8') as readme_file:
             readme_file.write(readme_text)
+        self.added_files.append(self.README_FILENAME)
 
     def copy_files(self):
         """ Copy the LICENSE and CONTRIBUTING files to each folder repo """
@@ -91,9 +108,14 @@ class NewFilesHandler():
                 '{0}/templates/{1}'.format(this_dir, _file),
                 '{0}/'.format(self.book_path)
             )
+            self.added_files.append(_file)
 
 
 def make(book_id):
     book_path = path_to_library_book(book_id)
-    make_local_repo(book_path)
+    local_repo = LocalRepo(book_id, book_path)
+    local_repo.add_all_files()
+    local_repo.commit("Initial import from Project Gutenberg")
     NewFilesHandler(book_id, book_path)
+    local_repo.add_all_files()
+    local_repo.commit("Adds Readme, contributing and license files to book repo")

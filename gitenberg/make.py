@@ -112,10 +112,15 @@ class NewFilesHandler():
 
 
 def make(book_id):
+    # Preface
     book_path = path_to_library_book(book_id)
+
+    # Initial commit of book files
     local_repo = LocalRepo(book_id, book_path)
     local_repo.add_all_files()
     local_repo.commit("Initial import from Project Gutenberg")
+
+    # New files commit
     NewFilesHandler(book_id, book_path)
     local_repo.add_all_files()
     local_repo.commit("Adds Readme, contributing and license files to book repo")

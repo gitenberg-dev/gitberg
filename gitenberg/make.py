@@ -11,10 +11,10 @@ from os.path import abspath, dirname
 import git
 import jinja2
 import sh
-import shutil
 
 from .catalog import EbookRecord
 from .filetypes import IGNORE_FILES
+from .path import path_to_library_book
 
 
 # TODO:
@@ -25,42 +25,44 @@ from .filetypes import IGNORE_FILES
 # add those templated files on 2nd commit
 
 
-def path_to_library_book(book_id):
-    library_path = './library'
-    return '{0}/{1}'.format(library_path, book_id)
+class CdContext():
+    """ A context manager using `sh` to cd to a directory and back
+        `with CdContext(new path to go to)`
+    """
+
+    def __init__(self, path):
+        self._og_directory = str(sh.pwd()).strip('\n')
+        self._dest_directory = path
+
+    def __enter__(self):
+        sh.cd(self._dest_directory)
+
+    def __exit__(self, exception_type, exception_value, traceback):
+        sh.cd(self._og_directory)
+
 
 def make_local_repo(book_path):
 
-    og_directory = str(sh.pwd()).strip('\n')
-    # cd this way has side effects, ^ lets me go back
-    sh.cd(book_path)
+    with CdContext(book_path):
 
-    #print sh.pwd()
+        repo = git.Repo.init('./')
 
-    repo = git.Repo.init('./')
-    #print repo
+        for _file in repo.untracked_files:
+            filetype = os.path.splitext(_file)[1]
+            if filetype not in IGNORE_FILES:
+                sh.git('add', _file)
 
-
-    #print repo.untracked_files
-
-    for _file in repo.untracked_files:
-        #print _file
-        filetype = os.path.splitext(_file)[1]
-        if filetype not in IGNORE_FILES:
-            # I don't like my git library's add command
-            sh.git('add', _file)
-
-    try:
-        # note the double quotes
-        sh.git('commit', '-m', '"initial commit"')
-    except sh.ErrorReturnCode_1:
-        print "we have already created this repo locally, aborting"
-    finally:
-        # go back to the original directory we started in
-        sh.cd(str(og_directory))
+        try:
+            # note the double quotes
+            sh.git('commit', '-m', '"Initial import from Project Gutenberg"')
+        except sh.ErrorReturnCode_1:
+            print "we have already created this repo locally, aborting"
 
 
 class NewFilesHandler():
+    """ NewFilesHandler - templates and copies additional files to book repos
+
+    """
     def __init__(self, book_id, book_path):
         self.meta = EbookRecord(book_id)
         self.book_path = book_path
@@ -85,7 +87,11 @@ class NewFilesHandler():
         files = [u'LICENSE', u'CONTRIBUTING.rst']
         this_dir = dirname(abspath(__file__))
         for _file in files:
-            sh.cp('{0}/templates/{1}'.format(this_dir,_file), '{0}/'.format(self.book_path))
+            sh.cp(
+                '{0}/templates/{1}'.format(this_dir, _file),
+                '{0}/'.format(self.book_path)
+            )
+
 
 def make(book_id):
     book_path = path_to_library_book(book_id)

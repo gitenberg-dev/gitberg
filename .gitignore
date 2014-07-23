@@ -1,5 +1,6 @@
 secrets.py
 rdf_library/*
+library/*
 *.swp
 *.pyc
 *.db

@@ -21,6 +21,8 @@ def do_all(book_id_start, book_id_end):
             push(book_id)
         except CantPathHereException:
             print "Can't path to book {id}".format(id=book_id)
+        except sh.ErrorReturnCode_23:
+            print "This book doesn't exist at this path on pg servers"
         except github3.GitHubError as e:
             if e.code == 422:
                 print "This repo already exists!"

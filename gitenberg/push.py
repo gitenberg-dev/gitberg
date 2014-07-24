@@ -25,6 +25,9 @@ class GithubRepo():
             self.create_repo()
         except github3.GitHubError as g_exception:
             print g_exception
+            if g_exception.code == 422:
+                raise g_exception
+
         self.book_path = path_to_library_book(self.book.book_id)
         self.add_remote_origin_to_local_repo()
         self.push_to_github()

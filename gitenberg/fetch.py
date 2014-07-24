@@ -36,11 +36,14 @@ class Book():
             print("Folder {0} already exists".format(self.book_path))
 
     def rsync_files_from_remote(self):
+        # FIXME: check for presence of folder as expected before fetch
         sh.rsync(
             '-rvhz',
             'ftp@ftp.ibiblio.org::gutenberg/{0}'.format(path_to_pg_book(self.book_id)),
             self.book_path
         )
+        if len(sh.ls(self.book_path)) == 0:
+            raise
 
 
 def fetch(book_id):

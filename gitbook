@@ -8,6 +8,7 @@ Usage:
 
 from docopt import docopt
 import github3
+import sh
 
 from gitenberg import fetch, make, push
 from gitenberg import CantPathHereException

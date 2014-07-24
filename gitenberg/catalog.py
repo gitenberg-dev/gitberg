@@ -40,10 +40,15 @@ class EbookRecord():
         """
         # FIXME: make this an rdf parser if I can
         _title = sh.grep(sh.cat(rdf_path), 'dcterms:title', _tty_out=False)
-        _author = sh.grep(sh.cat(rdf_path), 'name', _tty_out=False)
+        try:
+            _author = sh.grep(sh.cat(rdf_path), 'name', _tty_out=False)
+            self.author = self._clean_properties(_author)
+        except sh.ErrorReturnCode_1:
+            self.author = "Various"
+
+
 
         self.title = self._clean_properties(_title)
-        self.author = self._clean_properties(_author)
 
     def _clean_properties(self, prop):
         if isinstance(prop, list):

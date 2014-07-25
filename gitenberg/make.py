@@ -16,14 +16,6 @@ from .util.catalog import CdContext
 from .util.filetypes import IGNORE_FILES
 
 
-# TODO:
-# --make repo
-# --add files to repo
-# initial commit
-# template files into repo dir
-# add those templated files on 2nd commit
-
-
 class LocalRepo():
 
     def __init__(self, book):

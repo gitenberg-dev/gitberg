@@ -85,7 +85,7 @@ class NewFilesHandler():
         for _file in files:
             sh.cp(
                 '{0}/templates/{1}'.format(this_dir, _file),
-                '{0}/'.format(self.book_path)
+                '{0}/'.format(self.book.local_path)
             )
 
 

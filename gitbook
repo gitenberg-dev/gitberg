@@ -5,15 +5,22 @@ Usage:
     gitbook (fetch | make | push) <book_id>
     gitbook all BOOKID BOOKIDEND
 """
+import logging
 
 from docopt import docopt
-import github3
-import sh
 
 from gitenberg import Book
 from gitenberg import __version__
 
+
+logging.basicConfig(filename='./log/log.txt', level=logging.INFO)
+
 def do_all(book_id_start, book_id_end):
+    logging.info(
+        "starting a gitbook mass upload: {0} -> {1}".format(
+            book_id_start, book_id_end
+        )
+    )
     for book_id in xrange(int(book_id_start), int(book_id_end)):
         book = Book(book_id)
         book.all()

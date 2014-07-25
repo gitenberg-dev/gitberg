@@ -9,43 +9,31 @@ import os
 
 import sh
 
-from .path import path_to_library_book
-from .path import path_to_pg_book
 
+class BookFetcher():
 
-class Book():
-
-    def __init__(self, book_id):
+    def __init__(self, book):
         """
-        A Book:
-          - has a shelf (folder in library directory)
-          - has an `author`
-          - has a `title`
+        A BookFetcher:
+          - makes a shelf (folder in library directory)
+          - rsyncs the book from PG to the shelf
         """
-        self.book_id = book_id
-        self.book_path = path_to_library_book(book_id)
+        self.book = book
 
-        self.make_shelf_in_library()
-        self.rsync_files_from_remote()
+    def fetch(self):
+        self.make_local_path()
+        self.fetch_remote_book_to_local_path()
 
-    def make_shelf_in_library(self):
+    def make_local_path(self):
         try:
-            os.makedirs(self.book_path)
+            os.makedirs(self.book.local_path)
         except OSError:
             # FIXME logging.debug
-            print("Folder {0} already exists".format(self.book_path))
+            print("Folder {0} already exists".format(self.book.local_path))
 
-    def rsync_files_from_remote(self):
-        # FIXME: check for presence of folder as expected before fetch
+    def fetch_remote_book_to_local_path(self):
         sh.rsync(
             '-rvhz',
-            'ftp@ftp.ibiblio.org::gutenberg/{0}'.format(path_to_pg_book(self.book_id)),
-            self.book_path
+            'ftp@ftp.ibiblio.org::gutenberg/{0}'.format(self.book.remote_path),
+            self.book.local_path
         )
-        if len(sh.ls(self.book_path)) == 0:
-            raise
-
-
-def fetch(book_id):
-    # TODO: if make is passed, pass the ebook to make
-    Book(book_id)

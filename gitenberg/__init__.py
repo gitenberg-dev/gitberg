@@ -3,10 +3,7 @@
 """
 """
 
-from .fetch import fetch
-from .make import make
-from .push import push
-from .path import CantPathHereException
+from .book import Book
 
 __title__ = 'gitenberg'
 __version__ = '0.0.3'

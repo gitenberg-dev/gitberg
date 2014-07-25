@@ -7,6 +7,8 @@ import unittest
 from gitenberg.book import Book
 from gitenberg.fetch import BookFetcher
 from gitenberg.util.catalog import BookMetadata
+from gitenberg.make import LocalRepo
+from gitenberg.make import NewFilesHandler
 
 
 class TestBookPath(unittest.TestCase):
@@ -42,9 +44,8 @@ class TestBookPathSubTen(unittest.TestCase):
 class TestBookFetcher(unittest.TestCase):
 
     def setUp(self):
-        self.fetcher = BookFetcher(
-            Book(1283, library_path='./test/library'),
-        )
+        self.book = Book(1283, library_path='./test/library')
+        self.fetcher = BookFetcher(self.book)
 
     def test_make_local_path(self):
         # creates a folder in the specified test dir
@@ -56,8 +57,7 @@ class TestBookFetcher(unittest.TestCase):
         self.assertTrue(os.path.exists('./test/library/1283/1283.txt'))
 
     def tearDown(self):
-        pass
-        #os.removedirs(self.fetcher.book.local_path)
+        self.book.remove()
 
 
 class TestBookMetadata(unittest.TestCase):
@@ -82,6 +82,47 @@ class TestBookMetadata(unittest.TestCase):
             self.meta.title,
             u'Organic Syntheses&#13;An Annual Publication of Satisfactory Methods for the Preparation of Organic Chemicals'
         )
+
+
+class TestLocalRepo(unittest.TestCase):
+
+    def setUp(self):
+        self.book = Book(333, library_path='./test/library')
+        self.book.fetch()
+
+    def test_init(self):
+        l_r = LocalRepo(self.book)
+        self.assertEqual(
+            l_r.book,
+            self.book
+        )
+
+    def test_init_repo(self):
+        l_r = LocalRepo(self.book)
+        l_r.add_all_files()
+        self.assertTrue(
+            os.path.exists('./test/library/333/.git')
+        )
+
+    def tearDown(self):
+        self.book.remove()
+
+
+class TestNewFileHandler():
+
+    def setUp(self):
+        self.book = Book(333, library_path='./test/library')
+        self.book.fetch()
+        self.file_handler = NewFilesHandler(self.book)
+
+    def test_readme(self):
+        self.file_handler.template_readme()
+        self.assertTrue(
+            os.path.exists('./test/library/333/README.rst')
+        )
+
+    def tearDown(self):
+        self.book.remove()
 
 
 if __name__ == '__main__':

@@ -5,3 +5,4 @@ Jinja2==2.7.3
 
 # keep?
 GitPython==0.3.2.RC1
+coverage==3.7.1

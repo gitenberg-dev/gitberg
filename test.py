@@ -17,7 +17,7 @@ class TestBookPath(unittest.TestCase):
     def test_remote_path(self):
         self.assertEqual(
             self.book.remote_path,
-            "3/4/5/3456"
+            "3/4/5/3456/"
         )
 
     def test_local_path(self):
@@ -35,7 +35,7 @@ class TestBookPathSubTen(unittest.TestCase):
     def test_path_to_pg(self):
         self.assertEqual(
             self.book.remote_path,
-            "7"
+            "7/"
         )
 
 
@@ -51,12 +51,13 @@ class TestBookFetcher(unittest.TestCase):
         self.fetcher.make_local_path()
         self.assertTrue(os.path.exists('./test/library/1283'))
 
-    #def test_remote_fetch(self):
-        #self.fetcher.fetch_remote_book_to_local_path()
-        #self.assertTrue(os.path.exists('./test/library/1283/1283.txt')
+    def test_remote_fetch(self):
+        self.fetcher.fetch_remote_book_to_local_path()
+        self.assertTrue(os.path.exists('./test/library/1283/1283.txt'))
 
     def tearDown(self):
-        os.removedirs(self.fetcher.book.local_path)
+        pass
+        #os.removedirs(self.fetcher.book.local_path)
 
 
 class TestBookMetadata(unittest.TestCase):

@@ -35,6 +35,7 @@ class BookMetadata():
         self.rdf_path = "{0}/{1}/pg{1}.rdf".format(
             rdf_library, self.book.book_id
         )
+        self.parse_rdf()
 
     def parse_rdf(self):
         """ cat|grep's the rdf file for minimum metadata

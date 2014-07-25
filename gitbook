@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Usage:
-    gitbook (fetch | make | push) BOOKID
+    gitbook (fetch | make | push) <book_id>
     gitbook all BOOKID BOOKIDEND
 """
 
@@ -10,8 +10,7 @@ from docopt import docopt
 import github3
 import sh
 
-from gitenberg import fetch, make, push
-from gitenberg import CantPathHereException
+from gitenberg import Book
 from gitenberg import __version__
 
 def do_all(book_id_start, book_id_end):
@@ -20,8 +19,6 @@ def do_all(book_id_start, book_id_end):
             fetch(book_id)
             make(book_id)
             push(book_id)
-        except CantPathHereException:
-            print "Can't path to book {id}".format(id=book_id)
         except sh.ErrorReturnCode_23:
             print "This book doesn't exist at this path on pg servers"
         except github3.GitHubError as e:
@@ -32,17 +29,22 @@ def do_all(book_id_start, book_id_end):
                 raise exception
 
 
+
+
 if __name__ == '__main__':
     arguments = docopt(__doc__, version=__version__)
 
+    if arguments['<book_id>'] is not None:
+        book = Book(arguments['<book_id>'])
+
     if arguments['fetch']:
-        fetch(arguments['BOOKID'])
+        book.fetch()
 
     elif arguments['make']:
-        make(arguments['BOOKID'])
+        book.make()
 
     elif arguments['push']:
-        push(arguments['BOOKID'])
+        book.push()
 
     elif arguments['all']:
         do_all(arguments['BOOKID'], arguments['BOOKIDEND'])

@@ -6,6 +6,8 @@ import unittest
 
 from gitenberg.book import Book
 from gitenberg.fetch import BookFetcher
+from gitenberg.util.catalog import BookMetadata
+
 
 class TestBookPath(unittest.TestCase):
 
@@ -17,11 +19,13 @@ class TestBookPath(unittest.TestCase):
             self.book.remote_path,
             "3/4/5/3456"
         )
+
     def test_local_path(self):
         self.assertEqual(
             self.book.local_path,
             "./library/3456"
         )
+
 
 class TestBookPathSubTen(unittest.TestCase):
 
@@ -33,6 +37,7 @@ class TestBookPathSubTen(unittest.TestCase):
             self.book.remote_path,
             "7"
         )
+
 
 class TestBookFetcher(unittest.TestCase):
 
@@ -54,6 +59,28 @@ class TestBookFetcher(unittest.TestCase):
         os.removedirs(self.fetcher.book.local_path)
 
 
+class TestBookMetadata(unittest.TestCase):
+
+    def setUp(self):
+        book = Book(1234)
+        self.meta = BookMetadata(book)
+
+    def test_init(self):
+        self.assertEqual(
+            self.meta.rdf_path,
+            './rdf_library/1234/pg1234.rdf'
+        )
+
+    def test_parse_rdf(self):
+        self.meta.parse_rdf()
+        self.assertEqual(
+            self.meta.author,
+            u'Conant, James Bryant'
+        )
+        self.assertEqual(
+            self.meta.title,
+            u'Organic Syntheses&#13;An Annual Publication of Satisfactory Methods for the Preparation of Organic Chemicals'
+        )
 
 
 if __name__ == '__main__':

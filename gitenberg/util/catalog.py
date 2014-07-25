@@ -9,6 +9,7 @@ import sh
 # sourced from http://www.gutenberg.org/MIRRORS.ALL
 MIRRORS = {'default': 'ftp://ftp.ibiblio.org/pub/docs/books/gutenberg/'}
 
+
 class CdContext():
     """ A context manager using `sh` to cd to a directory and back
         `with CdContext(new path to go to)`
@@ -25,28 +26,26 @@ class CdContext():
         sh.cd(self._og_directory)
 
 
-class EbookRecord():
+class BookMetadata():
 
-    RDF_LIBRARY = './rdf_library'
     HTML_REGEX = re.compile('<[^<]+?>')
 
-    def __init__(self, book_id):
-        self.book_id = book_id
-        rdf_path = "{0}/{1}/pg{1}.rdf".format(self.RDF_LIBRARY, book_id)
-        self._parse_rdf(rdf_path)
+    def __init__(self, book, rdf_library='./rdf_library'):
+        self.book = book
+        self.rdf_path = "{0}/{1}/pg{1}.rdf".format(
+            rdf_library, self.book.book_id
+        )
 
-    def _parse_rdf(self, rdf_path):
+    def parse_rdf(self):
         """ cat|grep's the rdf file for minimum metadata
         """
         # FIXME: make this an rdf parser if I can
-        _title = sh.grep(sh.cat(rdf_path), 'dcterms:title', _tty_out=False)
+        _title = sh.grep(sh.cat(self.rdf_path), 'dcterms:title', _tty_out=False)
         try:
-            _author = sh.grep(sh.cat(rdf_path), 'name', _tty_out=False)
+            _author = sh.grep(sh.cat(self.rdf_path), 'name', _tty_out=False)
             self.author = self._clean_properties(_author)
         except sh.ErrorReturnCode_1:
             self.author = "Various"
-
-
 
         self.title = self._clean_properties(_title)
 

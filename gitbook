@@ -36,6 +36,7 @@ if __name__ == '__main__':
 
     if arguments['<book_id>'] is not None:
         book = Book(arguments['<book_id>'])
+        book.parse_book_metadata()
 
     if arguments['fetch']:
         book.fetch()

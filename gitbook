@@ -15,20 +15,8 @@ from gitenberg import __version__
 
 def do_all(book_id_start, book_id_end):
     for book_id in xrange(int(book_id_start), int(book_id_end)):
-        try:
-            fetch(book_id)
-            make(book_id)
-            push(book_id)
-        except sh.ErrorReturnCode_23:
-            print "This book doesn't exist at this path on pg servers"
-        except github3.GitHubError as e:
-            if e.code == 422:
-                print "This repo already exists!"
-                continue
-            else:
-                raise exception
-
-
+        book = Book(book_id)
+        book.all()
 
 
 if __name__ == '__main__':

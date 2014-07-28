@@ -88,6 +88,13 @@ class NewFilesHandler():
                 '{0}/'.format(self.book.local_path)
             )
 
+        # copy metadata rdf file
+        sh.cp(
+            self.book.meta.rdf_path,
+            '{0}/'.format(self.book.local_path)
+        )
+
+
 
 def make(book):
 

@@ -1,3 +1,36 @@
+Project GITenberg
+=================
+
+Lets fork `Project Gutenberg`_ to github and call it Project GITenberg.
+
+.. _Project Gutenberg: http://gutenberg.org
+
+
+Why?
+====
+
+Project Gutenberg is awesome!
+The public domain is awesome.
+Git is awesome.
+
+But Project Gutenberg doesn't use a version control system.
+And they have a high barrier to entry to edit books.
+Aaaand they don't have a public bug tracking system.
+
+Moving PG to Github helps with these issues,
+and has many other side-effect benefits.
+
+
+What?
+=====
+
+This repo does three things via the `gitbook` command.
+
++ fetches books from PG
++ makes a local git repo with extra files
++ creates a repo on github and pushes to it (one per book)
+
+
 Project Gutenberg Stats
 =======================
 
@@ -10,66 +43,3 @@ Links to:  `Home Page`_ - `Book Repositories`_ - Issues_
 .. _Home Page: http://gitenberg.github.io
 .. _Book Repositories: https://github.com/GITenberg/repositories
 .. _Issues: https://github.com/sethwoodworth/GITenberg/issues
-
-How are we getting the files?
-=============================
-
-::
-
-    rsync -rvhz --progress --partial ftp...
-
-Each repo should...
-===================
-
-+ metadata.yml
-  + author
-  + title
-  + publishing info
-  + provinence
-+ book_name.{rst|tei|txt}
-  + book text in a master source format
-+ license.txt
-  + PG license information
-  + transcriber, converter credits
-+ README.rst
-  + generic GITenburg info
-  + generic PG info
-  + book specific info
-  + desc and links to toolchains
-  + desc and links to generated versions for ebook readers
-
-Smart comments:
-===============
-
-Convert all files to UTF-8
-https://groups.google.com/forum/?fromgroups#!topic/prj-alexandria/VhKbMyH9kcA
-
-
-File formats:
-=============
-
-A list of file formats and their freqency is in the docs folder, generated via:
-
-::
-
-    find -type f|rev|cut -d\. -f1|grep -v "/" |rev|sort -f|uniq -c|sort -nr
-
-.tei
-~~~~
-
-a master format
-http://www.tei-c.org/Tools/Stylesheets/
-http://code.google.com/p/hrit/source/browse/rst2xml-tei.py?repo=tei-rest
-
-.rst
-~~~~
-
-a master format
-Research toolchain for rst >> whatever
-
-dp rst manual http://pgrst.pglaf.org/publish/181/181-h.html
-
-Future
-------
-
-+ http://armypubs.army.mil/doctrine/

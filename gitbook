@@ -19,7 +19,7 @@ from gitenberg import __version__
 logger = logging.getLogger('')
 logging.basicConfig(filename='./log/log.txt', level=logging.INFO)
 
-def do_all(book_id_start, book_id_end):
+def upload_all_books(book_id_start, book_id_end):
 
     logging.info(
         "starting a gitbook mass upload: {0} -> {1}".format(
@@ -54,13 +54,16 @@ if __name__ == '__main__':
         book.parse_book_metadata()
 
     if arguments['fetch']:
+        logging.info("fetching a PG book: {0}".format(arguments['<book_id>']))
         book.fetch()
 
     elif arguments['make']:
+        logging.info("making a local git repo for: {0}".format(arguments['<book_id>']))
         book.make()
 
     elif arguments['push']:
+        logging.info("making a local git repo for: {0}".format(arguments['<book_id>']))
         book.push()
 
     elif arguments['all']:
-        do_all(arguments['BOOKID'], arguments['BOOKIDEND'])
+        upload_all_books(arguments['BOOKID'], arguments['BOOKIDEND'])

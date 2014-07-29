@@ -7,6 +7,7 @@ Usage:
 
 Options:
     --logging (debug | info | error)
+    --rdf_library <rdr_library>         where are you storing rdf files
 """
 import logging
 
@@ -51,7 +52,11 @@ if __name__ == '__main__':
 
     if arguments['<book_id>'] is not None:
         book = Book(arguments['<book_id>'])
-        book.parse_book_metadata()
+        if '--rdf_library' in arguments:
+            rdf_library = arguments['--rdf_library']
+            book.parse_book_metadata(rdf_library)
+        else:
+            book.parse_book_metadata()
 
     if arguments['fetch']:
         logging.info("fetching a PG book: {0}".format(arguments['<book_id>']))

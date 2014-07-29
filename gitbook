@@ -2,8 +2,11 @@
 # -*- coding: utf-8 -*-
 """
 Usage:
-    gitbook (fetch | make | push) <book_id>
-    gitbook all BOOKID BOOKIDEND
+    gitbook (fetch | make | push) <book_id> [options]
+    gitbook all BOOKID BOOKIDEND [options]
+
+Options:
+    --logging (debug | info | error)
 """
 import logging
 
@@ -13,21 +16,38 @@ from gitenberg import Book
 from gitenberg import __version__
 
 
+logger = logging.getLogger('')
 logging.basicConfig(filename='./log/log.txt', level=logging.INFO)
 
 def do_all(book_id_start, book_id_end):
+
     logging.info(
         "starting a gitbook mass upload: {0} -> {1}".format(
             book_id_start, book_id_end
         )
     )
+
     for book_id in xrange(int(book_id_start), int(book_id_end)):
+        logging.info("--> Beginning {0}".format(book_id))
         book = Book(book_id)
+        book.parse_book_metadata()
         book.all()
 
 
 if __name__ == '__main__':
     arguments = docopt(__doc__, version=__version__)
+
+
+    if '--logging' in arguments:
+        log_level = arguments['--logging']
+        if log_level == 'debug':
+            logger.setLevel(logging.DEBUG)
+        elif log_level == 'info':
+            logger.setLevel(logging.INFO)
+        elif log_level == 'error':
+            logger.setLevel(logging.ERROR)
+
+
 
     if arguments['<book_id>'] is not None:
         book = Book(arguments['<book_id>'])

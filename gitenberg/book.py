@@ -72,13 +72,13 @@ class Book():
             self.push()
             self.remove()
         except sh.ErrorReturnCode_12:
-            logging.error("err00: rsync timed out on {0} {1}: \
+            logging.error(u"err00: rsync timed out on {0} {1}: \
                 {0} {1}".format(self.book_id, self.meta.title))
         except sh.ErrorReturnCode_23:
-            logging.error("err01: can't find remote book on pg server: \
+            logging.error(u"err01: can't find remote book on pg server: \
                 {0} {1}".format(self.book_id, self.meta.title))
         except github3.GitHubError as e:
-            logging.error("err02: This book already exists on github: \
+            logging.error(u"err02: This book already exists on github: \
                 {0} {1} {2}".format(self.book_id, self.meta.title, e))
 
     def remove(self):

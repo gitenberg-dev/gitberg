@@ -38,7 +38,7 @@ def upload_all_books(book_id_start, book_id_end):
             else:
                 book.parse_book_metadata()
         except:
-            logging.error(u"Can't parse metadata for this book: {0}".format(self.book_id))
+            logging.error(u"Can't parse metadata for this book: {0}".format(book.book_id))
             continue
         book.all()
 

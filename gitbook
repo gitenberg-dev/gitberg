@@ -31,7 +31,11 @@ def upload_all_books(book_id_start, book_id_end):
     for book_id in xrange(int(book_id_start), int(book_id_end)):
         logging.info("--> Beginning {0}".format(book_id))
         book = Book(book_id)
-        book.parse_book_metadata()
+        if '--rdf_library' in arguments:
+            rdf_library = arguments['--rdf_library']
+            book.parse_book_metadata(rdf_library)
+        else:
+            book.parse_book_metadata()
         book.all()
 
 

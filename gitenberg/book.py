@@ -26,10 +26,13 @@ class Book():
         self.library_path = library_path
 
     def parse_book_metadata(self, rdf_library=None):
-        if not rdf_library:
-            self.meta = BookMetadata(self)
-        else:
-            self.meta = BookMetadata(self, rdf_library=rdf_library)
+        try:
+            if not rdf_library:
+                self.meta = BookMetadata(self)
+            else:
+                self.meta = BookMetadata(self, rdf_library=rdf_library)
+        except:
+            logging.error(u"Can't parse metadata for this book: {0}".format(self.book_id))
 
     @property
     def remote_path(self):

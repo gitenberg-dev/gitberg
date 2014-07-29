@@ -35,5 +35,6 @@ class BookFetcher():
         sh.rsync(
             '-rvhz',
             'ftp@ftp.ibiblio.org::gutenberg/{0}'.format(self.book.remote_path),
-            self.book.local_path
+            self.book.local_path,
+            '--exclude-from=exclude.txt'
         )

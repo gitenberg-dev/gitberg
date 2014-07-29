@@ -4,7 +4,9 @@
 Syncs a local git book repo to a remote git repo (by default, github)
 """
 
+import logging
 from re import sub
+import time
 
 import github3
 import sh
@@ -71,4 +73,9 @@ class GithubRepo():
 
     def push_to_github(self):
         with CdContext(self.book.local_path):
-            sh.git('push', 'origin', 'master')
+            try:
+                sh.git('push', 'origin', 'master')
+            except sh.ErrorReturnCode_128:
+                logging.error(u"github repo not ready yet")
+                time.sleep(10)
+                sh.git('push', 'origin', 'master')

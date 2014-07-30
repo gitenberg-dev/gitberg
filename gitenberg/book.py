@@ -79,6 +79,9 @@ class Book():
         except github3.GitHubError as e:
             logging.error(u"err02: This book already exists on github: \
                 {0} {1} {2}".format(self.book_id, self.meta.title, e))
+        except sh.ErrorReturnCode_1:
+            logging.error(u"err03: {0} failed to push file(s) to github: \
+                {0} {1}".format(self.book_id, self.meta.title))
         finally:
             self.remove()
 

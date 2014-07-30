@@ -70,7 +70,6 @@ class Book():
             self.fetch()
             self.make()
             self.push()
-            self.remove()
         except sh.ErrorReturnCode_12:
             logging.error(u"err00: rsync timed out on {0} {1}: \
                 {0} {1}".format(self.book_id, self.meta.title))
@@ -80,6 +79,8 @@ class Book():
         except github3.GitHubError as e:
             logging.error(u"err02: This book already exists on github: \
                 {0} {1} {2}".format(self.book_id, self.meta.title, e))
+        finally:
+            self.remove()
 
     def remove(self):
         shutil.rmtree(self.local_path)

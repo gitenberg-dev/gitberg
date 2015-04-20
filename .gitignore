@@ -1,6 +1,18 @@
+# I name my virtualenv `venv`
+venv*
+
+# store your authentication with github api in a file
+# do not add that file to git
 *secrets.py
+
+# These are storage folders for metadata and book git repos
 rdf_library/*
 library/*
-*.swp
+
+# python ignores
 *.pyc
 *.db
+
+# IDE vim ignore files
+*.swp
+*.ropeproject

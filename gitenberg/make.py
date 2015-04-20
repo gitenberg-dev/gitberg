@@ -5,6 +5,7 @@ Makes an organized git repo of a book folder
 """
 
 import codecs
+import logging
 import os
 from os.path import abspath, dirname
 
@@ -29,8 +30,18 @@ class LocalRepo():
     def add_all_files(self):
         with CdContext(self.book.local_path):
             repo = git.Repo.init('./')
-            for _file in repo.untracked_files:
-                self.add_file(_file)
+
+            logging.debug("repo init'd" + str(repo))
+            logging.debug("files to add: " + str(sh.ls()))
+
+            # NOTE: repo.untracked_files is unreliable with CdContext
+            # using sh.ls() instead, this doesn't recognize .gitignore
+            for _file in sh.ls():
+                for _subpath in _file.split():
+                    logging.debug("adding file: " + str(_file))
+
+
+                    self.add_file(_subpath)
 
     def commit(self, message):
         with CdContext(self.book.local_path):
@@ -68,8 +79,6 @@ class NewFilesHandler():
             author=self.book.meta.author,
             book_id=self.book.book_id
         )
-        #print type(self.meta.title), self.meta.title
-        #print type(self.meta.author), self.meta.author
 
         readme_path = "{0}/{1}".format(
             self.book.local_path,
@@ -95,9 +104,7 @@ class NewFilesHandler():
         )
 
 
-
 def make(book):
-
     # Initial commit of book files
     local_repo = LocalRepo(book)
     local_repo.add_all_files()

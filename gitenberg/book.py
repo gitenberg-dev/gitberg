@@ -50,6 +50,7 @@ class Book():
 
     def make(self):
         local_repo = LocalRepo(self)
+        logging.debug("preparing to add all git files")
         local_repo.add_all_files()
         local_repo.commit("Initial import from Project Gutenberg")
 

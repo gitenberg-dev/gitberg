@@ -27,6 +27,8 @@ class BookFetcher():
     def make_local_path(self):
         try:
             os.makedirs(self.book.local_path)
+            os.chmod(self.book.local_path, 0777)
+
         except OSError:
             # FIXME logging.debug
             print("Folder {0} already exists".format(self.book.local_path))
@@ -35,6 +37,6 @@ class BookFetcher():
         sh.rsync(
             '-rvhz',
             'ftp@ftp.ibiblio.org::gutenberg/{0}'.format(self.book.remote_path),
-            self.book.local_path,
+            self.book.local_path + '/',
             '--exclude-from=exclude.txt'
         )

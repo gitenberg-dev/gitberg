@@ -9,6 +9,9 @@ venv*
 rdf_library/*
 library/*
 
+# ignore the local copy of any logs
+logs/*
+
 # python ignores
 *.pyc
 *.db

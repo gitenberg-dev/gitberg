@@ -18,7 +18,7 @@ from gitenberg import __version__
 
 
 logger = logging.getLogger('')
-logging.basicConfig(filename='./log/log.txt', level=logging.INFO)
+logging.basicConfig(filename='./log/log.txt', level=logging.DEBUG)
 
 def upload_all_books(book_id_start, book_id_end):
 

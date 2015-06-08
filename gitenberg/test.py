@@ -4,12 +4,17 @@
 import os
 import unittest
 
+from mock import MagicMock
+
 from gitenberg.book import Book
 from gitenberg.fetch import BookFetcher
 from gitenberg.util.catalog import BookMetadata
 from gitenberg.make import LocalRepo
 from gitenberg.make import NewFilesHandler
 
+
+def null():
+    pass
 
 class TestBookPath(unittest.TestCase):
 
@@ -88,6 +93,10 @@ class TestLocalRepo(unittest.TestCase):
 
     def setUp(self):
         self.book = Book(333, library_path='./test/library')
+        # TODO: Mock fetch_remote_book_to_local_path to
+        #       copy test_data/sea_ppwer to 13529
+
+        self.book.fetch_remote_book_to_local_path = null
         self.book.fetch()
 
     def test_init(self):
@@ -112,6 +121,7 @@ class TestNewFileHandler():
 
     def setUp(self):
         self.book = Book(333, library_path='./test/library')
+        self.book.fetch_remote_book_to_local_path = null
         self.book.fetch()
         self.file_handler = NewFilesHandler(self.book)
 

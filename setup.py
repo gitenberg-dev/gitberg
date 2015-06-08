@@ -3,7 +3,6 @@
 
 import re
 
-from pip.req import parse_requirements
 from setuptools import find_packages
 from setuptools import setup
 
@@ -24,8 +23,7 @@ setup(name='GITenberg',
       author='Seth Woodworth',
       author_email='seth@sethish.com',
       url='https://github.com/sethwoodworth/gitenberg',
-      packages=['gitenberg', 'gitenberg.util'],
-      # packages=find_packages(),
+      packages=find_packages(),
       scripts=['gitbook'],
       install_requires=[
           'requests>=2.7',
@@ -42,5 +40,4 @@ setup(name='GITenberg',
           'Programming Language :: Python :: 3.4',
       ],
       keywords="books gutenberg metadata",
-
       )

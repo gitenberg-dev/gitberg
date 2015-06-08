@@ -9,7 +9,6 @@ import logging
 import os
 from os.path import abspath, dirname
 
-import git
 import jinja2
 import sh
 
@@ -29,7 +28,7 @@ class LocalRepo():
 
     def add_all_files(self):
         with CdContext(self.book.local_path):
-            repo = git.Repo.init('./')
+            sh.git.init('.')
 
             logging.debug("repo init'd" + str(repo))
             logging.debug("files to add: " + str(sh.ls()))
@@ -39,7 +38,6 @@ class LocalRepo():
             for _file in sh.ls():
                 for _subpath in _file.split():
                     logging.debug("adding file: " + str(_file))
-
 
                     self.add_file(_subpath)
 

@@ -28,6 +28,7 @@ setup(name='GITenberg',
       # packages=find_packages(),
       scripts=['gitbook'],
       install_requires=[
+          'requests>=2.7',
           'github3.py>=0.9.9',
           'docopt>=0.6',
           'sh>=1',

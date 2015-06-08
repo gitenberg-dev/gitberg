@@ -4,7 +4,8 @@
 import os
 import unittest
 
-from mock import MagicMock
+# from mock import MagicMock
+import sh
 
 from gitenberg.book import Book
 from gitenberg.fetch import BookFetcher
@@ -92,11 +93,15 @@ class TestBookMetadata(unittest.TestCase):
 class TestLocalRepo(unittest.TestCase):
 
     def setUp(self):
-        self.book = Book(333, library_path='./test/library')
+        library_path = './test/library'
+        self.book = Book(13529, library_path=library_path)
         # TODO: Mock fetch_remote_book_to_local_path to
         #       copy test_data/sea_ppwer to 13529
 
-        self.book.fetch_remote_book_to_local_path = null
+        def copy_test_book():
+            sh.cp('./gitenberg/test_data/13529', library_path)
+
+        self.book.fetch_remote_book_to_local_path = copy_test_book
         self.book.fetch()
 
     def test_init(self):
@@ -110,7 +115,7 @@ class TestLocalRepo(unittest.TestCase):
         l_r = LocalRepo(self.book)
         l_r.add_all_files()
         self.assertTrue(
-            os.path.exists('./test/library/333/.git')
+            os.path.exists('./test/library/13529/.git')
         )
 
     def tearDown(self):

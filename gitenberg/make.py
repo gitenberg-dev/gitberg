@@ -4,6 +4,7 @@
 Makes an organized git repo of a book folder
 """
 
+from __future__ import print_function
 import codecs
 import logging
 import os
@@ -30,7 +31,6 @@ class LocalRepo():
         with CdContext(self.book.local_path):
             sh.git.init('.')
 
-            logging.debug("repo init'd" + str(repo))
             logging.debug("files to add: " + str(sh.ls()))
 
             # NOTE: repo.untracked_files is unreliable with CdContext
@@ -51,7 +51,7 @@ class LocalRepo():
                     '"{message}"'.format(message=message)
                 )
             except sh.ErrorReturnCode_1:
-                print "Commit aborted for {0} with msg {1}".format(self.book.book_id, message)
+                print("Commit aborted for {0} with msg {1}".format(self.book.book_id, message))
 
 
 class NewFilesHandler():

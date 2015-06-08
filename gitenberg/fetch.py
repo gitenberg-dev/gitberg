@@ -11,13 +11,12 @@ import sh
 
 
 class BookFetcher():
+    """ A BookFetcher:
+        - makes a shelf (folder in library directory)
+        - rsyncs the book from PG to the shelf
+    """
 
     def __init__(self, book):
-        """
-        A BookFetcher:
-          - makes a shelf (folder in library directory)
-          - rsyncs the book from PG to the shelf
-        """
         self.book = book
 
     def fetch(self):

@@ -1,0 +1,2 @@
+include README.rst LICENSE AUTHORS CONTRIBUTING.rst gitbook requirements.pip
+recursive-include gitenberg *

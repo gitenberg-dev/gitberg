@@ -11,13 +11,12 @@ import sh
 
 
 class BookFetcher():
+    """ A BookFetcher:
+        - makes a shelf (folder in library directory)
+        - rsyncs the book from PG to the shelf
+    """
 
     def __init__(self, book):
-        """
-        A BookFetcher:
-          - makes a shelf (folder in library directory)
-          - rsyncs the book from PG to the shelf
-        """
         self.book = book
 
     def fetch(self):
@@ -27,11 +26,13 @@ class BookFetcher():
     def make_local_path(self):
         try:
             os.makedirs(self.book.local_path)
-            os.chmod(self.book.local_path, 0777)
 
         except OSError:
             # FIXME logging.debug
             print("Folder {0} already exists".format(self.book.local_path))
+
+        finally:  # weird try-except-finally, I know
+            os.chmod(self.book.local_path, 0o777)
 
     def fetch_remote_book_to_local_path(self):
         sh.rsync(

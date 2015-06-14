@@ -4,6 +4,7 @@
 Syncs a local git book repo to a remote git repo (by default, github)
 """
 
+from __future__ import print_function
 import logging
 from re import sub
 import time
@@ -33,7 +34,7 @@ class GithubRepo():
             self.github.set_user_agent('Project GITenberg: https://gitenberg.github.io/')
         self.org = self.github.organization(login='GITenberg')
         # FIXME: logging
-        print "ratelimit: " + str(self.org.ratelimit_remaining)
+        print("ratelimit: " + str(self.org.ratelimit_remaining))
 
     def format_desc(self):
         return u'%s by %s\n is a Project Gutenberg book, now on Github.' % (
@@ -50,7 +51,7 @@ class GithubRepo():
         else:
             repo_title = "%s_%s" % (_title[:title_length], self.book.book_id)
         # FIXME: log debug, title creation
-        print len(repo_title), repo_title
+        print(len(repo_title), repo_title)
         return repo_title
 
     def create_repo(self):
@@ -69,7 +70,7 @@ class GithubRepo():
             try:
                 sh.git('remote', 'add', 'origin', self.repo.ssh_url)
             except sh.ErrorReturnCode_128:
-                print "We may have already added a remote origin to this repo"
+                print("We may have already added a remote origin to this repo")
 
     def push_to_github(self):
         with CdContext(self.book.local_path):

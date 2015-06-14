@@ -37,7 +37,7 @@ class GithubRepo():
         print("ratelimit: " + str(self.org.ratelimit_remaining))
 
     def format_desc(self):
-        return u'%s by %s\n is a Project Gutenberg book, now on Github.' % (
+        return u'{0} by {1}\n is a Project Gutenberg book, now on Github.'.format(
             self.book.meta.title, self.book.meta.author
         )
 
@@ -47,9 +47,9 @@ class GithubRepo():
         title_length = 99 - len(str(self.book.book_id)) - 1
         if len(_title) > title_length:
             # if the title was shortened, replace the trailing _ with an ellipsis
-            repo_title = "%s__%s" % (_title[:title_length], self.book.book_id)
+            repo_title = "{0}__{1}".format(_title[:title_length], self.book.book_id)
         else:
-            repo_title = "%s_%s" % (_title[:title_length], self.book.book_id)
+            repo_title = "{0}_{1}".format(_title[:title_length], self.book.book_id)
         # FIXME: log debug, title creation
         print(len(repo_title), repo_title)
         return repo_title

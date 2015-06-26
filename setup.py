@@ -15,14 +15,14 @@ with open('gitenberg/__init__.py', 'r') as fd:
             __version__ = m.group(1)
             break
 
-setup(name='GITenberg',
+setup(name='gitberg',
       version=__version__,
       description="A library and command for interacting with the GITenberg books project",
       long_description=open('README.rst').read(),
       license=open('./LICENSE').read(),
       author='Seth Woodworth',
       author_email='seth@sethish.com',
-      url='https://github.com/sethwoodworth/gitenberg',
+      url='https://github.com/sethwoodworth/gitberg',
       packages=find_packages(),
       include_package_data=True,
       scripts=['gitberg'],

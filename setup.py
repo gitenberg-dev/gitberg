@@ -37,7 +37,7 @@ setup(name='gitberg',
       ],
       test_suite='gitenberg.test',
       classifiers=[
-          'Development Status :: 3 - Alpha'
+          'Development Status :: 3 - Alpha',
           'Intended Audience :: Developers',
           'License :: OSI Approved :: GNU General Public License (GPL)',
           'Programming Language :: Python :: 2.7',

@@ -5,7 +5,13 @@ Usage:
     gitbook (fetch | make | push) <book_id> [options]
     gitbook get <book_id> [options]
     gitbook update [options]
+    gitbook report <book_identifier>
+    gitbook vtag
     gitbook all BOOKID BOOKIDEND [options]
+
+Arguments:
+    <book_identifier> - a book can be identified by:
+        - a Project Gutenberg book id number, example `13529`
 
 Options:
     -v --logging (debug | info | error)

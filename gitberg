@@ -97,3 +97,9 @@ if __name__ == '__main__':
 
     elif arguments['update']:
         raise NotImplementedError
+
+    elif arguments['report']:
+        raise NotImplementedError
+
+    elif arguments['vtag']:
+        logging.info("Running 'vtag'")

@@ -16,7 +16,7 @@ from .util.catalog import CdContext
 try:
     from .secrets import GH_USER, GH_PASSWORD
 except:
-    print "no secrets file found, continuing without"
+    print("no secrets file found, continuing without")
 
 
 class GithubRepo():

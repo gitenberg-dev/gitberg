@@ -35,6 +35,7 @@ class Book():
     def remote_path(self):
         """ turns an ebook_id into a path on PG's server(s)
             4443  -> 4/4/4/4443/ """
+        # TODO: move this property into independent object for PG
         path_parts = list(self.book_id[:-1])
         path_parts.append(self.book_id)
         return os.path.join(*path_parts) + '/'

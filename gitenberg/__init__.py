@@ -4,6 +4,7 @@
 """
 
 from .book import Book
+from .clone import clone
 
 __title__ = 'gitenberg'
 __version__ = '0.0.8'

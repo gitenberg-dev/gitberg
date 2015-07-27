@@ -13,7 +13,10 @@ import github3
 import sh
 
 from .util.catalog import CdContext
-from .secrets import GH_USER, GH_PASSWORD
+try:
+    from .secrets import GH_USER, GH_PASSWORD
+except:
+    print("no secrets file found, continuing without")
 
 
 class GithubRepo():

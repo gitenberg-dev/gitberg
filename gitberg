@@ -5,7 +5,13 @@ Usage:
     gitbook (fetch | make | push) <book_id> [options]
     gitbook get <book_id> [options]
     gitbook update [options]
+    gitbook report <book_identifier>
+    gitbook vtag
     gitbook all BOOKID BOOKIDEND [options]
+
+Arguments:
+    <book_identifier> - a book can be identified by:
+        - a Project Gutenberg book id number, example `13529`
 
 Options:
     -v --logging (debug | info | error)
@@ -19,10 +25,8 @@ from gitenberg import Book
 from gitenberg import __version__
 
 
-logger = logging.getLogger('')
-logging.basicConfig(filename='./log/log.txt', level=logging.DEBUG)
-
 def upload_all_books(book_id_start, book_id_end):
+    # TODO: move to workflow module
 
     logging.info(
         "starting a gitbook mass upload: {0} -> {1}".format(
@@ -34,10 +38,10 @@ def upload_all_books(book_id_start, book_id_end):
         logging.info("--> Beginning {0}".format(book_id))
         book = Book(book_id)
 
-        if '--rdf_library' in arguments:
-            rdf_library = arguments['--rdf_library']
-        else:
-            rdf_library = None
+        # if '--rdf_library' in arguments:
+        #     rdf_library = arguments['--rdf_library']
+        # else:
+        #     rdf_library = None
 
         try:
             book.parse_book_metadata()
@@ -48,6 +52,12 @@ def upload_all_books(book_id_start, book_id_end):
 
 
 if __name__ == '__main__':
+    logger = logging.getLogger('')
+    try:
+        logging.basicConfig(filename='./log/log.txt', level=logging.DEBUG)
+    except:
+        print u"No local log file, not logging to file"
+
     arguments = docopt(__doc__, version=__version__)
 
     if '--logging' in arguments:
@@ -87,3 +97,9 @@ if __name__ == '__main__':
 
     elif arguments['update']:
         raise NotImplementedError
+
+    elif arguments['report']:
+        raise NotImplementedError
+
+    elif arguments['vtag']:
+        logging.info("Running 'vtag'")

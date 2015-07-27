@@ -2,6 +2,10 @@
 
 History
 -------
+0.0.9 (2015-07-27)
+==================
+* Adds clone command
+
 0.0.8 (2015-07-26)
 ==================
 * Adds missing requirement

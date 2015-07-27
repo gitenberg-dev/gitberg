@@ -2,26 +2,27 @@
 # -*- coding: utf-8 -*-
 """
 Usage:
+    gitbook clone <book_repo_name>
     gitbook (fetch | make | push) <book_id> [options]
     gitbook get <book_id> [options]
     gitbook update [options]
-    gitbook report <book_identifier>
-    gitbook vtag
+    gitbook report <book_identity>
     gitbook all BOOKID BOOKIDEND [options]
 
 Arguments:
-    <book_identifier> - a book can be identified by:
-        - a Project Gutenberg book id number, example `13529`
+    <book_repo_name> - The name of a repo in Gitenberg, `Frankenstein_84`
 
 Options:
     -v --logging (debug | info | error)
     --rdf_library <rdr_library>         where are you storing rdf files
 """
 import logging
+import sys
 
 from docopt import docopt
 
 from gitenberg import Book
+from gitenberg import clone
 from gitenberg import __version__
 
 
@@ -53,10 +54,7 @@ def upload_all_books(book_id_start, book_id_end):
 
 if __name__ == '__main__':
     logger = logging.getLogger('')
-    try:
-        logging.basicConfig(filename='./log/log.txt', level=logging.DEBUG)
-    except:
-        print u"No local log file, not logging to file"
+    logging.basicConfig(filename='./log/log.txt', level=logging.DEBUG)
 
     arguments = docopt(__doc__, version=__version__)
 
@@ -101,5 +99,14 @@ if __name__ == '__main__':
     elif arguments['report']:
         raise NotImplementedError
 
-    elif arguments['vtag']:
-        logging.info("Running 'vtag'")
+    elif arguments['clone']:
+        logging.debug("Running 'clone'")
+
+        # TODO: check for stdin
+        arg_book_name = arguments['<book_repo_name>']
+        if arg_book_name == '-':
+            # if reading from stdin, take the first line of stdin
+            for repo_name in sys.stdin:
+                clone(repo_name.strip('\n'))
+
+        clone(arg_book_name)

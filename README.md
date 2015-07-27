@@ -25,6 +25,13 @@ Implemented, but not yet ported to be distributable:
 + `gitberg make <bookid>` makes a local git repo with extra files
 + `gitberg push <bookid>` creates a repo on github and pushes to it (one per book)
 
+### Examples
+
+```
+cat list_of_repos.txt | gitberg clone -
+
+```
+
 ## Testing
 
 To run project tests do:
@@ -38,3 +45,4 @@ This project is available as a python package
 To build this python package, use `setup.py`
 
     python setup.py sdist
+

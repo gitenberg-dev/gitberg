@@ -70,12 +70,13 @@ class TestBookMetadata(unittest.TestCase):
 
     def setUp(self):
         book = Book(1234)
-        self.meta = BookMetadata(book)
+        self.rdf_library = 'gitenberg/test_data'
+        self.meta = BookMetadata(book, rdf_library=self.rdf_library)
 
     def test_init(self):
         self.assertEqual(
             self.meta.rdf_path,
-            './rdf_library/1234/pg1234.rdf'
+            '{0}/1234/pg1234.rdf'.format(self.rdf_library)
         )
 
     def test_parse_rdf(self):

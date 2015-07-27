@@ -28,6 +28,7 @@ setup(name='gitberg',
       scripts=['gitberg'],
       install_requires=[
           'requests>=2.7',
+          'uritemplate.py==0.3.0',
           'github3.py>=0.9.0',
           'docopt>=0.6',
           'sh>=1',

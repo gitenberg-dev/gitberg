@@ -2,6 +2,10 @@
 
 History
 -------
+0.0.8 (2015-07-26)
+==================
+* Adds missing requirement
+
 0.0.7 (2015-07-26)
 ==================
 * Fixes `python setup.py test` when packaged

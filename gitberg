@@ -4,6 +4,7 @@
 Usage:
     gitberg clone <book_repo_name>
     gitberg add <path_to_repo> <path_to_file> <message>
+    gitberg add-metadata <path_to_repo> <path_to_metadata>
     gitberg (fetch | make | push) <book_id> [options]
     gitberg get <book_id> [options]
     gitberg update [options]
@@ -15,6 +16,7 @@ Arguments:
     <path_to_repo> - Path to the repo you are operating on, relative to current path
     <path_to_file> - File you would like added to repo, relative to current path
     <message> - Commit message for adding this file
+    <path_to_metadata> - path to a folder of metadata yaml files named <book_id>.yaml
 
 Options:
     -v --logging (debug | info | error)
@@ -113,8 +115,8 @@ if __name__ == '__main__':
             # if reading from stdin, take the first line of stdin
             for repo_name in sys.stdin:
                 clone(repo_name.strip('\n'))
-
-        clone(arg_book_name)
+        else:
+            clone(arg_book_name)
 
     elif arguments['add']:
         logging.debug("Running add")
@@ -124,3 +126,21 @@ if __name__ == '__main__':
         message = arguments['<message>']
 
         gitberg_add(path_to_repo, path_to_file, message)
+
+    elif arguments['add-metadata']:
+        logging.debug("Running add-metadata")
+        path_to_repo = arguments['<path_to_repo>']
+        path_to_metadata = arguments['<path_to_metadata>']
+        logging.debug(path_to_metadata)
+
+        def format_add_metadata(path_to_repo, path_to_metadata):
+            repo_book_id = path_to_repo.split('_')[-1]
+            logging.debug(repo_book_id)
+
+            path_to_yaml = "{}/{}.yaml".format(path_to_metadata, repo_book_id)
+            gitberg_add(path_to_repo,
+                        path_to_yaml,
+                        "Adding metadata.yaml to book repo",
+                        new_filename='metadata.yaml')
+
+        format_add_metadata(path_to_repo.rstrip(), path_to_metadata)

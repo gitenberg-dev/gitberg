@@ -2,15 +2,19 @@
 # -*- coding: utf-8 -*-
 """
 Usage:
-    gitbook clone <book_repo_name>
-    gitbook (fetch | make | push) <book_id> [options]
-    gitbook get <book_id> [options]
-    gitbook update [options]
-    gitbook report <book_identity>
-    gitbook all BOOKID BOOKIDEND [options]
+    gitberg clone <book_repo_name>
+    gitberg add <path_to_repo> <path_to_file> <message>
+    gitberg (fetch | make | push) <book_id> [options]
+    gitberg get <book_id> [options]
+    gitberg update [options]
+    gitberg report <book_identity>
+    gitberg all BOOKID BOOKIDEND [options]
 
 Arguments:
     <book_repo_name> - The name of a repo in Gitenberg, `Frankenstein_84`
+    <path_to_repo> - Path to the repo you are operating on, relative to current path
+    <path_to_file> - File you would like added to repo, relative to current path
+    <message> - Commit message for adding this file
 
 Options:
     -v --logging (debug | info | error)
@@ -23,6 +27,7 @@ from docopt import docopt
 
 from gitenberg import Book
 from gitenberg import clone
+from gitenberg import gitberg_add
 from gitenberg import __version__
 
 
@@ -110,3 +115,12 @@ if __name__ == '__main__':
                 clone(repo_name.strip('\n'))
 
         clone(arg_book_name)
+
+    elif arguments['add']:
+        logging.debug("Running add")
+
+        path_to_repo = arguments['<path_to_repo>']
+        path_to_file = arguments['<path_to_file>']
+        message = arguments['<message>']
+
+        gitberg_add(path_to_repo, path_to_file, message)

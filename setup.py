@@ -45,4 +45,5 @@ setup(name='gitberg',
           # 'Programming Language :: Python :: 3.4',
       ],
       keywords="books ebooks gitenberg gutenberg epub metadata",
+      zip_safe=False
       )

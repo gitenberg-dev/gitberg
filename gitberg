@@ -5,6 +5,7 @@ Usage:
     gitberg clone <book_repo_name>
     gitberg add <path_to_repo> <path_to_file> <message>
     gitberg add-metadata <path_to_repo> <path_to_metadata>
+    gitberg pull <path_to_repo>
     gitberg (fetch | make | push) <book_id> [options]
     gitberg get <book_id> [options]
     gitberg update [options]
@@ -30,6 +31,7 @@ from docopt import docopt
 from gitenberg import Book
 from gitenberg import clone
 from gitenberg import gitberg_add
+from gitenberg import gitberg_pull
 from gitenberg import __version__
 
 
@@ -144,3 +146,13 @@ if __name__ == '__main__':
                         new_filename='metadata.yaml')
 
         format_add_metadata(path_to_repo.rstrip(), path_to_metadata)
+
+    elif arguments['pull']:
+        logging.debug("Running pull")
+
+        path_to_repo = arguments['<path_to_repo>']
+
+        gitberg_pull(path_to_repo)
+
+
+

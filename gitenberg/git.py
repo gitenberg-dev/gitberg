@@ -6,6 +6,12 @@ import sh
 
 from .util.catalog import CdContext
 
+
+def pull(path_to_repo):
+    with CdContext('./{}/'.format(path_to_repo)):
+        sh.git('pull', 'origin', 'master')
+
+
 def add(path_to_repo, path_to_file, message, new_filename=None):
     repo = GitRepo(path_to_repo)
     if new_filename:
@@ -13,6 +19,7 @@ def add(path_to_repo, path_to_file, message, new_filename=None):
     else:
         repo.add_file(path_to_file)
     repo.commit(message)
+
 
 class GitRepo(object):
     def __init__(self, path_to_repo):

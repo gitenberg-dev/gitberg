@@ -9,3 +9,5 @@ gitenberg.metadata==0.1.4
 
 # keep?
 coverage==3.7.1
+tox==2.1.1
+appdirs==1.4.0

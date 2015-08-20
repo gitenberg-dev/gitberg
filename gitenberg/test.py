@@ -12,6 +12,7 @@ from gitenberg.fetch import BookFetcher
 from gitenberg.util.catalog import BookMetadata
 from gitenberg.make import LocalRepo
 from gitenberg.make import NewFilesHandler
+from gitenberg.config import ConfigFile
 
 
 def null():
@@ -139,6 +140,19 @@ class TestNewFileHandler():
 
     def tearDown(self):
         self.book.remove()
+
+
+class TestConfig(unittest.TestCase):
+    def setUp(self):
+        # TODO: mock?
+        pass
+
+    def test_init(self):
+        cf = ConfigFile()
+        self.assertEqual(
+            cf.dir,
+            os.path.expanduser('~/.config/gitberg')
+        )
 
 
 if __name__ == '__main__':

@@ -35,6 +35,8 @@ setup(name='gitberg',
           'Jinja2>=2.7',
           'semver==2.2.0',
           'gitenberg.metadata==0.1.4',
+          'tox==2.1.1',
+          'appdirs==1.4.0',
       ],
       test_suite='gitenberg.test',
       classifiers=[

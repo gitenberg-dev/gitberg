@@ -41,7 +41,7 @@ def main():
     config = ConfigFile()
     # print config
     config.parse()
-    print config.data
+    print(config.data)
 
 if __name__ == "__main__":
     main()

@@ -58,7 +58,12 @@ class BookMetadata():
         return prop
 
     def _clean_prop(self, prop):
-        prop = unicode(prop)
+        try:
+            prop = unicode(prop)
+        except NameError:
+            # FIXME:
+            prop = str(prop)
+            print("Warning: you found a work around for a python3 porting issue")
         prop = self.HTML_REGEX.sub('', prop)
         prop = prop.replace('\n', '')
         prop = ' '.join(prop.split())

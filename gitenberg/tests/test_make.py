@@ -48,8 +48,6 @@ def null():
 class TestNewFileHandler():
 
     def setUp(self):
-        import ipdb; ipdb.set_trace()  # XXX BREAKPOINT
-
         self.book = Book(333, library_path='./test/library')
         self.book.parse_book_metadata(rdf_library=self.book.library_path)
         self.book.fetch_remote_book_to_local_path = null

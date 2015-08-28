@@ -13,16 +13,15 @@ import github3
 import sh
 
 from .util.catalog import CdContext
-try:
-    from .secrets import GH_USER, GH_PASSWORD
-except:
-    print("no secrets file found, continuing without")
+from .config import ConfigFile
 
 
 class GithubRepo():
 
     def __init__(self, book):
         self.book = book
+        self.config = ConfigFile()
+        self.config.parse()
         self.create_api_handler()
 
     def create_and_push(self):
@@ -32,7 +31,8 @@ class GithubRepo():
 
     def create_api_handler(self):
         """ Creates an api handler and sets it on self """
-        self.github = github3.login(username=GH_USER, password=GH_PASSWORD)
+        self.github = github3.login(username=self.config.data['gh_user'],
+                                    password=self.config.data['gh_password'])
         if hasattr(self.github, 'set_user_agent'):
             self.github.set_user_agent('Project GITenberg: https://gitenberg.github.io/')
         self.org = self.github.organization(login='GITenberg')
@@ -60,13 +60,17 @@ class GithubRepo():
     def create_repo(self):
         self.repo = self.org.create_repo(
             self.format_title(),
-            description=self.format_desc(),
+            # FIXME: Filter out 'control characters' arre not allowed in
+            # desc github
+            # description=self.format_desc(),
             homepage=u'https://GITenberg.github.io/',
             private=False,
             has_issues=True,
             has_wiki=False,
             has_downloads=True
         )
+        # except github3.GitHubError as e:
+        #     import ipdb; ipdb.set_trace()  # XXX BREAKPOINT
 
     def add_remote_origin_to_local_repo(self):
         with CdContext(self.book.local_path):

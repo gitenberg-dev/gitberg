@@ -23,10 +23,10 @@ import sys
 
 from docopt import docopt
 
-from gitenberg import upload_all_books
-from gitenberg import clone
 from gitenberg import __version__
-
+from gitenberg import Book
+from gitenberg import clone
+from gitenberg import upload_all_books
 
 
 if __name__ == '__main__':

@@ -2,12 +2,12 @@
 # -*- coding: utf-8 -*-
 """
 Usage:
-    gitbook clone <book_repo_name>
-    gitbook (fetch | make | push) <book_id> [options]
-    gitbook get <book_id> [options]
-    gitbook update [options]
-    gitbook report <book_identity>
-    gitbook all BOOKID BOOKIDEND [options]
+    gitberg clone <book_repo_name>
+    gitberg (fetch | make | push) <book_id> [options]
+    gitberg get <book_id> [options]
+    gitberg update [options]
+    gitberg report <book_identity>
+    gitberg all BOOKID BOOKIDEND [options]
 
 Arguments:
     <book_repo_name> - The name of a repo in Gitenberg, `Frankenstein_84`
@@ -16,40 +16,17 @@ Options:
     -v --logging (debug | info | error)
     --rdf_library <rdr_library>         where are you storing rdf files
 """
+# TODO  use `--` to separate arguments and files
+#       ex: `git checkout -b foo -- file file1 file2
 import logging
 import sys
 
 from docopt import docopt
 
+from gitenberg import __version__
 from gitenberg import Book
 from gitenberg import clone
-from gitenberg import __version__
-
-
-def upload_all_books(book_id_start, book_id_end):
-    # TODO: move to workflow module
-
-    logging.info(
-        "starting a gitbook mass upload: {0} -> {1}".format(
-            book_id_start, book_id_end
-        )
-    )
-
-    for book_id in xrange(int(book_id_start), int(book_id_end)):
-        logging.info("--> Beginning {0}".format(book_id))
-        book = Book(book_id)
-
-        # if '--rdf_library' in arguments:
-        #     rdf_library = arguments['--rdf_library']
-        # else:
-        #     rdf_library = None
-
-        try:
-            book.parse_book_metadata()
-        except:
-            logging.error(u"Can't parse metadata for this book: {0}".format(book.book_id))
-            continue
-        book.all()
+from gitenberg import upload_all_books
 
 
 if __name__ == '__main__':

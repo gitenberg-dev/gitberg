@@ -32,6 +32,11 @@ cat list_of_repos.txt | gitberg clone -
 
 ```
 
+### Config
+
+`gitberg` creates a config file in your `~/.config/gitberg`
+Here you can specify a library path and other settings.
+
 ## Testing
 
 To run project tests do:

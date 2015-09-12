@@ -15,6 +15,7 @@ logs/*
 # python ignores
 *.pyc
 *.db
+*.coverage
 
 # IDE vim ignore files
 *.swp

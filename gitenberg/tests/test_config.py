@@ -16,7 +16,11 @@ class TestConfig(unittest.TestCase):
     def test_config_file_path(self):
         self.assertEqual(
             self.cf.file_path,
-            os.path.expanduser('~/.config/{}/config.yml'.format(self.app_name))
+            os.path.expanduser(
+                '~/.config/{}/config.yaml'.format(
+                    self.app_name
+                )
+            )
         )
 
     def test_config_parse(self):

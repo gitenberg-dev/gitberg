@@ -8,7 +8,7 @@ import sh
 
 from gitenberg.book import Book
 from gitenberg.make import LocalRepo
-from gitenberg.make import NewFilesHandler
+# from gitenberg.make import NewFilesHandler
 
 
 class TestLocalRepo(unittest.TestCase):
@@ -20,7 +20,8 @@ class TestLocalRepo(unittest.TestCase):
         #       copy test_data/sea_ppwer to 13529
 
         def copy_test_book():
-            sh.cp('./gitenberg/test_data/13529', library_path)
+            # FIXME: use filesystem for this, cp fails silently?
+            sh.cp('./gitenberg/tests/test_data/13529', library_path)
 
         self.book.fetch_remote_book_to_local_path = copy_test_book
         self.book.fetch()
@@ -45,20 +46,21 @@ class TestLocalRepo(unittest.TestCase):
 def null():
     pass
 
-class TestNewFileHandler():
+# class TestNewFileHandler():
 
-    def setUp(self):
-        self.book = Book(333, library_path='./test/library')
-        self.book.parse_book_metadata(rdf_library=self.book.library_path)
-        self.book.fetch_remote_book_to_local_path = null
-        self.book.fetch()
-        self.file_handler = NewFilesHandler(self.book)
+#     def setUp(self):
+#         self.book = Book(333, library_path='./test/library')
+#         self.book.parse_book_metadata(rdf_library=self.book.library_path)
+#         self.book.fetch_remote_book_to_local_path = null
+#         self.book.fetch()
+#         self.file_handler = NewFilesHandler(self.book)
 
-    def test_readme(self):
-        self.file_handler.template_readme()
-        self.assertTrue(
-            os.path.exists('./test/library/333/README.rst')
-        )
+#     def test_readme(self):
+#         self.file_handler.template_readme()
 
-    def tearDown(self):
-        self.book.remove()
+#         self.assertTrue(
+#             os.path.exists('./test/library/333/README.rst')
+#         )
+
+#     def tearDown(self):
+#         self.book.remove()

@@ -2,6 +2,10 @@
 
 History
 -------
+0.0.10 (2015-09-12)
+==================
+* Refactors codebase, adds and fixes tests
+
 0.0.9 (2015-07-27)
 ==================
 * Adds clone command

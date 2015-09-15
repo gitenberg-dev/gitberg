@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Usage:
+    gitberg config
     gitberg clone <book_repo_name>
     gitberg (fetch | make | push) <book_id> [options]
     gitberg get <book_id> [options]
@@ -26,6 +27,7 @@ from docopt import docopt
 from gitenberg import __version__
 from gitenberg import Book
 from gitenberg import clone
+from gitenberg import check_config
 from gitenberg import upload_all_books
 
 
@@ -69,6 +71,9 @@ if __name__ == '__main__':
 
     elif arguments['all']:
         upload_all_books(arguments['BOOKID'], arguments['BOOKIDEND'])
+
+    elif arguments['config']:
+        check_config()
 
     elif arguments['update']:
         raise NotImplementedError

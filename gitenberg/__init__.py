@@ -6,6 +6,7 @@
 from .book import Book
 from .clone import clone
 from .config import ConfigFile
+from .config import check_config
 from .workflow import upload_all_books
 
 __title__ = 'gitberg'

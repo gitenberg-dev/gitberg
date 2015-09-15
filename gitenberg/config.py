@@ -6,7 +6,10 @@
 import os
 
 import appdirs
+from six.moves import input
 import yaml
+
+from .dialog import ConfigGenerator
 
 
 class ConfigFile(object):
@@ -36,6 +39,18 @@ class ConfigFile(object):
             with open(self.file_path, 'a'):
                 os.utime(self.file_path, None)
 
+    def write(self):
+        # FIXME: VVV
+        # self.check_self()
+        with open(self.file_path, 'wb') as self.file:
+            self.file.write(self.yaml)
+        return True
+
+    @property
+    def yaml(self):
+        return yaml.dump(self.data,
+                         default_flow_style=False)
+
     def __repr__(self):
         return self.read()
 
@@ -46,12 +61,37 @@ class ConfigFile(object):
     def parse(self):
         self.data = yaml.load(self.read())
 
+    def check_self(self):
+        # TODO: do a basic check of internal data values
+        # TODO: check if file already exists
+        pass
 
-def main():
+def check_config():
+    """ Report if there is an existing config file
+    """
     config = ConfigFile()
-    # print config
     config.parse()
-    print(config.data)
 
-if __name__ == "__main__":
-    main()
+    if config.data.keys() > 0:
+        # FIXME: run a better check of this file
+        print("Gitberg config looks ok")
+    else:
+        print("No config found")
+        print("\twould you like to create a gitberg config file?")
+        answer = input("-->  [Y/n]")
+        # By default, the answer is yes, as denoted by the capital Y
+        if not answer:
+            answer = 'Y'
+
+        # If yes, generate a new configuration
+        # to be written out as yaml
+
+        if answer in 'Yy':
+            print("Running gitberg config generator ...")
+            # config.exists_or_make()
+            config_gen = ConfigGenerator()
+            config_gen.ask()
+            # print(config_gen.answers)
+            config.data = config_gen.answers
+            config.write()
+            print("Config written to {}".format(config.file_path))

@@ -6,6 +6,8 @@
 [Gitberg](https://github.com/gitenberg-dev/gitberg) is a command line tool to automate tasks on books.
 
 
+
+
 ## Usage
 
 This project provides a `gitberg` command that does the following:
@@ -25,6 +27,7 @@ Implemented, but not yet ported to be distributable:
 + `gitberg make <bookid>` makes a local git repo with extra files
 + `gitberg push <bookid>` creates a repo on github and pushes to it (one per book)
 
+
 ### Examples
 
 ```
@@ -34,8 +37,15 @@ cat list_of_repos.txt | gitberg clone -
 
 ### Config
 
-`gitberg` creates a config file in your `~/.config/gitberg`
-Here you can specify a library path and other settings.
+Some commands require a config file before they can be used.
+These commands will exit with an error if you do not have the correct configuration.
+The config file in linux is located at `~/.config/gitberg/config.yaml`.
+
+Main config values:
+
+    gh_user: <your github account name>
+    gh_password: <your github account password>
+    library_pth: '~/data/library'
 
 ## Testing
 

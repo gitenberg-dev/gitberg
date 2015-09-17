@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 """
 Usage:
+    gitberg config -- check or generate a config
+    gitberg library [status]
     gitberg clone <book_repo_name>
     gitberg (fetch | make | push) <book_id> [options]
     gitberg get <book_id> [options]
@@ -10,7 +12,8 @@ Usage:
     gitberg all BOOKID BOOKIDEND [options]
 
 Arguments:
-    <book_repo_name> - The name of a repo in Gitenberg, `Frankenstein_84`
+    <book_repo_name> -- The name of a repo in Gitenberg, `Frankenstein_84`
+    <target> -- a file path, example, where to clone a book
 
 Options:
     -v --logging (debug | info | error)
@@ -19,14 +22,15 @@ Options:
 # TODO  use `--` to separate arguments and files
 #       ex: `git checkout -b foo -- file file1 file2
 import logging
-import sys
 
 from docopt import docopt
 
 from gitenberg import __version__
 from gitenberg import Book
 from gitenberg import clone
+from gitenberg import check_config
 from gitenberg import upload_all_books
+from gitenberg import library
 
 
 if __name__ == '__main__':
@@ -70,6 +74,12 @@ if __name__ == '__main__':
     elif arguments['all']:
         upload_all_books(arguments['BOOKID'], arguments['BOOKIDEND'])
 
+    elif arguments['config']:
+        check_config()
+
+    elif arguments['library']:
+        library()
+
     elif arguments['update']:
         raise NotImplementedError
 
@@ -77,13 +87,7 @@ if __name__ == '__main__':
         raise NotImplementedError
 
     elif arguments['clone']:
-        logging.debug("Running 'clone'")
-
         # TODO: check for stdin
+        print("clone")
         arg_book_name = arguments['<book_repo_name>']
-        if arg_book_name == '-':
-            # if reading from stdin, take the first line of stdin
-            for repo_name in sys.stdin:
-                clone(repo_name.strip('\n'))
-
         clone(arg_book_name)

@@ -3,9 +3,14 @@
 ![PyPI version](https://img.shields.io/pypi/v/gitberg.svg)
 
 [GITenberg](gitenberg.org) is a project to collectively curate ebooks on GitHub.
-[Gitberg](https://github.com/gitenberg-dev/gitberg) is a command line tool to automate tasks on books.
+[Gitberg](https://github.com/gitenberg-dev/gitberg) is a command line tool to automate tasks on books stored in git repositories.
 
 
+Due to rearranging repos into the gitenberg-dev organization on github,
+the current open issues for this repository are in 
+[this archive](https://github.com/gitberg-temp/gitberg-archive/issues).
+When these issues are closed or transfered,
+issues will be hosted at this url.
 
 
 ## Usage

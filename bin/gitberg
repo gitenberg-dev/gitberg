@@ -22,6 +22,7 @@ Options:
 # TODO  use `--` to separate arguments and files
 #       ex: `git checkout -b foo -- file file1 file2
 import logging
+import sys
 
 from docopt import docopt
 
@@ -33,13 +34,20 @@ from gitenberg import upload_all_books
 from gitenberg import library
 
 
-if __name__ == '__main__':
+def setup_logging(arguments):
+    """ creates a logger with our hard-coded configuration
+    takes: a docopt arguments object instance
+    """
     logger = logging.getLogger('')
-    logging.basicConfig(filename='./log/log.txt', level=logging.DEBUG)
+    # logging.basicConfig(filename='./log/log.txt', level=logging.DEBUG)
+    stdout_handler = logging.StreamHandler(sys.stdout)
+    logger.addHandler(stdout_handler)
 
-    arguments = docopt(__doc__, version=__version__)
+    # FIXME: until release 0.1.0, all logging is all debug all of the time
+    logger.setLevel(logging.DEBUG)
 
-    if '--logging' in arguments:
+    if ('--logging' or '-v') in arguments:
+        # if
         log_level = arguments['--logging']
         if log_level == 'debug':
             logger.setLevel(logging.DEBUG)
@@ -48,8 +56,14 @@ if __name__ == '__main__':
         elif log_level == 'error':
             logger.setLevel(logging.ERROR)
 
-    if '-v' in arguments:
-        logger.setLevel(logging.DEBUG)
+    return logger
+
+
+if __name__ == '__main__':
+    arguments = docopt(__doc__, version=__version__)
+
+    logger = setup_logging(arguments)
+
 
     if arguments['<book_id>'] is not None:
         book = Book(arguments['<book_id>'])
@@ -88,6 +102,5 @@ if __name__ == '__main__':
 
     elif arguments['clone']:
         # TODO: check for stdin
-        print("clone")
         arg_book_name = arguments['<book_repo_name>']
         clone(arg_book_name)

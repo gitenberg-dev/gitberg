@@ -9,23 +9,15 @@ from .config import ConfigFile
 from .library import GitbergLibraryManager
 
 def clone(arg_book_name, library_path=None):
-    print("run clone")
-    print(arg_book_name)
+    logging.info("running clone")
     book_repo_name = BookRepoName(arg_book_name)
     vat = CloneVat(book_repo_name)
 
     config = ConfigFile()
     config.parse()
 
-    message = vat.clone()
-    print("cloned?")
-    print(message)
+    success, message = vat.clone()
     logging.info(message)
-
-class CloneBank(object):
-    """ Contains 
-    """
-    pass
 
 
 class CloneVat(object):
@@ -52,19 +44,20 @@ class CloneVat(object):
     def clone(self):
         """ clones a book from GITenberg's repo into the library
         assumes you are authenticated to git clone from repo?
+        returns True/False, message
         """
         # FIXME: check if this works from a server install
         logging.debug("Attempting to clone {0}".format(self.book_repo_name.repo_name))
 
-
         if self.path_exists():
-            return "Local clone of {0} already exists".format(
+            return False, "Error: Local clone of {0} already exists".format(
                 self.book_repo_name.repo_name)
 
         # TODO: rewrite using github3.py's git module
         try:
             sh.git('clone', self.book_repo_name.get_clone_url_ssh(), self.library_book_dir())
-            return "Cloned {0}".format(self.book_repo_name.repo_name)
+            return True, "Success! Cloned {0}".format(self.book_repo_name.repo_name)
         except sh.ErrorReturnCode_128:
-            # TODO: clean this up
-            logging.info("clone ran into an issue, likely this already exists")
+            # TODO: log exception information here on debug
+            logging.debug("clone ran into an issue, likely this already exists")
+            return False, "Error sh.py returned with a fail code"

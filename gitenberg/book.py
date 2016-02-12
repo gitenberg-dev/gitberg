@@ -39,6 +39,7 @@ class Book():
             self.meta = BookMetadata(self)
         else:
             self.meta = BookMetadata(self, rdf_library=rdf_library)
+        self.format_title()
 
     @property
     def remote_path(self):
@@ -98,3 +99,29 @@ class Book():
 
     def remove(self):
         shutil.rmtree(self.local_path)
+        
+    def format_title(self):
+        """ Takes a string and sanitizes it for Github's url name format """
+        _title = unicodedata.normalize('NFD', unicode(self.meta.title))
+        out = []
+        ok=u"1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM- ',"
+        for ch in _title:
+            if ch in ok:
+                out.append(ch)
+            elif unicodedata.category(ch)[0] == ("L"): #a letter
+                out.append(hex(ord(ch)))
+            elif ch in u'\r\n\t':
+                out.append(u'-')
+        _title = sub("[ ',-]+", '-', "".join(out))
+
+        title_length = 99 - len(str(self.book_id)) - 1
+        if len(_title) > title_length:
+            # if the title was shortened, replace the trailing _ with an ellipsis
+            repo_title = "{0}__{1}".format(_title[:title_length], self.book_id)
+        else:
+            repo_title = "{0}_{1}".format(_title[:title_length], self.book_id)
+        # FIXME: log debug, title creation
+        #print(len(repo_title), repo_title)
+        self.meta.metadata['_repo'] = repo_title
+        return repo_title
+

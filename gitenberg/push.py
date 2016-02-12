@@ -6,7 +6,6 @@ Syncs a local git book repo to a remote git repo (by default, github)
 
 from __future__ import print_function
 import logging
-from re import sub
 import time
 
 import github3
@@ -48,18 +47,6 @@ class GithubRepo():
             self.book.meta.title, self.book.meta.author
         )
 
-    def format_title(self):
-        """ Takes a string and sanitizes it for Github's url name format """
-        _title = sub("[ ',]+", '-', self.book.meta.title)
-        title_length = 99 - len(str(self.book.book_id)) - 1
-        if len(_title) > title_length:
-            # if the title was shortened, replace the trailing _ with an ellipsis
-            repo_title = "{0}__{1}".format(_title[:title_length], self.book.book_id)
-        else:
-            repo_title = "{0}_{1}".format(_title[:title_length], self.book.book_id)
-        # FIXME: log debug, title creation
-        print(len(repo_title), repo_title)
-        return repo_title
 
     def create_repo(self):
         try:

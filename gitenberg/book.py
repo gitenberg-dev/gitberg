@@ -7,6 +7,8 @@ import shutil
 
 import github3
 import sh
+from re import sub
+import unicodedata
 
 from .fetch import BookFetcher
 from .make import NewFilesHandler, LocalRepo

@@ -12,6 +12,7 @@ from .fetch import BookFetcher
 from .make import NewFilesHandler, LocalRepo
 from .push import GithubRepo
 from .util.catalog import BookMetadata
+from .config import ConfigFile, NotConfigured
 
 
 class Book():
@@ -23,7 +24,13 @@ class Book():
 
     def __init__(self, book_id, library_path='./library'):
         self.book_id = str(book_id)
-        self.library_path = library_path
+        self.config = ConfigFile()
+        self.config.parse()
+        try:
+            self.library_path = self.config.data.get("library_path",library_path)
+        except:
+            # no config, used in tests
+            self.library_path = library_path
 
     def parse_book_metadata(self, rdf_library=None):
         if not rdf_library:

@@ -11,7 +11,9 @@ import yaml
 
 from .dialog import ConfigGenerator
 
-
+class NotConfigured(Exception):
+    pass
+    
 class ConfigFile(object):
     """ A wrapper for managing creating and reading a config file
     takes (optional) appname str kwarg,
@@ -72,26 +74,27 @@ def check_config():
     config = ConfigFile()
     config.parse()
 
-    if config.data.keys() > 0:
+    if config.data and config.data.keys() > 0:
         # FIXME: run a better check of this file
         print("Gitberg config looks ok")
+        print("\twould you like to edit your gitberg config file?")
     else:
         print("No config found")
         print("\twould you like to create a gitberg config file?")
-        answer = input("-->  [Y/n]")
-        # By default, the answer is yes, as denoted by the capital Y
-        if not answer:
-            answer = 'Y'
+    answer = input("-->  [Y/n]")
+    # By default, the answer is yes, as denoted by the capital Y
+    if not answer:
+        answer = 'Y'
 
-        # If yes, generate a new configuration
-        # to be written out as yaml
+    # If yes, generate a new configuration
+    # to be written out as yaml
 
-        if answer in 'Yy':
-            print("Running gitberg config generator ...")
-            # config.exists_or_make()
-            config_gen = ConfigGenerator()
-            config_gen.ask()
-            # print(config_gen.answers)
-            config.data = config_gen.answers
-            config.write()
-            print("Config written to {}".format(config.file_path))
+    if answer in 'Yy':
+        print("Running gitberg config generator ...")
+        # config.exists_or_make()
+        config_gen = ConfigGenerator()
+        config_gen.ask()
+        # print(config_gen.answers)
+        config.data = config_gen.answers
+        config.write()
+        print("Config written to {}".format(config.file_path))

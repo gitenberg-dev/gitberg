@@ -13,7 +13,7 @@ import github3
 import sh
 
 from .util.catalog import CdContext
-from .config import ConfigFile
+from .config import ConfigFile, NotConfigured
 
 
 class GithubRepo():
@@ -33,6 +33,8 @@ class GithubRepo():
 
     def create_api_handler(self):
         """ Creates an api handler and sets it on self """
+        if not self.config.data:
+            raise NotConfigured
         self.github = github3.login(username=self.config.data['gh_user'],
                                     password=self.config.data['gh_password'])
         if hasattr(self.github, 'set_user_agent'):

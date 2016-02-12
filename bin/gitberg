@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Usage:
-    gitberg config -- check or generate a config
+    gitberg config
     gitberg library [status]
     gitberg clone <book_repo_name>
     gitberg (fetch | make | push) <book_id> [options]
@@ -29,8 +29,8 @@ from docopt import docopt
 from gitenberg import __version__
 from gitenberg import Book
 from gitenberg import clone
-from gitenberg import check_config
 from gitenberg import upload_all_books
+from gitenberg import check_config, NotConfigured
 from gitenberg import library
 
 
@@ -94,13 +94,25 @@ if __name__ == '__main__':
     elif arguments['library']:
         library()
 
-    elif arguments['update']:
-        raise NotImplementedError
+        elif arguments['list']:
+            upload_list(arguments['<book_id_list>'], rdf_library=rdf_library)
 
-    elif arguments['report']:
-        raise NotImplementedError
+        elif arguments['config']:
+            check_config()
 
-    elif arguments['clone']:
-        # TODO: check for stdin
-        arg_book_name = arguments['<book_repo_name>']
-        clone(arg_book_name)
+        elif arguments['library']:
+            library()
+
+        elif arguments['update']:
+            raise NotImplementedError
+
+        elif arguments['report']:
+            raise NotImplementedError
+
+        elif arguments['clone']:
+            # TODO: check for stdin
+            arg_book_name = arguments['<book_repo_name>']
+            clone(arg_book_name)
+    except NotConfigured:
+        print("\tSorry, not Configured.")
+        check_config()

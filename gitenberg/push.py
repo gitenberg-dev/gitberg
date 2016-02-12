@@ -68,14 +68,19 @@ class GithubRepo():
     def add_remote_origin_to_local_repo(self):
         with CdContext(self.book.local_path):
             try:
-                sh.git('remote', 'add', 'origin', self.repo.ssh_url)
-            except sh.ErrorReturnCode_128:
-                print("We may have already added a remote origin to this repo")
+                sh.git.config("user.name", self.config.data['gh_user'])
+                sh.git.config("user.email", self.config.data['gh_email'])
+                try:
+                    sh.git('remote', 'add', 'origin', self.repo.ssh_url)
+                except sh.ErrorReturnCode_128:
+                    print("We may have already added a remote origin to this repo")
+            except KeyError:
+                raise NotConfigured
 
     def push_to_github(self):
         with CdContext(self.book.local_path):
             try:
-                sh.git('push', 'origin', 'master')
+                sh.git.push('origin', 'master')
             except sh.ErrorReturnCode_128:
                 logging.error(u"github repo not ready yet")
                 time.sleep(10)

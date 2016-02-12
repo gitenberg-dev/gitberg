@@ -12,7 +12,7 @@ from gitenberg.metadata.pandata import Pandata
 from gitenberg import pg_wikipedia
 
 # sourced from http://www.gutenberg.org/MIRRORS.ALL
-MIRRORS = {'default': 'ftp://ftp.ibiblio.org/pub/docs/books/gutenberg/'}
+MIRRORS = {'default': 'ftp://gutenberg.pglaf.org/mirrors/gutenberg/'}
 
 with open(os.path.join(os.path.dirname(__file__), '../../assets/gutenberg_descriptions.json')) as descfile:
     DESCS= json.load(descfile)

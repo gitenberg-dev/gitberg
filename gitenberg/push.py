@@ -19,6 +19,8 @@ from .config import ConfigFile
 class GithubRepo():
 
     def __init__(self, book):
+        self.org_name = 'GITenberg'
+        self.org_homepage = u'https://www.GITenberg.org/'
         self.book = book
         self.config = ConfigFile()
         self.config.parse()
@@ -34,8 +36,8 @@ class GithubRepo():
         self.github = github3.login(username=self.config.data['gh_user'],
                                     password=self.config.data['gh_password'])
         if hasattr(self.github, 'set_user_agent'):
-            self.github.set_user_agent('Project GITenberg: https://gitenberg.github.io/')
-        self.org = self.github.organization(login='GITenberg')
+            self.github.set_user_agent('{}: {}'.format(self.org_name, self.org_homepage))
+        self.org = self.github.organization(login=self.org_name)
         # FIXME: logging
         print("ratelimit: " + str(self.org.ratelimit_remaining))
 
@@ -58,19 +60,21 @@ class GithubRepo():
         return repo_title
 
     def create_repo(self):
-        self.repo = self.org.create_repo(
-            self.format_title(),
-            # FIXME: Filter out 'control characters' arre not allowed in
-            # desc github
-            # description=self.format_desc(),
-            homepage=u'https://GITenberg.github.io/',
-            private=False,
-            has_issues=True,
-            has_wiki=False,
-            has_downloads=True
-        )
-        # except github3.GitHubError as e:
-        #     import ipdb; ipdb.set_trace()  # XXX BREAKPOINT
+        try:
+            self.repo = self.org.create_repo(
+                self.book.meta._repo,
+                # FIXME: Filter out 'control characters' arre not allowed in
+                # desc github
+                # description=self.format_desc(),
+                homepage=self.org_homepage,
+                private=False,
+                has_issues=True,
+                has_wiki=False,
+                has_downloads=True
+            )
+        except github3.GitHubError as e:
+            logging.warning(u"repo already created?: {}".format(e))
+            self.repo = self.github.repository(self.org_name, self.book.meta._repo)
 
     def add_remote_origin_to_local_repo(self):
         with CdContext(self.book.local_path):

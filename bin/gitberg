@@ -5,11 +5,12 @@ Usage:
     gitberg config
     gitberg library [status]
     gitberg clone <book_repo_name>
-    gitberg (fetch | make | push) <book_id> [options]
+    gitberg (fetch | make | push | upload ) <book_id> [options]
     gitberg get <book_id> [options]
     gitberg update [options]
     gitberg report <book_identity>
     gitberg all BOOKID BOOKIDEND [options]
+    gitberg list <book_id_list> [options]
 
 Arguments:
     <book_repo_name> -- The name of a repo in Gitenberg, `Frankenstein_84`
@@ -17,7 +18,7 @@ Arguments:
 
 Options:
     -v --logging (debug | info | error)
-    --rdf_library <rdr_library>         where are you storing rdf files
+    --rdf_library <rdf_library>         where are you storing rdf files
 """
 # TODO  use `--` to separate arguments and files
 #       ex: `git checkout -b foo -- file file1 file2
@@ -29,8 +30,8 @@ from docopt import docopt
 from gitenberg import __version__
 from gitenberg import Book
 from gitenberg import clone
-from gitenberg import upload_all_books
 from gitenberg import check_config, NotConfigured
+from gitenberg import upload_all_books, upload_list
 from gitenberg import library
 
 
@@ -39,12 +40,10 @@ def setup_logging(arguments):
     takes: a docopt arguments object instance
     """
     logger = logging.getLogger('')
-    # logging.basicConfig(filename='./log/log.txt', level=logging.DEBUG)
-    stdout_handler = logging.StreamHandler(sys.stdout)
-    logger.addHandler(stdout_handler)
+    logging.basicConfig(filename='./gitburg.log', level=logging.DEBUG)
+    #stdout_handler = logging.StreamHandler(sys.stdout)
+    #logger.addHandler(stdout_handler)
 
-    # FIXME: until release 0.1.0, all logging is all debug all of the time
-    logger.setLevel(logging.DEBUG)
 
     if ('--logging' or '-v') in arguments:
         # if
@@ -63,36 +62,34 @@ if __name__ == '__main__':
     arguments = docopt(__doc__, version=__version__)
 
     logger = setup_logging(arguments)
-
-
-    if arguments['<book_id>'] is not None:
-        book = Book(arguments['<book_id>'])
+    try:
         if '--rdf_library' in arguments:
             rdf_library = arguments['--rdf_library']
-            book.parse_book_metadata(rdf_library)
         else:
-            book.parse_book_metadata()
+            rdf_library = None
 
-    if arguments['fetch']:
-        logging.info("fetching a PG book: {0}".format(arguments['<book_id>']))
-        book.fetch()
+        if arguments['<book_id>'] is not None:
+            book = Book(arguments['<book_id>'])
+            book.parse_book_metadata(rdf_library)
 
-    elif arguments['make']:
-        logging.info("making a local git repo for: {0}".format(arguments['<book_id>']))
-        book.make()
+        if arguments['fetch']:
+            logging.info("fetching a PG book: {0}".format(arguments['<book_id>']))
+            book.fetch()
 
-    elif arguments['push']:
-        logging.info("making a local git repo for: {0}".format(arguments['<book_id>']))
-        book.push()
+        elif arguments['make']:
+            logging.info("making a local git repo for: {0}".format(arguments['<book_id>']))
+            book.make()
 
-    elif arguments['all']:
-        upload_all_books(arguments['BOOKID'], arguments['BOOKIDEND'])
+        elif arguments['push']:
+            logging.info("making a local git repo for: {0}".format(arguments['<book_id>']))
+            book.push()
 
-    elif arguments['config']:
-        check_config()
+        elif arguments['upload']:
+            logging.info("making a local git repo for: {0}".format(arguments['<book_id>']))
+            book.push()
 
-    elif arguments['library']:
-        library()
+        elif arguments['all']:
+            upload_all_books(arguments['BOOKID'], arguments['BOOKIDEND'], rdf_library=rdf_library)
 
         elif arguments['list']:
             upload_list(arguments['<book_id_list>'], rdf_library=rdf_library)

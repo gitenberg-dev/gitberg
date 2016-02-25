@@ -5,9 +5,11 @@ docopt==0.6.1
 sh==1.09
 Jinja2==2.7.3
 semver==2.2.0
-gitenberg.metadata==0.1.4
-
+beautifulsoup4==4.4.1
+wikipedia==1.4.0
 # keep?
 coverage==3.7.1
 tox==2.1.1
 appdirs==1.4.0
+gitenberg.metadata==0.1.12
+six==1.9.0

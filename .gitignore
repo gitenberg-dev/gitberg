@@ -29,3 +29,4 @@ build*
 dist*
 gitberg.egg-info
 log/log.txt
+*.log

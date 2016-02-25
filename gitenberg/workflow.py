@@ -7,7 +7,7 @@ import logging
 
 from .book import Book
 
-def upload_all_books(book_id_start, book_id_end):
+def upload_all_books(book_id_start, book_id_end, rdf_library=None):
     """ Uses the fetch, make, push subcommands to
         mirror Project Gutenberg to a github3 api
     """
@@ -20,21 +20,22 @@ def upload_all_books(book_id_start, book_id_end):
     )
 
     for book_id in xrange(int(book_id_start), int(book_id_end)):
-        logging.info("--> Beginning {0}".format(book_id))
-        book = Book(book_id)
+        upload_book(book_id, rdf_library=rdf_library)
 
-        # if '--rdf_library' in arguments:
-        #     rdf_library = arguments['--rdf_library']
-        # else:
-        #     rdf_library = None
+def upload_list(book_id_list, rdf_library=None):
+    """ Uses the fetch, make, push subcommands to add a list of pg books
+    """
+    for book_id in book_id_list.split(','):
+        upload_book(book_id, rdf_library=rdf_library)
 
-        # FIXME This was due to a very sketchy metadata parser based on grepping xml
-        #       files and parsing single lines. It was failure prone, but it got me
-        #       as far as making the github mirror of PG.
-        #       Now that the metadata module exists, this should be rewritten
-        try:
-            book.parse_book_metadata()
-        except:
-            logging.error(u"Can't parse metadata for this book: {0}".format(book.book_id))
-            continue
-        book.all()
+
+def upload_book(book_id,rdf_library=None):
+    logging.info("--> Beginning {0}".format(book_id))
+    book = Book(book_id)
+
+    try:
+        book.parse_book_metadata(rdf_library)
+    except:
+        logging.error(u"Can't parse metadata for this book: {0}".format(book.book_id))
+        return
+    book.all()

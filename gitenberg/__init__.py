@@ -5,12 +5,12 @@
 
 from .book import Book
 from .clone import clone
-from .config import ConfigFile
-from .config import check_config
+from .config import ConfigFile, check_config, NotConfigured
 from .library import main as library
-from .workflow import upload_all_books
+from .workflow import upload_all_books, upload_list, upload_book
 
 __title__ = 'gitberg'
 __appname__ = 'gitberg'
-__version__ = '0.0.10'
-__copyright__ = 'Copyright 2012-2015 Seth Woodworth'
+__version__ = '0.1.0'
+__copyright__ = 'Copyright 2012-2016 Seth Woodworth and the Free Ebook Foundation'
+

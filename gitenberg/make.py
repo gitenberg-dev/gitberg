@@ -100,6 +100,7 @@ class NewFilesHandler():
             self.book.meta.rdf_path,
             '{0}/'.format(self.book.local_path)
         )
+        self.book.meta.dump_file('{0}/metadata.yaml'.format(self.book.local_path))
 
 
 def make(book):

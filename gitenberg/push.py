@@ -6,19 +6,20 @@ Syncs a local git book repo to a remote git repo (by default, github)
 
 from __future__ import print_function
 import logging
-from re import sub
 import time
 
 import github3
 import sh
 
 from .util.catalog import CdContext
-from .config import ConfigFile
+from .config import ConfigFile, NotConfigured
 
 
 class GithubRepo():
 
     def __init__(self, book):
+        self.org_name = 'GITenberg'
+        self.org_homepage = u'https://www.GITenberg.org/'
         self.book = book
         self.config = ConfigFile()
         self.config.parse()
@@ -31,11 +32,13 @@ class GithubRepo():
 
     def create_api_handler(self):
         """ Creates an api handler and sets it on self """
+        if not self.config.data:
+            raise NotConfigured
         self.github = github3.login(username=self.config.data['gh_user'],
                                     password=self.config.data['gh_password'])
         if hasattr(self.github, 'set_user_agent'):
-            self.github.set_user_agent('Project GITenberg: https://gitenberg.github.io/')
-        self.org = self.github.organization(login='GITenberg')
+            self.github.set_user_agent('{}: {}'.format(self.org_name, self.org_homepage))
+        self.org = self.github.organization(login=self.org_name)
         # FIXME: logging
         print("ratelimit: " + str(self.org.ratelimit_remaining))
 
@@ -44,45 +47,40 @@ class GithubRepo():
             self.book.meta.title, self.book.meta.author
         )
 
-    def format_title(self):
-        """ Takes a string and sanitizes it for Github's url name format """
-        _title = sub("[ ',]+", '-', self.book.meta.title)
-        title_length = 99 - len(str(self.book.book_id)) - 1
-        if len(_title) > title_length:
-            # if the title was shortened, replace the trailing _ with an ellipsis
-            repo_title = "{0}__{1}".format(_title[:title_length], self.book.book_id)
-        else:
-            repo_title = "{0}_{1}".format(_title[:title_length], self.book.book_id)
-        # FIXME: log debug, title creation
-        print(len(repo_title), repo_title)
-        return repo_title
 
     def create_repo(self):
-        self.repo = self.org.create_repo(
-            self.format_title(),
-            # FIXME: Filter out 'control characters' arre not allowed in
-            # desc github
-            # description=self.format_desc(),
-            homepage=u'https://GITenberg.github.io/',
-            private=False,
-            has_issues=True,
-            has_wiki=False,
-            has_downloads=True
-        )
-        # except github3.GitHubError as e:
-        #     import ipdb; ipdb.set_trace()  # XXX BREAKPOINT
+        try:
+            self.repo = self.org.create_repo(
+                self.book.meta._repo,
+                # FIXME: Filter out 'control characters' arre not allowed in
+                # desc github
+                # description=self.format_desc(),
+                homepage=self.org_homepage,
+                private=False,
+                has_issues=True,
+                has_wiki=False,
+                has_downloads=True
+            )
+        except github3.GitHubError as e:
+            logging.warning(u"repo already created?: {}".format(e))
+            self.repo = self.github.repository(self.org_name, self.book.meta._repo)
 
     def add_remote_origin_to_local_repo(self):
         with CdContext(self.book.local_path):
             try:
-                sh.git('remote', 'add', 'origin', self.repo.ssh_url)
-            except sh.ErrorReturnCode_128:
-                print("We may have already added a remote origin to this repo")
+                sh.git.config("user.name", self.config.data['gh_user'])
+                sh.git.config("user.email", self.config.data['gh_email'])
+                try:
+                    sh.git('remote', 'add', 'origin', self.repo.ssh_url)
+                except sh.ErrorReturnCode_128:
+                    print("We may have already added a remote origin to this repo")
+            except KeyError:
+                raise NotConfigured
 
     def push_to_github(self):
         with CdContext(self.book.local_path):
             try:
-                sh.git('push', 'origin', 'master')
+                sh.git.push('origin', 'master')
             except sh.ErrorReturnCode_128:
                 logging.error(u"github repo not ready yet")
                 time.sleep(10)

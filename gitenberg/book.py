@@ -26,8 +26,8 @@ class Book():
 
     def __init__(self, book_id, library_path='./library'):
         self.book_id = str(book_id)
-        self.config = ConfigFile()
-        self.config.parse()
+        self.github_repo = GithubRepo(self)
+        self.config = self.github_repo.config
         try:
             self.library_path = self.config.data.get("library_path",library_path)
         except:
@@ -74,8 +74,11 @@ class Book():
         )
 
     def push(self):
-        github_repo = GithubRepo(self)
-        github_repo.create_and_push()
+        self.github_repo.create_and_push()
+        
+    def repo(self):
+        if self.repo_name:
+            return self.github_repo.github.repository('GITenberg', repo_name)
 
     def all(self):
         try:

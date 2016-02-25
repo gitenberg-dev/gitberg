@@ -11,10 +11,12 @@ Usage:
     gitberg report <book_identity>
     gitberg all BOOKID BOOKIDEND [options]
     gitberg list <book_id_list> [options]
+    gitberg apply <action> <book_repo_name>
 
 Arguments:
     <book_repo_name> -- The name of a repo in Gitenberg, `Frankenstein_84`
     <target> -- a file path, example, where to clone a book
+    <action> -- action to apply to repo
 
 Options:
     -v --logging (debug | info | error)
@@ -33,6 +35,7 @@ from gitenberg import clone
 from gitenberg import check_config, NotConfigured
 from gitenberg import upload_all_books, upload_list
 from gitenberg import library
+from gitenberg import actions
 
 
 def setup_logging(arguments):
@@ -110,6 +113,14 @@ if __name__ == '__main__':
             # TODO: check for stdin
             arg_book_name = arguments['<book_repo_name>']
             clone(arg_book_name)
+            
+        elif arguments['apply']:
+            arg_book_name = arguments['<book_repo_name>']
+            arg_action = arguments['<action>']
+            action = getattr(actions, arg_action)
+            action(arg_book_name)
+            
+            
     except NotConfigured:
         print("\tSorry, not Configured.")
         check_config()

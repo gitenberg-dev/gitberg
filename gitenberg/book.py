@@ -24,7 +24,10 @@ class Book():
         `local_path` is where it should be stored locally
     """
 
-    def __init__(self, book_id, library_path='./library'):
+    def __init__(self, book_id, repo_name=None, library_path='./library'):
+        if repo_name and not book_id:
+            self.repo_name = repo_name
+            book_id = repo_name.split('_')[-1]
         self.book_id = str(book_id)
         self.github_repo = GithubRepo(self)
         self.config = self.github_repo.config

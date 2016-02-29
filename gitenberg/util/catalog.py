@@ -22,30 +22,32 @@ for desc in DESCS:
     descs[desc['identifier'][32:]]=desc['description']
 
 class CdContext():
-    """ A context manager using `sh` to cd to a directory and back
+    """ A context manager using `os` to cd to a directory and back
         `with CdContext(new path to go to)`
     """
 
     def __init__(self, path):
-        self._og_directory = str(sh.pwd()).strip('\n')
+        self._og_directory = str(os.getcwd()).strip('\n')
+        
         self._dest_directory = path
 
     def __enter__(self):
-        sh.cd(self._dest_directory)
+        os.chdir(self._dest_directory)
 
     def __exit__(self, exception_type, exception_value, traceback):
-        sh.cd(self._og_directory)
+        os.chdir(self._og_directory)
 
 
 class BookMetadata(Pandata):
     
-    def __init__(self, book, rdf_library='./rdf_library'):
+    def __init__(self, book, rdf_library='./rdf_library', enrich = True):
         self.book = book
         self.rdf_path = "{0}/{1}/pg{1}.rdf".format(
             rdf_library, self.book.book_id
         )
         self.parse_rdf()
-        self.enrich()
+        if enrich:
+            self.enrich()
 
     def parse_rdf(self):
         """ cat|grep's the rdf file for minimum metadata

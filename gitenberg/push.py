@@ -39,8 +39,7 @@ class GithubRepo():
         if hasattr(self.github, 'set_user_agent'):
             self.github.set_user_agent('{}: {}'.format(self.org_name, self.org_homepage))
         self.org = self.github.organization(login=self.org_name)
-        # FIXME: logging
-        print("ratelimit: " + str(self.org.ratelimit_remaining))
+        logging.info("ratelimit: " + str(self.org.ratelimit_remaining))
 
     def format_desc(self):
         return u'{0} by {1}\n is a Project Gutenberg book, now on Github.'.format(
@@ -68,14 +67,9 @@ class GithubRepo():
     def add_remote_origin_to_local_repo(self):
         with CdContext(self.book.local_path):
             try:
-                sh.git.config("user.name", self.config.data['gh_user'])
-                sh.git.config("user.email", self.config.data['gh_email'])
-                try:
-                    sh.git('remote', 'add', 'origin', self.repo.ssh_url)
-                except sh.ErrorReturnCode_128:
-                    print("We may have already added a remote origin to this repo")
-            except KeyError:
-                raise NotConfigured
+                sh.git('remote', 'add', 'origin', self.repo.ssh_url)
+            except sh.ErrorReturnCode_128:
+                print("We may have already added a remote origin to this repo")
 
     def push_to_github(self):
         with CdContext(self.book.local_path):

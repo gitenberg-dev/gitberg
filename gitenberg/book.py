@@ -78,6 +78,7 @@ class Book():
 
     def push(self):
         self.github_repo.create_and_push()
+        return self.github_repo.repo
         
     def repo(self):
         if self.repo_name:
@@ -88,19 +89,17 @@ class Book():
             self.fetch()
             self.make()
             self.push()
+            print u"{0} {1} added".format(self.book_id, self.meta._repo)
         except sh.ErrorReturnCode_12:
-            logging.error(u"err00: rsync timed out on {0} {1}: \
-                {0} {1}".format(self.book_id, self.meta.title))
+            logging.error(u"{0} {1} timeout".format(self.book_id, self.meta._repo))
         except sh.ErrorReturnCode_23:
-            logging.error(u"err01: can't find remote book on pg server: \
-                {0} {1}".format(self.book_id, self.meta.title))
+            logging.error(u"{0} {1} notfound".format(self.book_id, self.meta._repo))
         except github3.GitHubError as e:
-            logging.error(u"err02: This book already exists on github: \
-                {0} {1} {2}".format(self.book_id, self.meta.title, e))
+            logging.error(u"{0} {1} already".format(self.book_id, self.meta._repo))
         except sh.ErrorReturnCode_1:
-            logging.error(u"err03: {0} failed to push file(s) to github: \
-                {0} {1}".format(self.book_id, self.meta.title))
+            logging.error(u"{0} {1} nopush".format(self.book_id, self.meta._repo))
         finally:
+            
             self.remove()
 
     def remove(self):

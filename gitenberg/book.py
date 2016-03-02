@@ -14,7 +14,7 @@ from .fetch import BookFetcher
 from .make import NewFilesHandler, LocalRepo
 from .push import GithubRepo
 from .util.catalog import BookMetadata
-from .config import ConfigFile, NotConfigured
+from . import config 
 
 
 class Book():
@@ -30,16 +30,15 @@ class Book():
             book_id = repo_name.split('_')[-1]
         self.book_id = str(book_id)
         self.github_repo = GithubRepo(self)
-        self.config = self.github_repo.config
         try:
-            self.library_path = self.config.data.get("library_path",library_path)
+            self.library_path = config.data.get("library_path",library_path)
         except:
             # no config, used in tests
             self.library_path = library_path
 
     def parse_book_metadata(self, rdf_library=None):
         if not rdf_library:
-            self.meta = BookMetadata(self)
+            self.meta = BookMetadata(self, rdf_library=config.data.get("rdf_library",""))
         else:
             self.meta = BookMetadata(self, rdf_library=rdf_library)
         self.format_title()

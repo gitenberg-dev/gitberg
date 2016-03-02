@@ -32,10 +32,11 @@ from docopt import docopt
 from gitenberg import __version__
 from gitenberg import Book
 from gitenberg import clone
-from gitenberg import check_config, NotConfigured
+from gitenberg import config
 from gitenberg import upload_all_books, upload_list
 from gitenberg import library
 from gitenberg import actions
+
 
 
 def setup_logging(arguments):
@@ -69,7 +70,7 @@ if __name__ == '__main__':
         if '--rdf_library' in arguments:
             rdf_library = arguments['--rdf_library']
         else:
-            rdf_library = None
+            rdf_library = config.data.get('rdf_library', None)
 
         if arguments['<book_id>'] is not None:
             book = Book(arguments['<book_id>'])
@@ -98,7 +99,7 @@ if __name__ == '__main__':
             upload_list(arguments['<book_id_list>'], rdf_library=rdf_library)
 
         elif arguments['config']:
-            check_config()
+            config.check_config()
 
         elif arguments['library']:
             library()
@@ -121,6 +122,6 @@ if __name__ == '__main__':
             action(arg_book_name)
             
             
-    except NotConfigured:
-        print("\tSorry, not Configured.")
-        check_config()
+    except config.NotConfigured as e:
+        print("\tGitberg needs configuration.")
+        config.check_config()

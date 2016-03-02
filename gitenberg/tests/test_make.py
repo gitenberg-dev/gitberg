@@ -8,20 +8,19 @@ import sh
 
 from gitenberg.book import Book
 from gitenberg.make import LocalRepo
-# from gitenberg.make import NewFilesHandler
+from gitenberg import config
 
 
 class TestLocalRepo(unittest.TestCase):
 
     def setUp(self):
-        library_path = './test/library'
-        self.book = Book(13529, library_path=library_path)
+        self.book = Book(13529)
         # TODO: Mock fetch_remote_book_to_local_path to
         #       copy test_data/sea_ppwer to 13529
 
         def copy_test_book():
             # FIXME: use filesystem for this, cp fails silently?
-            sh.cp('./gitenberg/tests/test_data/13529', library_path)
+            sh.cp('./gitenberg/tests/test_data/1234', library_path)
 
         self.book.fetch_remote_book_to_local_path = copy_test_book
         self.book.fetch()
@@ -37,7 +36,7 @@ class TestLocalRepo(unittest.TestCase):
         l_r = LocalRepo(self.book)
         l_r.add_all_files()
         self.assertTrue(
-            os.path.exists('./test/library/13529/.git')
+            os.path.exists(config.data['library_path']+'/13529/.git')
         )
 
     def tearDown(self):

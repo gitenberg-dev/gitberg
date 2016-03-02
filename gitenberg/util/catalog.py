@@ -10,6 +10,7 @@ import os
 from gitenberg.metadata.pg_rdf import pg_rdf_to_json
 from gitenberg.metadata.pandata import Pandata
 from gitenberg import pg_wikipedia
+from gitenberg.config import NotConfigured
 
 # sourced from http://www.gutenberg.org/MIRRORS.ALL
 MIRRORS = {'default': 'ftp://gutenberg.pglaf.org/mirrors/gutenberg/'}
@@ -52,7 +53,10 @@ class BookMetadata(Pandata):
     def parse_rdf(self):
         """ cat|grep's the rdf file for minimum metadata
         """
-        self.metadata = pg_rdf_to_json(self.rdf_path)
+        try:
+            self.metadata = pg_rdf_to_json(self.rdf_path)
+        except IOError as e:
+            raise NotConfigured(e)
         if len(self.authnames())==0:
             self.author = ''
         elif len(self.authnames())==1:
@@ -71,5 +75,7 @@ class BookMetadata(Pandata):
         if not description:
             description = self.description
         self.metadata['description']= description
+
+    # for compatibility with olg gitberg metadata, also it should work
 
 

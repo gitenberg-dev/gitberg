@@ -5,7 +5,7 @@ Usage:
     gitberg config
     gitberg library [status]
     gitberg clone <book_repo_name>
-    gitberg (fetch | make | push | upload ) <book_id> [options]
+    gitberg (fetch | make | push | upload | metadata) <book_id> [options]
     gitberg get <book_id> [options]
     gitberg update [options]
     gitberg report <book_identity>
@@ -91,6 +91,9 @@ if __name__ == '__main__':
         elif arguments['upload']:
             logging.info("making a local git repo for: {0}".format(arguments['<book_id>']))
             book.push()
+
+        elif arguments['metadata']:
+            print book.meta.__unicode__()
 
         elif arguments['all']:
             upload_all_books(arguments['BOOKID'], arguments['BOOKIDEND'], rdf_library=rdf_library)

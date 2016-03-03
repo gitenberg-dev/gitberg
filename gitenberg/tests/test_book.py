@@ -18,9 +18,8 @@ class TestBookPath(unittest.TestCase):
         )
 
     def test_local_path(self):
-        self.assertEqual(
-            self.book.local_path,
-            "./library/3456"
+        self.assertTrue(
+            self.book.local_path.endswith("/3456")
         )
 
 

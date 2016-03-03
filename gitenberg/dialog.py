@@ -8,41 +8,47 @@ from six.moves import input
 from getpass import getpass
 
 class ConfigGenerator(object):
-    def __init__(self):
+    def __init__(self, current={}):
         """ Generates a config file with necessary data for gitberg
         """
-        self._data_dir = user_data_dir('gitberg', 'Free Ebook Foundation')
         self.answers = {}
-
+        self.current = current
+        if not self.current.get('library_path', ''):
+            current['library_path']= user_data_dir('gitberg', 'Free Ebook Foundation')
+        
+    
+    def ask_generic(self, key, prompt, pwd = False):
+        if pwd:
+            answer = getpass( prompt )
+        else:
+            if self.current.get(key,None):
+                prompt = '{} [{}] >'.format(prompt, self.current.get(key,None))
+            else:
+                prompt = '{} >'.format(prompt)
+            answer = input( prompt )
+        self.answers[key] = answer if answer else self.current.get(key,None)
+    
     def ask_username(self):
-        self.answers['gh_user'] = input("What is your GitHub username? [optional] >  ")
+        self.ask_generic('gh_user', "What is your GitHub username?")
 
     def ask_email(self):
-        self.answers['gh_email'] = input("What is your GitHub email? [optional] >  ")
+        self.ask_generic('gh_email',"What is your GitHub email?")
+
+    def ask_rdf_library(self):
+        self.ask_generic('rdf_library',"What is the path to your PG RDF library?")
 
     def ask_password(self):
-        self.answers['gh_password'] = getpass(
-            "What is your GitHub password for the {0} user? [optional] >  ".format(
-                self.answers['gh_user']
-            )
+        self.ask_generic('gh_password',
+            "What is the GitHub password for the {0} user?".format(
+                self.answers.get('gh_user','[not set]')
+            ), pwd=True
         )
 
     def ask_library(self):
         # Suggest the standard data dir for user's OS
-        self._ask_library_answer = input(
-            """
-            What is the path to the folder where you would like to store books?
-            [{0}] >
-            """.format(self._data_dir)
-        )
-
-        # The default answer should be the standard
-        if not self._ask_library_answer:
-            self._ask_library_answer = self._data_dir
-
+        self.ask_generic( 'library_path', "What is the path to the folder where you would like to store books?")
         # FIXME: Check and ensure that the full dir path to the folder is
         # created and that nothing is overwritten by doing so
-        self.answers['library_path'] = self._data_dir
 
     def ask(self):
         self.ask_library()
@@ -50,3 +56,4 @@ class ConfigGenerator(object):
         self.ask_email()
         if self.answers['gh_user']:
             self.ask_password()
+        self.ask_rdf_library()

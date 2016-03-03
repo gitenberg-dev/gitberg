@@ -5,16 +5,13 @@ import os
 import sh
 
 from .book_identity import BookRepoName
-from .config import ConfigFile
+from . import config 
 from .library import GitbergLibraryManager
 
 def clone(arg_book_name, library_path=None):
     logging.info("running clone")
     book_repo_name = BookRepoName(arg_book_name)
     vat = CloneVat(book_repo_name)
-
-    config = ConfigFile()
-    config.parse()
 
     success, message = vat.clone()
     logging.info(message)

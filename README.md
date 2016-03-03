@@ -6,52 +6,39 @@
 [Gitberg](https://github.com/gitenberg-dev/gitberg) is a command line tool to automate tasks on books stored in git repositories.
 
 
-Due to rearranging repos into the gitenberg-dev organization on github,
-the current open issues for this repository are in 
-[this archive](https://github.com/gitberg-temp/gitberg-archive/issues).
-When these issues are closed or transfered,
-issues will be hosted at this url.
-
-
 ## Usage
 
 This project provides a `gitberg` command that does the following:
 
-Current development is focused on making the tool usable for arbitrary changes of many repos.
-This includes:
-
-+ ! `gitberg report <bookid>` reports an issue in the appropriate GITenberg github repo
-+ ! `gitberg get <bookid>` clones a GITenberg repo to your local system
-+ ! `gitberg check` checks the build process setup and runs tests on the local book
-+ ! `gitberg tag` increments the version number of the book and adds a git tag
-
-
-Implemented, but not yet ported to be distributable:
-
 + `gitberg fetch <bookid>` fetches books from PG
 + `gitberg make <bookid>` makes a local git repo with extra files
 + `gitberg push <bookid>` creates a repo on github and pushes to it (one per book)
++ `gitberg all <bookid> <bookend>` fetches, makes and pushes a range of books
++ `gitberg list <bookid_start>` fetches, makes and pushes a range of books
+
++ `gitberg apply <action> <book_repo_name>` applies an action
++ `gitberg metadata <bookid>` prints the yaml metadata
 
 
 ### Examples
 
 ```
-cat list_of_repos.txt | gitberg clone -
+gitberg list --rdf_library /Documents/gitenberg/cache/epub 181,565,576
 
 ```
 
 ### Config
 
 Some commands require a config file before they can be used.
-These commands will exit with an error if you do not have the correct configuration.
+These commands will ask for config values to make a correct configuration.
 The config file in linux is located at `~/.config/gitberg/config.yaml`.
 
 Main config values:
 
     gh_user: <your github account name>
     gh_password: <your github account password>
-    library_pth: '~/data/library'
-
+    library_path: '~/data/library'
+    rdf_library: location of your cache of the PG RDF demp
 ## Testing
 
 To run project tests do:
@@ -61,7 +48,7 @@ To run project tests do:
 
 ## Packaging
 
-This project is available as a python package
+An obsolete version of this project is available as a python package
 To build this python package, use `setup.py`
 
     python setup.py sdist

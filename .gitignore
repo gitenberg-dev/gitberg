@@ -16,6 +16,8 @@ logs/*
 *.pyc
 *.db
 *.coverage
+*/.ipynb_checkpoints/*
+*.ipynb_checkpoints/*
 
 # IDE vim ignore files
 *.swp
@@ -30,3 +32,7 @@ dist*
 gitberg.egg-info
 log/log.txt
 *.log
+
+# hack to keep metadata module development separate
+gitenberg/metadata/
+

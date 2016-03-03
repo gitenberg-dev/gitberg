@@ -14,7 +14,7 @@ from .fetch import BookFetcher
 from .make import NewFilesHandler, LocalRepo
 from .push import GithubRepo
 from .util.catalog import BookMetadata
-from .config import ConfigFile, NotConfigured
+from . import config 
 
 
 class Book():
@@ -24,19 +24,21 @@ class Book():
         `local_path` is where it should be stored locally
     """
 
-    def __init__(self, book_id, library_path='./library'):
+    def __init__(self, book_id, repo_name=None, library_path='./library'):
+        if repo_name and not book_id:
+            self.repo_name = repo_name
+            book_id = repo_name.split('_')[-1]
         self.book_id = str(book_id)
-        self.config = ConfigFile()
-        self.config.parse()
+        self.github_repo = GithubRepo(self)
         try:
-            self.library_path = self.config.data.get("library_path",library_path)
+            self.library_path = config.data.get("library_path",library_path)
         except:
             # no config, used in tests
             self.library_path = library_path
 
     def parse_book_metadata(self, rdf_library=None):
         if not rdf_library:
-            self.meta = BookMetadata(self)
+            self.meta = BookMetadata(self, rdf_library=config.data.get("rdf_library",""))
         else:
             self.meta = BookMetadata(self, rdf_library=rdf_library)
         self.format_title()
@@ -74,27 +76,29 @@ class Book():
         )
 
     def push(self):
-        github_repo = GithubRepo(self)
-        github_repo.create_and_push()
+        self.github_repo.create_and_push()
+        return self.github_repo.repo
+        
+    def repo(self):
+        if self.repo_name:
+            return self.github_repo.github.repository('GITenberg', repo_name)
 
     def all(self):
         try:
             self.fetch()
             self.make()
             self.push()
+            print u"{0} {1} added".format(self.book_id, self.meta._repo)
         except sh.ErrorReturnCode_12:
-            logging.error(u"err00: rsync timed out on {0} {1}: \
-                {0} {1}".format(self.book_id, self.meta.title))
+            logging.error(u"{0} {1} timeout".format(self.book_id, self.meta._repo))
         except sh.ErrorReturnCode_23:
-            logging.error(u"err01: can't find remote book on pg server: \
-                {0} {1}".format(self.book_id, self.meta.title))
+            logging.error(u"{0} {1} notfound".format(self.book_id, self.meta._repo))
         except github3.GitHubError as e:
-            logging.error(u"err02: This book already exists on github: \
-                {0} {1} {2}".format(self.book_id, self.meta.title, e))
+            logging.error(u"{0} {1} already".format(self.book_id, self.meta._repo))
         except sh.ErrorReturnCode_1:
-            logging.error(u"err03: {0} failed to push file(s) to github: \
-                {0} {1}".format(self.book_id, self.meta.title))
+            logging.error(u"{0} {1} nopush".format(self.book_id, self.meta._repo))
         finally:
+            
             self.remove()
 
     def remove(self):

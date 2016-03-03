@@ -11,5 +11,5 @@ wikipedia==1.4.0
 coverage==3.7.1
 tox==2.1.1
 appdirs==1.4.0
-gitenberg.metadata==0.1.12
+#gitenberg.metadata==0.1.12  NEEDS FIXING  add this by hand for now
 six==1.9.0

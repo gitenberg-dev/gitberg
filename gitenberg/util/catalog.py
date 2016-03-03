@@ -10,6 +10,7 @@ import os
 from gitenberg.metadata.pg_rdf import pg_rdf_to_json
 from gitenberg.metadata.pandata import Pandata
 from gitenberg import pg_wikipedia
+from gitenberg.config import NotConfigured
 
 # sourced from http://www.gutenberg.org/MIRRORS.ALL
 MIRRORS = {'default': 'ftp://gutenberg.pglaf.org/mirrors/gutenberg/'}
@@ -22,35 +23,40 @@ for desc in DESCS:
     descs[desc['identifier'][32:]]=desc['description']
 
 class CdContext():
-    """ A context manager using `sh` to cd to a directory and back
+    """ A context manager using `os` to cd to a directory and back
         `with CdContext(new path to go to)`
     """
 
     def __init__(self, path):
-        self._og_directory = str(sh.pwd()).strip('\n')
+        self._og_directory = str(os.getcwd()).strip('\n')
+        
         self._dest_directory = path
 
     def __enter__(self):
-        sh.cd(self._dest_directory)
+        os.chdir(self._dest_directory)
 
     def __exit__(self, exception_type, exception_value, traceback):
-        sh.cd(self._og_directory)
+        os.chdir(self._og_directory)
 
 
 class BookMetadata(Pandata):
     
-    def __init__(self, book, rdf_library='./rdf_library'):
+    def __init__(self, book, rdf_library='./rdf_library', enrich = True):
         self.book = book
         self.rdf_path = "{0}/{1}/pg{1}.rdf".format(
             rdf_library, self.book.book_id
         )
         self.parse_rdf()
-        self.enrich()
+        if enrich:
+            self.enrich()
 
     def parse_rdf(self):
         """ cat|grep's the rdf file for minimum metadata
         """
-        self.metadata = pg_rdf_to_json(self.rdf_path)
+        try:
+            self.metadata = pg_rdf_to_json(self.rdf_path)
+        except IOError as e:
+            raise NotConfigured(e)
         if len(self.authnames())==0:
             self.author = ''
         elif len(self.authnames())==1:
@@ -69,5 +75,7 @@ class BookMetadata(Pandata):
         if not description:
             description = self.description
         self.metadata['description']= description
+
+    # for compatibility with olg gitberg metadata, also it should work
 
 

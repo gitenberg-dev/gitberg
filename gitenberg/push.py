@@ -12,7 +12,7 @@ import github3
 import sh
 
 from .util.catalog import CdContext
-from .config import ConfigFile, NotConfigured
+from . import config
 
 
 class GithubRepo():
@@ -21,8 +21,8 @@ class GithubRepo():
         self.org_name = 'GITenberg'
         self.org_homepage = u'https://www.GITenberg.org/'
         self.book = book
-        self.config = ConfigFile()
-        self.config.parse()
+        if not config.data:
+            config.ConfigFile()
         self.create_api_handler()
 
     def create_and_push(self):
@@ -32,15 +32,17 @@ class GithubRepo():
 
     def create_api_handler(self):
         """ Creates an api handler and sets it on self """
-        if not self.config.data:
-            raise NotConfigured
-        self.github = github3.login(username=self.config.data['gh_user'],
-                                    password=self.config.data['gh_password'])
+        if not config.data:
+            raise config.NotConfigured
+        try:
+            self.github = github3.login(username=config.data['gh_user'],
+                                    password=config.data['gh_password'])
+        except KeyError as e:
+            raise config.NotConfigured(e)
         if hasattr(self.github, 'set_user_agent'):
             self.github.set_user_agent('{}: {}'.format(self.org_name, self.org_homepage))
         self.org = self.github.organization(login=self.org_name)
-        # FIXME: logging
-        print("ratelimit: " + str(self.org.ratelimit_remaining))
+        logging.info("ratelimit: " + str(self.org.ratelimit_remaining))
 
     def format_desc(self):
         return u'{0} by {1}\n is a Project Gutenberg book, now on Github.'.format(
@@ -68,14 +70,9 @@ class GithubRepo():
     def add_remote_origin_to_local_repo(self):
         with CdContext(self.book.local_path):
             try:
-                sh.git.config("user.name", self.config.data['gh_user'])
-                sh.git.config("user.email", self.config.data['gh_email'])
-                try:
-                    sh.git('remote', 'add', 'origin', self.repo.ssh_url)
-                except sh.ErrorReturnCode_128:
-                    print("We may have already added a remote origin to this repo")
-            except KeyError:
-                raise NotConfigured
+                sh.git('remote', 'add', 'origin', self.repo.ssh_url)
+            except sh.ErrorReturnCode_128:
+                print("We may have already added a remote origin to this repo")
 
     def push_to_github(self):
         with CdContext(self.book.local_path):

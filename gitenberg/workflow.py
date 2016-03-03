@@ -4,8 +4,12 @@
 submodule which holds workflow methods
 """
 import logging
+import requests
 
 from .book import Book
+
+# extend this to all repos when ready
+REPOS_LIST_URL = "https://raw.githubusercontent.com/gitenberg-dev/Second-Folio/master/list_of_repos.txt"
 
 def upload_all_books(book_id_start, book_id_end, rdf_library=None):
     """ Uses the fetch, make, push subcommands to
@@ -39,3 +43,23 @@ def upload_book(book_id,rdf_library=None):
         logging.error(u"Can't parse metadata for this book: {0}".format(book.book_id))
         return
     book.all()
+
+def apply_to_repos(action, args=None, kwargs=None, repos=None):
+
+    if repos is None:
+        repos = all_repos
+    
+    if args is None:
+        args = []
+        
+    if kwargs is None:
+        kwargs = {}
+        
+    for repo in repos:
+        try:
+            result = action (repo, *args, **kwargs)
+        except Exception as e:
+            result = e
+        yield result
+
+all_repos = requests.get(REPOS_LIST_URL).content.strip().split("\n")

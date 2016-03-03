@@ -6,6 +6,8 @@ import requests
 
 _table={}
 def get_item_summary(wd_id, lang='en'):
+    if wd_id is None:
+        return None
     r = requests.get(u'https://www.wikidata.org/wiki/Special:EntityData/{}.json'.format(wd_id))
     try:
         title = r.json()['entities'][wd_id]['sitelinks']['{}wiki'.format(lang)]['title']

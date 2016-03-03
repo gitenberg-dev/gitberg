@@ -13,7 +13,10 @@ from .dialog import ConfigGenerator
 
 class NotConfigured(Exception):
     pass
-    
+
+# static global
+data = {}
+
 class ConfigFile(object):
     """ A wrapper for managing creating and reading a config file
     takes (optional) appname str kwarg,
@@ -28,6 +31,7 @@ class ConfigFile(object):
             self.appname = appname
         self.dir = appdirs.user_config_dir(self.appname)
         self.exists_or_make()
+        self.parse()
 
     @property
     def file_path(self):
@@ -50,7 +54,7 @@ class ConfigFile(object):
 
     @property
     def yaml(self):
-        return yaml.dump(self.data,
+        return yaml.dump(data,
                          default_flow_style=False)
 
     def __repr__(self):
@@ -61,7 +65,8 @@ class ConfigFile(object):
             return _fp.read()
 
     def parse(self):
-        self.data = yaml.load(self.read())
+        global data
+        data = yaml.load(self.read())
 
     def check_self(self):
         # TODO: do a basic check of internal data values
@@ -71,12 +76,11 @@ class ConfigFile(object):
 def check_config():
     """ Report if there is an existing config file
     """
-    config = ConfigFile()
-    config.parse()
-
-    if config.data and config.data.keys() > 0:
+    configfile = ConfigFile()
+    global data
+    if data.keys() > 0:
         # FIXME: run a better check of this file
-        print("Gitberg config looks ok")
+        print("gitberg config file exists")
         print("\twould you like to edit your gitberg config file?")
     else:
         print("No config found")
@@ -92,9 +96,9 @@ def check_config():
     if answer in 'Yy':
         print("Running gitberg config generator ...")
         # config.exists_or_make()
-        config_gen = ConfigGenerator()
+        config_gen = ConfigGenerator(current=data)
         config_gen.ask()
         # print(config_gen.answers)
-        config.data = config_gen.answers
-        config.write()
-        print("Config written to {}".format(config.file_path))
+        data = config_gen.answers
+        configfile.write()
+        print("Config written to {}".format(configfile.file_path))

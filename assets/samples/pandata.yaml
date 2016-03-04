@@ -1,0 +1,49 @@
+_repo: Space-Viking_20728
+contributor:
+    illustrator:
+        gutenberg_agent_id: 25396
+        agent_name: John Schoenherr
+        agent_sortname: Schoenherr, John
+        wikipedia: http://en.wikipedia.org/wiki/John_Schoenherr
+covers:
+   -
+    image_path: 20728-h/images/illus-front.jpg
+    cover_type: archival
+   -
+    image_path: 20728-h/images/illus-back.jpg
+    covertype: archival-back
+creator:
+    author:
+        gutenberg_agent_id: 8301
+        agent_name: H. Beam Piper
+        agent_sortname: Piper, H. Beam
+        wikipedia: http://en.wikipedia.org/wiki/H._Beam_Piper
+description: 
+funding_info: 
+identifiers:
+    goodreads:
+    - '1440159'
+    gutenberg: 20728
+    isbns_related:
+    - '9780441602254'
+    openlibrary: 
+    - /books/OL7526155M
+    librarything:
+    - '138032'
+    oclc: 746971356
+gutenberg_issued: '2007-03-03'
+gutenberg_type: Text
+language: en
+publication_date_original: '1964'
+publisher: Project Gutenberg
+publisher_original: Ace Books
+rights: PD-US
+rights_url:
+subjects:
+  - !lcsh Science fiction
+  - !lcsh Space warfare -- Fiction
+  - !lcsh Revenge -- Fiction
+  - !lcc PS
+  - Space Opera
+title: Space Viking
+

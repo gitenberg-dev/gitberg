@@ -1,0 +1,44 @@
+olid:OL7526155M:
+  bib_key: olid:OL7526155M
+  details:
+    authors:
+    - key: /authors/OL42322A
+      name: H. Beam Piper
+    classifications: {}
+    covers:
+    - 284580
+    created:
+      type: /type/datetime
+      value: '2008-04-29T13:35:46.876380'
+    identifiers:
+      goodreads:
+      - '1440159'
+      librarything:
+      - '138032'
+    isbn_10:
+    - 0441602258
+    isbn_13:
+    - '9780441602254'
+    key: /books/OL7526155M
+    languages:
+    - key: /languages/eng
+    last_modified:
+      type: /type/datetime
+      value: '2012-06-18T00:43:42.710342'
+    latest_revision: 7
+    number_of_pages: 191
+    publish_date: '1964'
+    publishers:
+    - Ace Books
+    revision: 7
+    series:
+    - VIntage Ace SF, F-225
+    title: Space Viking
+    type:
+      key: /type/edition
+    works:
+    - key: /works/OL579067W
+  info_url: https://openlibrary.org/books/OL7526155M/Space_Viking
+  preview: noview
+  preview_url: https://openlibrary.org/books/OL7526155M/Space_Viking
+  thumbnail_url: https://covers.openlibrary.org/b/id/284580-S.jpg

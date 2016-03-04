@@ -1,0 +1,303 @@
+'@context':
+  cc: http://web.resource.org/cc/
+  dcam: http://purl.org/dc/dcam/
+  dcterms: http://purl.org/dc/terms/
+  marcrel: http://id.loc.gov/vocabulary/relators/
+  pgterms: http://www.gutenberg.org/2009/pgterms/
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+'@graph':
+- '@id': http://www.gutenberg.org/files/20728/20728.txt
+  '@type': pgterms:file
+  dcterms:extent: 414640
+  dcterms:format:
+    dcam:memberOf:
+      '@id': dcterms:IMT
+    rdf:value:
+      '@type': dcterms:IMT
+      '@value': text/plain; charset=us-ascii
+  dcterms:isFormatOf:
+    '@id': http://www.gutenberg.org/ebooks/20728
+  dcterms:modified:
+    '@type': xsd:dateTime
+    '@value': '2012-07-02T13:51:54'
+- '@id': http://www.gutenberg.org/
+  '@type': cc:Work
+  cc:license:
+    '@id': http://www.gnu.org/licenses/gpl.html
+- '@id': http://www.gutenberg.org/files/20728/20728.zip
+  '@type': pgterms:file
+  dcterms:extent: 156197
+  dcterms:format:
+  - dcam:memberOf:
+      '@id': dcterms:IMT
+    rdf:value:
+      '@type': dcterms:IMT
+      '@value': text/plain; charset=us-ascii
+  - dcam:memberOf:
+      '@id': dcterms:IMT
+    rdf:value:
+      '@type': dcterms:IMT
+      '@value': application/zip
+  dcterms:isFormatOf:
+    '@id': http://www.gutenberg.org/ebooks/20728
+  dcterms:modified:
+    '@type': xsd:dateTime
+    '@value': '2012-07-02T13:57:06'
+- '@id': http://www.gutenberg.org/2009/agents/25396
+  '@type': pgterms:agent
+  pgterms:alias:
+  - Schoenherr, John (John Carl)
+  - Schoenherr, Jack
+  pgterms:birthdate: 1935
+  pgterms:deathdate: 2010
+  pgterms:name: Schoenherr, John
+  pgterms:webpage:
+    '@id': http://en.wikipedia.org/wiki/John_Schoenherr
+- '@id': http://en.wikipedia.org/wiki/John_Schoenherr
+  dcterms:description: Wikipedia
+- '@id': http://www.gutenberg.org/ebooks/20728.epub.noimages
+  '@type': pgterms:file
+  dcterms:extent: 170640
+  dcterms:format:
+    dcam:memberOf:
+      '@id': dcterms:IMT
+    rdf:value:
+      '@type': dcterms:IMT
+      '@value': application/epub+zip
+  dcterms:isFormatOf:
+    '@id': http://www.gutenberg.org/ebooks/20728
+  dcterms:modified:
+    '@type': xsd:dateTime
+    '@value': '2012-07-03T13:25:40.608675'
+- '@id': http://www.gutenberg.org/ebooks/20728.kindle.noimages
+  '@type': pgterms:file
+  dcterms:extent: 739222
+  dcterms:format:
+    dcam:memberOf:
+      '@id': dcterms:IMT
+    rdf:value:
+      '@type': dcterms:IMT
+      '@value': application/x-mobipocket-ebook
+  dcterms:isFormatOf:
+    '@id': http://www.gutenberg.org/ebooks/20728
+  dcterms:modified:
+    '@type': xsd:dateTime
+    '@value': '2012-07-03T13:25:46.706296'
+- '@id': http://www.gutenberg.org/files/20728/20728-h.zip
+  '@type': pgterms:file
+  dcterms:extent: 1330677
+  dcterms:format:
+  - dcam:memberOf:
+      '@id': dcterms:IMT
+    rdf:value:
+      '@type': dcterms:IMT
+      '@value': text/html; charset=iso-8859-1
+  - dcam:memberOf:
+      '@id': dcterms:IMT
+    rdf:value:
+      '@type': dcterms:IMT
+      '@value': application/zip
+  dcterms:isFormatOf:
+    '@id': http://www.gutenberg.org/ebooks/20728
+  dcterms:modified:
+    '@type': xsd:dateTime
+    '@value': '2012-07-02T13:57:06'
+- '@id': http://www.gutenberg.org/2009/agents/8301
+  '@type': pgterms:agent
+  pgterms:alias: Piper, Henry Beam
+  pgterms:birthdate: 1904
+  pgterms:deathdate: 1964
+  pgterms:name: Piper, H. Beam
+  pgterms:webpage:
+    '@id': http://en.wikipedia.org/wiki/H._Beam_Piper
+- '@id': http://www.gutenberg.org/ebooks/20728.txt.utf-8
+  '@type': pgterms:file
+  dcterms:extent: 414613
+  dcterms:format:
+    dcam:memberOf:
+      '@id': dcterms:IMT
+    rdf:value:
+      '@type': dcterms:IMT
+      '@value': text/plain
+  dcterms:isFormatOf:
+    '@id': http://www.gutenberg.org/ebooks/20728
+  dcterms:modified:
+    '@type': xsd:dateTime
+    '@value': '2012-07-03T13:25:39.354413'
+- '@id': http://www.gutenberg.org/files/20728/20728-8.zip
+  '@type': pgterms:file
+  dcterms:extent: 156225
+  dcterms:format:
+  - dcam:memberOf:
+      '@id': dcterms:IMT
+    rdf:value:
+      '@type': dcterms:IMT
+      '@value': application/zip
+  - dcam:memberOf:
+      '@id': dcterms:IMT
+    rdf:value:
+      '@type': dcterms:IMT
+      '@value': text/plain; charset=iso-8859-1
+  dcterms:isFormatOf:
+    '@id': http://www.gutenberg.org/ebooks/20728
+  dcterms:modified:
+    '@type': xsd:dateTime
+    '@value': '2012-07-02T13:57:06'
+- '@id': http://en.wikipedia.org/wiki/H._Beam_Piper
+  dcterms:description: Wikipedia
+- '@id': http://www.gutenberg.org/ebooks/20728.qioo
+  '@type': pgterms:file
+  dcterms:extent: 218154
+  dcterms:format:
+    dcam:memberOf:
+      '@id': dcterms:IMT
+    rdf:value:
+      '@type': dcterms:IMT
+      '@value': application/x-qioo-ebook
+  dcterms:isFormatOf:
+    '@id': http://www.gutenberg.org/ebooks/20728
+  dcterms:modified:
+    '@type': xsd:dateTime
+    '@value': '2012-07-03T13:25:39.753228'
+- '@id': http://www.gutenberg.org/files/20728/20728-8.txt
+  '@type': pgterms:file
+  dcterms:extent: 414634
+  dcterms:format:
+    dcam:memberOf:
+      '@id': dcterms:IMT
+    rdf:value:
+      '@type': dcterms:IMT
+      '@value': text/plain; charset=iso-8859-1
+  dcterms:isFormatOf:
+    '@id': http://www.gutenberg.org/ebooks/20728
+  dcterms:modified:
+    '@type': xsd:dateTime
+    '@value': '2012-07-02T13:49:30'
+- '@id': http://www.gutenberg.org/ebooks/20728.plucker
+  '@type': pgterms:file
+  dcterms:extent: 247900
+  dcterms:format:
+    dcam:memberOf:
+      '@id': dcterms:IMT
+    rdf:value:
+      '@type': dcterms:IMT
+      '@value': application/prs.plucker
+  dcterms:isFormatOf:
+    '@id': http://www.gutenberg.org/ebooks/20728
+  dcterms:modified:
+    '@type': xsd:dateTime
+    '@value': '2012-07-03T13:25:56.588657'
+- '@id': http://www.gutenberg.org/ebooks/20728.kindle.images
+  '@type': pgterms:file
+  dcterms:extent: 3149141
+  dcterms:format:
+    dcam:memberOf:
+      '@id': dcterms:IMT
+    rdf:value:
+      '@type': dcterms:IMT
+      '@value': application/x-mobipocket-ebook
+  dcterms:isFormatOf:
+    '@id': http://www.gutenberg.org/ebooks/20728
+  dcterms:modified:
+    '@type': xsd:dateTime
+    '@value': '2012-07-03T13:25:54.351969'
+- '@id': http://www.gutenberg.org/ebooks/20728.epub.images
+  '@type': pgterms:file
+  dcterms:extent: 1837354
+  dcterms:format:
+    dcam:memberOf:
+      '@id': dcterms:IMT
+    rdf:value:
+      '@type': dcterms:IMT
+      '@value': application/epub+zip
+  dcterms:isFormatOf:
+    '@id': http://www.gutenberg.org/ebooks/20728
+  dcterms:modified:
+    '@type': xsd:dateTime
+    '@value': '2012-07-03T13:25:43.029479'
+- '@id': http://www.gutenberg.org/files/20728/20728-h/20728-h.htm
+  '@type': pgterms:file
+  dcterms:extent: 454190
+  dcterms:format:
+    dcam:memberOf:
+      '@id': dcterms:IMT
+    rdf:value:
+      '@type': dcterms:IMT
+      '@value': text/html; charset=iso-8859-1
+  dcterms:isFormatOf:
+    '@id': http://www.gutenberg.org/ebooks/20728
+  dcterms:modified:
+    '@type': xsd:dateTime
+    '@value': '2012-07-02T13:55:42'
+- '@id': http://www.gutenberg.org/ebooks/20728
+  '@type': pgterms:ebook
+  dcterms:creator:
+    '@id': http://www.gutenberg.org/2009/agents/8301
+  dcterms:hasFormat:
+  - '@id': http://www.gutenberg.org/ebooks/20728.qioo
+  - '@id': http://www.gutenberg.org/ebooks/20728.plucker
+  - '@id': http://www.gutenberg.org/ebooks/20728.txt.utf-8
+  - '@id': http://www.gutenberg.org/files/20728/20728-h/20728-h.htm
+  - '@id': http://www.gutenberg.org/files/20728/20728-page-images.zip
+  - '@id': http://www.gutenberg.org/files/20728/20728-8.txt
+  - '@id': http://www.gutenberg.org/ebooks/20728.kindle.noimages
+  - '@id': http://www.gutenberg.org/ebooks/20728.epub.images
+  - '@id': http://www.gutenberg.org/ebooks/20728.epub.noimages
+  - '@id': http://www.gutenberg.org/ebooks/20728.kindle.images
+  - '@id': http://www.gutenberg.org/files/20728/20728.zip
+  - '@id': http://www.gutenberg.org/files/20728/20728-8.zip
+  - '@id': http://www.gutenberg.org/files/20728/20728-h.zip
+  - '@id': http://www.gutenberg.org/files/20728/20728.txt
+  dcterms:issued:
+    '@type': xsd:date
+    '@value': '2007-03-03'
+  dcterms:language:
+    rdf:value:
+      '@type': dcterms:RFC4646
+      '@value': en
+  dcterms:license:
+    '@id': http://www.gutenberg.org/license
+  dcterms:publisher: Project Gutenberg
+  dcterms:rights: Public domain in the USA.
+  dcterms:subject:
+  - dcam:memberOf:
+      '@id': dcterms:LCSH
+    rdf:value: Space warfare -- Fiction
+  - dcam:memberOf:
+      '@id': dcterms:LCSH
+    rdf:value: Revenge -- Fiction
+  - dcam:memberOf:
+      '@id': dcterms:LCC
+    rdf:value: PS
+  - dcam:memberOf:
+      '@id': dcterms:LCSH
+    rdf:value: Science fiction
+  dcterms:title: Space Viking
+  dcterms:type:
+    dcam:memberOf:
+      '@id': dcterms:DCMIType
+    rdf:value: Text
+  marcrel:ill:
+    '@id': http://www.gutenberg.org/2009/agents/25396
+  pgterms:downloads: 299
+- '@id': http://www.gutenberg.org/files/20728/20728-page-images.zip
+  '@type': pgterms:file
+  dcterms:extent: 12572394
+  dcterms:format:
+  - dcam:memberOf:
+      '@id': dcterms:IMT
+    rdf:value:
+      '@type': dcterms:IMT
+      '@value': application/zip
+  - dcam:memberOf:
+      '@id': dcterms:IMT
+    rdf:value:
+      '@type': dcterms:IMT
+      '@value': application/octet-stream
+  dcterms:isFormatOf:
+    '@id': http://www.gutenberg.org/ebooks/20728
+  dcterms:modified:
+    '@type': xsd:dateTime
+    '@value': '2007-03-04T19:32:48'

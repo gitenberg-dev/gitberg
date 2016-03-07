@@ -33,6 +33,4 @@ gitberg.egg-info
 log/log.txt
 *.log
 
-# hack to keep metadata module development separate
-gitenberg/metadata/
 

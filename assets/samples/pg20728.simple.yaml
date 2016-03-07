@@ -1,0 +1,40 @@
+# Project Gutenberg Metadata
+pgterms:ebook: 
+    url: http://www.gutenberg.org/ebooks/20728
+    marcrel:ill: 
+    -   pgterms:agent: http://www.gutenberg.org/2009/agents/25396
+        pgterms:alias:
+          - Schoenherr, John (John Carl)
+          - Schoenherr, Jack
+        pgterms:birthdate: 1935
+        pgterms:deathdate: 2010
+        pgterms:name: Schoenherr, John
+        pgterms:webpage: 
+        -   url: http://en.wikipedia.org/wiki/John_Schoenherr
+            dcterms:description: Wikipedia
+    
+    dcterms:creator: 
+    -   pgterms:agent: http://www.gutenberg.org/2009/agents/8301
+        pgterms:alias: Piper, Henry Beam
+        pgterms:birthdate: 1904
+        pgterms:deathdate: 1964
+        pgterms:name: Piper, H. Beam
+        pgterms:webpage: 
+        -   url: http://en.wikipedia.org/wiki/H._Beam_Piper
+            dcterms:description: Wikipedia
+
+    dcterms:issued: '2007-03-03'
+    dcterms:language: !dcterms:RFC4646 en
+    dcterms:license: http://www.gutenberg.org/license
+    dcterms:publisher: Project Gutenberg
+    dcterms:rights: Public domain in the USA.
+    dcterms:subject:
+    - !dcterms:LCSH Space warfare -- Fiction
+    - !dcterms:LCSH Revenge -- Fiction
+    - !dcterms:LCC PS
+    - !dcterms:LCSH Science fiction
+    dcterms:title: Space Viking
+    dcterms:type: !dcterms:DCMIType Text
+    pgterms:downloads: 299
+    
+

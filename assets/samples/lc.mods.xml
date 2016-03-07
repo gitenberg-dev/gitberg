@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mods xmlns="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-5.xsd" version="3.5">
+	<titleinfo>
+		<title>
+			Space Viking
+		</title>
+	</titleinfo>
+	<name type="personal" usage="primary">
+		<namepart>
+			Piper, H. Beam.
+		</namepart>
+	</name>
+	<typeofresource>
+		text
+	</typeofresource>
+	<genre authority="gsafd">
+		Science fiction.
+	</genre>
+	<origininfo>
+		<place>
+			<placeterm type="code" authority="marccountry">
+				nyu
+			</placeterm>
+		</place>
+		<place>
+			<placeterm type="text">
+				New York
+			</placeterm>
+		</place>
+		<publisher>
+			Garland Pub.
+		</publisher>
+		<dateissued>
+			1975, c1963
+		</dateissued>
+		<dateissued encoding="marc">
+			1975
+		</dateissued>
+		<issuance>
+			monographic
+		</issuance>
+	</origininfo>
+	<language>
+		<languageterm type="code" authority="iso639-2b">
+			eng
+		</languageterm>
+	</language>
+	<physicaldescription>
+		<form authority="marcform">
+			print
+		</form>
+		<extent>
+			191 p. ; 18 cm.
+		</extent>
+	</physicaldescription>
+	<note type="statement of responsibility" altrepgroup="00">
+		by H. Beam Piper.
+	</note>
+	<note>
+		Reprint of the ed. published by Ace Books, New York.
+	</note>
+	<classification authority="lcc">
+		PZ4.P666 Sp4
+	</classification>
+	<classification authority="lcc">
+		PS3566.I58
+	</classification>
+	<classification authority="ddc">
+		813/.5/4
+	</classification>
+	<relateditem type="series">
+		<titleinfo>
+			<title>
+				The Garland library of science fiction
+			</title>
+		</titleinfo>
+	</relateditem>
+	<identifier type="isbn">
+		0824014278
+	</identifier>
+	<identifier type="lccn">
+		75000422
+	</identifier>
+	<recordinfo>
+		<recordcontentsource authority="marcorg">
+			DLC
+		</recordcontentsource>
+		<recordcreationdate encoding="marc">
+			750219
+		</recordcreationdate>
+		<recordchangedate encoding="iso8601">
+			19940118124251.3
+		</recordchangedate>
+		<recordidentifier>
+			4578900
+		</recordidentifier>
+		<recordorigin>
+			Converted from MARCXML to MODS version 3.5 using MARC21slim2MODS3-5.xsl (Revision 1.106 2014/12/19)
+		</recordorigin>
+	</recordinfo>
+</mods>

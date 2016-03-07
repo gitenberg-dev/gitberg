@@ -1,0 +1,82 @@
+{
+ "kind": "books#volume",
+ "id": "j6NrcDkA2wYC",
+ "etag": "rkz3pr8AA2U",
+ "selfLink": "https://www.googleapis.com/books/v1/volumes/j6NrcDkA2wYC",
+ "volumeInfo": {
+  "title": "Space Viking",
+  "authors": [
+   "H. Beam Piper"
+  ],
+  "publisher": "Wildside Press LLC",
+  "publishedDate": "2007-03-01",
+  "description": "When his wife is murdered on his wedding day, Lucas Trask launches himself on a quest for revenge. Using his personal fortune, he buys a spaceship and becomes a Space Viking, raiding worlds while hunting for his wife's killer. But raiding is not his destiny, and he gradually becomes a trader, starting to build a galactic empire. Before he can achieve his new goals, however, he must still deal with his wife's killer. A thrilling intergalactic saga!",
+  "industryIdentifiers": [
+   {
+    "type": "ISBN_10",
+    "identifier": "1434400565"
+   },
+   {
+    "type": "ISBN_13",
+    "identifier": "9781434400567"
+   }
+  ],
+  "readingModes": {
+   "text": false,
+   "image": false
+  },
+  "pageCount": 176,
+  "printedPageCount": 178,
+  "dimensions": {
+   "height": "22.90 cm",
+   "width": "15.20 cm",
+   "thickness": "1.00 cm"
+  },
+  "printType": "BOOK",
+  "categories": [
+   "Fiction / Science Fiction / Action & Adventure",
+   "Fiction / Science Fiction / Space Opera"
+  ],
+  "averageRating": 3.5,
+  "ratingsCount": 9,
+  "contentVersion": "0.1.1.0.preview.0",
+  "imageLinks": {
+   "smallThumbnail": "http://books.google.com/books/content?id=j6NrcDkA2wYC&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE70FHVZzwa9OhyQ-Qhxpu-NhSuG2rtPIzX44lqoJVZqqUMwh0U0icSjjMEyrlZ2LYq00BZDYQQyaDpkw3f1QeaGbeBgyKzIY4tWZgrKfzvi7YwrWnrrtf0aLyqMuPYbW390ChgMy&source=gbs_api",
+   "thumbnail": "http://books.google.com/books/content?id=j6NrcDkA2wYC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE70fieSjAGRj3KoPn85K1FE7NlasUQxC_Bw7qyyqFrFAWiEVaf1hckFTFR8Rcr8YiUBJ2A-3TB1dQ_pEqukXStTXzy3agbBzA4rRaWGsGc4JiAPhBSWnRxjgHySWE_eNrmybHZXn&source=gbs_api",
+   "small": "http://books.google.com/books/content?id=j6NrcDkA2wYC&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE737OlAk8AhC5hfGydnzikdeH8f5swULQAO7paHdWwRkbhzlTXbTgayT55fiilXiFehov-C8oKPwBCssvun5EMsX-dBeZYwlC5_2w6HMDWSxFlRBh_V74zuse5n7EJrcxazn7SIy&source=gbs_api"
+  },
+  "language": "en",
+  "previewLink": "http://books.google.com/books?id=j6NrcDkA2wYC&hl=&source=gbs_api",
+  "infoLink": "http://books.google.com/books?id=j6NrcDkA2wYC&hl=&source=gbs_api",
+  "canonicalVolumeLink": "http://books.google.com/books/about/Space_Viking.html?hl=&id=j6NrcDkA2wYC"
+ },
+ "layerInfo": {
+  "layers": [
+   {
+    "layerId": "geo",
+    "volumeAnnotationsVersion": "4"
+   }
+  ]
+ },
+ "saleInfo": {
+  "country": "US",
+  "saleability": "NOT_FOR_SALE",
+  "isEbook": false
+ },
+ "accessInfo": {
+  "country": "US",
+  "viewability": "PARTIAL",
+  "embeddable": true,
+  "publicDomain": false,
+  "textToSpeechPermission": "ALLOWED",
+  "epub": {
+   "isAvailable": false
+  },
+  "pdf": {
+   "isAvailable": false
+  },
+  "webReaderLink": "http://books.google.com/books/reader?id=j6NrcDkA2wYC&hl=&printsec=frontcover&output=reader&source=gbs_api",
+  "accessViewStatus": "SAMPLE",
+  "quoteSharingAllowed": false
+ }
+}

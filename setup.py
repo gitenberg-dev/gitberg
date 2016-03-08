@@ -48,7 +48,12 @@ setup(name='gitberg',
           'rdflib==4.2.0',
           'rdflib-jsonld==0.3',
       ],
-      
+      data_files=[('gitenberg/assets', ['assets/GITenberg_repo_list.tsv', 
+                              'assets/GITenberg_repo_list.tsv',
+                              'assets/GITenberg_repo_list.tsv',
+                              ]
+                    ),
+                ]
       test_suite='nose.collector',
       tests_require=['nose'],
       classifiers=[

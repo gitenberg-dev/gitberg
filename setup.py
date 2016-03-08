@@ -53,7 +53,7 @@ setup(name='gitberg',
                               'assets/GITenberg_repo_list.tsv',
                               ]
                     ),
-                ]
+                ],
       test_suite='nose.collector',
       tests_require=['nose'],
       classifiers=[

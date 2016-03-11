@@ -22,9 +22,10 @@ with open(os.path.join(os.path.dirname(__file__), '../data/gutenberg_description
 descs = {}
 for desc in DESCS:
     descs[desc['identifier'][32:]]=desc['description']
-
+repo_list = []
 with open(os.path.join(os.path.dirname(__file__), '../data/GITenberg_repo_list.tsv')) as repofile:
-    repo_list = csv.reader(repofile, delimiter='\t', quotechar='"')
+    for row in csv.reader(repofile, delimiter='\t', quotechar='"'):
+        repo_list.append(row)
 
 class CdContext():
     """ A context manager using `os` to cd to a directory and back

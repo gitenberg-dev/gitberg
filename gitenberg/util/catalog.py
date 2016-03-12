@@ -7,6 +7,7 @@ import re
 import sh
 import json
 import os
+import csv
 from gitenberg.metadata.pg_rdf import pg_rdf_to_json
 from gitenberg.metadata.pandata import Pandata
 from gitenberg import pg_wikipedia
@@ -15,12 +16,16 @@ from gitenberg.config import NotConfigured
 # sourced from http://www.gutenberg.org/MIRRORS.ALL
 MIRRORS = {'default': 'ftp://gutenberg.pglaf.org/mirrors/gutenberg/'}
 
-with open(os.path.join(os.path.dirname(__file__), '../../assets/gutenberg_descriptions.json')) as descfile:
+with open(os.path.join(os.path.dirname(__file__), '../data/gutenberg_descriptions.json')) as descfile:
     DESCS= json.load(descfile)
 
 descs = {}
 for desc in DESCS:
     descs[desc['identifier'][32:]]=desc['description']
+repo_list = []
+with open(os.path.join(os.path.dirname(__file__), '../data/GITenberg_repo_list.tsv')) as repofile:
+    for row in csv.reader(repofile, delimiter='\t', quotechar='"'):
+        repo_list.append(row)
 
 class CdContext():
     """ A context manager using `os` to cd to a directory and back

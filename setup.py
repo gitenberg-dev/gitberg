@@ -48,7 +48,7 @@ setup(name='gitberg',
           'rdflib==4.2.0',
           'rdflib-jsonld==0.3',
       ],
-      
+
       test_suite='nose.collector',
       tests_require=['nose'],
       classifiers=[

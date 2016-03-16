@@ -30,6 +30,7 @@ logs/*
 build*
 dist*
 gitberg.egg-info
+xgitberg.egg-info
 log/log.txt
 *.log
 

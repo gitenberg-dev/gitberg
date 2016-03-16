@@ -15,7 +15,7 @@ with open('gitenberg/__init__.py', 'r') as fd:
             __version__ = m.group(1)
             break
 
-setup(name='gitberg',
+setup(name='xgitberg',
       version=__version__,
       description="A library and command for interacting with the GITenberg books project",
       long_description=open('README.md').read(),
@@ -23,9 +23,12 @@ setup(name='gitberg',
       author='Seth Woodworth',
       author_email='seth@sethish.com',
       url='https://github.com/gitenberg-dev/gitberg',
-      packages=find_packages(),
+      packages=['gitenberg', 'gitenberg.gitenberg', 'gitenberg.metadata', 'gitenberg.tests', 'gitenberg.util'],
       include_package_data=True,
       scripts=['bin/gitberg'],
+      setup_requires=[
+        'sh>=1',
+      ],
       install_requires=[
           'requests>=2.7',
           'uritemplate.py==0.3.0',

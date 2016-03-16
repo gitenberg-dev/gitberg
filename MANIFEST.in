@@ -1,2 +1,3 @@
-include README.md LICENSE CONTRIBUTING.rst bin requirements.pip HISTORY.rst
+include README.md LICENSE CONTRIBUTING.rst requirements.pip HISTORY.rst
 recursive-include gitenberg *
+recursive-include bin *

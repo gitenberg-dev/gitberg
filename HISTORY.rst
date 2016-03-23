@@ -2,6 +2,19 @@
 
 History
 -------
+0.2.4 (2016-03-16)
+==================
+* Rewrite of config, add redf_library to config
+* Adds metadata and apply actions
+* includes a repo list to facilitate repo walking
+* merges gitenberg.metadata package
+* uses metadata package to vastly improve repo naming
+* misc bugfixes
+* tweak packaging to placate elastic beanstalk
+* update documentation
+* added example notebooks
+
+-------
 0.0.10 (2015-09-12)
 ==================
 * Refactors and moves tests

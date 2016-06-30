@@ -70,7 +70,7 @@ def build_epub(version, epub_title):
 	    f.close()
 	    os.chmod(fname, 0755)
 
-	    output = subprocess.check_output("./{fname} {version} {epub_title}}".format(fname=fname, 
+	    output = subprocess.check_output("./{fname} {version} {epub_title}".format(fname=fname, 
 	    	  version=version, epub_title=epub_title), 
 	    	  shell=True)
 	    print (output)

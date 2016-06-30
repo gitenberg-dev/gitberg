@@ -7,6 +7,7 @@ import pymarc
 
 from gitenberg.metadata.pandata import Pandata
 from gitenberg.metadata.pg_rdf import pg_rdf_to_yaml
+from gitenberg.metadata.fileinfo import htm_modified_date
 
 
 TESTDATA_FILENAME = os.path.join(os.path.dirname(__file__), '../../assets/samples/pandata.yaml')
@@ -66,6 +67,10 @@ class Rdf2YamlTest(unittest.TestCase):
         pandata = Pandata(TESTDATA_YAMLFILENAME)
         self.assertEqual(pandata._edition,'book')
         self.assertTrue(pandata.subjects[0][0] in ('lcsh','lcc'))
+
+class FileinfoTest(unittest.TestCase):
+    def test_htm_mod(self):
+        self.assertEqual( htm_modified_date(TESTDATA_PGRDFFILENAME).year,2012) 
 
 class PandataTest(unittest.TestCase):
     def test_smart_properties(self):

@@ -1,6 +1,8 @@
+import glob
 import subprocess
 import uuid
 import os
+
 
 BUILD_EPUB_SCRIPT = """
 #!/bin/sh
@@ -29,6 +31,30 @@ function build_epub_from_asciidoc {
 
 build_epub_from_asciidoc $1 $2
 """
+
+def source_book(repo_name):
+
+    """
+    return the path of document to use as the source for building epub
+    """
+
+    repo_id = repo_name.split("_")[-1]
+    repo_htm_path = "{repo_id}-h/{repo_id}-h.htm".format(repo_id=repo_id)
+
+    possible_paths = ["book.asciidoc",
+                      repo_htm_path,
+                      "{}-0.txt".format(repo_id),
+                      "{}-8.txt".format(repo_id),
+                      "{}.txt".format(repo_id),
+                     ]
+
+    # return the first match
+
+    for path in possible_paths:
+        if os.path.exists(path):
+            return path
+
+    return None
 
 
 def build_epub_from_asciidoc (version, epub_title):

@@ -5,7 +5,7 @@ import os
 BUILD_EPUB_SCRIPT = """
 #!/bin/sh
 
-function build_epub {
+function build_epub_from_asciidoc {
 
 	asciidoctor -a toc,idprefix=xx_,version=$1 -b xhtml5 -T ./asciidoctor-htmlbook/htmlbook-autogen/ -d book book.asciidoc -o book.html
 	git clone https://github.com/gitenberg-dev/HTMLBook
@@ -27,40 +27,14 @@ function build_epub {
 
 } 
 
-build_epub $1 $2
+build_epub_from_asciidoc $1 $2
 """
 
 
-SCRIPT_CODE = """#!/bin/bash
-
-function mul {
-    echo $1 $2;
-  }  
-
-mul $1 $2
-"""
-
-def hello(s=''):
-	print (s)
-
-def test_script(arg1='', arg2=''):
-
-	fname = "{}.sh".format(uuid.uuid4())
-
-	try:
-	    f = open(fname, "wb")
-	    f.write(SCRIPT_CODE.encode('utf-8'))
-	    f.close()
-	    os.chmod(fname, 0755)
-
-	    output = subprocess.check_output("./{} {} {}".format(fname, arg1, arg2), shell=True)
-	    print (output)
-	except Exception as e:
-	    print (e)
-	finally:
-	    os.remove(fname)
-
-def build_epub(version, epub_title):
+def build_epub_from_asciidoc (version, epub_title):
+	"""
+	build for asciidoctor input
+	"""
 
 	fname = "{}.sh".format(uuid.uuid4())
 

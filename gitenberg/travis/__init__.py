@@ -38,8 +38,8 @@ def repo_metadata ():
 	md = metadata.pandata.Pandata("metadata.yaml")
 
 	return {
-		'repo_name': md.metadata.get("_repo")
-	    'version': md.metadata.get("_version")
+		'repo_name': md.metadata.get("_repo"),
+	    'version': md.metadata.get("_version"),
 	    'title': md.metadata.get("title"),
 	    'author': "; ".join(md.authnames())
 	}

@@ -78,3 +78,28 @@ def build_epub_from_asciidoc (version, epub_title):
 	    print (e)
 	finally:
 	    os.remove(fname)
+
+def build_epub(repo_name, version, epub_title):
+
+	source_path = source_book(repo_name)
+
+	if source_path == 'book.asciidoc':
+		return build_epub_from_asciidoc (version, epub_title)
+	elif source_path.endswith('.htm'):
+		# epubmaker --title "Anne of the Island" --author "Montgomery, L. M. (Lucy Maud)" 51-h/51-h.htm
+		pass
+	else:  # return error
+	    # error code?
+	    # http://stackoverflow.com/questions/6180185/custom-python-exceptions-with-error-codes-and-error-messages
+		raise Exception ('no suitable book found')
+	# htm
+
+def repo_name_version ():
+	from .. import metadata
+
+	md = metadata.pandata.Pandata("metadata.yaml")
+
+	repo_name = md.metadata.get("_repo")
+	version = md.metadata.get("_version")
+
+	return (repo_name, version)

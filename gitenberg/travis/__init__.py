@@ -32,6 +32,20 @@ function build_epub_from_asciidoc {
 build_epub_from_asciidoc $1 $2
 """
 
+def repo_metadata ():
+	from .. import metadata
+
+	md = metadata.pandata.Pandata("metadata.yaml")
+
+	return {
+		'repo_name': md.metadata.get("_repo")
+	    'version': md.metadata.get("_version")
+	    'title': md.metadata.get("title"),
+	    'author': "; ".join(md.authnames())
+	}
+
+
+
 def source_book(repo_name):
 
     """
@@ -57,7 +71,7 @@ def source_book(repo_name):
     return None
 
 
-def build_epub_from_asciidoc (version, epub_title):
+def build_epub_from_asciidoc (version, epub_title='book'):
 	"""
 	build for asciidoctor input
 	"""
@@ -79,27 +93,27 @@ def build_epub_from_asciidoc (version, epub_title):
 	finally:
 	    os.remove(fname)
 
-def build_epub(repo_name, version, epub_title):
 
-	source_path = source_book(repo_name)
+def build_epub(epub_title='book'):
+
+	md = repo_metadata()
+
+	source_path = source_book(md['repo_name'])
 
 	if source_path == 'book.asciidoc':
-		return build_epub_from_asciidoc (version, epub_title)
+		return build_epub_from_asciidoc (md['version'], epub_title)
 	elif source_path.endswith('.htm'):
-		# epubmaker --title "Anne of the Island" --author "Montgomery, L. M. (Lucy Maud)" 51-h/51-h.htm
-		pass
+		cmd = """epubmaker --title "{title}" --author "{author}" {source_path}""".format(
+			       title=md['title'],
+			       author=md['author'],
+			       source_path=source_path)
+		print (cmd)
+		output = subprocess.check_output(cmd, shell=True)
+		print (output)
 	else:  # return error
 	    # error code?
 	    # http://stackoverflow.com/questions/6180185/custom-python-exceptions-with-error-codes-and-error-messages
 		raise Exception ('no suitable book found')
-	# htm
 
-def repo_name_version ():
-	from .. import metadata
 
-	md = metadata.pandata.Pandata("metadata.yaml")
 
-	repo_name = md.metadata.get("_repo")
-	version = md.metadata.get("_version")
-
-	return (repo_name, version)

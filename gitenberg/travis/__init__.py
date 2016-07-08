@@ -110,6 +110,8 @@ def build_epub(epub_title='book'):
 		print (cmd)
 		output = subprocess.check_output(cmd, shell=True)
 		print (output)
+		# rename epub to book.epub
+		os.rename("{title}-epub.epub".format(title=md['title']), "book.epub")
 	else:  # return error
 	    # error code?
 	    # http://stackoverflow.com/questions/6180185/custom-python-exceptions-with-error-codes-and-error-messages

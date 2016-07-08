@@ -41,7 +41,8 @@ def repo_metadata ():
 		'repo_name': md.metadata.get("_repo"),
 	    'version': md.metadata.get("_version"),
 	    'title': md.metadata.get("title"),
-	    'author': "; ".join(md.authnames())
+	    'author': "; ".join(md.authnames()),
+	    'author_for_calibre': " & ".join(md.authnames())
 	}
 
 
@@ -112,10 +113,15 @@ def build_epub(epub_title='book'):
 		print (output)
 		# rename epub to book.epub
 		os.rename("{title}-epub.epub".format(title=md['title']), "book.epub")
-	else:  # return error
+	elif source_path.endswith('.txt'):
+		# ebook-convert 76.txt 76.epub --title "Huck Finn" --authors "Mark Twain & Joanne Twain"
+		cmd = """ebook-convert {source_path} book.epub --title "{title}" --authors "{author}" """.format(
+					source_path = source_path,
+					title=md['title'],
+			        author=md['author_for_calibre'])
+	else:
 	    # error code?
 	    # http://stackoverflow.com/questions/6180185/custom-python-exceptions-with-error-codes-and-error-messages
 		raise Exception ('no suitable book found')
-
 
 

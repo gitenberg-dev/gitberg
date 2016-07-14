@@ -110,7 +110,13 @@ def build_epub(epub_title='book'):
 			       source_path=source_path)
 		output = subprocess.check_output(cmd, shell=True)
 		# rename epub to book.epub
-		os.rename("{title}-epub.epub".format(title=md['title']), "book.epub")
+
+		epub_file = glob.glob('*.epub')[0]
+		os.rename(epub_file, "book.epub")
+
+		if epub_file <> "{title}-epub.epub".format(title=md['title']):
+			print ("actual epub_file: {}".format(epub_file))
+
 	elif source_path.endswith('.txt'):
 		# ebook-convert 76.txt 76.epub --title "Huck Finn" --authors "Mark Twain & Joanne Twain"
 		cmd = """ebook-convert {source_path} book.epub --title "{title}" --authors "{author}" """.format(

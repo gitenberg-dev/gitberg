@@ -108,9 +108,7 @@ def build_epub(epub_title='book'):
 			       title=md['title'],
 			       author=md['author'],
 			       source_path=source_path)
-		print (cmd)
 		output = subprocess.check_output(cmd, shell=True)
-		print (output)
 		# rename epub to book.epub
 		os.rename("{title}-epub.epub".format(title=md['title']), "book.epub")
 	elif source_path.endswith('.txt'):
@@ -119,6 +117,7 @@ def build_epub(epub_title='book'):
 					source_path = source_path,
 					title=md['title'],
 			        author=md['author_for_calibre'])
+		output = subprocess.check_output(cmd, shell=True)
 	else:
 	    # error code?
 	    # http://stackoverflow.com/questions/6180185/custom-python-exceptions-with-error-codes-and-error-messages

@@ -104,7 +104,7 @@ def build_epub(epub_title='book'):
 	if source_path == 'book.asciidoc':
 		return build_epub_from_asciidoc (md['version'], epub_title)
 	elif source_path.endswith('.htm'):
-		cmd = """epubmaker --title "{title}" --author "{author}" {source_path}""".format(
+		cmd = u"""epubmaker --title "{title}" --author "{author}" {source_path}""".format(
 			       title=md['title'],
 			       author=md['author'],
 			       source_path=source_path)
@@ -119,7 +119,7 @@ def build_epub(epub_title='book'):
 
 	elif source_path.endswith('.txt'):
 		# ebook-convert 76.txt 76.epub --title "Huck Finn" --authors "Mark Twain & Joanne Twain"
-		cmd = """ebook-convert {source_path} book.epub --title "{title}" --authors "{author}" """.format(
+		cmd = u"""ebook-convert {source_path} book.epub --title "{title}" --authors "{author}" """.format(
 					source_path = source_path,
 					title=md['title'],
 			        author=md['author_for_calibre'])

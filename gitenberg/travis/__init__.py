@@ -117,7 +117,7 @@ def build_epub(epub_title='book'):
 		epub_file = sorted(glob.glob("*.epub"), key=os.path.getsize, reverse=True)[0]
 		os.rename(epub_file, "book.epub")
 
-		if epub_file <> "{title}-epub.epub".format(title=md['title']):
+		if epub_file <> u"{title}-epub.epub".format(title=md['title']):
 			print ("actual epub_file: {}".format(epub_file))
 
 	elif source_path.endswith('.txt'):

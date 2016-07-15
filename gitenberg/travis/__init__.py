@@ -108,10 +108,13 @@ def build_epub(epub_title='book'):
 			       title=md['title'],
 			       author=md['author'],
 			       source_path=source_path)
+		cmd = cmd.encode('ascii', 'xmlcharrefreplace')
+
 		output = subprocess.check_output(cmd, shell=True)
 		# rename epub to book.epub
 
-		epub_file = glob.glob('*.epub')[0]
+		# get largest epub file
+		epub_file = sorted(glob.glob("*.epub"), key=os.path.getsize, reverse=True)[0]
 		os.rename(epub_file, "book.epub")
 
 		if epub_file <> "{title}-epub.epub".format(title=md['title']):
@@ -123,6 +126,7 @@ def build_epub(epub_title='book'):
 					source_path = source_path,
 					title=md['title'],
 			        author=md['author_for_calibre'])
+		cmd = cmd.encode('ascii', 'xmlcharrefreplace')
 		output = subprocess.check_output(cmd, shell=True)
 	else:
 	    # error code?

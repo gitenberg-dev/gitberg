@@ -1,5 +1,4 @@
 # Gitberg
-![travis status](https://img.shields.io/travis/gitenberg-dev/gitberg.svg)
 ![PyPI version](https://img.shields.io/pypi/v/xgitberg.svg)
 
 [GITenberg](gitenberg.org) is a project to collectively curate ebooks on GitHub.

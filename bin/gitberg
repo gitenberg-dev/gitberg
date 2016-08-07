@@ -117,14 +117,14 @@ if __name__ == '__main__':
             # TODO: check for stdin
             arg_book_name = arguments['<book_repo_name>']
             clone(arg_book_name)
-            
+
         elif arguments['apply']:
             arg_book_name = arguments['<book_repo_name>']
             arg_action = arguments['<action>']
             action = getattr(actions, arg_action)
             action(arg_book_name)
-            
-            
+
+
     except config.NotConfigured as e:
         print("\tGitberg needs configuration.")
         config.check_config()

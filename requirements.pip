@@ -13,7 +13,7 @@ tox==2.1.1
 appdirs==1.4.0
 six==1.9.0
 
-pymarc==3.0.3 
+pymarc==3.0.3
 PyYAML==3.11
 
 #added for rdf conversion

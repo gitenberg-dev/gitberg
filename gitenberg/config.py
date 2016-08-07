@@ -38,7 +38,11 @@ class ConfigFile(object):
     def file_path(self):
         return os.path.join(self.app_dir, self.file_name)
 
-    @property
+    def write(self):
+        with open(self.file_path, 'wb') as self.file:
+            self.file.write(self.yaml)
+        return True
+
     def yaml(self):
         return yaml.dump(self.data,
                          default_flow_style=False)
@@ -58,22 +62,18 @@ class ConfigFile(object):
         with open(self.file_path) as _fp:
             return _fp.read()
 
-    def write(self):
-        with open(self.file_path, 'wb') as self.file:
-            self.file.write(self.yaml)
-        return True
 
 def check_config():
     """ Check if there is an existing config file
     if there is not, prompt to create one."""
     configfile = ConfigFile()
     try:
-      configfile.data.keys()
-      print("gitberg config file exists")
-      print("\twould you like to edit your gitberg config file?")
+        configfile.data.keys()
+        print("gitberg config file exists")
+        print("\twould you like to edit your gitberg config file?")
     except AttributeError:
-      print("No config found")
-      print("\twould you like to create a gitberg config file?")
+        print("No config found")
+        print("\twould you like to create a gitberg config file?")
 
     answer = input("-->  [Y/n]")
     # By default, the answer is yes, as denoted by the capital Y

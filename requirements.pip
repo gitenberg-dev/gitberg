@@ -7,13 +7,10 @@ Jinja2==2.7.3
 semver==2.2.0
 beautifulsoup4==4.4.1
 wikipedia==1.4.0
-# keep?
-coverage==3.7.1
-tox==2.1.1
 appdirs==1.4.0
-six==1.9.0
+six==1.9.0 # keep?
 
-pymarc==3.0.3 
+pymarc==3.0.3
 PyYAML==3.11
 
 #added for rdf conversion
@@ -23,3 +20,6 @@ isodate==0.5.1
 pyparsing==2.0.3
 rdflib==4.2.0
 rdflib-jsonld==0.3
+
+# test
+mock==2.0.0

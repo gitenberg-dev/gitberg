@@ -11,8 +11,6 @@ from os.path import abspath, dirname
 import jinja2
 import sh
 
-from .local_repo import LocalRepo
-
 class NewFilesHandler():
     """ NewFilesHandler - templates and copies additional files to book repos
 
@@ -60,16 +58,3 @@ class NewFilesHandler():
             '{0}/'.format(self.book.local_path)
         )
         self.book.meta.dump_file('{0}/metadata.yaml'.format(self.book.local_path))
-
-
-def make(book):
-    # Initial commit of book files
-    local_repo = LocalRepo(book)
-    local_repo.add_all_files()
-    local_repo.commit("Initial import from Project Gutenberg")
-
-    # New files commit
-    NewFilesHandler(book)
-
-    local_repo.add_all_files()
-    local_repo.commit("Adds Readme, contributing and license files to book repo")

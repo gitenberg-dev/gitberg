@@ -7,7 +7,7 @@ import unittest
 import sh
 
 from gitenberg.book import Book
-from gitenberg.make import LocalRepo
+from gitenberg.local_repo import LocalRepo
 from gitenberg import config
 
 

@@ -23,7 +23,7 @@ class GitbergLibraryManager(object):
 
     def book_directories(self):
         """ Returns a list of book directories in the library folder """
-        os.listdir(self.library_base_path)
+        return os.listdir(self.library_base_path)
 
 
 def main():

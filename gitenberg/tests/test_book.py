@@ -3,13 +3,16 @@
 
 import unittest
 
+from mock import patch
+
 from gitenberg.book import Book
 
 
 class TestBookPath(unittest.TestCase):
-
     def setUp(self):
-        self.book = Book(3456)
+        with patch('github3.login') as login:
+            self.login = login
+            self.book = Book(3456)
 
     def test_remote_path(self):
         self.assertEqual(
@@ -24,9 +27,9 @@ class TestBookPath(unittest.TestCase):
 
 
 class TestBookPathSubTen(unittest.TestCase):
-
     def setUp(self):
-        self.book = Book(7)
+        with patch('github3.login'):
+            self.book = Book(7)
 
     def test_path_to_pg(self):
         self.assertEqual(

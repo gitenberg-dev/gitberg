@@ -24,7 +24,6 @@ class TestBookMetadata(unittest.TestCase):
     def test_parse_rdf(self):
         self.meta.parse_rdf()
         self.assertEqual(
-        
             self.meta.agents("editor")[0]['agent_name'],
             u'Conant, James Bryant'
         )

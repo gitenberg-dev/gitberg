@@ -23,3 +23,6 @@ isodate==0.5.1
 pyparsing==2.0.3
 rdflib==4.2.0
 rdflib-jsonld==0.3
+
+# test
+mock==1.0.1

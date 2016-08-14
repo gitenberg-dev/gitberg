@@ -7,6 +7,7 @@ Usage:
     gitberg clone <book_repo_name>
     gitberg (fetch | make | push | upload | metadata) <book_id> [options]
     gitberg get <book_id> [options]
+    gitberg metadata <book_id> [options]
     gitberg update [options]
     gitberg report <book_identity>
     gitberg all BOOKID BOOKIDEND [options]

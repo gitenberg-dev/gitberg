@@ -3,7 +3,8 @@
 
 import unittest
 
-from gitenberg.book import Book
+from mock import MagicMock
+
 from gitenberg.util.catalog import BookMetadata
 from gitenberg import config
 
@@ -11,9 +12,10 @@ from gitenberg import config
 class TestBookMetadata(unittest.TestCase):
 
     def setUp(self):
-        book = Book(1234)
-        self.rdf_library = config.data['rdf_library']
-        self.meta = BookMetadata(book, rdf_library=self.rdf_library )
+        mock_book = MagicMock()
+        mock_book.book_id = 1234
+        self.rdf_library = './gitenberg/tests/test_data/rdf_library'
+        self.meta = BookMetadata(mock_book, rdf_library=self.rdf_library )
 
     def test_init(self):
         self.assertEqual(
@@ -24,7 +26,6 @@ class TestBookMetadata(unittest.TestCase):
     def test_parse_rdf(self):
         self.meta.parse_rdf()
         self.assertEqual(
-        
             self.meta.agents("editor")[0]['agent_name'],
             u'Conant, James Bryant'
         )

@@ -11,10 +11,11 @@ from re import sub
 import unicodedata
 
 from .fetch import BookFetcher
-from .make import NewFilesHandler, LocalRepo
+from .make import NewFilesHandler
+from .local_repo import LocalRepo
 from .push import GithubRepo
 from .util.catalog import BookMetadata
-from . import config 
+from . import config
 
 
 class Book():
@@ -78,7 +79,7 @@ class Book():
     def push(self):
         self.github_repo.create_and_push()
         return self.github_repo.repo
-        
+
     def repo(self):
         if self.repo_name:
             return self.github_repo.github.repository('GITenberg', repo_name)
@@ -98,12 +99,12 @@ class Book():
         except sh.ErrorReturnCode_1:
             logging.error(u"{0} {1} nopush".format(self.book_id, self.meta._repo))
         finally:
-            
+
             self.remove()
 
     def remove(self):
         shutil.rmtree(self.local_path)
-        
+
     def format_title(self):
         """ Takes a string and sanitizes it for Github's url name format """
         _title = unicodedata.normalize('NFD', unicode(self.meta.title))

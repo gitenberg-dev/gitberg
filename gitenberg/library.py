@@ -10,23 +10,22 @@ from . import config
 class GitbergLibraryManager(object):
     """ A god object for managing a collection of Gitberg style books
     """
-    def __init__(self, config=None):
-        """ optionally takes an intialized and parsed ConfigFile instance
-        """
+    def __init__(self):
         # by default, loads the default config location
-        if not config.data:
-            config.ConfigFile()
+        self.config = config.ConfigFile()
 
+    @property
     def library_base_path(self):
-        """ returns the path where library books are stored
-        """
-        return config.data['library_path']
+        """ returns the path where library books are stored """
+        return self.config.data['library_path']
 
+    def book_directories(self):
+        """ Returns a list of book directories in the library folder """
+        return os.listdir(self.library_base_path)
 
 
 def main():
     # FIXME: stupid simple implementation of library status
-    config.ConfigFile()
-    library_dir = config.data['library_path']
-    for folder in os.listdir(library_dir):
+    glm = GitbergLibraryManager()
+    for folder in glm.book_directories():
         print(folder)

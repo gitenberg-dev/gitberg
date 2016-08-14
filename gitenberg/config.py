@@ -67,6 +67,7 @@ class ConfigFile(object):
     def parse(self):
         global data
         data = yaml.load(self.read())
+        self.data = data
 
     def check_self(self):
         # TODO: do a basic check of internal data values

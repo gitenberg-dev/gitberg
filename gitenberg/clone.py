@@ -5,7 +5,6 @@ import os
 import sh
 
 from .book_identity import BookRepoName
-from . import config 
 from .library import GitbergLibraryManager
 
 def clone(arg_book_name, library_path=None):
@@ -22,12 +21,12 @@ class CloneVat(object):
     :takes: `book_repo_name` -- a BookRepoName instance eg. `BookRepoName('Frankenstein_84)`
 
     """
-    def __init__(self, book_repo_name, config=None):
+    def __init__(self, book_repo_name):
         self.book_repo_name = book_repo_name
 
         # create a local instance of the library manager with the provided
         # config if available
-        self.l_manager = GitbergLibraryManager(config=config)
+        self.l_manager = GitbergLibraryManager()
 
     def library_book_dir(self):
         return os.path.join(self.l_manager.library_base_path(), self.book_repo_name.repo_name)

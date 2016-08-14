@@ -27,9 +27,9 @@ publisher: Project Gutenberg
 rights: Public domain in the USA.
 rights_url: http://creativecommons.org/about/pdm
 subjects:
-- !lcc 'PS'
 - !lcsh 'Science fiction'
 - !lcsh 'Space warfare -- Fiction'
+- !lcc 'PS'
 - !lcsh 'Revenge -- Fiction'
 title: Space Viking
 url: http://www.gutenberg.org/ebooks/20728

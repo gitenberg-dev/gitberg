@@ -11,8 +11,6 @@ class GitbergLibraryManager(object):
     """ A god object for managing a collection of Gitberg style books
     """
     def __init__(self):
-        """ optionally takes an intialized and parsed ConfigFile instance
-        """
         # by default, loads the default config location
         self.config = config.ConfigFile()
 

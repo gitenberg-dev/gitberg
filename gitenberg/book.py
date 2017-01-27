@@ -106,19 +106,27 @@ class Book():
         shutil.rmtree(self.local_path)
 
     def format_title(self):
+        def asciify(_title):
+            _title = unicodedata.normalize('NFD', unicode(_title))
+            ascii = True
+            out = []
+            ok=u"1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM- ',"
+            for ch in _title:
+                if ch in ok:
+                    out.append(ch)
+                elif unicodedata.category(ch)[0] == ("L"): #a letter
+                    out.append(hex(ord(ch)))
+                    ascii = False
+                elif ch in u'\r\n\t':
+                    out.append(u'-')
+            return (ascii, sub("[ ',-]+", '-', "".join(out)) )
+        
         """ Takes a string and sanitizes it for Github's url name format """
-        _title = unicodedata.normalize('NFD', unicode(self.meta.title))
-        out = []
-        ok=u"1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM- ',"
-        for ch in _title:
-            if ch in ok:
-                out.append(ch)
-            elif unicodedata.category(ch)[0] == ("L"): #a letter
-                out.append(hex(ord(ch)))
-            elif ch in u'\r\n\t':
-                out.append(u'-')
-        _title = sub("[ ',-]+", '-', "".join(out))
-
+        (ascii, _title) = asciify(self.meta.title)
+        if not ascii and self.meta.alternative_title:
+            (ascii, _title2) = asciify(self.meta.alternative_title)
+            if ascii:
+                _title = _title2
         title_length = 99 - len(str(self.book_id)) - 1
         if len(_title) > title_length:
             # if the title was shortened, replace the trailing _ with an ellipsis

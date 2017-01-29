@@ -1,18 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+import os
 import unittest
 
 from mock import patch
-
+import gitenberg
 from gitenberg.book import Book
 
-
+    
 class TestBookPath(unittest.TestCase):
     def setUp(self):
-        with patch('github3.login') as login:
-            self.login = login
-            self.book = Book(3456)
+        def here(appname):
+            return os.path.join(os.path.dirname(__file__),'test_data')
+        with patch.object(gitenberg.config.appdirs, 'user_config_dir', here) as path:
+            with patch('github3.login') as login:
+                self.login = login
+                self.book = Book(3456)
 
     def test_remote_path(self):
         self.assertEqual(

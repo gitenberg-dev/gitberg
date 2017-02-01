@@ -1,6 +1,6 @@
 # Gitberg
 [![Build Status](https://travis-ci.org/gitenberg-dev/gitberg.svg?branch=master)](https://travis-ci.org/gitenberg-dev/gitberg)
-[![PyPI version](https://img.shields.io/pypi/v/xgitberg.svg)](https://pypi.python.org/pypi/xgitberg)
+[![PyPI version](https://img.shields.io/pypi/v/gitberg.svg)](https://pypi.python.org/pypi/gitberg)
 
 [GITenberg](https://gitenberg.org/) is a project to collectively curate ebooks on GitHub.
 [Gitberg](https://github.com/gitenberg-dev/gitberg) is a command line tool to automate tasks on books stored in git repositories.
@@ -50,7 +50,7 @@ To run project tests do:
 
 This project is available as a python package. To install, use 
 
-    pip install xgitberg
+    pip install gitberg
     
 To build this python package, use `setup.py`
 

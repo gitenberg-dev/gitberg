@@ -41,7 +41,6 @@ class ConfigFile(object):
         if not os.path.exists(self.dir):
             os.makedirs(self.dir)
         if not os.path.exists(self.file_path):
-            # FIXME: copy or template sample config file
             with open(self.file_path, 'a'):
                 os.utime(self.file_path, None)
 
@@ -67,6 +66,7 @@ class ConfigFile(object):
     def parse(self):
         global data
         data = yaml.load(self.read())
+        data = {} if data is None else data
         self.data = data
 
     def check_self(self):

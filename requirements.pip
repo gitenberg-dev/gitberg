@@ -1,15 +1,15 @@
-requests>=2.7.0
+requests>=2.13.0
 uritemplate.py==0.3.0
-github3.py>=0.9.0
+github3.py>=1.0.0
 GitPython==2.0.8
-docopt==0.6.1
+docopt==0.6.2
 sh==1.09
 Jinja2==2.7.3
 semver==2.2.0
 beautifulsoup4==4.4.1
 wikipedia==1.4.0
 appdirs==1.4.0
-six==1.9.0
+six==1.10.0
 
 pymarc==3.0.3
 PyYAML==3.11
@@ -18,7 +18,7 @@ PyYAML==3.11
 SPARQLWrapper==1.6.4
 html5lib==0.999999
 isodate==0.5.1
-pyparsing==2.0.3
+pyparsing==2.1.10
 rdflib==4.2.0
 rdflib-jsonld==0.3
 

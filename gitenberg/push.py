@@ -18,8 +18,8 @@ from . import config
 class GithubRepo():
 
     def __init__(self, book):
-        self.org_name = 'GITenberg'
-        self.org_homepage = u'https://www.GITenberg.org/'
+        self.org_name = 'gutenbergbooks'
+        self.org_homepage = u'https://www.gutenberg.org/'
         self.book = book
         if not config.data:
             config.ConfigFile()
@@ -41,7 +41,7 @@ class GithubRepo():
             raise config.NotConfigured(e)
         if hasattr(self.github, 'set_user_agent'):
             self.github.set_user_agent('{}: {}'.format(self.org_name, self.org_homepage))
-        self.org = self.github.organization(login=self.org_name)
+        self.org = self.github.organization(self.org_name)
         logging.info("ratelimit: " + str(self.org.ratelimit_remaining))
 
     def format_desc(self):

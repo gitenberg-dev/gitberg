@@ -1,29 +1,20 @@
-# Gitberg
-[![Build Status](https://travis-ci.org/gitenberg-dev/gitberg.svg?branch=master)](https://travis-ci.org/gitenberg-dev/gitberg)
-[![PyPI version](https://img.shields.io/pypi/v/gitberg.svg)](https://pypi.python.org/pypi/gitberg)
-
-[GITenberg](https://gitenberg.org/) is a project to collectively curate ebooks on GitHub.
-[Gitberg](https://github.com/gitenberg-dev/gitberg) is a command line tool to automate tasks on books stored in git repositories.
+# Gitberg (modified for Gutenberg Books)
 
 
 ## Usage
 
 This project provides a `gitberg` command that does the following:
 
-+ `gitberg fetch <bookid>` fetches books from PG
-+ `gitberg make <bookid>` makes a local git repo with extra files
-+ `gitberg push <bookid>` creates a repo on github and pushes to it (one per book)
-+ `gitberg all <bookid> <bookend>` fetches, makes and pushes a range of books
-+ `gitberg list <bookid_start>` fetches, makes and pushes a range of books
-
-+ `gitberg apply <action> <book_repo_name>` applies an action
++ `gitberg config` prompts to create a config file 
 + `gitberg metadata <bookid>` prints the yaml metadata
++ `gitberg apply add_metadata <book_repo_name>` creates a metadata.yaml file in the books repo
 
+Other commands have not been tested.
 
 ### Examples
 
 ```
-gitberg list --rdf_library /Documents/gitenberg/cache/epub 181,565,576
+gitberg apply add_metadata 4576
 
 ```
 
@@ -38,7 +29,7 @@ Main config values:
     gh_user: <your github account name>
     gh_password: <your github account password>
     library_path: '~/data/library'
-    rdf_library: location of your cache of the PG RDF demp
+    rdf_library: location of your cache of the PG RDF dump (from https://www.gutenberg.org/cache/epub/feeds/rdf-files.tar.zip)
 ## Testing
 
 To run project tests do:
@@ -48,9 +39,6 @@ To run project tests do:
 
 ## Packaging
 
-This project is available as a python package. To install, use 
-
-    pip install gitberg
     
 To build this python package, use `setup.py`
 

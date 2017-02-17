@@ -36,13 +36,16 @@ def repo_metadata ():
 	from .. import metadata
 
 	md = metadata.pandata.Pandata("metadata.yaml")
-
+	cover = None
+    for cover in md.covers:
+        cover = cover.get(image_path, None)
 	return {
 		'repo_name': md.metadata.get("_repo"),
 	    'version': md.metadata.get("_version"),
 	    'title': md.metadata.get("title"),
 	    'author': "; ".join(md.authnames()),
-	    'author_for_calibre': " & ".join(md.authnames())
+	    'author_for_calibre': " & ".join(md.authnames()),
+	    'cover': cover
 	}
 
 
@@ -104,7 +107,14 @@ def build_epub(epub_title='book'):
 	if source_path == 'book.asciidoc':
 		return build_epub_from_asciidoc (md['version'], epub_title)
 	elif source_path.endswith('.htm'):
-		cmd = u"""epubmaker --title "{title}" --author "{author}" {source_path}""".format(
+	    if md['cover']:
+		    cmd = u"""epubmaker --title "{title}" --author "{author}" --cover {cover} {source_path}""".format(
+			       title=md['title'],
+			       author=md['author'],
+			       cover=md['cover'],
+			       source_path=source_path)
+		else:
+		    cmd = u"""epubmaker --title "{title}" --author "{author}" {source_path}""".format(
 			       title=md['title'],
 			       author=md['author'],
 			       source_path=source_path)

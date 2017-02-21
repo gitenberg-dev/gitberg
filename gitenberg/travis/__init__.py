@@ -38,7 +38,7 @@ def repo_metadata ():
     md = metadata.pandata.Pandata("metadata.yaml")
     cover = None
     for cover in md.covers:
-        cover = cover.get(image_path, None)
+        cover = cover.get('image_path', None)
     return {
         'repo_name': md.metadata.get("_repo"),
         'version': md.metadata.get("_version"),

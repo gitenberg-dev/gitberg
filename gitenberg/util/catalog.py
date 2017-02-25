@@ -25,6 +25,7 @@ repo_list = []
 with open(os.path.join(os.path.dirname(__file__), '../data/GITenberg_repo_list.tsv')) as repofile:
     for row in csv.reader(repofile, delimiter='\t', quotechar='"'):
         repo_list.append(row)
+repo_for_pgid = {int(pgid): value for (pgid, value) in repo_list}
 
 class CdContext():
     """ A context manager using `os` to cd to a directory and back

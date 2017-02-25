@@ -63,10 +63,13 @@ class Pandata(object):
         if datafile:
             if isinstance(datafile, Pandata):
                 self.metadata=copy.deepcopy(datafile.metadata) # copy the metadata
-            elif datafile.startswith('https://') or datafile.startswith('https://'):
+            elif datafile.startswith('https://') or datafile.startswith('http://'):
                 r = requests.get(datafile)
                 if r.status_code == httplib.OK:
                     self.metadata = yaml.safe_load( r.content)
+                else:
+                    self.metadata = {}
+                    return
             else:
                 self.metadata = yaml.safe_load(file(datafile, 'r').read())
             self.set_edition_id()

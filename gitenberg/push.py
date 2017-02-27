@@ -8,11 +8,11 @@ from __future__ import print_function
 import logging
 import time
 
+import git
 import github3
-import sh
 
-from .util.catalog import CdContext
 from . import config
+from . local_repo import LocalRepo
 from .parameters import GITHUB_ORG, ORG_HOMEPAGE
 
 class GithubRepo():
@@ -27,8 +27,10 @@ class GithubRepo():
 
     def create_and_push(self):
         self.create_repo()
-        self.add_remote_origin_to_local_repo()
-        self.push_to_github()
+        if not self.book.local_repo:
+            self.book.local_repo = LocalRepo(self.book.local_path)
+        origin = self.add_remote_origin_to_local_repo()
+        origin.push(self.book.local_repo.git.refs.master)
 
     def create_api_handler(self):
         """ Creates an api handler and sets it on self """
@@ -68,17 +70,9 @@ class GithubRepo():
             self.repo = self.github.repository(self.org_name, self.book.meta._repo)
 
     def add_remote_origin_to_local_repo(self):
-        with CdContext(self.book.local_path):
-            try:
-                sh.git('remote', 'add', 'origin', self.repo.ssh_url)
-            except sh.ErrorReturnCode_128:
-                print("We may have already added a remote origin to this repo")
-
-    def push_to_github(self):
-        with CdContext(self.book.local_path):
-            try:
-                sh.git.push('origin', 'master')
-            except sh.ErrorReturnCode_128:
-                logging.error(u"github repo not ready yet")
-                time.sleep(10)
-                sh.git('push', 'origin', 'master')
+        try:
+            origin = self.book.local_repo.git.create_remote('origin', self.repo.ssh_url)
+        except git.exc.GitCommandError:
+            print("We may have already added a remote origin to this repo")
+            return self.book.local_repo.git.remote('origin')
+        return origin

@@ -8,10 +8,10 @@ import json
 import os
 import re
 
-from gitenberg import pg_wikipedia
-from gitenberg.config import NotConfigured
-from gitenberg.metadata.pandata import Pandata
-from gitenberg.metadata.pg_rdf import pg_rdf_to_json
+from .. import pg_wikipedia
+from ..config import NotConfigured
+from ..metadata.pandata import Pandata
+from ..metadata.pg_rdf import pg_rdf_to_json
 
 # sourced from http://www.gutenberg.org/MIRRORS.ALL
 MIRRORS = {'default': 'ftp://gutenberg.pglaf.org/mirrors/gutenberg/'}
@@ -30,7 +30,10 @@ repo_for_pgid = {int(pgid): value for (pgid, value) in repo_list}
 
 def get_repo_name(repo_name):
     if re.match( r'^\d+$', repo_name):
-        repo_name = repo_for_pgid[int(repo_name)]
+        try:
+            repo_name = repo_for_pgid[int(repo_name)]
+        except KeyError:
+            pass
     return repo_name
 
 class CdContext():

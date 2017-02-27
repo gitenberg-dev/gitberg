@@ -2,7 +2,7 @@
 import logging
 import os
 
-import sh
+import git
 
 from .library import GitbergLibraryManager
 from .parameters import GITHUB_ORG
@@ -17,6 +17,7 @@ def clone(book_repo_name, library_path=None):
 
     success, message = vat.clone()
     logging.info(message)
+    return vat.local_repo
 
 
 class CloneVat(object):
@@ -26,7 +27,7 @@ class CloneVat(object):
     """
     def __init__(self, book_repo_name):
         self.book_repo_name = book_repo_name
-
+        self.local_repo = None
         # create a local instance of the library manager with the provided
         # config if available
         self.l_manager = GitbergLibraryManager()
@@ -55,13 +56,9 @@ class CloneVat(object):
             return False, "Error: Local clone of {0} already exists".format(self.book_repo_name)
 
         try:
-            sh.git('clone', self.get_clone_url_ssh(), self.library_book_dir())
+            self.local_repo = git.Repo.clone_from(self.get_clone_url_ssh(), self.library_book_dir())
             return True, "Success! Cloned {0}".format(self.book_repo_name)
-        except sh.ErrorReturnCode_1 as e:
+        except git.exc.GitCommandError:
             print e
-            logging.debug("clone ran into an issue, likely bad library path")
-            logging.debug(e.stderr)
-            return False, "Error sh.py returned with a fail code"
-        except sh.ErrorReturnCode_128:
-            logging.debug("clone ran into an issue, likely this already exists")
-            return False, "Error sh.py returned with a fail code"
+            logging.debug("clone ran into an issue, likely remote doesn't exist")
+            return False, "Error git returned  a fail code"

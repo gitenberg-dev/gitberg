@@ -30,6 +30,7 @@ class Book():
             self.repo_name = repo_name
             book_id = repo_name.split('_')[-1]
         self.book_id = str(book_id)
+        self.local_repo = None
         self.github_repo = GithubRepo(self)
         try:
             self.library_path = config.data.get("library_path",library_path)
@@ -59,24 +60,30 @@ class Book():
         return os.path.join(*path_parts)
 
     def fetch(self):
+        """ just pull files from PG
+        """
         fetcher = BookFetcher(self)
         fetcher.fetch()
 
     def make(self):
-        local_repo = LocalRepo(self.local_path)
+        """ turn fetched files into a local repo, make auxiliary files
+        """
+        self.local_repo = LocalRepo(self.local_path)
         logging.debug("preparing to add all git files")
-        local_repo.add_all_files()
-        local_repo.commit("Initial import from Project Gutenberg")
+        self.local_repo.add_all_files()
+        self.local_repo.commit("Initial import from Project Gutenberg")
 
         file_handler = NewFilesHandler(self)
         file_handler.add_new_files()
 
-        local_repo.add_all_files()
-        local_repo.commit(
+        self.local_repo.add_all_files()
+        self.local_repo.commit(
             "Adds Readme, contributing and license files to book repo"
         )
 
     def push(self):
+        """ create a github repo and push the local repo into it
+        """
         self.github_repo.create_and_push()
         return self.github_repo.repo
 

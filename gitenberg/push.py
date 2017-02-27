@@ -13,13 +13,13 @@ import sh
 
 from .util.catalog import CdContext
 from . import config
-
+from .parameters import GITHUB_ORG, ORG_HOMEPAGE
 
 class GithubRepo():
 
     def __init__(self, book):
-        self.org_name = 'GITenberg'
-        self.org_homepage = u'https://www.GITenberg.org/'
+        self.org_name = GITHUB_ORG
+        self.org_homepage = ORG_HOMEPAGE
         self.book = book
         if not config.data:
             config.ConfigFile()

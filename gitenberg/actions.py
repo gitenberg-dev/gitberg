@@ -6,8 +6,7 @@ from github3.exceptions import UnprocessableEntity
 from .book import Book
 from .util import tenprintcover
 from .util.catalog import get_repo_name
-
-orgname = 'GITenberg'
+from .parameters import GITHUB_ORG as orgname
 
 def get_id(repo):
     book = Book(None,repo_name=repo)

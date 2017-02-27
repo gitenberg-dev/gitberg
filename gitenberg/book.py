@@ -16,7 +16,7 @@ from .local_repo import LocalRepo
 from .push import GithubRepo
 from .util.catalog import BookMetadata
 from . import config
-
+from .parameters import GITHUB_ORG
 
 class Book():
     """ An index card tells you where a book lives
@@ -82,7 +82,7 @@ class Book():
 
     def repo(self):
         if self.repo_name:
-            return self.github_repo.github.repository('GITenberg', repo_name)
+            return self.github_repo.github.repository(GITHUB_ORG, repo_name)
 
     def all(self):
         try:

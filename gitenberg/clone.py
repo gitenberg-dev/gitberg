@@ -5,9 +5,10 @@ import os
 import sh
 
 from .library import GitbergLibraryManager
+from .parameters import GITHUB_ORG
 from .util.catalog import get_repo_name
 
-clone_url_ssh_template = u"git@github.com:GITenberg/{repo_name}.git"
+clone_url_ssh_template = u"git@github.com:{org_name}/{repo_name}.git"
 
 def clone(book_repo_name, library_path=None):
     book_repo_name = get_repo_name(book_repo_name)
@@ -40,7 +41,7 @@ class CloneVat(object):
             return False
     
     def get_clone_url_ssh(self):
-        return clone_url_ssh_template.format(repo_name=self.book_repo_name)
+        return clone_url_ssh_template.format(org_name=GITHUB_ORG, repo_name=self.book_repo_name)
 
     def clone(self):
         """ clones a book from GITenberg's repo into the library

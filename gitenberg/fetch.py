@@ -9,6 +9,7 @@ import os
 
 import sh
 
+from .parameters import PG_RSYNC
 
 class BookFetcher():
     """ A BookFetcher:
@@ -37,7 +38,7 @@ class BookFetcher():
     def fetch_remote_book_to_local_path(self):
         sh.rsync(
             '-rvhz',
-            'ftp@gutenberg.pglaf.org::gutenberg/{0}'.format(self.book.remote_path),
+            '{}{}'.format(PG_RSYNC, self.book.remote_path),
             self.book.local_path + '/',
             '--exclude-from=exclude.txt'
         )

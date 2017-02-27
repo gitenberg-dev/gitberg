@@ -4,7 +4,7 @@ import os
 
 import git
 
-from .library import GitbergLibraryManager
+from . import config
 from .parameters import GITHUB_ORG
 from .util.catalog import get_repo_name
 
@@ -30,10 +30,9 @@ class CloneVat(object):
         self.local_repo = None
         # create a local instance of the library manager with the provided
         # config if available
-        self.l_manager = GitbergLibraryManager()
 
     def library_book_dir(self):
-        return os.path.join(self.l_manager.library_base_path, self.book_repo_name)
+        return os.path.join(config.data['library_path'], self.book_repo_name)
 
     def path_exists(self):
         if os.path.exists(self.library_book_dir()):
@@ -49,7 +48,6 @@ class CloneVat(object):
         assumes you are authenticated to git clone from repo?
         returns True/False, message
         """
-        # FIXME: check if this works from a server install
         logging.debug("Attempting to clone {0}".format(self.book_repo_name))
 
         if self.path_exists():

@@ -17,12 +17,6 @@ class TestLibraryManager(unittest.TestCase):
             'library_path': self.library_path
         }
 
-    def test_library_base_path_from_config(self):
-        self.assertEqual(
-            self.glm.library_base_path,
-            self.library_path
-        )
-
     def test_book_directories(self):
         with patch('os.listdir', return_value=[1, 2, 3, 4]) as _mock:
             self.glm.book_directories()

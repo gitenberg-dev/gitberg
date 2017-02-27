@@ -18,8 +18,8 @@ from . import config
 class GithubRepo():
 
     def __init__(self, book):
-        self.org_name = 'GITenberg'
-        self.org_homepage = u'https://www.GITenberg.org/'
+        self.org_name = 'gutenbergbooks'
+        self.org_homepage = u'https://www.gutenberg.org/'
         self.book = book
         if not config.data:
             config.ConfigFile()

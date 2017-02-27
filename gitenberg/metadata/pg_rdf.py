@@ -131,7 +131,8 @@ def get_subjects(key, val, entities=None) :
         
 def identifiers(node,entities=None):
     uri = node.get('@id',None)
-    pg_id = uri[32:] if uri.startswith('http://www.gutenberg.org/ebooks/') else None
+    pg_id = uri[32:] if uri.startswith('http://www.gutenberg.org/ebooks/') else \
+            uri[33:] if uri.startswith('https://www.gutenberg.org/ebooks/') else None
     ids = node.get('identifiers',{})
     if pg_id:
         ids['gutenberg']=pg_id

@@ -15,7 +15,9 @@ Usage:
     gitberg apply <action> <book_repo_name>
 
 Arguments:
-    <book_repo_name> -- The name of a repo in Gitenberg, `Frankenstein_84`
+    <book_repo_name> -- The name of a repo in Gitenberg, `Frankenstein_84`. If you supply only a
+                        number, it will be construed as a book_id, and the repo_name will be looked 
+                        up from a table.
     <target> -- a file path, example, where to clone a book
     <action> -- action to apply to repo
 

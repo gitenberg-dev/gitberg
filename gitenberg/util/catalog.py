@@ -6,6 +6,7 @@
 import csv
 import json
 import os
+import re
 
 from gitenberg import pg_wikipedia
 from gitenberg.config import NotConfigured
@@ -26,6 +27,11 @@ with open(os.path.join(os.path.dirname(__file__), '../data/GITenberg_repo_list.t
     for row in csv.reader(repofile, delimiter='\t', quotechar='"'):
         repo_list.append(row)
 repo_for_pgid = {int(pgid): value for (pgid, value) in repo_list}
+
+def get_repo_name(repo_name):
+    if re.match( r'\d+', repo_name):
+        repo_name = repo_for_pgid[int(repo_name)]
+    return repo_name
 
 class CdContext():
     """ A context manager using `os` to cd to a directory and back

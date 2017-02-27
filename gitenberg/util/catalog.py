@@ -29,7 +29,7 @@ with open(os.path.join(os.path.dirname(__file__), '../data/GITenberg_repo_list.t
 repo_for_pgid = {int(pgid): value for (pgid, value) in repo_list}
 
 def get_repo_name(repo_name):
-    if re.match( r'\d+', repo_name):
+    if re.match( r'^\d+$', repo_name):
         repo_name = repo_for_pgid[int(repo_name)]
     return repo_name
 

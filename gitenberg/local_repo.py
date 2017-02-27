@@ -14,7 +14,11 @@ class LocalRepo(object):
     def __init__(self, repo_path):
         # Takes a path to a git repo
         self.repo_path = repo_path
-        self.git = git.Repo(self.repo_path)
+        try:
+            self.git = git.Repo(self.repo_path)
+        except git.exc.InvalidGitRepositoryError:
+            # uninitialized Repo
+            self.git = git.Repo.init(self.repo_path)
 
     def add_file(self, path):
         # Takes <str> relative path from repo and stages it

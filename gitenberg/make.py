@@ -30,9 +30,8 @@ class NewFilesHandler():
     def template_readme(self):
         template = self.env.get_template('README.rst.j2')
         readme_text = template.render(
-            title=self.book.meta.title,
-            author=self.book.meta.author,
-            book_id=self.book.book_id
+            authors=self.book.meta.authors_short(), 
+            **self.book.meta.metadata
         )
 
         readme_path = "{0}/{1}".format(
@@ -43,7 +42,9 @@ class NewFilesHandler():
             readme_file.write(readme_text)
 
     def copy_files(self):
-        """ Copy the LICENSE and CONTRIBUTING files to each folder repo """
+        """ Copy the LICENSE and CONTRIBUTING files to each folder repo 
+        Generate covers if needed. Dump the metadata.
+        """
         files = [u'LICENSE', u'CONTRIBUTING.rst']
         this_dir = dirname(abspath(__file__))
         for _file in files:

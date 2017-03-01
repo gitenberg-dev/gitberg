@@ -8,6 +8,7 @@ from mock import MagicMock
 from mock import patch
 
 from gitenberg.fetch import BookFetcher
+from gitenberg.parameters import PG_RSYNC
 
 
 class TestBookFetcher(unittest.TestCase):
@@ -32,7 +33,7 @@ class TestBookFetcher(unittest.TestCase):
         self.fetcher.fetch_remote_book_to_local_path()
         mock_rsync.assert_called_once_with(
             '-rvhz',
-            'ftp@gutenberg.pglaf.org::gutenberg/1234/1234.txt',
+            '{}1234/1234.txt'.format(PG_RSYNC),
             self.test_book_dir + '/',
             '--exclude-from=exclude.txt'
         )

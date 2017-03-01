@@ -4,7 +4,6 @@
 from github3 import login
 from github3.exceptions import UnprocessableEntity
 from .book import Book
-from .util import tenprintcover
 from .util.catalog import get_repo_name
 from .parameters import GITHUB_ORG as orgname
 
@@ -28,3 +27,11 @@ def delete(repo_name):
     else:
         print "{} didn't exist".format(repo_name)
         
+def add_generated_cover(repo_name, tag=False):
+    repo_name = get_repo_name(repo_name)
+    book = Book(None,repo_name=repo_name)
+    book.clone_from_github()
+    book.parse_book_metadata()
+    result = book.add_covers()
+    if result:
+        book.local_repo.commit(result)

@@ -6,17 +6,22 @@ import os
 import shutil
 
 import github3
+import semver
 import sh
 from re import sub
 import unicodedata
 
+from . import config
+from .clone import clone
 from .fetch import BookFetcher
 from .make import NewFilesHandler
 from .local_repo import LocalRepo
-from .push import GithubRepo
-from .util.catalog import BookMetadata
-from . import config
 from .parameters import GITHUB_ORG
+from .push import GithubRepo
+from .util import tenprintcover
+from .util.catalog import BookMetadata
+from .metadata.pandata import Pandata
+
 
 class Book():
     """ An index card tells you where a book lives
@@ -39,6 +44,9 @@ class Book():
             self.library_path = library_path
 
     def parse_book_metadata(self, rdf_library=None):
+        if self.local_repo and self.local_repo.metadata_file:
+            self.meta = Pandata(datafile=self.local_repo.metadata_file)
+            return self.meta._repo
         if not rdf_library:
             self.meta = BookMetadata(self, rdf_library=config.data.get("rdf_library",""))
         else:
@@ -56,6 +64,8 @@ class Book():
 
     @property
     def local_path(self):
+        if self.local_repo:
+            return self.local_repo.repo_path
         path_parts = [self.library_path, self.book_id]
         return os.path.join(*path_parts)
 
@@ -64,7 +74,10 @@ class Book():
         """
         fetcher = BookFetcher(self)
         fetcher.fetch()
-
+    
+    def clone_from_github(self):
+        self.local_repo = clone(self.book_id)
+    
     def make(self):
         """ turn fetched files into a local repo, make auxiliary files
         """
@@ -145,3 +158,36 @@ class Book():
         self.meta.metadata['_repo'] = repo_title
         return repo_title
 
+    def generate_cover(self):
+        if not self.meta:
+            self.load_book_metadata()
+        try:
+            cover_image = tenprintcover.draw(
+                self.meta.title_no_subtitle, 
+                self.meta.subtitle, 
+                self.meta.authors_short()
+            )
+            return cover_image
+        except OSError:
+            print "OSError, probably Cairo not installed."
+            return None
+
+    def add_covers(self):   
+        if len(self.meta.covers) == 0:
+            cover_files = self.local_repo.cover_files() if self.local_repo else []
+            if cover_files:
+                self.meta.metadata['covers']=[
+                        {"image_path": cover_files[0], "cover_type":"archival"}
+                    ]
+                return "added archival cover"
+            else:         
+                with open('{}/cover.png'.format(self.local_path), 'w+') as cover:
+                    self.generate_cover().save(cover)
+                    self.meta.metadata['covers']=[
+                            {"image_path": "cover.png", "cover_type":"generated"}
+                        ]
+                return "generated cover"
+            self.meta.metadata['_version'] =  semver.bump_minor(self.meta._version)
+        return None
+        
+        

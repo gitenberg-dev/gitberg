@@ -9,9 +9,16 @@ import git
 
 from .util.filetypes import IGNORE_FILES
 
+img_exts = ('jpg', 'jpeg', 'png', 'gif')
+
 class LocalRepo(object):
     """ A class for interacting with a git repo """
-    def __init__(self, repo_path):
+    def __init__(self, repo_path, cloned_repo=None):
+        #wrap the cloned repo if it exists
+        if cloned_repo:
+            self.git = cloned_repo
+            self.repo_path = self.git.working_dir
+            return
         # Takes a path to a git repo
         self.repo_path = repo_path
         try:
@@ -35,3 +42,20 @@ class LocalRepo(object):
     def commit(self, message):
         # Creates a new git commit based on files in the stage with `message`<str>
         self.git.index.commit(message)
+        
+    def cover_files(self):
+        covers = []
+        for root, dirs, files in os.walk(self.repo_path):
+            files = [f for f in files if not f[0] == '.']
+            dirs[:] = [d for d in dirs if not d[0] == '.']
+            covers = covers + [os.path.join(root,f)[len(self.repo_path)+1:] for f in files if (
+                    'cover' in f and f.lower().split('.')[-1] in img_exts
+                )]
+        return covers
+    
+    @property
+    def metadata_file(self):
+        if os.path.isfile(os.path.join(self.repo_path,'metadata.yaml')):
+            return os.path.join(self.repo_path,'metadata.yaml')
+        else:
+            return None

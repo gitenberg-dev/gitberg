@@ -1,0 +1,33 @@
+_repo: At-the-Sign-of-the-Eagle_6218
+_version: 0.1.1
+covers:
+- cover_type: generated
+  image_path: cover.png
+creator:
+  author:
+    agent_name: Parker, Gilbert
+    aliases:
+    - Parker, Gilbert, Sir, bart.
+    - Parker, Horatio Gilbert
+    birthdate: 1862
+    deathdate: 1932
+    gutenberg_agent_id: '1285'
+    url: http://www.gutenberg.org/2009/agents/1285
+    wikipedia: http://en.wikipedia.org/wiki/Gilbert_Parker
+description: ''
+edition_identifiers:
+  edition_id: http://www.gutenberg.org/ebooks/6218#At-the-Sign-of-the-Eagle
+gutenberg_issued: '2004-11-16'
+gutenberg_type: Text
+identifiers:
+  gutenberg: '6218'
+language: en
+publisher: Project Gutenberg
+rights: Public domain in the USA.
+rights_url: http://creativecommons.org/about/pdm
+subjects:
+- !lcc 'PS'
+- !lcsh 'Canadian fiction'
+- GITenberg
+title: At the Sign of the Eagle
+url: http://www.gutenberg.org/ebooks/6218

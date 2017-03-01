@@ -5,6 +5,7 @@ import os
 import git
 
 from . import config
+from .local_repo import LocalRepo
 from .parameters import GITHUB_ORG
 from .util.catalog import get_repo_name
 
@@ -17,7 +18,7 @@ def clone(book_repo_name, library_path=None):
 
     success, message = vat.clone()
     logging.info(message)
-    return vat.local_repo
+    return LocalRepo(None, cloned_repo=vat.local_repo)
 
 
 class CloneVat(object):

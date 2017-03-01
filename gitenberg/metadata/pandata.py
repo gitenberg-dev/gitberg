@@ -1,3 +1,4 @@
+import re
 import yaml
 import json
 import copy
@@ -19,6 +20,8 @@ yaml.SafeLoader.add_constructor(u'!lcsh', subject_constructor)
 yaml.SafeLoader.add_constructor(u'!lcc', subject_constructor)
 yaml.SafeLoader.add_constructor(u'!bisacsh', subject_constructor)
 yaml.SafeDumper.add_representer(TypedSubject, subject_representer)
+
+title_splitter = re.compile(r'[\r\n:]+', flags=re.M)
 
 PANDATA_STRINGFIELDS = [
     '_repo',
@@ -56,6 +59,15 @@ def get_one(maybe_a_list):
         return str(maybe_a_list[0])  #use first name if available
     else:
         return str(maybe_a_list)
+
+def unreverse(name):
+    if not ',' in name:
+        return name
+    (last, rest) = name.split(',', 1)
+    if not ',' in rest:
+        return '%s %s' % (rest.strip(),last.strip())
+    (first, rest) = rest.split(',', 1)
+    return '%s %s, %s' % (first.strip(),last.strip(),rest.strip())
     
 # wrapper class for the json object 
 class Pandata(object):
@@ -90,7 +102,20 @@ class Pandata(object):
     def load(self, yaml_string):
         self.metadata = yaml.safe_load(yaml_string)
         self.set_edition_id()
+
+    def split_title(self):
+        title=self.metadata.get('title', '')
+        title = title_splitter.split(title,maxsplit=1)
+        return title if len(title)>1 else [title[0],'']
     
+    @property
+    def subtitle(self):
+        return self.split_title()[1]
+        
+    @property
+    def title_no_subtitle(self):
+        return self.split_title()[0]
+        
     def set_edition_id(self):
         # set a (hopefully globally unique) edition identifier
         if not self.metadata.has_key('edition_identifiers'):
@@ -128,6 +153,17 @@ class Pandata(object):
     # these should be last name first
     def authnames(self):
         return [auth.get('agent_name','') for auth in self.agents("author")]
+    
+    # as you'd expect to see the names on a cover, last names last.
+    def authors_short(self):
+        authnames = self.authnames()
+        if len(authnames) == 1:
+            return unreverse(authnames[0])
+        elif len(authnames) == 2:
+            return "%s and %s" % (unreverse(authnames[0]), unreverse(authnames[1]))
+        elif len(authnames) > 2:
+            return "%s et al." % unreverse(authnames[0])
+        return ''
     
     # some logic to decide
     @property
@@ -184,4 +220,5 @@ class Pandata(object):
             
     def __unicode__(self):
         return yaml.safe_dump(self.metadata,default_flow_style=False,allow_unicode=True)
+        
         

@@ -62,4 +62,7 @@ def apply_to_repos(action, args=None, kwargs=None, repos=None):
             result = e
         yield result
 
-all_repos = requests.get(REPOS_LIST_URL).content.strip().split("\n")
+try:
+    all_repos = requests.get(REPOS_LIST_URL).content.strip().split("\n")
+except requests.ConnectionError:
+    all_repos = []

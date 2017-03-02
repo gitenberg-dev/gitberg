@@ -2,4 +2,4 @@ gh_email: gh_email@example.com
 gh_password: gh_password
 gh_user: gh_user
 library_path: .
-rdf_library: rdf_library
+rdf_library: gitenberg/tests/test_data/rdf_library

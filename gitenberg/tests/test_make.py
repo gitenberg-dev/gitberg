@@ -31,8 +31,9 @@ class TestNewFileHandler(unittest.TestCase):
             os.path.exists(os.path.join(os.path.dirname(__file__),'test_data/1234/README.rst'))
         )
     
+    @patch.object(LocalRepo, 'travis_key', new='fake_travis_key')
     def test_travis_files(self):
-        LocalRepo.travis_key = 'fake_travis_key'
+        #LocalRepo.travis_key = 'fake_travis_key'
         self.file_maker.travis_files()
         self.assertTrue(os.path.exists(
             os.path.join(os.path.dirname(__file__),'test_data/1234/.travis.yml')

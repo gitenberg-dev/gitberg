@@ -125,7 +125,7 @@ class GithubRepo():
         if self._travis_repo_public_key is None:
             self._travis_repo_public_key =  requests.get(
                 "https://api.travis-ci.org/repos/{}/key".format(self.repo_id)
-            ).json()['key']
+            ).json().get('key', None)
         return self._travis_repo_public_key
 
     def travis_encrypt(self, token_to_encrypt):
@@ -141,6 +141,9 @@ class GithubRepo():
             token_string = token_to_encrypt
 
         repo_public_key_text = self.public_key_for_travis_repo()
+        
+        if repo_public_key_text is None:
+            return None
 
         pubkey = repo_public_key_text.encode('utf-8')
 

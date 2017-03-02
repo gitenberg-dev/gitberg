@@ -48,14 +48,22 @@ class LocalRepo(object):
         for root, dirs, files in os.walk(self.repo_path):
             files = [f for f in files if not f[0] == '.']
             dirs[:] = [d for d in dirs if not d[0] == '.']
-            covers = covers + [os.path.join(root,f)[len(self.repo_path)+1:] for f in files if (
+            covers = covers + [os.path.join(root,f)[len(self.repo_path) + 1:] for f in files if (
                     'cover' in f and f.lower().split('.')[-1] in img_exts
                 )]
         return covers
     
     @property
     def metadata_file(self):
-        if os.path.isfile(os.path.join(self.repo_path,'metadata.yaml')):
-            return os.path.join(self.repo_path,'metadata.yaml')
+        if os.path.isfile(os.path.join(self.repo_path, 'metadata.yaml')):
+            return os.path.join(self.repo_path, 'metadata.yaml')
+        else:
+            return None
+
+    @property
+    def travis_key(self):
+        if os.path.isfile(os.path.join(self.repo_path, '.travis.deploy.api_key.txt')):
+            with open(os.path.join(self.repo_path, '.travis.deploy.api_key.txt'), 'r') as f:
+                return f.read()
         else:
             return None

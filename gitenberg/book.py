@@ -19,7 +19,7 @@ from .local_repo import LocalRepo
 from .parameters import GITHUB_ORG
 from .push import GithubRepo
 from .util import tenprintcover
-from .util.catalog import BookMetadata
+from .util.catalog import BookMetadata, get_repo_name
 from .metadata.pandata import Pandata
 
 
@@ -51,7 +51,12 @@ class Book():
             self.meta = BookMetadata(self, rdf_library=config.data.get("rdf_library",""))
         else:
             self.meta = BookMetadata(self, rdf_library=rdf_library)
-        self.format_title()
+        
+        # preserve existing repo names
+        if self.repo_name:
+            self.meta.metadata['_repo'] = self.repo_name
+        else:
+            self.format_title()
 
     @property
     def remote_path(self):
@@ -77,6 +82,7 @@ class Book():
     
     def clone_from_github(self):
         self.local_repo = clone(self.book_id)
+        self.repo_name = get_repo_name(self.book_id)
     
     def make(self):
         """ turn fetched files into a local repo, make auxiliary files

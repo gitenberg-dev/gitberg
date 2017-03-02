@@ -6,10 +6,13 @@ Makes an organized git repo of a book folder
 
 from __future__ import print_function
 import codecs
+import os
 from os.path import abspath, dirname
 
 import jinja2
 import sh
+
+from .parameters import GITHUB_ORG
 
 class NewFilesHandler():
     """ NewFilesHandler - templates and copies additional files to book repos
@@ -25,6 +28,7 @@ class NewFilesHandler():
 
     def add_new_files(self):
         self.template_readme()
+        self.travis_files()
         self.copy_files()
 
     def template_readme(self):
@@ -40,6 +44,22 @@ class NewFilesHandler():
         )
         with codecs.open(readme_path, 'w', 'utf-8') as readme_file:
             readme_file.write(readme_text)
+
+    def travis_files(self):
+        template = self.env.get_template('.travis.yml')
+        travis_text = template.render({
+            'epub_title': 'book',
+            'encrypted_key': self.book.github_repo.travis_key(),
+            'repo_name': self.book.meta._repo,
+            'repo_owner': GITHUB_ORG
+        })
+
+        fpath = os.path.join(self.book.local_path, ".travis.yml")
+        with open(fpath, 'w') as f:
+            f.write(travis_text)
+        fpath = os.path.join(self.book.local_path, ".travis.deploy.api_key.txt")
+        with open(fpath, 'w') as f:
+            f.write(self.book.github_repo.travis_key())
 
     def copy_files(self):
         """ Copy the LICENSE and CONTRIBUTING files to each folder repo 
@@ -59,4 +79,5 @@ class NewFilesHandler():
             '{0}/'.format(self.book.local_path)
         )
         self.book.add_covers()
-        self.book.meta.dump_file('{0}/metadata.yaml'.format(self.book.local_path))
+        self.book.meta.dump_file(os.path.join(self.book.local_path, 'metadata.yaml'))
+        

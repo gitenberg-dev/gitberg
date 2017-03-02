@@ -58,6 +58,10 @@ class Yaml2MarcTest(unittest.TestCase):
         for field in record.get_fields('700'):
             self.assertEqual(field.get_subfields('4')[0],  'ill')
             break
+            
+    def tearDown(self):
+        if os.path.exists(TESTDATA_MARCFILENAME):
+            os.remove(TESTDATA_MARCFILENAME)
 
 class Rdf2YamlTest(unittest.TestCase):
         
@@ -67,6 +71,10 @@ class Rdf2YamlTest(unittest.TestCase):
         pandata = Pandata(TESTDATA_YAMLFILENAME)
         self.assertEqual(pandata._edition,'book')
         self.assertTrue(pandata.subjects[0][0] in ('lcsh','lcc'))
+
+    def tearDown(self):
+        if os.path.exists(TESTDATA_YAMLFILENAME):
+            os.remove(TESTDATA_YAMLFILENAME)
 
 class FileinfoTest(unittest.TestCase):
     def test_htm_mod(self):

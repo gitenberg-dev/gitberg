@@ -34,6 +34,8 @@ class Book():
         if repo_name and not book_id:
             self.repo_name = repo_name
             book_id = repo_name.split('_')[-1]
+        else:
+            self.repo_name = None
         self.book_id = str(book_id)
         self.local_repo = None
         self.github_repo = GithubRepo(self)

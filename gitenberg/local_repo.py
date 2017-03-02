@@ -64,6 +64,8 @@ class LocalRepo(object):
     def travis_key(self):
         if os.path.isfile(os.path.join(self.repo_path, '.travis.deploy.api_key.txt')):
             with open(os.path.join(self.repo_path, '.travis.deploy.api_key.txt'), 'r') as f:
-                return f.read()
+                key = f.read()
+                key = None if key == 'None' else key
+                return key
         else:
             return None

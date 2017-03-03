@@ -57,9 +57,10 @@ class NewFilesHandler():
         fpath = os.path.join(self.book.local_path, ".travis.yml")
         with open(fpath, 'w') as f:
             f.write(travis_text)
-        fpath = os.path.join(self.book.local_path, ".travis.deploy.api_key.txt")
-        with open(fpath, 'w') as f:
-            f.write(self.book.github_repo.travis_key())
+        if self.book.github_repo.travis_key():
+            fpath = os.path.join(self.book.local_path, ".travis.deploy.api_key.txt")
+            with open(fpath, 'w') as f:
+                f.write(self.book.github_repo.travis_key())
 
     def copy_files(self):
         """ Copy the LICENSE and CONTRIBUTING files to each folder repo 

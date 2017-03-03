@@ -153,16 +153,26 @@ class Pandata(object):
     # these should be last name first
     def authnames(self):
         return [auth.get('agent_name','') for auth in self.agents("author")]
+
+    def ednames(self):
+        return [auth.get('agent_name','') for auth in self.agents("editor")]
     
     # as you'd expect to see the names on a cover, last names last.
     def authors_short(self):
         authnames = self.authnames()
+        suffix = u""
+        if len(authnames) == 0:
+            authnames = self.ednames()
+            if len(authnames) == 1:
+                suffix = u", ed."
+            else:
+                suffix = u", eds."
         if len(authnames) == 1:
-            return unreverse(authnames[0])
+            return unreverse(authnames[0]) + suffix
         elif len(authnames) == 2:
-            return "%s and %s" % (unreverse(authnames[0]), unreverse(authnames[1]))
+            return "%s and %s%s" % (unreverse(authnames[0]), unreverse(authnames[1]), suffix)
         elif len(authnames) > 2:
-            return "%s et al." % unreverse(authnames[0])
+            return "%s et al." % unreverse(authnames[0], suffix)
         return ''
     
     # some logic to decide

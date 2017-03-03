@@ -5,11 +5,10 @@ Usage:
     gitberg config
     gitberg library [status]
     gitberg clone <book_repo_name>
-    gitberg (fetch | make | push | upload | metadata) [<book_id>] [options]
+    gitberg (fetch | make | push | upload | metadata | tag) [<book_id>] [options]
     gitberg get <book_id> [options]
     gitberg metadata <book_id> [options]
-    gitberg update [options]
-    gitberg report <book_identity>
+    gitberg update <book_repo_name> [options]
     gitberg all BOOKID BOOKIDEND [options]
     gitberg list <book_id_list> [options]
     gitberg apply <action> <book_repo_name>
@@ -77,12 +76,17 @@ if __name__ == '__main__':
         else:
             rdf_library = config.data.get('rdf_library', None)
 
+        book_repo_name = arguments.get('<book_repo_name>', None)
         repo_name = arguments['-n'] if '-n' in arguments else None
+        repo_name = book_repo_name if book_repo_name else repo_name
         book_id = arguments.get('<book_id>', None)
+
         if book_id or repo_name:
             book = Book(book_id, repo_name=repo_name)
             book.parse_book_metadata(rdf_library)
-
+        else:
+            book = None
+            
         if arguments['fetch']:
             logging.info("fetching a PG book: {0}".format(arguments['<book_id>']))
             book.fetch()
@@ -115,10 +119,10 @@ if __name__ == '__main__':
             library()
 
         elif arguments['update']:
-            raise NotImplementedError
+            book.update()
 
-        elif arguments['report']:
-            raise NotImplementedError
+        elif arguments['tag']:
+            book.tag()
 
         elif arguments['clone']:
             # TODO: check for stdin
@@ -137,5 +141,5 @@ if __name__ == '__main__':
         config.check_config()
     except NoRDFError as e:
         print("\tNo RDF Metadata file found.")
-    except NameError:
-        print __doc__
+    #except NameError e:
+        #print __doc__

@@ -79,6 +79,10 @@ class NewFilesHandler():
             self.book.meta.rdf_path,
             '{0}/'.format(self.book.local_path)
         )
-        self.book.add_covers()
+        if 'GITenberg' not in self.book.meta.subjects:
+            self.book.meta.metadata['subjects'].append('GITenberg')
+        if not self.book.meta._version:
+            self.book.meta.matadata["_version"] = "0.0.1"
+
         self.book.meta.dump_file(os.path.join(self.book.local_path, 'metadata.yaml'))
         

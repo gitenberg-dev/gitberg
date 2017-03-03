@@ -46,9 +46,19 @@ class Book():
             self.library_path = library_path
 
     def parse_book_metadata(self, rdf_library=None):
+        # cloned repo
         if self.local_repo and self.local_repo.metadata_file:
             self.meta = Pandata(datafile=self.local_repo.metadata_file)
-            return self.meta._repo
+            return
+            
+        # named repo
+        if self.repo_name:
+            named_path = os.path.join(self.library_path, self.repo_name, 'metadata.yaml')
+            if os.path.exists(named_path):
+                self.meta = Pandata(datafile=named_path)
+                return
+                
+        # new repo
         if not rdf_library:
             self.meta = BookMetadata(self, rdf_library=config.data.get("rdf_library",""))
         else:
@@ -79,7 +89,11 @@ class Book():
             if os.path.exists(named_path):
                 return named_path
         return local_path
-
+    
+    def add_local(self):
+        if not self.local_repo:
+            self.local_repo = LocalRepo(self.local_path)
+        
     def fetch(self):
         """ just pull files from PG
         """
@@ -93,7 +107,7 @@ class Book():
     def make(self):
         """ turn fetched files into a local repo, make auxiliary files
         """
-        self.local_repo = LocalRepo(self.local_path)
+        self.add_local()
         logging.debug("preparing to add all git files")
         num_added = self.local_repo.add_all_files()
         if num_added:
@@ -107,12 +121,25 @@ class Book():
             self.local_repo.commit(
                 "Updates Readme, contributing, license files, cover, metadata."
             )
-
+    
+    def save_meta(self):
+        self.meta.dump_file(os.path.join(self.local_path, 'metadata.yaml'))
+        
     def push(self):
         """ create a github repo and push the local repo into it
         """
         self.github_repo.create_and_push()
         return self.github_repo.repo
+
+    def update(self, message='Update files'):
+        """ commit changes
+        """
+        self.github_repo.update(message)
+    
+    def tag(self, version='bump'):
+        """ tag and commit
+        """
+        self.github_repo.tag(version)
 
     def repo(self):
         if self.repo_name:
@@ -174,7 +201,7 @@ class Book():
 
     def generate_cover(self):
         if not self.meta:
-            self.load_book_metadata()
+            self.parse_book_metadata()
         try:
             cover_image = tenprintcover.draw(
                 self.meta.title_no_subtitle, 

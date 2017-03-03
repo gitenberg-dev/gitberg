@@ -16,6 +16,7 @@ from cryptography.hazmat.primitives.asymmetric import padding
 import git
 import github3
 import requests
+import semver
 
 from . import config
 from . local_repo import LocalRepo
@@ -38,14 +39,41 @@ class GithubRepo():
     @property
     def repo_id(self):
         return "{}/{}".format(self.org_name, self.book.meta._repo)
+
+    def push(self):
+        self.book.local_repo.git.remote('origin').push(
+            self.book.local_repo.git.refs.master, tags=True
+        )    
     
     def create_and_push(self):
         self.create_repo()
-        if not self.book.local_repo:
-            self.book.local_repo = LocalRepo(self.book.local_path)
+        self.book.add_local()
         origin = self.add_remote_origin_to_local_repo()
         origin.push(self.book.local_repo.git.refs.master)
-
+    
+    def update(self, message):
+        self.book.add_local()
+        self.book.local_repo.update(message)
+        self.push()
+        
+    def tag(self, version):
+        self.book.add_local()
+        if version == "bump":
+            old_version = self.book.meta._version
+            if old_version:
+                version = old_version
+            else:
+                version = '0.0.1'
+        while version in self.book.local_repo.git.tags:
+            version = semver.bump_patch(version)
+        self.book.meta.metadata['_version'] =  version
+        self.book.save_meta()
+        self.update('bump version metadata')
+        ref = self.book.local_repo.tag(version)
+        self.push()
+        logging.info("tagged and pushed " + str(ref))
+            
+        
     def create_api_handler(self):
         """ Creates an api handler and sets it on self """
         if not config.data:

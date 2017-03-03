@@ -44,6 +44,13 @@ class LocalRepo(object):
         # Creates a new git commit based on files in the stage with `message`<str>
         self.git.index.commit(message)
         
+    def update(self, message):
+        self.git.git.add(update=True)
+        self.git.index.commit(message)
+        
+    def tag(self, version):
+        return self.git.create_tag(version, message='bump version')
+        
     def cover_files(self):
         covers = []
         for root, dirs, files in os.walk(self.repo_path):

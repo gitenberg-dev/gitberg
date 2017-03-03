@@ -38,6 +38,7 @@ class LocalRepo(object):
                            if os.path.splitext(_file)[-1] not in IGNORE_FILES]
         logging.debug(u'Staging the following files: ' + str(untracked_files))
         self.git.index.add(untracked_files)
+        return len(untracked_files)
 
     def commit(self, message):
         # Creates a new git commit based on files in the stage with `message`<str>

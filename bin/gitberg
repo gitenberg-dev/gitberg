@@ -5,7 +5,7 @@ Usage:
     gitberg config
     gitberg library [status]
     gitberg clone <book_repo_name>
-    gitberg (fetch | make | push | upload | metadata) <book_id> [options]
+    gitberg (fetch | make | push | upload | metadata) [<book_id>] [options]
     gitberg get <book_id> [options]
     gitberg metadata <book_id> [options]
     gitberg update [options]
@@ -24,6 +24,7 @@ Arguments:
 Options:
     -v --logging (debug | info | error)
     --rdf_library <rdf_library>         where are you storing rdf files
+    -n <repo_name> add a reponame
 """
 # TODO  use `--` to separate arguments and files
 #       ex: `git checkout -b foo -- file file1 file2
@@ -75,8 +76,10 @@ if __name__ == '__main__':
         else:
             rdf_library = config.data.get('rdf_library', None)
 
-        if arguments['<book_id>'] is not None:
-            book = Book(arguments['<book_id>'])
+        repo_name = arguments['-n'] if '-n' in arguments else None
+        book_id = arguments.get('<book_id>', None)
+        if book_id or repo_name:
+            book = Book(book_id, repo_name=repo_name)
             book.parse_book_metadata(rdf_library)
 
         if arguments['fetch']:
@@ -131,3 +134,5 @@ if __name__ == '__main__':
     except config.NotConfigured as e:
         print("\tGitberg needs configuration.")
         config.check_config()
+    except NameError:
+        print __doc__

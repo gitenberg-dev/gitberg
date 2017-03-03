@@ -73,9 +73,6 @@ class GithubRepo():
         try:
             self.repo = self.org.create_repo(
                 self.book.meta._repo,
-                # FIXME: Filter out 'control characters' arre not allowed in
-                # desc github
-                # description=self.format_desc(),
                 homepage=self.org_homepage,
                 private=False,
                 has_issues=True,

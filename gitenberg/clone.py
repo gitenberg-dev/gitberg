@@ -29,8 +29,8 @@ class CloneVat(object):
     def __init__(self, book_repo_name):
         self.book_repo_name = book_repo_name
         self.local_repo = None
-        # create a local instance of the library manager with the provided
-        # config if available
+        if not config.data:
+            config.ConfigFile()
 
     def library_book_dir(self):
         return os.path.join(config.data['library_path'], self.book_repo_name)

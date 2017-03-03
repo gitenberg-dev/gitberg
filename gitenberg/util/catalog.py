@@ -36,6 +36,9 @@ def get_repo_name(repo_name):
             pass
     return repo_name
 
+class NoRDFError(Exception):
+    pass
+
 class CdContext():
     """ A context manager using `os` to cd to a directory and back
         `with CdContext(new path to go to)`
@@ -56,6 +59,10 @@ class CdContext():
 class BookMetadata(Pandata):
     def __init__(self, book, rdf_library='./rdf_library', enrich=True):
         self.book = book
+        try:
+            assert(os.path.exists(rdf_library))
+        except Error as e:
+            raise NotConfigured(e)
         self.rdf_path = "{0}/{1}/pg{1}.rdf".format(
             rdf_library, self.book.book_id
         )
@@ -69,7 +76,7 @@ class BookMetadata(Pandata):
         try:
             self.metadata = pg_rdf_to_json(self.rdf_path)
         except IOError as e:
-            raise NotConfigured(e)
+            raise NoRDFError(e)
 
         if len(self.authnames()) == 0:
             self.author = ''

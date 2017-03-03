@@ -40,6 +40,7 @@ from gitenberg import config
 from gitenberg import upload_all_books, upload_list
 from gitenberg import library
 from gitenberg import actions
+from gitenberg.util.catalog import NoRDFError
 
 
 
@@ -134,5 +135,7 @@ if __name__ == '__main__':
     except config.NotConfigured as e:
         print("\tGitberg needs configuration.")
         config.check_config()
+    except NoRDFError as e:
+        print("\tNo RDF Metadata file found.")
     except NameError:
         print __doc__

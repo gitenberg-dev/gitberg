@@ -38,7 +38,7 @@ class Book():
             self.repo_name = None
         self.book_id = str(book_id)
         self.local_repo = None
-        self.github_repo = GithubRepo(self)
+        self.github_repo = GithubRepo(self) # a side effect of this is to init the config
         try:
             self.library_path = config.data.get("library_path",library_path)
         except:

@@ -9,23 +9,23 @@ BUILD_EPUB_SCRIPT = """
 
 function build_epub_from_asciidoc {
 
-	asciidoctor -a toc,idprefix=xx_,version=$1 -b xhtml5 -T ./asciidoctor-htmlbook/htmlbook-autogen/ -d book book.asciidoc -o book.html
-	git clone https://github.com/gitenberg-dev/HTMLBook
+    asciidoctor -a toc,idprefix=xx_,version=$1 -b xhtml5 -T ./asciidoctor-htmlbook/htmlbook-autogen/ -d book book.asciidoc -o book.html
+    git clone https://github.com/gitenberg-dev/HTMLBook
 
-	# make book.html available to jinja2 environment by putting it into templates
-	cp book.html asciidoctor-htmlbook/gitberg-machine/templates/
+    # make book.html available to jinja2 environment by putting it into templates
+    cp book.html asciidoctor-htmlbook/gitberg-machine/templates/
 
-	/usr/bin/python asciidoctor-htmlbook/gitberg-machine/machine.py -o . -m metadata.yaml book.html
-	xsltproc -stringparam external.assets.list " " ./HTMLBook/htmlbook-xsl/epub.xsl book.html
-	cp ./HTMLBook/stylesheets/epub/epub.css OEBPS
-	if [ -e cover.jpg ]; then cp cover.jpg OEBPS/cover.jpg; fi
+    /usr/bin/python asciidoctor-htmlbook/gitberg-machine/machine.py -o . -m metadata.yaml book.html
+    xsltproc -stringparam external.assets.list " " ./HTMLBook/htmlbook-xsl/epub.xsl book.html
+    cp ./HTMLBook/stylesheets/epub/epub.css OEBPS
+    if [ -e cover.jpg ]; then cp cover.jpg OEBPS/cover.jpg; fi
 
-	# look for first images directory and one found, copy over to ./OEBPS
-	find . -name images -type d | head -n 1 | xargs -I {} mv {} ./OEBPS/
-	zip -rX book.epub mimetype
-	zip -rX book.epub OEBPS/ META-INF/
-	if test -d "OEBPS/images/"; then zip -rX book.epub OEBPS/images/ ;fi
-	if [ "$2" != "book" ]; then mv book.epub $2.epub; fi    
+    # look for first images directory and one found, copy over to ./OEBPS
+    find . -name images -type d | head -n 1 | xargs -I {} mv {} ./OEBPS/
+    zip -rX book.epub mimetype
+    zip -rX book.epub OEBPS/ META-INF/
+    if test -d "OEBPS/images/"; then zip -rX book.epub OEBPS/images/ ;fi
+    if [ "$2" != "book" ]; then mv book.epub $2.epub; fi    
 
 } 
 
@@ -33,17 +33,20 @@ build_epub_from_asciidoc $1 $2
 """
 
 def repo_metadata ():
-	from .. import metadata
+    from .. import metadata
 
-	md = metadata.pandata.Pandata("metadata.yaml")
-
-	return {
-		'repo_name': md.metadata.get("_repo"),
-	    'version': md.metadata.get("_version"),
-	    'title': md.metadata.get("title"),
-	    'author': "; ".join(md.authnames()),
-	    'author_for_calibre': " & ".join(md.authnames())
-	}
+    md = metadata.pandata.Pandata("metadata.yaml")
+    cover = None
+    for cover in md.covers:
+        cover = cover.get('image_path', None)
+    return {
+        'repo_name': md.metadata.get("_repo"),
+        'version': md.metadata.get("_version"),
+        'title': md.metadata.get("title"),
+        'author': "; ".join(md.authnames()),
+        'author_for_calibre': " & ".join(md.authnames()),
+        'cover': cover,
+    }
 
 
 
@@ -73,64 +76,69 @@ def source_book(repo_name):
 
 
 def build_epub_from_asciidoc (version, epub_title='book'):
-	"""
-	build for asciidoctor input
-	"""
+    """
+    build for asciidoctor input
+    """
 
-	fname = "{}.sh".format(uuid.uuid4())
+    fname = "{}.sh".format(uuid.uuid4())
 
-	try:
-	    f = open(fname, "wb")
-	    f.write(BUILD_EPUB_SCRIPT.encode('utf-8'))
-	    f.close()
-	    os.chmod(fname, 0755)
+    try:
+        f = open(fname, "wb")
+        f.write(BUILD_EPUB_SCRIPT.encode('utf-8'))
+        f.close()
+        os.chmod(fname, 0755)
 
-	    output = subprocess.check_output("./{fname} {version} {epub_title}".format(fname=fname, 
-	    	  version=version, epub_title=epub_title), 
-	    	  shell=True)
-	    print (output)
-	except Exception as e:
-	    print (e)
-	finally:
-	    os.remove(fname)
+        output = subprocess.check_output("./{fname} {version} {epub_title}".format(fname=fname, 
+              version=version, epub_title=epub_title), 
+              shell=True)
+        print (output)
+    except Exception as e:
+        print (e)
+    finally:
+        os.remove(fname)
 
 
 def build_epub(epub_title='book'):
 
-	md = repo_metadata()
+    md = repo_metadata()
 
-	source_path = source_book(md['repo_name'])
+    source_path = source_book(md['repo_name'])
 
-	if source_path == 'book.asciidoc':
-		return build_epub_from_asciidoc (md['version'], epub_title)
-	elif source_path.endswith('.htm'):
-		cmd = u"""epubmaker --title "{title}" --author "{author}" {source_path}""".format(
-			       title=md['title'],
-			       author=md['author'],
-			       source_path=source_path)
-		cmd = cmd.encode('ascii', 'xmlcharrefreplace')
+    if source_path == 'book.asciidoc':
+        return build_epub_from_asciidoc (md['version'], epub_title)
+    elif source_path.endswith('.htm'):
+        if md['cover']:
+            cmd = u"""epubmaker --title "{title}" --author "{author}" --cover {cover} {source_path}""".format(
+                   title=md['title'],
+                   author=md['author'],
+                   cover=md['cover'],
+                   source_path=source_path)
+        else:
+            cmd = u"""epubmaker --title "{title}" --author "{author}" {source_path}""".format(
+                   title=md['title'],
+                   author=md['author'],
+                   source_path=source_path)
+        cmd = cmd.encode('ascii', 'xmlcharrefreplace')
 
-		output = subprocess.check_output(cmd, shell=True)
-		# rename epub to book.epub
+        output = subprocess.check_output(cmd, shell=True)
+        # rename epub to book.epub
 
-		# get largest epub file
-		epub_file = sorted(glob.glob("*.epub"), key=os.path.getsize, reverse=True)[0]
-		os.rename(epub_file, "book.epub")
+        # get largest epub file
+        epub_file = sorted(glob.glob("*.epub"), key=os.path.getsize, reverse=True)[0]
+        os.rename(epub_file, "book.epub")
 
-		if epub_file <> u"{title}-epub.epub".format(title=md['title']):
-			print ("actual epub_file: {}".format(epub_file))
+        if epub_file <> u"{title}-epub.epub".format(title=md['title']):
+            print ("actual epub_file: {}".format(epub_file))
 
-	elif source_path.endswith('.txt'):
-		# ebook-convert 76.txt 76.epub --title "Huck Finn" --authors "Mark Twain & Joanne Twain"
-		cmd = u"""ebook-convert {source_path} book.epub --title "{title}" --authors "{author}" """.format(
-					source_path = source_path,
-					title=md['title'],
-			        author=md['author_for_calibre'])
-		cmd = cmd.encode('ascii', 'xmlcharrefreplace')
-		output = subprocess.check_output(cmd, shell=True)
-	else:
-	    # error code?
-	    # http://stackoverflow.com/questions/6180185/custom-python-exceptions-with-error-codes-and-error-messages
-		raise Exception ('no suitable book found')
-
-
+    elif source_path.endswith('.txt'):
+        # ebook-convert 76.txt 76.epub --title "Huck Finn" --authors "Mark Twain & Joanne Twain"
+        cmd = u"""ebook-convert {source_path} book.epub --title "{title}" --authors "{author}" """.format(
+                    source_path = source_path,
+                    title=md['title'],
+                    author=md['author_for_calibre'])
+        cmd = cmd.encode('ascii', 'xmlcharrefreplace')
+        output = subprocess.check_output(cmd, shell=True)
+    else:
+        # error code?
+        # http://stackoverflow.com/questions/6180185/custom-python-exceptions-with-error-codes-and-error-messages
+        raise Exception ('no suitable book found')

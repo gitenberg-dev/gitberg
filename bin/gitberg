@@ -12,6 +12,8 @@ Usage:
     gitberg all BOOKID BOOKIDEND [options]
     gitberg list <book_id_list> [options]
     gitberg apply <action> <book_repo_name>
+    gitberg apply_all <action>  BOOKID BOOKIDEND [options]
+    gitberg apply_list <action> <book_id_list> [options]
 
 Arguments:
     <book_repo_name> -- The name of a repo in Gitenberg, `Frankenstein_84`. If you supply only a
@@ -19,11 +21,13 @@ Arguments:
                         up from a table.
     <target> -- a file path, example, where to clone a book
     <action> -- action to apply to repo
+    <book_id_list> -- a filename for a list of book_id (one per line)
 
 Options:
     -v --logging (debug | info | error)
     --rdf_library <rdf_library>         where are you storing rdf files
     -n <repo_name> add a reponame
+    -x LIMIT max number to retrieve
 """
 # TODO  use `--` to separate arguments and files
 #       ex: `git checkout -b foo -- file file1 file2
@@ -39,6 +43,7 @@ from gitenberg import config
 from gitenberg import upload_all_books, upload_list
 from gitenberg import library
 from gitenberg import actions
+from gitenberg import workflow
 from gitenberg.util.catalog import NoRDFError
 
 
@@ -130,10 +135,20 @@ if __name__ == '__main__':
             clone(arg_book_name)
             
         elif arguments['apply']:
-            arg_book_name = arguments['<book_repo_name>']
             arg_action = arguments['<action>']
             action = getattr(actions, arg_action)
             action(arg_book_name)
+
+        elif arguments['apply_all']:
+            workflow.apply_all(arguments['<action>'], arguments['BOOKID'], arguments['BOOKIDEND'])
+            
+        elif arguments['apply_list']:
+            limit = arguments['-x'] if '-x' in arguments else None
+            workflow.apply_file(
+                arguments['<action>'], 
+                arguments['<book_id_list>'], 
+                limit=int(limit)
+            )
             
             
     except config.NotConfigured as e:

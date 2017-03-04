@@ -172,7 +172,7 @@ class Pandata(object):
         elif len(authnames) == 2:
             return "%s and %s%s" % (unreverse(authnames[0]), unreverse(authnames[1]), suffix)
         elif len(authnames) > 2:
-            return "%s et al." % unreverse(authnames[0], suffix)
+            return "%s et al." % unreverse(authnames[0])
         return ''
     
     # some logic to decide

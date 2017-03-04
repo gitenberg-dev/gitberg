@@ -47,9 +47,10 @@ class NewFilesHandler():
 
     def travis_files(self):
         template = self.env.get_template('.travis.yml')
+        travis_key = self.book.github_repo.travis_key()
         travis_text = template.render({
             'epub_title': 'book',
-            'encrypted_key': self.book.github_repo.travis_key(),
+            'encrypted_key': travis_key,
             'repo_name': self.book.meta._repo,
             'repo_owner': GITHUB_ORG
         })
@@ -60,7 +61,7 @@ class NewFilesHandler():
         if self.book.github_repo.travis_key():
             fpath = os.path.join(self.book.local_path, ".travis.deploy.api_key.txt")
             with open(fpath, 'w') as f:
-                f.write(self.book.github_repo.travis_key())
+                f.write(travis_key)
 
     def copy_files(self):
         """ Copy the LICENSE and CONTRIBUTING files to each folder repo 

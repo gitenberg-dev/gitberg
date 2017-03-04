@@ -232,21 +232,29 @@ class Book():
             return None
 
     def add_covers(self):   
-        if len(self.meta.covers) == 0:
+        new_covers = []
+        comment = None
+        for cover in self.meta.covers:
+            #check that the covers are in repo
+            cover_path = os.path.join(self.local_path, cover.get("image_path", ""))
+            if os.path.isfile(cover_path):
+                new_covers.append(cover)
+        if len(new_covers) == 0:
             cover_files = self.local_repo.cover_files() if self.local_repo else []
             if cover_files:
-                self.meta.metadata['covers']=[
+                new_covers.append(
                         {"image_path": cover_files[0], "cover_type":"archival"}
-                    ]
-                return "added archival cover"
+                    )
+                comment = "added archival cover"
             else:         
                 with open('{}/cover.png'.format(self.local_path), 'w+') as cover:
                     self.generate_cover().save(cover)
-                    self.meta.metadata['covers']=[
+                    new_covers.append(
                             {"image_path": "cover.png", "cover_type":"generated"}
-                        ]
-                return "generated cover"
+                        )
+                comment =  "generated cover"
             self.meta.metadata['_version'] =  semver.bump_minor(self.meta._version)
-        return None
+        self.meta.metadata['covers'] = new_covers
+        return comment
         
         

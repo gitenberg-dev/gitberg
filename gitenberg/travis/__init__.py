@@ -142,5 +142,3 @@ def build_epub(epub_title='book'):
         # error code?
         # http://stackoverflow.com/questions/6180185/custom-python-exceptions-with-error-codes-and-error-messages
         raise Exception ('no suitable book found')
-
-

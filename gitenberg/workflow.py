@@ -51,7 +51,7 @@ def apply_file(action, book_id_file, limit=10):
     book_list = []
     with open(book_id_file, 'r') as f:
         for line in f:
-            book_list.append(line)
+            book_list.append(line.strip())
     apply_list(action, book_list[:limit])
     
 def apply_all(action, book_id_start, book_id_end):

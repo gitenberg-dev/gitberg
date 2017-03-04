@@ -4,7 +4,7 @@
 Usage:
     gitberg config
     gitberg library [status]
-    gitberg clone <book_repo_name>
+    gitberg clone <book_id>
     gitberg (fetch | make | push | upload | metadata | tag) [<book_id>] [options]
     gitberg get <book_id> [options]
     gitberg metadata <book_id> [options]
@@ -19,7 +19,6 @@ Arguments:
     <book_repo_name> -- The name of a repo in Gitenberg, `Frankenstein_84`. If you supply only a
                         number, it will be construed as a book_id, and the repo_name will be looked 
                         up from a table.
-    <target> -- a file path, example, where to clone a book
     <action> -- action to apply to repo
     <book_id_list> -- a filename for a list of book_id (one per line)
 
@@ -38,7 +37,6 @@ from docopt import docopt
 
 from gitenberg import __version__
 from gitenberg import Book
-from gitenberg import clone
 from gitenberg import config
 from gitenberg import upload_all_books, upload_list
 from gitenberg import library
@@ -130,9 +128,7 @@ if __name__ == '__main__':
             book.tag()
 
         elif arguments['clone']:
-            # TODO: check for stdin
-            arg_book_name = arguments['<book_repo_name>']
-            clone(arg_book_name)
+            book.clone()
             
         elif arguments['apply']:
             arg_action = arguments['<action>']

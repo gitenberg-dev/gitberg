@@ -21,7 +21,8 @@ class TestNewFileHandler(unittest.TestCase):
             with patch('github3.login') as login:
                 self.login = login
                 self.book = Book(1234)
-        self.book.local_repo = LocalRepo(os.path.join(os.path.dirname(__file__),'test_data/1234'))
+        self.book.local_path = os.path.join(os.path.dirname(__file__),'test_data/1234')
+        self.book.local_repo = LocalRepo(self.book.local_path)
         self.book.parse_book_metadata()
         self.file_maker = NewFilesHandler(self.book)
 

@@ -12,7 +12,6 @@ from .util.catalog import get_repo_name
 clone_url_ssh_template = u"git@github.com:{org_name}/{repo_name}.git"
 
 def clone(book_repo_name, library_path=None):
-    book_repo_name = get_repo_name(book_repo_name)
     logging.info("running clone for{}".format(book_repo_name))
     vat = CloneVat(book_repo_name)
 

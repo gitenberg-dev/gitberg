@@ -17,6 +17,17 @@ class NotConfigured(Exception):
 # static global
 data = {}
 
+def get_library_path(library_path='./library'):
+    """ load config if needed, return library path """
+    global data
+    if data == {}:
+        ConfigFile()
+    try:
+        return data.get("library_path",library_path)
+    except:
+        # no config, used in tests
+        return library_path
+
 class ConfigFile(object):
     """ A wrapper for managing creating and reading a config file
     takes (optional) appname str kwarg,

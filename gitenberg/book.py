@@ -26,25 +26,54 @@ from .metadata.pandata import Pandata
 class Book():
     """ An index card tells you where a book lives
         `book_id` is PG's unique book id
-        `remote_path` is where it lives on PG servers
-        `local_path` is where it should be stored locally
+        `remote_path` is where it should live on PG servers
+        `srepo_name` is the name the repo should have on GitHub
+        `local_path` is where it IS stored locally
     """
 
     def __init__(self, book_id, repo_name=None, library_path='./library'):
-        if repo_name and not book_id:
-            self.repo_name = repo_name
-            book_id = repo_name.split('_')[-1]
-        else:
-            self.repo_name = None
-        self.book_id = str(book_id)
-        self.local_repo = None
-        self.github_repo = GithubRepo(self) # a side effect of this is to init the config
-        try:
-            self.library_path = config.data.get("library_path",library_path)
-        except:
-            # no config, used in tests
-            self.library_path = library_path
+        # rename to avoid confusion
+        arg_repo_name = repo_name
+        self.local_path = None
+        
+        # do config
+        self.library_path = config.get_library_path(library_path)
+        
+        # parse the inputs to figure out the book
+        if arg_repo_name and not book_id:
+            book_id = arg_repo_name.split('_')[-1]
 
+        if book_id:
+            self.book_id = str(book_id)
+            self.repo_name = get_repo_name(self.book_id)
+            self.set_existing_local_path(self.book_id)
+        else:
+            self.book_id = None
+            self.repo_name = None
+        
+        # check if there's a directory named with the arg_repo_name
+        if arg_repo_name and not self.local_path:
+            self.set_existing_local_path(arg_repo_name)
+
+        # or, check if there's a directory named with the github name
+        if self.repo_name and not self.local_path:
+            self.set_existing_local_path(self.repo_name)
+        
+        # set up the local repo
+        if self.local_path:
+            self.local_repo = LocalRepo(self.local_path)
+        else:
+            self.local_repo = None
+        
+        # set up the Github connection
+        self.github_repo = GithubRepo(self)
+    
+    def set_existing_local_path(self, name):
+        path = os.path.join(self.library_path, name)
+        if os.path.exists(path):
+            self.local_path = path
+    
+    
     def parse_book_metadata(self, rdf_library=None):
         # cloned repo
         if self.local_repo and self.local_repo.metadata_file:
@@ -79,21 +108,6 @@ class Book():
         path_parts.append(self.book_id)
         return os.path.join(*path_parts) + '/'
 
-    @property
-    def local_path(self):
-        if self.local_repo:
-            return self.local_repo.repo_path
-        local_path = os.path.join(self.library_path, self.book_id)
-        if self.repo_name:
-            named_path = os.path.join(self.library_path, self.repo_name)
-            if os.path.exists(named_path):
-                return named_path
-        return local_path
-    
-    def add_local(self):
-        if not self.local_repo:
-            self.local_repo = LocalRepo(self.local_path)
-        
     def fetch(self):
         """ just pull files from PG
         """
@@ -101,13 +115,17 @@ class Book():
         fetcher.fetch()
     
     def clone_from_github(self):
-        self.local_repo = clone(self.book_id)
-        self.repo_name = get_repo_name(self.book_id)
+        if self.local_repo: 
+            # don't need to clone the repo
+            # perhaps we should delete the repo and refresh?
+            pass
+        else:
+            self.local_repo = clone(self.repo_name)
+            self.local_path = self.local_repo.repo_path
     
     def make(self):
         """ turn fetched files into a local repo, make auxiliary files
         """
-        self.add_local()
         logging.debug("preparing to add all git files")
         num_added = self.local_repo.add_all_files()
         if num_added:

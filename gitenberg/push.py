@@ -47,17 +47,14 @@ class GithubRepo():
     
     def create_and_push(self):
         self.create_repo()
-        self.book.add_local()
         origin = self.add_remote_origin_to_local_repo()
         origin.push(self.book.local_repo.git.refs.master)
     
     def update(self, message):
-        self.book.add_local()
         self.book.local_repo.update(message)
         self.push()
         
     def tag(self, version):
-        self.book.add_local()
         if version == "bump":
             old_version = self.book.meta._version
             if old_version:
@@ -76,8 +73,6 @@ class GithubRepo():
         
     def create_api_handler(self):
         """ Creates an api handler and sets it on self """
-        if not config.data:
-            raise config.NotConfigured
         try:
             self.github = github3.login(username=config.data['gh_user'],
                                     password=config.data['gh_password'])
@@ -192,7 +187,7 @@ class GithubRepo():
 
         return base64.b64encode(ciphertext)
         
-    def travis_key(self):        
+    def travis_key(self):  
         if self.book.local_repo:
             travis_key = self.book.local_repo.travis_key
             if travis_key:

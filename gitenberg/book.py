@@ -35,10 +35,10 @@ class Book():
         # rename to avoid confusion
         arg_repo_name = repo_name
         self.local_path = None
-        
+
         # do config
         self.library_path = config.get_library_path(library_path)
-        
+
         # parse the inputs to figure out the book
         if arg_repo_name and not book_id:
             book_id = arg_repo_name.split('_')[-1]
@@ -50,7 +50,7 @@ class Book():
         else:
             self.book_id = None
             self.repo_name = None
-        
+
         # check if there's a directory named with the arg_repo_name
         if arg_repo_name and not self.local_path:
             self.set_existing_local_path(arg_repo_name)
@@ -58,41 +58,41 @@ class Book():
         # or, check if there's a directory named with the github name
         if self.repo_name and not self.local_path:
             self.set_existing_local_path(self.repo_name)
-        
+
         # set up the local repo
         if self.local_path:
             self.local_repo = LocalRepo(self.local_path)
         else:
             self.local_repo = None
-        
+
         # set up the Github connection
         self.github_repo = GithubRepo(self)
-    
+
     def set_existing_local_path(self, name):
         path = os.path.join(self.library_path, name)
         if os.path.exists(path):
             self.local_path = path
-    
-    
+
+
     def parse_book_metadata(self, rdf_library=None):
         # cloned repo
         if self.local_repo and self.local_repo.metadata_file:
             self.meta = Pandata(datafile=self.local_repo.metadata_file)
             return
-            
+
         # named repo
         if self.repo_name:
             named_path = os.path.join(self.library_path, self.repo_name, 'metadata.yaml')
             if os.path.exists(named_path):
                 self.meta = Pandata(datafile=named_path)
                 return
-                
+
         # new repo
         if not rdf_library:
             self.meta = BookMetadata(self, rdf_library=config.data.get("rdf_library",""))
         else:
             self.meta = BookMetadata(self, rdf_library=rdf_library)
-        
+
         # preserve existing repo names
         if self.repo_name:
             self.meta.metadata['_repo'] = self.repo_name
@@ -113,16 +113,16 @@ class Book():
         """
         fetcher = BookFetcher(self)
         fetcher.fetch()
-    
+
     def clone_from_github(self):
-        if self.local_repo: 
+        if self.local_repo:
             # don't need to clone the repo
             # perhaps we should delete the repo and refresh?
             pass
         else:
             self.local_repo = clone(self.repo_name)
             self.local_path = self.local_repo.repo_path
-    
+
     def make(self):
         """ turn fetched files into a local repo, make auxiliary files
         """
@@ -139,10 +139,10 @@ class Book():
             self.local_repo.commit(
                 "Updates Readme, contributing, license files, cover, metadata."
             )
-    
+
     def save_meta(self):
         self.meta.dump_file(os.path.join(self.local_path, 'metadata.yaml'))
-        
+
     def push(self):
         """ create a github repo and push the local repo into it
         """
@@ -153,7 +153,7 @@ class Book():
         """ commit changes
         """
         self.github_repo.update(message)
-    
+
     def tag(self, version='bump'):
         """ tag and commit
         """
@@ -161,7 +161,7 @@ class Book():
 
     def repo(self):
         if self.repo_name:
-            return self.github_repo.github.repository(GITHUB_ORG, repo_name)
+            return self.github_repo.github.repository(GITHUB_ORG, self.repo_name)
 
     def all(self):
         try:
@@ -189,7 +189,7 @@ class Book():
             _title = unicodedata.normalize('NFD', unicode(_title))
             ascii = True
             out = []
-            ok=u"1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM- ',"
+            ok = u"1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM- ',"
             for ch in _title:
                 if ch in ok:
                     out.append(ch)
@@ -199,7 +199,7 @@ class Book():
                 elif ch in u'\r\n\t':
                     out.append(u'-')
             return (ascii, sub("[ ',-]+", '-', "".join(out)) )
-        
+
         """ Takes a string and sanitizes it for Github's url name format """
         (ascii, _title) = asciify(self.meta.title)
         if not ascii and self.meta.alternative_title:
@@ -222,8 +222,8 @@ class Book():
             self.parse_book_metadata()
         try:
             cover_image = tenprintcover.draw(
-                self.meta.title_no_subtitle, 
-                self.meta.subtitle, 
+                self.meta.title_no_subtitle,
+                self.meta.subtitle,
                 self.meta.authors_short()
             )
             return cover_image
@@ -231,7 +231,7 @@ class Book():
             print "OSError, probably Cairo not installed."
             return None
 
-    def add_covers(self):   
+    def add_covers(self):
         new_covers = []
         comment = None
         for cover in self.meta.covers:
@@ -246,7 +246,7 @@ class Book():
                         {"image_path": cover_files[0], "cover_type":"archival"}
                     )
                 comment = "added archival cover"
-            else:         
+            else:
                 with open('{}/cover.png'.format(self.local_path), 'w+') as cover:
                     self.generate_cover().save(cover)
                     new_covers.append(
@@ -256,5 +256,5 @@ class Book():
             self.meta.metadata['_version'] =  semver.bump_minor(self.meta._version)
         self.meta.metadata['covers'] = new_covers
         return comment
-        
-        
+
+

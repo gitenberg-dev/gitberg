@@ -1,12 +1,9 @@
 # these methods with signature: action(repo, *args, **kwargs)
-# can be applied to a repo 
+# can be applied to a repo
 
-from github3 import login
-from github3.exceptions import UnprocessableEntity
 from .book import Book
 from .make import NewFilesHandler
 from .parameters import GITHUB_ORG as orgname
-from .util.catalog import get_repo_name
 
 def get_id(repo):
     book = Book(None, repo_name=repo)
@@ -18,7 +15,7 @@ def get_id(repo):
 def get_book(repo_name):
     return Book(None, repo_name=repo_name)
 
-def get_cloned_book(repo_name):    
+def get_cloned_book(repo_name):
     book = get_book(repo_name)
     book.clone_from_github()
     book.parse_book_metadata()
@@ -35,7 +32,7 @@ def delete(repo_name):
             print "couldn't delete {}".format(repo_name)
     else:
         print "{} didn't exist".format(repo_name)
-        
+
 def add_generated_cover(repo_name, tag=False):
     book = get_cloned_book(repo_name)
 
@@ -44,7 +41,7 @@ def add_generated_cover(repo_name, tag=False):
         book.local_repo.add_all_files()
         book.local_repo.commit(result)
     return book
-    
+
 def config_travis(repo_name, tag=False):
     book = get_cloned_book(repo_name)
 
@@ -59,9 +56,9 @@ def refresh_repo(repo_name):
     filemaker.travis_files()
     book.add_covers()
     book.local_repo.add_all_files()
-    book.local_repo.commit('Update cover, travis files') 
+    book.local_repo.commit('Update cover, travis files')
     book.tag()
     return book
 
-    
+
     

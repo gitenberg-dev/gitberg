@@ -16,7 +16,10 @@ from ..metadata.pg_rdf import pg_rdf_to_json
 # sourced from http://www.gutenberg.org/MIRRORS.ALL
 MIRRORS = {'default': 'ftp://gutenberg.pglaf.org/mirrors/gutenberg/'}
 
-with open(os.path.join(os.path.dirname(__file__), '../data/gutenberg_descriptions.json')) as descfile:
+with open(
+        os.path.join(os.path.dirname(__file__),
+        '../data/gutenberg_descriptions.json')
+    ) as descfile:
     DESCS = json.load(descfile)
 
 descs = {}
@@ -39,29 +42,12 @@ def get_repo_name(repo_name):
 class NoRDFError(Exception):
     pass
 
-class CdContext():
-    """ A context manager using `os` to cd to a directory and back
-        `with CdContext(new path to go to)`
-    """
-
-    def __init__(self, path):
-        self._og_directory = str(os.getcwd()).strip('\n')
-
-        self._dest_directory = path
-
-    def __enter__(self):
-        os.chdir(self._dest_directory)
-
-    def __exit__(self, exception_type, exception_value, traceback):
-        os.chdir(self._og_directory)
-
-
 class BookMetadata(Pandata):
     def __init__(self, book, rdf_library='./rdf_library', enrich=True):
         self.book = book
         try:
             assert(os.path.exists(rdf_library))
-        except Error as e:
+        except Exception as e:
             raise NotConfigured(e)
         self.rdf_path = "{0}/{1}/pg{1}.rdf".format(
             rdf_library, self.book.book_id

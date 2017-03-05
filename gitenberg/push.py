@@ -8,7 +8,6 @@ from __future__ import print_function
 import base64
 import datetime
 import logging
-import time
 
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
@@ -19,7 +18,6 @@ import requests
 import semver
 
 from . import config
-from . local_repo import LocalRepo
 from .parameters import GITHUB_ORG, ORG_HOMEPAGE
 
 class GithubRepo():
@@ -28,14 +26,14 @@ class GithubRepo():
         self.org_name = GITHUB_ORG
         self.org_homepage = ORG_HOMEPAGE
         self.book = book
-        
+
         self._repo_token = None
         self._github_token = None
         self._travis_repo_public_key = None
         if not config.data:
             config.ConfigFile()
         self.create_api_handler()
-    
+
     @property
     def repo_id(self):
         return "{}/{}".format(self.org_name, self.book.meta._repo)
@@ -43,17 +41,17 @@ class GithubRepo():
     def push(self):
         self.book.local_repo.git.remote('origin').push(
             self.book.local_repo.git.refs.master, tags=True
-        )    
-    
+        )
+
     def create_and_push(self):
         self.create_repo()
         origin = self.add_remote_origin_to_local_repo()
         origin.push(self.book.local_repo.git.refs.master)
-    
+
     def update(self, message):
         self.book.local_repo.update(message)
         self.push()
-        
+
     def tag(self, version):
         if version == "bump":
             old_version = self.book.meta._version
@@ -69,8 +67,8 @@ class GithubRepo():
         ref = self.book.local_repo.tag(version)
         self.push()
         logging.info("tagged and pushed " + str(ref))
-            
-        
+
+
     def create_api_handler(self):
         """ Creates an api handler and sets it on self """
         try:
@@ -113,21 +111,21 @@ class GithubRepo():
             print("We may have already added a remote origin to this repo")
             return self.book.local_repo.git.remote('origin')
         return origin
-    
+
 
     def github_token(self):
 
         if self._github_token is not None:
             return self._github_token
-        
+
         token_note = "token for travis {}".format(datetime.datetime.utcnow().isoformat())
-        token = github3.authorize(config.data['gh_user'], config.data['gh_password'], 
-                             scopes=('read:org', 'user:email', 'repo_deployment', 
+        token = github3.authorize(config.data['gh_user'], config.data['gh_password'],
+                             scopes=('read:org', 'user:email', 'repo_deployment',
                                      'repo:status', 'write:repo_hook'), note=token_note)
 
         self._github_token = token.token
         return self._github_token
-    
+
     def repo_token(self):
         if self._repo_token is not None:
             return self._repo_token
@@ -136,9 +134,9 @@ class GithubRepo():
         )
 
         token = github3.authorize(
-            config.data['gh_user'], 
-            config.data['gh_password'], 
-            scopes=('public_repo'), 
+            config.data['gh_user'],
+            config.data['gh_password'],
+            scopes=('public_repo'),
             note=token_note
         )
         self._repo_token = token.token
@@ -153,18 +151,18 @@ class GithubRepo():
 
     def travis_encrypt(self, token_to_encrypt):
         """
-        return encrypted version of token_to_encrypt 
+        return encrypted version of token_to_encrypt
         """
         # token_to_encrypt has to be string
         # if's not, assume it's unicode and enconde in utf-8
-        
+
         if isinstance(token_to_encrypt, unicode):
             token_string = token_to_encrypt.encode('utf-8')
         else:
             token_string = token_to_encrypt
 
         repo_public_key_text = self.public_key_for_travis_repo()
-        
+
         if repo_public_key_text is None:
             return None
 
@@ -186,8 +184,8 @@ class GithubRepo():
         )
 
         return base64.b64encode(ciphertext)
-        
-    def travis_key(self):  
+
+    def travis_key(self):
         if self.book.local_repo:
             travis_key = self.book.local_repo.travis_key
             if travis_key:

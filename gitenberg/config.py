@@ -23,7 +23,7 @@ def get_library_path(library_path='./library'):
     if data == {}:
         ConfigFile()
     try:
-        return data.get("library_path",library_path)
+        return data.get("library_path", library_path)
     except:
         # no config, used in tests
         return library_path

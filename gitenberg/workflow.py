@@ -36,7 +36,7 @@ def upload_list(book_id_list, rdf_library=None):
         upload_book(book_id, rdf_library=rdf_library)
 
 
-def upload_book(book_id,rdf_library=None):
+def upload_book(book_id, rdf_library=None):
     logging.info("--> Beginning {0}".format(book_id))
     book = Book(book_id)
 
@@ -53,11 +53,11 @@ def apply_file(action, book_id_file, limit=10):
         for line in f:
             book_list.append(line.strip())
     apply_list(action, book_list[:limit])
-    
+
 def apply_all(action, book_id_start, book_id_end):
     book_list = range(int(book_id_start), int(book_id_end))
     apply_list(action, book_list)
-    
+
 def apply_list(arg_action, id_list):
     action = getattr(actions, arg_action)
     for book_id in id_list:
@@ -74,13 +74,13 @@ def apply_to_repos(action, args=None, kwargs=None, repos=None):
 
     if repos is None:
         repos = all_repos
-    
+
     if args is None:
         args = []
-        
+
     if kwargs is None:
         kwargs = {}
-        
+
     for repo in repos:
         try:
             result = action (repo, *args, **kwargs)

@@ -7,7 +7,6 @@ import git
 from . import config
 from .local_repo import LocalRepo
 from .parameters import GITHUB_ORG
-from .util.catalog import get_repo_name
 
 clone_url_ssh_template = u"git@github.com:{org_name}/{repo_name}.git"
 
@@ -39,7 +38,7 @@ class CloneVat(object):
             return True
         else:
             return False
-    
+
     def get_clone_url_ssh(self):
         return clone_url_ssh_template.format(org_name=GITHUB_ORG, repo_name=self.book_repo_name)
 

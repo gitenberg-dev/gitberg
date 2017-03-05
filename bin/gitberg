@@ -17,7 +17,7 @@ Usage:
 
 Arguments:
     <book_repo_name> -- The name of a repo in Gitenberg, `Frankenstein_84`. If you supply only a
-                        number, it will be construed as a book_id, and the repo_name will be looked 
+                        number, it will be construed as a book_id, and the repo_name will be looked
                         up from a table.
     <action> -- action to apply to repo
     <book_id_list> -- a filename for a list of book_id (one per line)
@@ -31,7 +31,6 @@ Options:
 # TODO  use `--` to separate arguments and files
 #       ex: `git checkout -b foo -- file file1 file2
 import logging
-import sys
 
 from docopt import docopt
 
@@ -89,7 +88,7 @@ if __name__ == '__main__':
             book.parse_book_metadata(rdf_library)
         else:
             book = None
-            
+
         if arguments['fetch']:
             logging.info("fetching a PG book: {0}".format(arguments['<book_id>']))
             book.fetch()
@@ -128,25 +127,25 @@ if __name__ == '__main__':
             book.tag()
 
         elif arguments['clone']:
-            book.clone()
-            
+            book.clone_from_github()
+     
         elif arguments['apply']:
             arg_action = arguments['<action>']
             action = getattr(actions, arg_action)
-            action(arg_book_name)
+            action(book_repo_name)
 
         elif arguments['apply_all']:
             workflow.apply_all(arguments['<action>'], arguments['BOOKID'], arguments['BOOKIDEND'])
-            
+
         elif arguments['apply_list']:
             limit = arguments['-x'] if '-x' in arguments else None
             workflow.apply_file(
-                arguments['<action>'], 
-                arguments['<book_id_list>'], 
+                arguments['<action>'],
+                arguments['<book_id_list>'],
                 limit=int(limit)
             )
-            
-            
+
+
     except config.NotConfigured as e:
         print("\tGitberg needs configuration.")
         config.check_config()

@@ -32,6 +32,9 @@ import sys
 
 import cairocffi as cairo
 
+PY2 = sys.version_info[0] == 2
+if PY2:
+    FileNotFoundError = IOError
 #
 # Private helper functions.
 #
@@ -139,7 +142,10 @@ class Image(object):
         self.context.save()
         self.context.translate(self.tx(x+(width/2)), self.ty(y+(height/2)))
         self.context.scale(self.tx(width/2), self.ty(height/2))
-        self.context.arc(0.0, 0.0, 1.0 - (self.tx(thick)/2), (2*math.pi*start)/360, (2*math.pi*end)/360)
+        self.context.arc(0.0, 0.0, 1.0 - (self.tx(thick)/2),
+            (2*math.pi*start)/360,
+            (2*math.pi*end)/360
+        )
         self.context.set_line_width(self.tx(thick))
         self.context.stroke()
         self.context.restore()
@@ -172,7 +178,7 @@ class Image(object):
         self.context.set_font_size(font_size)
         self.context.set_antialias(cairo.ANTIALIAS_DEFAULT)
         # Get some font metrics.
-        font_asc, _, self.font_height, _, _ = self.context.font_extents()
+        font_asc, _, font_height, _, _ = self.context.font_extents()
         # Initialize text cursor to the baseline of the font.
         width, height = self.tx(width), self.ty(height)
         w_x, w_y = self.tx(x), font_asc + self.ty(y)
@@ -188,21 +194,20 @@ class Image(object):
                     # First word of the line extends beyond the line: chop and done.
                     self.context.move_to(w_x, w_y)
                     self.context.show_text(chop(word))
-                    return nlines
+                    return nlines, font_height
                 else:
                     # Filled a line, render it, and move on to the next line.
                     self.context.move_to(w_x, w_y)
                     self.context.show_text(line)
                     line = word
-                    w_y += self.font_height
-                    
+                    w_y += font_height
+
                     if w_y > height:
-                        return nlines
-                    else:
-                        nlines += 1
+                        return nlines, font_height
+                    nlines += 1
         self.context.move_to(w_x, w_y)
         self.context.show_text(line)
-        return nlines
+        return nlines, font_height
 
 
     def save(self, filename=None):
@@ -305,7 +310,11 @@ def draw(title, subtitle, author, cover_width=400, cover_height=600):
         counts = len(title) + len(author)
         color_seed = int(_map(_clip(counts, 2, 80), 2, 80, 10, 360))
         shape_color = Image.colorHSB(color_seed, base_saturation, base_brightness-(counts % 20))
-        base_color = Image.colorHSB((color_seed + color_distance) % 360, base_saturation, base_brightness)
+        base_color = Image.colorHSB((
+            color_seed + color_distance) % 360,
+            base_saturation,
+            base_brightness
+        )
         if invert:
             shape_color, base_color = base_color, shape_color
         if (counts % 10) == 0:
@@ -504,7 +513,7 @@ def draw(title, subtitle, author, cover_width=400, cover_height=600):
         else:
             assert not "Implement."
 
-    # If the text is long, use a smaller font size. 
+    # If the text is long, use a smaller font size.
     def scale_font(text, font_name, font_properties):
         (font_size, font_slant, font_weight) = font_properties
         w = len(text) * font_size
@@ -514,16 +523,18 @@ def draw(title, subtitle, author, cover_width=400, cover_height=600):
             return  (font_size * 1.2, font_slant, font_weight)
         else:
             return font_properties
+
+    # return a font appropriate for the text. Uses Noto CJK if text contains CJK, otherwise
+    # Noto Sans.
     
-    # return a font appropriate for the text. Uses Noto CJK if text contains CJK, otherwise 
-    # Noto Sans. 
     def select_font(text):
         for char in text:
             if ord(char) >= 0x4E00:
                 return 'Noto Sans CJK SC'
         return 'Noto Sans'
-    
+
     # Allocate fonts for the title and the author, and draw the text.
+    
     def drawText():
         fill = Image.colorRGB(50, 50, 50)
 
@@ -535,7 +546,11 @@ def draw(title, subtitle, author, cover_width=400, cover_height=600):
         title_font_family = select_font(title)
         subtitle_font_family = select_font(subtitle)
         title_font_properties = scale_font(title, title_font_family, title_font_properties)
-        subtitle_font_properties = scale_font(subtitle, subtitle_font_family, subtitle_font_properties)
+        subtitle_font_properties = scale_font(
+            subtitle,
+            subtitle_font_family,
+            subtitle_font_properties
+        )
         title_font = cover_image.font(title_font_family, title_font_properties)
         subtitle_font = cover_image.font(subtitle_font_family, subtitle_font_properties)
         title_height = (cover_height - cover_width - (cover_height * cover_margin / 100)) * 0.75
@@ -544,14 +559,21 @@ def draw(title, subtitle, author, cover_width=400, cover_height=600):
         y = cover_height * cover_margin / 100 * 2
         width = cover_width - (2 * cover_height * cover_margin / 100)
         height = title_height
-        title_lines = cover_image.text(title, x, y, width, height, fill, title_font)
+        title_lines, font_height = cover_image.text(title, x, y, width, height, fill, title_font)
         if subtitle:
-            y = min( y + cover_image.font_height * title_lines * cover_height, title_height - subtitle_font_properties[0])
-            
+            y = min(
+                y + font_height * title_lines * cover_height,
+                title_height - subtitle_font_properties[0]
+            )
+
             cover_image.text(subtitle, x, y, width, height, fill, subtitle_font)
 
         author_font_size = cover_width * 0.07
-        author_font_properties = (author_font_size, cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
+        author_font_properties = (
+            author_font_size,
+            cairo.FONT_SLANT_NORMAL,
+            cairo.FONT_WEIGHT_NORMAL
+        )
         author_font = cover_image.font(select_font(author), author_font_properties)
         author_height = (cover_height - cover_width - (cover_height * cover_margin / 100)) * 0.25
         x = cover_height * cover_margin / 100
@@ -630,7 +652,12 @@ def main():
                 for line in f:
                     data = json.loads(line)
                     print("Generating cover for " + data["identifier"])
-                    status = _draw_and_save(data["title"], data["subtitle"], data["authors"], data["filename"])
+                    status = _draw_and_save(
+                        data["title"],
+                        data["subtitle"],
+                        data["authors"],
+                        data["filename"]
+                    )
                     if status:
                         print("Error generating book cover image, skipping")
             return 0

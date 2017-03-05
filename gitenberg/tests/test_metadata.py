@@ -1,7 +1,5 @@
 import os
 import unittest
-import yaml
-import json
 import gitenberg.metadata.marc as marc
 import pymarc
 

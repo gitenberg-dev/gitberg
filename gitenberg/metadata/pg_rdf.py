@@ -1,5 +1,4 @@
 import rdflib
-import json
 import string
 import yaml
 from .licenses import CCLicense

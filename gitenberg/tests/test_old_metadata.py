@@ -6,7 +6,6 @@ import unittest
 from mock import MagicMock
 
 from gitenberg.util.catalog import BookMetadata
-from gitenberg import config
 
 
 class TestBookMetadata(unittest.TestCase):

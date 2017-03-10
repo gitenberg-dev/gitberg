@@ -11,14 +11,25 @@ function build_epub_from_asciidoc {
 
     asciidoctor -a toc,idprefix=xx_,version=$1 -b xhtml5 -T ./asciidoctor-htmlbook/htmlbook-autogen/ -d book book.asciidoc -o book.html
     git clone https://github.com/gitenberg-dev/HTMLBook
+<<<<<<< HEAD
 
+=======
+    
+    # don't risk icluding sample in the product epub
+    rm -r ./HTMLBook/samples/
+    
+>>>>>>> master
     # make book.html available to jinja2 environment by putting it into templates
     cp book.html asciidoctor-htmlbook/gitberg-machine/templates/
 
     /usr/bin/python asciidoctor-htmlbook/gitberg-machine/machine.py -o . -m metadata.yaml book.html
     xsltproc -stringparam external.assets.list " " ./HTMLBook/htmlbook-xsl/epub.xsl book.html
     cp ./HTMLBook/stylesheets/epub/epub.css OEBPS
+<<<<<<< HEAD
     if [ -e cover.jpg ]; then cp cover.jpg OEBPS/cover.jpg; fi
+=======
+    if [ -e cover.jpg ]; then cp cover.jpg OEBPS/cover.jpg; elif [ -e cover.png ]; then cp cover.png OEBPS/cover.png; fi
+>>>>>>> master
 
     # look for first images directory and one found, copy over to ./OEBPS
     find . -name images -type d | head -n 1 | xargs -I {} mv {} ./OEBPS/
@@ -106,7 +117,12 @@ def build_epub(epub_title='book'):
 
     if source_path == 'book.asciidoc':
         return build_epub_from_asciidoc (md['version'], epub_title)
+<<<<<<< HEAD
     elif source_path.endswith('.htm'):
+=======
+
+    elif source_path:
+>>>>>>> master
         if md['cover']:
             cmd = u"""epubmaker --title "{title}" --author "{author}" --cover {cover} {source_path}""".format(
                    title=md['title'],
@@ -130,6 +146,7 @@ def build_epub(epub_title='book'):
         if epub_file <> u"{title}-epub.epub".format(title=md['title']):
             print ("actual epub_file: {}".format(epub_file))
 
+<<<<<<< HEAD
     elif source_path.endswith('.txt'):
         # ebook-convert 76.txt 76.epub --title "Huck Finn" --authors "Mark Twain & Joanne Twain"
         cmd = u"""ebook-convert {source_path} book.epub --title "{title}" --authors "{author}" """.format(
@@ -138,6 +155,8 @@ def build_epub(epub_title='book'):
                     author=md['author_for_calibre'])
         cmd = cmd.encode('ascii', 'xmlcharrefreplace')
         output = subprocess.check_output(cmd, shell=True)
+=======
+>>>>>>> master
     else:
         # error code?
         # http://stackoverflow.com/questions/6180185/custom-python-exceptions-with-error-codes-and-error-messages

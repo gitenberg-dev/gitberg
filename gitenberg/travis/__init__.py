@@ -117,12 +117,8 @@ def build_epub(epub_title='book'):
 
     if source_path == 'book.asciidoc':
         return build_epub_from_asciidoc (md['version'], epub_title)
-<<<<<<< HEAD
-    elif source_path.endswith('.htm'):
-=======
 
     elif source_path:
->>>>>>> master
         if md['cover']:
             cmd = u"""epubmaker --title "{title}" --author "{author}" --cover {cover} {source_path}""".format(
                    title=md['title'],
@@ -146,17 +142,6 @@ def build_epub(epub_title='book'):
         if epub_file <> u"{title}-epub.epub".format(title=md['title']):
             print ("actual epub_file: {}".format(epub_file))
 
-<<<<<<< HEAD
-    elif source_path.endswith('.txt'):
-        # ebook-convert 76.txt 76.epub --title "Huck Finn" --authors "Mark Twain & Joanne Twain"
-        cmd = u"""ebook-convert {source_path} book.epub --title "{title}" --authors "{author}" """.format(
-                    source_path = source_path,
-                    title=md['title'],
-                    author=md['author_for_calibre'])
-        cmd = cmd.encode('ascii', 'xmlcharrefreplace')
-        output = subprocess.check_output(cmd, shell=True)
-=======
->>>>>>> master
     else:
         # error code?
         # http://stackoverflow.com/questions/6180185/custom-python-exceptions-with-error-codes-and-error-messages

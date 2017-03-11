@@ -157,6 +157,7 @@ class Book():
     def tag(self, version='bump', message=''):
         """ tag and commit
         """
+        self.clone_from_github()
         self.github_repo.tag(version, message=message)
 
     def repo(self):

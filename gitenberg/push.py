@@ -52,7 +52,7 @@ class GithubRepo():
         self.book.local_repo.update(message)
         self.push()
 
-    def tag(self, version):
+    def tag(self, version, message=''):
         if version == "bump":
             old_version = self.book.meta._version
             if old_version:
@@ -63,7 +63,7 @@ class GithubRepo():
             version = semver.bump_patch(version)
         self.book.meta.metadata['_version'] =  version
         self.book.save_meta()
-        self.update('bump version metadata')
+        self.update(message if message else 'bump version metadata')
         ref = self.book.local_repo.tag(version)
         self.push()
         logging.info("tagged and pushed " + str(ref))

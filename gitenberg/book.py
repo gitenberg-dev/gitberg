@@ -154,10 +154,10 @@ class Book():
         """
         self.github_repo.update(message)
 
-    def tag(self, version='bump'):
+    def tag(self, version='bump', message=''):
         """ tag and commit
         """
-        self.github_repo.tag(version)
+        self.github_repo.tag(version, message=message)
 
     def repo(self):
         if self.repo_name:

@@ -27,6 +27,7 @@ Options:
     --rdf_library <rdf_library>         where are you storing rdf files
     -n <repo_name> add a reponame
     -x LIMIT max number to retrieve
+    -m message
 """
 # TODO  use `--` to separate arguments and files
 #       ex: `git checkout -b foo -- file file1 file2
@@ -72,6 +73,13 @@ if __name__ == '__main__':
     arguments = docopt(__doc__, version=__version__)
 
     logger = setup_logging(arguments)
+    if ('-m') in arguments:
+        # if
+        message = arguments['-m']
+    else:
+        message = ''
+
+
     try:
         if '--rdf_library' in arguments:
             rdf_library = arguments['--rdf_library']
@@ -124,7 +132,7 @@ if __name__ == '__main__':
             book.update()
 
         elif arguments['tag']:
-            book.tag()
+            book.tag(message=message)
 
         elif arguments['clone']:
             book.clone_from_github()

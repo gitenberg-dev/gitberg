@@ -10,7 +10,7 @@ beautifulsoup4==4.4.1
 wikipedia==1.4.0
 appdirs==1.4.0
 six==1.10.0
-
+pyepub==git+https://github.com/Gluejar/pyepub
 pymarc==3.0.3
 PyYAML==3.11
 

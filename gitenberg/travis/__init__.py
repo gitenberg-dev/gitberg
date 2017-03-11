@@ -3,6 +3,12 @@ import subprocess
 import uuid
 import os
 
+from pyepub import EPUB
+from jinja2 import FileSystemLoader, Environment
+
+from ..metadata.pandata import Pandata
+
+ABOUT = 'about_gitenberg.html'
 
 BUILD_EPUB_SCRIPT = """
 #!/bin/sh
@@ -33,9 +39,8 @@ build_epub_from_asciidoc $1 $2
 """
 
 def repo_metadata ():
-    from .. import metadata
 
-    md = metadata.pandata.Pandata("metadata.yaml")
+    md = Pandata("metadata.yaml")
     cover = None
     for cover in md.covers:
         cover = cover.get('image_path', None)
@@ -122,12 +127,13 @@ def build_epub(epub_title='book'):
         cmd = cmd.encode('ascii', 'xmlcharrefreplace')
 
         output = subprocess.check_output(cmd, shell=True)
+    
         # rename epub to book.epub
 
         # get largest epub file
         epub_file = sorted(glob.glob("*.epub"), key=os.path.getsize, reverse=True)[0]
-        os.rename(epub_file, "book.epub")
-
+        add_gitberg_info(epub_file)
+        
         if epub_file <> u"{title}-epub.epub".format(title=md['title']):
             print ("actual epub_file: {}".format(epub_file))
 
@@ -135,3 +141,18 @@ def build_epub(epub_title='book'):
         # error code?
         # http://stackoverflow.com/questions/6180185/custom-python-exceptions-with-error-codes-and-error-messages
         raise Exception ('no suitable book found')
+        
+def add_gitberg_info(epub_file_name):
+    epub_file = file(epub_file_name)
+    output = EPUB(epub_file, "a")
+    output.addpart(make_gitberg_info(), ABOUT, "application/xhtml+xml", 1) #after title, we hope
+    output.writetodisk('book.epub')
+    
+def make_gitberg_info():
+    metadata = Pandata("metadata.yaml")
+    tempdir = os.path.join(os.path.dirname(__file__), 'templates/') 
+    env = Environment(loader=FileSystemLoader([tempdir, '/',]))
+    template = env.get_template(ABOUT)
+
+    return template.render(metadata=metadata)
+

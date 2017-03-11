@@ -122,6 +122,7 @@ class Book():
         else:
             self.local_repo = clone(self.repo_name)
             self.local_path = self.local_repo.repo_path
+            self.parse_book_metadata() # reload with cloned metadata.yaml
 
     def make(self):
         """ turn fetched files into a local repo, make auxiliary files

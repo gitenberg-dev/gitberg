@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import gc
 import logging
 import os
 import shutil
@@ -184,6 +185,11 @@ class Book():
             self.remove()
 
     def remove(self):
+        # otherwise GitPython uses up to many system resources
+        gc.collect()
+        if self.local_repo:
+            self.local_repo.git.git.clear_cache()
+        
         shutil.rmtree(self.local_path)
 
     def format_title(self):

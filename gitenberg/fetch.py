@@ -21,19 +21,7 @@ class BookFetcher():
         self.book = book
 
     def fetch(self):
-        self.make_local_path()
         self.fetch_remote_book_to_local_path()
-
-    def make_local_path(self):
-        try:
-            os.makedirs(self.book.local_path)
-
-        except OSError:
-            # FIXME logging.debug
-            print("Folder {0} already exists".format(self.book.local_path))
-
-        finally:  # weird try-except-finally, I know
-            os.chmod(self.book.local_path, 0o777)
 
     def fetch_remote_book_to_local_path(self):
         sh.rsync(

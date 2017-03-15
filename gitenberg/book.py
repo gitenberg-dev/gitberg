@@ -73,6 +73,14 @@ class Book():
         path = os.path.join(self.library_path, name)
         if os.path.exists(path):
             self.local_path = path
+        else:
+            try:
+                os.makedirs(path)
+                self.local_path = path
+            except OSError:
+                logging.error("couldn't make path: {}".format(path))
+            finally:  # weird try-except-finally, I know
+                os.chmod(path, 0o777)
 
 
     def parse_book_metadata(self, rdf_library=None):

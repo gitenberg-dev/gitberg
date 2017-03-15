@@ -45,13 +45,14 @@ from gitenberg import workflow
 from gitenberg.util.catalog import NoRDFError
 
 
+FORMAT = '%(asctime)-15s %(message)s'
 
 def setup_logging(arguments):
     """ creates a logger with our hard-coded configuration
     takes: a docopt arguments object instance
     """
     logger = logging.getLogger('')
-    logging.basicConfig(filename='./gitburg.log', level=logging.DEBUG)
+    logging.basicConfig(filename='./gitburg.log', level=logging.DEBUG, format=FORMAT)
     #stdout_handler = logging.StreamHandler(sys.stdout)
     #logger.addHandler(stdout_handler)
 

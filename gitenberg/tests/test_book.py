@@ -10,6 +10,8 @@ from gitenberg.book import Book
     
 class TestBookPath(unittest.TestCase):
     def setUp(self):
+        self.test_book_dir = 'test_book'
+
         def here(appname):
             return os.path.join(os.path.dirname(__file__),'test_data')
         with patch.object(gitenberg.config.appdirs, 'user_config_dir', here) as path:
@@ -35,3 +37,10 @@ class TestBookPath(unittest.TestCase):
                 self.book.remote_path,
                 "7/"
             )
+
+    @patch('os.makedirs')
+    @patch('os.chmod')
+    def test_make_local_path(self, mock_chmod, mock_makedirs):
+        self.book.set_existing_local_path(self.test_book_dir)
+        mock_makedirs.assert_called_once()
+        mock_chmod.assert_called_once()

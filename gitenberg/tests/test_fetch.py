@@ -21,13 +21,6 @@ class TestBookFetcher(unittest.TestCase):
         mock_book.remote_path = self.remote_path
         self.fetcher = BookFetcher(mock_book)
 
-    @patch('os.makedirs')
-    @patch('os.chmod')
-    def test_make_local_path(self, mock_chmod, mock_makedirs):
-        self.fetcher.make_local_path()
-        mock_makedirs.assert_called_once_with(self.test_book_dir)
-        mock_chmod.assert_called_once_with(self.test_book_dir, 0o777)
-
     @patch('sh.rsync')
     def test_remote_fetch(self, mock_rsync):
         self.fetcher.fetch_remote_book_to_local_path()

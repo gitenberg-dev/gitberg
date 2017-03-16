@@ -19,7 +19,7 @@ Arguments:
     <book_repo_name> -- The name of a repo in Gitenberg, `Frankenstein_84`. If you supply only a
                         number, it will be construed as a book_id, and the repo_name will be looked
                         up from a table.
-    <action> -- action to apply to repo
+    <action> -- action to apply to repo.
     <book_id_list> -- a filename for a list of book_id (one per line)
 
 Options:
@@ -140,8 +140,11 @@ if __name__ == '__main__':
      
         elif arguments['apply']:
             arg_action = arguments['<action>']
-            action = getattr(actions, arg_action)
-            action(book_repo_name)
+            try:
+                action = getattr(actions, arg_action)
+                action(book_repo_name)
+            except AttributeError:
+                print "{} is not a supported action".format(arg_action)        
 
         elif arguments['apply_all']:
             workflow.apply_all(arguments['<action>'], arguments['BOOKID'], arguments['BOOKIDEND'])

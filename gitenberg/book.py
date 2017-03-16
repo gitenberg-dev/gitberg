@@ -73,7 +73,10 @@ class Book():
         path = os.path.join(self.library_path, name)
         if os.path.exists(path):
             self.local_path = path
-        else:
+        
+    def make_local_path(self):
+        path = os.path.join(self.library_path, self.book_id)
+        if not os.path.exists(path):
             try:
                 os.makedirs(path)
                 self.local_path = path
@@ -81,7 +84,6 @@ class Book():
                 logging.error("couldn't make path: {}".format(path))
             finally:  # weird try-except-finally, I know
                 os.chmod(path, 0o777)
-
 
     def parse_book_metadata(self, rdf_library=None):
         # cloned repo
@@ -120,6 +122,7 @@ class Book():
     def fetch(self):
         """ just pull files from PG
         """
+        self.make_local_path()
         fetcher = BookFetcher(self)
         fetcher.fetch()
 

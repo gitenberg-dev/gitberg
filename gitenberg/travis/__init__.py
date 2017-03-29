@@ -17,25 +17,17 @@ function build_epub_from_asciidoc {
 
     asciidoctor -a toc,idprefix=xx_,version=$1 -b xhtml5 -T ./asciidoctor-htmlbook/htmlbook-autogen/ -d book book.asciidoc -o book.html
     git clone https://github.com/gitenberg-dev/HTMLBook
-<<<<<<< HEAD
-
-=======
     
     # don't risk icluding sample in the product epub
     rm -r ./HTMLBook/samples/
     
->>>>>>> master
     # make book.html available to jinja2 environment by putting it into templates
     cp book.html asciidoctor-htmlbook/gitberg-machine/templates/
 
     /usr/bin/python asciidoctor-htmlbook/gitberg-machine/machine.py -o . -m metadata.yaml book.html
     xsltproc -stringparam external.assets.list " " ./HTMLBook/htmlbook-xsl/epub.xsl book.html
     cp ./HTMLBook/stylesheets/epub/epub.css OEBPS
-<<<<<<< HEAD
-    if [ -e cover.jpg ]; then cp cover.jpg OEBPS/cover.jpg; fi
-=======
     if [ -e cover.jpg ]; then cp cover.jpg OEBPS/cover.jpg; elif [ -e cover.png ]; then cp cover.png OEBPS/cover.png; fi
->>>>>>> master
 
     # look for first images directory and one found, copy over to ./OEBPS
     find . -name images -type d | head -n 1 | xargs -I {} mv {} ./OEBPS/

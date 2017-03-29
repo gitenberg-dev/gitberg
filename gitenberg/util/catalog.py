@@ -6,16 +6,20 @@
 import csv
 import json
 import os
+import re
 
-from gitenberg import pg_wikipedia
-from gitenberg.config import NotConfigured
-from gitenberg.metadata.pandata import Pandata
-from gitenberg.metadata.pg_rdf import pg_rdf_to_json
+from .. import pg_wikipedia
+from ..config import NotConfigured
+from ..metadata.pandata import Pandata
+from ..metadata.pg_rdf import pg_rdf_to_json
 
 # sourced from http://www.gutenberg.org/MIRRORS.ALL
 MIRRORS = {'default': 'ftp://gutenberg.pglaf.org/mirrors/gutenberg/'}
 
-with open(os.path.join(os.path.dirname(__file__), '../data/gutenberg_descriptions.json')) as descfile:
+with open(
+        os.path.join(os.path.dirname(__file__),
+        '../data/gutenberg_descriptions.json')
+    ) as descfile:
     DESCS = json.load(descfile)
 
 descs = {}
@@ -25,27 +29,26 @@ repo_list = []
 with open(os.path.join(os.path.dirname(__file__), '../data/GITenberg_repo_list.tsv')) as repofile:
     for row in csv.reader(repofile, delimiter='\t', quotechar='"'):
         repo_list.append(row)
+repo_for_pgid = {int(pgid): value for (pgid, value) in repo_list}
 
-class CdContext():
-    """ A context manager using `os` to cd to a directory and back
-        `with CdContext(new path to go to)`
-    """
+def get_repo_name(repo_name):
+    if re.match( r'^\d+$', repo_name):
+        try:
+            repo_name = repo_for_pgid[int(repo_name)]
+        except KeyError:
+            pass
+    return repo_name
 
-    def __init__(self, path):
-        self._og_directory = str(os.getcwd()).strip('\n')
-
-        self._dest_directory = path
-
-    def __enter__(self):
-        os.chdir(self._dest_directory)
-
-    def __exit__(self, exception_type, exception_value, traceback):
-        os.chdir(self._og_directory)
-
+class NoRDFError(Exception):
+    pass
 
 class BookMetadata(Pandata):
     def __init__(self, book, rdf_library='./rdf_library', enrich=True):
         self.book = book
+        try:
+            assert(os.path.exists(rdf_library))
+        except Exception as e:
+            raise NotConfigured(e)
         self.rdf_path = "{0}/{1}/pg{1}.rdf".format(
             rdf_library, self.book.book_id
         )
@@ -59,7 +62,7 @@ class BookMetadata(Pandata):
         try:
             self.metadata = pg_rdf_to_json(self.rdf_path)
         except IOError as e:
-            raise NotConfigured(e)
+            raise NoRDFError(e)
 
         if len(self.authnames()) == 0:
             self.author = ''

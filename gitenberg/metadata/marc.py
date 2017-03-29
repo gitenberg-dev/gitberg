@@ -5,9 +5,8 @@ MARC records for the unglued pandata (in .xml and .mrc formats).
 """
 
 import pymarc
-import logging
+
 from datetime import datetime
-from StringIO import StringIO
 
 import licenses
 

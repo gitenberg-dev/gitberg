@@ -14,14 +14,9 @@ class GitbergLibraryManager(object):
         # by default, loads the default config location
         self.config = config.ConfigFile()
 
-    @property
-    def library_base_path(self):
-        """ returns the path where library books are stored """
-        return self.config.data['library_path']
-
     def book_directories(self):
         """ Returns a list of book directories in the library folder """
-        return os.listdir(self.library_base_path)
+        return os.listdir(config.data['library_path'])
 
 
 def main():

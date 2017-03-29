@@ -4,48 +4,55 @@
 Usage:
     gitberg config
     gitberg library [status]
-    gitberg clone <book_repo_name>
-    gitberg (fetch | make | push | upload | metadata) <book_id> [options]
+    gitberg clone <book_id>
+    gitberg (fetch | make | push | upload | metadata | tag) [<book_id>] [options]
     gitberg get <book_id> [options]
     gitberg metadata <book_id> [options]
-    gitberg update [options]
-    gitberg report <book_identity>
+    gitberg update <book_repo_name> [options]
     gitberg all BOOKID BOOKIDEND [options]
     gitberg list <book_id_list> [options]
     gitberg apply <action> <book_repo_name>
+    gitberg apply_all <action>  BOOKID BOOKIDEND [options]
+    gitberg apply_list <action> <book_id_list> [options]
 
 Arguments:
-    <book_repo_name> -- The name of a repo in Gitenberg, `Frankenstein_84`
-    <target> -- a file path, example, where to clone a book
-    <action> -- action to apply to repo
+    <book_repo_name> -- The name of a repo in Gitenberg, `Frankenstein_84`. If you supply only a
+                        number, it will be construed as a book_id, and the repo_name will be looked
+                        up from a table.
+    <action> -- action to apply to repo.
+    <book_id_list> -- a filename for a list of book_id (one per line)
 
 Options:
     -v --logging (debug | info | error)
     --rdf_library <rdf_library>         where are you storing rdf files
+    -n <repo_name> add a reponame
+    -x LIMIT max number to retrieve
+    -m message
 """
 # TODO  use `--` to separate arguments and files
 #       ex: `git checkout -b foo -- file file1 file2
 import logging
-import sys
 
 from docopt import docopt
 
 from gitenberg import __version__
 from gitenberg import Book
-from gitenberg import clone
 from gitenberg import config
 from gitenberg import upload_all_books, upload_list
 from gitenberg import library
 from gitenberg import actions
+from gitenberg import workflow
+from gitenberg.util.catalog import NoRDFError
 
 
+FORMAT = '%(asctime)-15s %(message)s'
 
 def setup_logging(arguments):
     """ creates a logger with our hard-coded configuration
     takes: a docopt arguments object instance
     """
     logger = logging.getLogger('')
-    logging.basicConfig(filename='./gitburg.log', level=logging.DEBUG)
+    logging.basicConfig(filename='./gitburg.log', level=logging.DEBUG, format=FORMAT)
     #stdout_handler = logging.StreamHandler(sys.stdout)
     #logger.addHandler(stdout_handler)
 
@@ -67,15 +74,29 @@ if __name__ == '__main__':
     arguments = docopt(__doc__, version=__version__)
 
     logger = setup_logging(arguments)
+    if ('-m') in arguments:
+        # if
+        message = arguments['-m']
+    else:
+        message = ''
+
+
     try:
         if '--rdf_library' in arguments:
             rdf_library = arguments['--rdf_library']
         else:
             rdf_library = config.data.get('rdf_library', None)
 
-        if arguments['<book_id>'] is not None:
-            book = Book(arguments['<book_id>'])
+        book_repo_name = arguments.get('<book_repo_name>', None)
+        repo_name = arguments['-n'] if '-n' in arguments else None
+        repo_name = book_repo_name if book_repo_name else repo_name
+        book_id = arguments.get('<book_id>', None)
+
+        if book_id or repo_name:
+            book = Book(book_id, repo_name=repo_name)
             book.parse_book_metadata(rdf_library)
+        else:
+            book = None
 
         if arguments['fetch']:
             logging.info("fetching a PG book: {0}".format(arguments['<book_id>']))
@@ -109,23 +130,38 @@ if __name__ == '__main__':
             library()
 
         elif arguments['update']:
-            raise NotImplementedError
+            book.update()
 
-        elif arguments['report']:
-            raise NotImplementedError
+        elif arguments['tag']:
+            book.tag(message=message)
 
         elif arguments['clone']:
-            # TODO: check for stdin
-            arg_book_name = arguments['<book_repo_name>']
-            clone(arg_book_name)
-            
+            book.clone_from_github()
+     
         elif arguments['apply']:
-            arg_book_name = arguments['<book_repo_name>']
             arg_action = arguments['<action>']
-            action = getattr(actions, arg_action)
-            action(arg_book_name)
-            
-            
+            try:
+                action = getattr(actions, arg_action)
+                action(book_repo_name)
+            except AttributeError:
+                print "{} is not a supported action".format(arg_action)        
+
+        elif arguments['apply_all']:
+            workflow.apply_all(arguments['<action>'], arguments['BOOKID'], arguments['BOOKIDEND'])
+
+        elif arguments['apply_list']:
+            limit = arguments['-x'] if '-x' in arguments else None
+            workflow.apply_file(
+                arguments['<action>'],
+                arguments['<book_id_list>'],
+                limit=int(limit)
+            )
+
+
     except config.NotConfigured as e:
         print("\tGitberg needs configuration.")
         config.check_config()
+    except NoRDFError as e:
+        print("\tNo RDF Metadata file found.")
+    #except NameError e:
+        #print __doc__

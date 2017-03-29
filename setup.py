@@ -27,9 +27,9 @@ setup(name='gitberg',
         'gitenberg.travis', 'gitenberg.util'],
       include_package_data=True,
       install_requires=[
-          'requests>=2.2',
+          'requests>=2.7',
           'Jinja2>=2.7',
-          'PyYAML>=3.10',
+          'PyYAML>=3.11',
       ],
 
       test_suite='nose.collector',

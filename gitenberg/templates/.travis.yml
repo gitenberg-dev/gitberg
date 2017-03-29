@@ -5,12 +5,12 @@ language: ruby
 before_install:
 - gem install asciidoctor -v 1.5.2
 - gem install tilt
-- sudo pip install git+https://github.com/gitenberg-dev/gitberg
-- sudo pip install git+https://github.com/gitenberg-dev/pg-epubmaker
+- sudo -H pip install git+https://github.com/gitenberg-dev/gitberg-build
+- sudo -H pip install git+https://github.com/gitenberg-dev/pg-epubmaker
 script:
 - VERSION=`ruby -e "require 'yaml'; meta = YAML.load_file('metadata.yaml'); puts meta['_version'];"`
 - git clone https://github.com/gitenberg-dev/asciidoctor-htmlbook.git
-- sudo pip install -r asciidoctor-htmlbook/gitberg-machine/requirements.txt
+- sudo -H pip install -r asciidoctor-htmlbook/gitberg-machine/requirements.txt
 
 - /usr/bin/python -c "from gitenberg import travis; travis.build_epub()"
 - ebook-convert {{epub_title}}.epub {{epub_title}}.mobi

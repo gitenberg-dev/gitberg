@@ -39,6 +39,15 @@ Main config values:
     gh_password: <your github account password>
     library_path: '~/data/library'
     rdf_library: location of your cache of the PG RDF demp
+
+### Development
+
+To run project in development mode clone the project and do:
+    
+    python setup.py develop
+
+some commands will require you to run gitberg from the cloned directory.
+
 ## Testing
 
 To run project tests do:

@@ -1,0 +1,3451 @@
+The Project Gutenberg Etext of Organic Syntheses, Conant, Editor
+
+Caveat:  Some numbers did not OCR correctly and may not have been
+corrected during the proofing!  Check the 1941 print edition
+before trying these!
+
+
+Copyright laws are changing all over the world, be sure to check
+the copyright laws for your country before posting these files!!
+
+Please take a look at the important information in this header.
+We encourage you to keep this file on your own disk, keeping an
+electronic path open for the next readers.  Do not remove this.
+
+
+**Welcome To The World of Free Plain Vanilla Electronic Texts**
+
+**Etexts Readable By Both Humans and By Computers, Since 1971**
+
+*These Etexts Prepared By Hundreds of Volunteers and Donations*
+
+Information on contacting Project Gutenberg to get Etexts, and
+further information is included below.  We need your donations.
+
+
+Organic Syntheses
+
+James Bryant Conant, Editor
+
+March, 1998  [Etext #1234]
+
+
+The Project Gutenberg Etext of Organic Syntheses, Conant, Editor
+******This file should be named 1234.txt or 1234.zip******
+
+
+Scanned by Charles Keller with OmniPage Professional OCR software
+
+
+Project Gutenberg Etexts are usually created from multiple editions,
+all of which are in the Public Domain in the United States, unless a
+copyright notice is included.  Therefore, we do NOT keep these books
+in compliance with any particular paper edition, usually otherwise.
+
+
+We are now trying to release all our books one month in advance
+of the official release dates, for time for better editing.
+
+Please note:  neither this list nor its contents are final till
+midnight of the last day of the month of any such announcement.
+The official release date of all Project Gutenberg Etexts is at
+Midnight, Central Time, of the last day of the stated month.  A
+preliminary version may often be posted for suggestion, comment
+and editing by those who wish to do so.  To be sure you have an
+up to date first edition [xxxxx10x.xxx] please check file sizes
+in the first week of the next month.  Since our ftp program has
+a bug in it that scrambles the date [tried to fix and failed] a
+look at the file size will have to do, but we will try to see a
+new copy has at least one byte more or less.
+
+
+Information about Project Gutenberg (one page)
+
+We produce about two million dollars for each hour we work.  The
+fifty hours is one conservative estimate for how long it we take
+to get any etext selected, entered, proofread, edited, copyright
+searched and analyzed, the copyright letters written, etc.  This
+projected audience is one hundred million readers.  If our value
+per text is nominally estimated at one dollar then we produce $2
+million dollars per hour this year as we release thirty-two text
+files per month, or 384 more Etexts in 1998 for a total of 1500+
+If these reach just 10% of the computerized population, then the
+total should reach over 150 billion Etexts given away.
+
+The Goal of Project Gutenberg is to Give Away One Trillion Etext
+Files by the December 31, 2001.  [10,000 x 100,000,000=Trillion]
+This is ten thousand titles each to one hundred million readers,
+which is only 10% of the present number of computer users.  2001
+should have at least twice as many computer users as that, so it
+will require us reaching less than 5% of the users in 2001.
+
+
+We need your donations more than ever!
+
+
+All donations should be made to "Project Gutenberg/CMU": and are
+tax deductible to the extent allowable by law.  (CMU = Carnegie-
+Mellon University).
+
+For these and other matters, please mail to:
+
+Project Gutenberg
+P. O. Box  2782
+Champaign, IL 61825
+
+When all other email fails try our Executive Director:
+Michael S. Hart <hart@pobox.com>
+
+We would prefer to send you this information by email
+(Internet, Bitnet, Compuserve, ATTMAIL or MCImail).
+
+******
+If you have an FTP program (or emulator), please
+FTP directly to the Project Gutenberg archives:
+[Mac users, do NOT point and click. . .type]
+
+ftp uiarchive.cso.uiuc.edu
+login:  anonymous
+password:  your@login
+cd etext/etext90 through /etext96
+or cd etext/articles [get suggest gut for more information]
+dir [to see files]
+get or mget [to get files. . .set bin for zip files]
+GET INDEX?00.GUT
+for a list of books
+and
+GET NEW GUT for general information
+and
+MGET GUT* for newsletters.
+
+**Information prepared by the Project Gutenberg legal advisor**
+(Three Pages)
+
+
+***START**THE SMALL PRINT!**FOR PUBLIC DOMAIN ETEXTS**START***
+Why is this "Small Print!" statement here?  You know: lawyers.
+They tell us you might sue us if there is something wrong with
+your copy of this etext, even if you got it for free from
+someone other than us, and even if what's wrong is not our
+fault.  So, among other things, this "Small Print!" statement
+disclaims most of our liability to you.  It also tells you how
+you can distribute copies of this etext if you want to.
+
+*BEFORE!* YOU USE OR READ THIS ETEXT
+By using or reading any part of this PROJECT GUTENBERG-tm
+etext, you indicate that you understand, agree to and accept
+this "Small Print!" statement.  If you do not, you can receive
+a refund of the money (if any) you paid for this etext by
+sending a request within 30 days of receiving it to the person
+you got it from.  If you received this etext on a physical
+medium (such as a disk), you must return it with your request.
+
+ABOUT PROJECT GUTENBERG-TM ETEXTS
+This PROJECT GUTENBERG-tm etext, like most PROJECT GUTENBERG-
+tm etexts, is a "public domain" work distributed by Professor
+Michael S. Hart through the Project Gutenberg Association at
+Carnegie-Mellon University (the "Project").  Among other
+things, this means that no one owns a United States copyright
+on or for this work, so the Project (and you!) can copy and
+distribute it in the United States without permission and
+without paying copyright royalties.  Special rules, set forth
+below, apply if you wish to copy and distribute this etext
+under the Project's "PROJECT GUTENBERG" trademark.
+
+To create these etexts, the Project expends considerable
+efforts to identify, transcribe and proofread public domain
+works.  Despite these efforts, the Project's etexts and any
+medium they may be on may contain "Defects".  Among other
+things, Defects may take the form of incomplete, inaccurate or
+corrupt data, transcription errors, a copyright or other
+intellectual property infringement, a defective or damaged
+disk or other etext medium, a computer virus, or computer
+codes that damage or cannot be read by your equipment.
+
+LIMITED WARRANTY; DISCLAIMER OF DAMAGES
+But for the "Right of Replacement or Refund" described below,
+[1] the Project (and any other party you may receive this
+etext from as a PROJECT GUTENBERG-tm etext) disclaims all
+liability to you for damages, costs and expenses, including
+legal fees, and [2] YOU HAVE NO REMEDIES FOR NEGLIGENCE OR
+UNDER STRICT LIABILITY, OR FOR BREACH OF WARRANTY OR CONTRACT,
+INCLUDING BUT NOT LIMITED TO INDIRECT, CONSEQUENTIAL, PUNITIVE
+OR INCIDENTAL DAMAGES, EVEN IF YOU GIVE NOTICE OF THE
+POSSIBILITY OF SUCH DAMAGES.
+
+If you discover a Defect in this etext within 90 days of
+receiving it, you can receive a refund of the money (if any)
+you paid for it by sending an explanatory note within that
+time to the person you received it from.  If you received it
+on a physical medium, you must return it with your note, and
+such person may choose to alternatively give you a replacement
+copy.  If you received it electronically, such person may
+choose to alternatively give you a second opportunity to
+receive it electronically.
+
+THIS ETEXT IS OTHERWISE PROVIDED TO YOU "AS-IS".  NO OTHER
+WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, ARE MADE TO YOU AS
+TO THE ETEXT OR ANY MEDIUM IT MAY BE ON, INCLUDING BUT NOT
+LIMITED TO WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A
+PARTICULAR PURPOSE.
+
+Some states do not allow disclaimers of implied warranties or
+the exclusion or limitation of consequential damages, so the
+above disclaimers and exclusions may not apply to you, and you
+may have other legal rights.
+
+INDEMNITY
+You will indemnify and hold the Project, its directors,
+officers, members and agents harmless from all liability, cost
+and expense, including legal fees, that arise directly or
+indirectly from any of the following that you do or cause:
+[1] distribution of this etext, [2] alteration, modification,
+or addition to the etext, or [3] any Defect.
+
+DISTRIBUTION UNDER "PROJECT GUTENBERG-tm"
+You may distribute copies of this etext electronically, or by
+disk, book or any other medium if you either delete this
+"Small Print!" and all other references to Project Gutenberg,
+or:
+
+[1]  Only give exact copies of it.  Among other things, this
+     requires that you do not remove, alter or modify the
+     etext or this "small print!" statement.  You may however,
+     if you wish, distribute this etext in machine readable
+     binary, compressed, mark-up, or proprietary form,
+     including any form resulting from conversion by word pro-
+     cessing or hypertext software, but only so long as
+     *EITHER*:
+
+     [*]  The etext, when displayed, is clearly readable, and
+          does *not* contain characters other than those
+          intended by the author of the work, although tilde
+          (~), asterisk (*) and underline (_) characters may
+          be used to convey punctuation intended by the
+          author, and additional characters may be used to
+          indicate hypertext links; OR
+
+     [*]  The etext may be readily converted by the reader at
+          no expense into plain ASCII, EBCDIC or equivalent
+          form by the program that displays the etext (as is
+          the case, for instance, with most word processors);
+          OR
+
+     [*]  You provide, or agree to also provide on request at
+          no additional cost, fee or expense, a copy of the
+          etext in its original plain ASCII form (or in EBCDIC
+          or other equivalent proprietary form).
+
+[2]  Honor the etext refund and replacement provisions of this
+     "Small Print!" statement.
+
+[3]  Pay a trademark license fee to the Project of 20% of the
+     net profits you derive calculated using the method you
+     already use to calculate your applicable taxes.  If you
+     don't derive profits, no royalty is due.  Royalties are
+     payable to "Project Gutenberg Association/Carnegie-Mellon
+     University" within the 60 days following each
+     date you prepare (or were legally required to prepare)
+     your annual (or equivalent periodic) tax return.
+
+WHAT IF YOU *WANT* TO SEND MONEY EVEN IF YOU DON'T HAVE TO?
+The Project gratefully accepts contributions in money, time,
+scanning machines, OCR software, public domain etexts, royalty
+free copyright licenses, and every other sort of contribution
+you can think of.  Money should be paid to "Project Gutenberg
+Association / Carnegie-Mellon University".
+
+*END*THE SMALL PRINT! FOR PUBLIC DOMAIN ETEXTS*Ver.04.29.93*END*
+
+
+
+
+
+Scanned by Charles Keller with OmniPage Professional OCR software
+
+TB is a triple bond.  <.> is a dotted (coordinated) bond.
+"Emphasis" _italics_ have a * mark.
+[#] footnotes moved to EOParagraphs but NOT renumbered.
+(They are numbered "a" or "b" when two pages of notes are together.)
+Comments and guessed at characters in {braces} need stripped/fixed.
+Greek letters are encoded in <gr > brackets, and the letters are
+based on Adobe's Symbol font.
+
+
+
+
+
+ORGANIC SYNTHESES
+
+AN ANNUAL PUBLICATION OF SATISFACTORY METHODS FOR THE PREPARATION
+OF ORGANIC CHEMICALS
+
+_EDITORIAL BOARD_
+
+JAMES BRYANT CONANT, _Editor-in-Chief_ HANS THACHER CLARKE ROGER
+ADAMS OLIVER KAMM
+
+_CONTRIBUTORS_ G. H. COLEMAN J, C. HESSLER E. P. KOHLER C. S. MARVEL
+W. A. NOYES G. R. ROBERTSON E. B. VLIET F. C. WHITMORE
+
+VOL.  II.
+
+
+
+
+Caveat:  Some numbers did not OCR correctly and may not have been
+corrected during the proofing!  Check the 1941 print edition
+before trying these!
+
+INTRODUCTION TO THE SERIES
+
+
+THE publication of this series of pamphlets has been undertaken
+to make available in a permanent form complete detailed directions
+for the preparation of various organic chemical reagents.
+In announcing this purpose it may be well to mention at the outset
+some of the difficulties in the way of the research chemist, which it
+is hoped this series will be able to overcome.  The cost of chemicals
+is prohibitive to the majority of chemists; this was true before
+the war when Kahlbaum's complete supply was available, and to-day
+with our dependence on domestic stocks, this cost has increased.
+The delay in obtaining chemicals, especially from abroad,
+even if the expense need not be considered, is an important factor.
+These difficulties have therefore thrown the research chemist on his
+own resources.  The preparation of materials for research, always time
+consuming and annoying, is made increasingly so by the inexactness
+of the published information which so often omits essential details.
+Because of this, much needless experimentation is necessary
+in order to obtain the results given in the published reports.
+As the additional information thus acquired is seldom published,
+duplication of such experiments occurs again and again,--
+a waste of time and material.  It is hoped these difficulties
+may be remedied by the publication of this series of pamphlets.
+In other words, the authors hope to make this a clearing house
+for the exchange of information as to methods of preparation of some
+of the most needed organic chemical reagents.
+
+On account of the impossibility of obtaining the less common
+organic chemicals in the United States during the past few years,
+university laboratories have had no option but to prepare their
+own supplies.  At the University of Illinois, for instance,
+a special study has been made of this field, and methods for
+the production of various substances have been investigated.
+As a result, reliable methods and directions have been developed
+for producing the materials in one-half to five pound lots.
+Such work as Illinois has done is now being given an even more extensive
+scope at the Research Laboratory of the Eastman Kodak Company.  It is
+felt that the results from these various laboratories should be
+available to all chemists and it is hoped that they eventually
+will be completely incorporated in these pamphlets.
+
+The organic chemicals herein discussed have been quite
+arbitrarily chosen, being those which have been needed in various
+research laboratories in the last years and for which the directions
+happen now to be ready for publication.  The methods are in only
+a few cases new ones; they are in general the most satisfactory
+to be found in the literature.  Only such details have been added
+as will enable a man with a reasonable amount of experience
+in organic chemistry to duplicate the results without difficulty.
+To be absolutely sure that each set of directions can be repeated,
+every experiment has been carried out in at least two laboratories.
+Only after exact duplication of the results in both laboratories
+are the directions considered ready for publication.
+The names of the chemists who have studied the various experiments
+are given so that further information concerning any obscure point
+can be obtained if any question arises in using these directions.
+And finally, in describing the experiments, special attention has
+been given to the explanation of why it is necessary to follow
+the directions carefully, and what will happen if these directions
+are not followed.
+
+Although the main object in this series is to give the most convenient
+laboratory methods for preparing various substances in one-half
+to five pound lots, an attempt has also been made to have these
+processes as far as possible adaptable to large scale development.
+For example, extractions have been avoided wherever possible,
+cheap solvents have been sub-stituted for expensive ones,
+and mechanical agitation, a procedure extremely important in the
+success of many commercial processes, has usually been specified.
+The apparatus used is always carefully described and wherever necessary
+an illustration is given.  Accompanying each preparation there will
+be found a bibliography containing references to all the methods
+for the production of the substance described in the literature.
+This is given in order to aid any future investigator who
+may wish to study or improve the methods of preparation.
+It is not claimed that the methods are, in every case,
+completely perfect, but only that the yields are very satisfactory
+and allow the production of the substances at a reasonable cost.
+It is hoped therefore that the pamphlets will benefit not only
+the scientific research man of the university, but also the
+technical chemist who desires to develop the preparation of one
+of these substances to a large scale process of manufacture.
+The editors trust also that this work may be used to advantage
+as a preparation manual in intermediate or advanced courses in
+organic chemistry in university laboratories, and that it will aid
+small colleges in the production of necessary reagents which they
+are often financially unable to purchase.
+
+The pamphlets are to be edited by the following committee:
+Roger Adams, University of Illinois, Urbana, Illinois; J. B. Conant,
+Harvard University, Cambridge, Massachusetts; H. T. Clarke, Eastman
+Kodak Company, Rochester, New York; Oliver Kamm, Parke, Davis Company,
+Detroit, Michigan; each to act for one year as editor-in-chief
+and the other three to assist him as associate editors.  A new number
+of the series will appear annually, and every five years the data will
+be rearranged, revised, corrected, and then published in book form.
+The number of preparations to be completed yearly is not fixed.
+There will be, it is certain, about twenty; and it is hoped,
+as the interest is stimulated in this work, that this number may
+increase considerably.  The editors especially desire to solicit
+contributions from other chemists, not only in this country but abroad.
+Whenever a compound is thoroughly and extensively studied in
+connection with some research, it is hoped that complete directions
+for its preparation will be assembled and sent to the editor.
+He will then have them checked and published in a subsequent number.
+Directions for the preparation of substances already on the market
+are needed to make this work complete and will be gladly accepted.
+
+It will, of course, be recognized that an occasional mistake or omission
+will inevitably be found in such a pamphlet as this which contains
+so many references and formulae.  The committee on publication will
+therefore deem it a favor if they are notified when any such error
+is discovered.  It is hoped also that if any chemist knows a better
+method for the preparation of any of the compounds considered,
+or if anyone discovers any improvements in the methods, he will
+furnish the authors with such information.  Any points which may arise
+in regard to the various preparations will be gladly discussed.
+In conclusion, the editors are ready to do all they can to make this.
+work successful, and welcome suggestions of any kind.
+They feel that the success of the series will undoubtedly depend
+upon the cooperation of others, and as its success promises to be
+important to research chemists, the editors urge all interested
+to assist.  THE EDITORS
+
+
+
+TABLE OF CONTENTS
+                                        PAGE
+I. BENZALACETOPHENONE...........................1
+II. BENZYL BENZOATE.............................5
+III. BENZYL CYANIDE.............................9
+IV. a, g-DICHLOROACETONE..............13
+V. _p_-DIMETHYLAMINOBENZALDEHYDE..................17
+VI. ETHYL OXALATE...............................23
+VII. ETHYL PHENYLACETATE........................27
+VIII.  GLYCEROL a, g-DICHLOROHYDRIN....29
+IX. GLYCEROL a-MONOCHLORORYDRIN............33
+X. HYDRAZINE SULFATE............................37
+XI. MESITYLENE..................................41
+XII. METHYL RED.................................47
+XIII. _p_-NITROBENZOIC ACID.......................53
+XIV. _p_-NITROBENZYL CYAI~DE......................57
+XV. _p_-NITROPHENYLACETIC ACID....................59
+XVI. NITROSO-b-NAPHTHOL....................61
+XVII. PHENYLACETIC ACID.........................63
+XVIII. PHENYLACETYLENE..........................67
+XIX. PHENYLHYDRAZINE............................71
+XX. PHTHALIMIDE.................................75
+XXI. QUINOLINE..................................79
+XXII. QUINONE...................................85
+XXIII. SODIUM _p_-TOLUENESULFINATE................89
+XXIV. 1,3,5-TRINTROBENZENE......................93
+XXV. 2,4,6-TRINTROBENZOIC ACID..................95
+      INDEX.....................................99
+
+
+
+ORGANIC SYNTHESES
+
+I
+
+BENZALACETOPHENONE
+
+C6H5CHO + C6H5COCH3 + (NaOH)--> C6H5CH=CHCOC6H5 + H2O
+
+Prepared by E. P. KOHLER and E. M. CHADWELL.  Checked by H. T. CLARKE
+and R. P. LEAVITT.
+
+1.  Procedure
+
+A SOLUTION of 218 g.  of sodium hydroxide in 1960 g.
+of water and 1000 g.  of 95 per cent alcohol are introduced into
+a 5500-cc. bottle which is loosely covered with a perforated disk
+of cardboard, supplied with an effective stirrer, and supported
+in a larger vessel so as to permit cooling with cracked ice.
+Into the alkaline solution, 520 g.  of pure acetophenone is poured,
+the bottle is rapidly surrounded with cracked ice, and the stirrer started;
+460 g.  of benzaldehyde (U. S. P.) are then added at once.
+The temperature of the mixture should not be below 15'0 and it
+should not be allowed to rise above 30'0 during the reaction.
+If it tends to do so, the stirring is not sufficiently vigorous.
+
+It is advantageous, though not essential, to inoculate the mixture
+with a little powdered benzalacetophenone after stirring for half
+an hour.  After two to three hours, the mixture becomes so thick
+that the stirring is no longer effective.  The stirrer is then
+removed and the mixture left to itself in an ice-box for about
+ten hours.  The mixture now is a thick paste composed of small
+shot-like grains suspended in an almost colorless liquid.
+It is cooled in a freezing mixture and then either centrifuged
+or filtered on a large Buchner funnel, washed with water until
+the washings are neutral to litmus, and finally washed with 200 cc.
+of alcohol, which has previously been cooled to 0'0. After
+thorough drying in the air, the crude product weighs about 880 g.
+(yield 97 per cent of the theoretical amount) and melts at 50-54'0.
+It is sufficiently pure for most purposes but tenaciously holds
+traces of water.  It is most readily purified by recrystallization
+from four to four and a half times its weight of 95 per cent alcohol.
+Eight hundred and eighty grams of crude product give 770 g.
+(85 per cent of the theoretical amount) of light-yellow material
+(m. p.  55-57'0) and 40-50 g.  that require recrystallization.
+
+2.  Notes
+
+The acetophenone should be as pure as possible (m. p.
+20'0). Commercial acetophenone contains variable quantities of impurities
+which reduce the yield.  By distilling commercial acetophenone with
+the help of a good still-head (preferably under diminished pressure)
+and using only the fraction which boils at 201-202'0 (76-77'0/10 mm.)
+greater quantities of benzalacetophenone can be obtained than by using
+the entire sample.
+
+Commercial benzaldehyde can be used in place of the purer product,
+but the amount used must be increased to make up for the impurities
+which are present.
+
+If the temperature is too low, or the stirring too slow, the product
+separates as an oil, which later solidifies in large lumps.
+
+If the temperature is allowed to rise above 30'0, secondary
+reactions diminish both the yield and the purity of the product.
+The most favorable temperature is 25'0.
+
+In recrystallizing benzalacetophenone, the alcohol should be saturated
+at 50'0. If the solution is saturated above this temperature,
+the benzalacetophenone tends to separate as an oil.  The solution
+should be allowed to cool gradually, and should finally be chilled
+in a freezing mixture.  3.  Other Methods of Preparation
+
+The methods for producing benzalacetophenone are:  the action of acids
+on a mixture of benzaldehyde and acetophenone or on a solution
+of these substances in glacial acetic acid;[1] the condensation
+of benzaldehyde and acetophenone with a 30 per cent solution of sodium
+methylate at low temperatures;[2] the action of sodium hydroxide
+on an alcoholic solution of benzaldehyde and acetophenone.[3]
+
+The methods based on the use of acids as condensing agents were
+not considered, because Claisen, who devised them, abandoned them
+after he found that alkaline condensing agents gave better results.
+The preliminary experiments showed that condensation with sodium
+methylate takes a long time and gives a product which it is difficult
+to handle in large quantities.  The method devised by Kostanecki
+and Rossbach[3] has therefore been developed.
+
+[1] Ber.  14, 2463 (1881).
+
+[2] Ber.  20, 657 (1887).
+
+[3] Ber.  29, 1492 (1896).
+
+
+
+II
+
+BENZYL BENZOATE
+
+2 C6H5CHO + C6H5CH2ONa--> C6H5CO2CH2C6H5 + C6H5CH2ONa
+
+Prepared by O. KAMM and W. F. KAMM.  Checked by ROGER ADAMS and
+R. L. JENKINS.
+
+1.  Procedure
+
+THREE grams of metallic sodium are dissolved by warming for half an hour
+in 70 g.  of pure benzyl alcohol (see notes), and after the mixture
+has cooled to room temperature the solution is added gradually,
+with thorough mixing, to 454 g.  of c.  p.  benzaldehyde (which must
+contain LESS than 1 per cent of benzoic acid). The reaction mixture has
+a tendency to become warm, but the temperature should be kept slightly
+below 50-60'0 by cooling, if necessary.  A pasty gelatinous mass results.
+After about half an hour the temperature of the mixture no longer rises;
+it is then warmed on the water bath for about one or two hours,
+with occasional shaking.
+
+The cooled reaction product is treated with 200 cc.
+of water, the layer of oil separated, washed once with a second
+portion of water, and subjected to distillation _in vacuo_.
+The first fraction of the distillate contains benzyl alcohol together
+with unchanged aldehyde, as well as a small quantity of water.
+The temperature then rises rapidly to the boiling-point of
+benzyl benzoate, when the receivers are changed.  The product
+boils at 184-185'0/15 mm., and analysis by saponification shows it
+to consist of 99 per cent ester.  A yield of 410-420 g.  is obtained,
+which corresponds to 90-93 per cent of the theoretical amount.
+This benzyl benzoate supercools readily, but after solidifying
+melts within one degree of the highest recorded value (19.4'0) and
+therefore need not be refractionated, unless material of exceptional
+grade is required.
+
+2.  Notes
+
+In the presence of sodium benzylate two molecules of benzaldehyde
+react with the alcoholate to form an addition product.
+When the reaction mixture is overheated an important side reaction
+may occur, as follows:
+
+            / OCH2C6H5
+ C6H5C -- OCH2C6H5 --> C6H5CO2Na + C6H5CH2OCH2C6H5
+           \ ONa
+
+Dibenzyl ether no doubt forms the chief impurity in benzyl benzoate.
+Since the boiling-point of the former lies near that of the ester,
+it is not removed during the process of purification by distillation.
+
+The causes of variations in yield by the use of the older methods
+can now be explained.  When benzaldehyde is added TO THE ALCOHOLATE,
+and especially when the latter is still warm, local overheating results;
+in fact, the temperature may rise far above 100'0 with the result
+that benzyl ether is formed.  Simultaneously, the sodium benzylate
+is converted into sodium benzoate, which is of no value for inducing
+the desired reaction, and consequently very little benzyl benzoate
+is obtained.  The same side reactions explain the failure of this
+experiment when the benzyl alcohol used in preparing the catalyst
+(sodium benzylate) is contaminated with benzaldehyde.
+
+The benzyl alcohol used in this preparation must be free
+from impurities, especially aldehyde.  One cc.  dissolved in 50 cc.
+of water and treated with a freshly prepared clear solution of
+phenylhydrazine acetate should give no appreciable precipitate.
+If it is not pure, it must first be treated with alkali
+as described below.
+
+The benzaldehyde should be titrated in order to determine its acidity.
+If it is found to contain sufficient benzoic acid to react
+with a considerable proportion of the sodium alcoholate, a poor
+yield of ester will be obtained.  Less than 1 per cent of benzoic
+acid will not interfere seriously with the yields obtained,
+but the presence of larger quantities of acid will be found to be
+detrimental and must be removed by washing the benzaldehyde with
+a sodium carbonate solution and redistilling with the precautions
+necessary to prevent too free an access of air to the distillate.
+
+The order of mixing the reagents and the temperature of the ingredients
+at the time of mixing are the most important factors in the experiment.
+The temperature at which the reaction mixture is maintained
+after mixing, provided that it is held below 100'0, is less important
+from the standpoint of purity.
+
+The reaction mixture is not treated with acetic acid, as usually
+recommended, for the reason that such a procedure yields a final
+product contaminated with benzoic acid, unless an alkaline wash
+is applied subsequently.
+
+The recovered benzyl alcohol can be used for the preparation
+of a second lot of benzyl benzoate only after it has been boiled
+with strong sodium hydroxide to remove all traces of benzaldehyde.
+
+
+3.  Other Methods of Preparation
+
+Benzyl benzoate has been identified in certain natural plant
+products.[1] In the laboratory it has been prepared by the action of
+(_a_) benzoyl chloride upon benzyl alcohol,[2] (_b_) benzyl chloride
+upon sodium benzoate, and (_c_) alcoholates upon benzaldehyde.[3]
+Recently, Gomberg and Buchler[4] have shown that reaction (_b_) may
+be conducted even with aqueous solutions of sodium benzoate.
+
+
+[1] Ann.  152, 131 (1869).
+
+[2] Gmelin's Handbuch der Organ.  Chem.  3, 40.
+
+[3] Ber.  20, 649 (1887). Cf.  also J. Chem.  Soc.  75, 1155 (1899).
+
+[4] J. Am Chem.  Soc.  42, 2059 (1920).
+
+
+The Claisen method (_c_) furnishes the most convenient and practical
+procedure for the preparation of this ester.  The materials are cheap,
+the experimental procedure simple, and the product obtained is free
+from objectionable traces of benzyl chloride.  Unfortunately the
+method has been found to be extremely erratic in regard to yield
+(10-95 per cent), as well as in regard to purity of the product
+(87-97 per cent ester).[1] As a result of the present study,[2]
+causes for variations are fully accounted for and the procedure
+has been converted into a satisfactory method of preparation.
+
+
+[1] C. A. 14, 3500 (1920).
+
+[2] J. Am.  Pharm.  Assoc.  11, 599 (1922).
+
+
+
+III
+
+BENZYL CYANIDE
+
+C6H5CH2Cl + NaCN--> C6H5CH2CN + NaCl
+
+Prepared by ROGER ADAMS and A. F. THAL Checked by O. KAMM and
+A. O. MATTHEWS.
+
+1.  Procedure
+
+IN a 5-l. round-bottom flask, fitted with a stopper holding
+a reflux condenser and separatory funnel, are placed 500 g.
+of powdered sodium cyanide (96-98 per cent pure) and 450 cc.
+of water.  The mixture is warmed on a water bath in order
+to dissolve most of the sodium cyanide, and then 1 kg.
+of benzyl chloride (b. p.  170-180'0) mixed with 1 kg.
+of alcohol is run in through the separatory funnel in the course
+of one-half to three-quarters of an hour.  The mixture is then
+heated with a reflux condenser on the steam bath for four hours,
+cooled and filtered with suction to remove most of the sodium chloride.
+It is well to wash the filtered salt with a small portion of
+alcohol in order to remove any benzyl cyanide which may have been
+mechanically held.  The flask is now fitted with a condenser,
+and as much alcohol as possible is distilled off on the steam bath.
+The residual liquid is cooled, filtered if necessary, and the layer
+of benzyl cyanide separated.  This crude benzyl cyanide is now
+placed in a Claisen distilling flask and distilled _in vacuo_,
+the water and alcohol coming over first, and finally the cyanide.
+It is advantageous to use a fractionating column or, better still,
+a Claisen flask with a modified side-arm[1] (Vol. I, p.
+40, Fig.  3) which gives the same effect as a fractionating column.
+The material is collected from 135-140'0/38 mm.  (115-120'0/10 mm.).
+The yield is 740-830 g.  (80-90 per cent of the theoretical amount).
+
+[1] J. Am.  Chem.  Soc.  39, 2718 (1917). 2.  Notes
+
+The quality of the benzyl chloride markedly affects the yield
+of pure benzyl cyanide.  If a poor technical grade is used,
+the yields will not be more than 60-75 per cent of the theoretical,
+whereas consistent results of about 85 per cent or more were always
+obtained when a product was used that boiled over 10'0. The technical
+benzyl chloride at hand yielded on distillation about 8 per cent
+of high-boiling material; a technical grade from another source was
+of unusual purity and boiled over a 2'0 range for the most part.
+
+It is advisable to distil off the last portion of alcohol and water
+_in vacuo_ and also to distil the benzyl cyanide _in vacuo_,
+since under ordinary pressures a white solid invariably separates
+during the distillation.
+
+One method of purifying the benzyl cyanide is to steam distil it
+after the alcohol has been first distilled from the reaction mixture.
+At ordinary pressures, this steam distillation is very slow and,
+with an ordinary condenser, requires eighteen to twenty hours
+in order to remove all of the volatile product from a run of 500 g.
+of benzyl chloride.  The distillate separates into two layers; the benzyl
+cyanide layer is removed and distilled.  The product obtained in this
+way is very pure and contains no tarry material, and, after the excess
+of benzyl chloride has been removed, boils practically constant.
+This steam distillation is hardly advisable in the laboratory.
+
+The benzyl cyanide, prepared according to the procedure as outlined,
+is collected over a 5'0 range.  It varies in appearance
+from a colorless to a straw-colored liquid and often develops
+appreciable color upon standing.  For a product of special purity,
+it should be redistilled under diminished pressure and collected
+over a 1-2'0 range.  For most purposes, such as the preparation
+of phenylacetic acid or ester, the fraction boiling 135-140'0/38 mm.
+is perfectly satisfactory.  3.  Other Methods of Preparation
+
+Benzyl cyanide occurs naturally in certain oils.[1] The only feasible
+method of preparing it that has been described in the literature is
+the one in which alcoholic potassium cyanide and benzyl chloride[2]
+are employed.  The cheaper sodium cyanide is just as satisfactory
+as the potassium cyanide and therefore is the best material to use.
+Gomberg has recently prepared benzyl cyanide from benzyl chloride
+and an aqueous solution of sodium cyanide.[3]
+
+
+[1] Ber.  7, 519, 1293 (1874); 32, 2337 (1899)
+
+[2] Ann.  96, 247 (1855); Ber.  3, 198 (1870); 14, 1645
+(1881); 19, 1950 (1886).
+
+[3] J. Am.  Chem.  Soc.  42, 2059 (1920).
+
+
+
+IV
+
+a, g-DICHLOROACETONE
+
+CH2ClCHOHCH2Cl + O(Na2Cr2O7 + H2SO4)--> CH2ClCOCH2Cl + H2O
+
+Prepared by J. B. CONANT and O. R. QUAYLE.  Checked by A. W. DOX, L. YODER,
+and O. KAMM.
+
+1.  Procedure
+
+IN a 2-l. flask are placed 375 g.  of commercial sodium dichromate,
+225 cc.  of water, and 300 g.  of dichlorohydrin (b. p.
+68-75'0/14 mm.). The flask is set in a water bath and equipped
+with a thermometer and mechanical stirrer.  The contents are
+vigorously stirred, and 450 g.  of sulfuric acid, diluted with 115 g.
+of water, are introduced during the course of seven to eight hours.
+It is convenient to add the acid at ten-minute intervals.
+The temperature is kept between 20'0 and 25'0 during the entire reaction;
+this is accomplished by adding a little ice to the water bath from
+time to time.  The stirring is continued for sixteen to seventeen
+hours after all the acid has been added; as there is very little
+heat evolved during this part of the reaction, the water bath may
+be allowed to come to room temperature.
+
+Sufficient water is now added to the mixture to dissolve the pasty
+chromium salts (300-800 cc.). The mass of crystals is then rapidly
+filtered on a Buchner funnel and sucked as dry as possible.
+The crystals are then transferred to a small laboratory centrifuge
+and centrifuged for several minutes.  The crystals are washed in
+the centrifuge with about 15-25 cc.  of ice water, then with 10-15 cc.
+of cold petroleum ether, and finally centrifuged till as dry as possible.
+The crude dichloroacetone is dried in a vacuum desiccator over
+sulfuric acid overnight It weighs about 220 g.
+
+The crude product is best purified by distillation from
+a 250-cc. distilling flask fitted with an air condenser.
+A very small fraction (10-15 g.) of low-boiling material is obtained,
+and the dichloroacetone (170-175'0) is then collected.  It solidifies
+in the receiver to a white crystalline mass which weighs 200-220 g.
+(65-70 per cent of the theoretical amount). A few grams more may
+be obtained by chilling the low-boiling fraction and filtering
+off the water.
+
+
+2.  Notes
+
+Great caution should be exercised in working with dichloroacetone,
+as it is extremely lachrymatory and blisters the skin.
+
+In transferring the crystals from the reaction flask to the Buchner
+funnel it is necessary to use a certain amount of water to dissolve
+the pasty chromium salts which are otherwise quite impossible
+to filter.  The amount necessary varies greatly in different runs,
+according to the manner in which the chromium salts separate.
+The amount of this water is kept low in order to dissolve
+as little of the product as possible.  Nevertheless, 10-15 g.
+of dichloroacetone are thus dissolved; this material, together with
+a little unchanged dichlorohydrin, may be recovered by a long
+procedure involving extraction with ether and sodium bisulfite.
+This is not profitable, however.
+
+It is not necessary to wash the crystals in the centrifuge until
+they are white.  A small amount of chromic salt will not interfere
+with the subsequent purification.
+
+Commercial sodium dichromate is hygroscopic and contains varying
+amounts of water.  The 375 g.  required in these directions are
+equivalent to 319 g.  of anhydrous material.
+
+The total time required for the oxidation is twenty-four hours.
+It is convenient to start the reaction in the morning.
+In this way the last part of the reaction, which requires
+no attention, will be accomplished during the night.
+The regulation of the temperature is necessary, as the reaction
+proceeds very slowly below 20'0; on the other hand, the dichloroacetone
+itself is oxidized at a somewhat higher temperature than 25'0. 3.
+Other Methods of Preparation
+
+The preparation of dichloroacetone by the following methods
+is described in the literature:  the direct chlorination of
+acetone;[1] the oxidation of dichlorohydrin;[2] the action of silver
+chloride on diiodoacetone;[3] the action of dichloropropene
+(CH2Cl-CCl=CH2) and hypochlorous acid;[4] the action of hydrochloric
+acid on ethoxymonochloroacetoacetic ester;[5] and the hydrolytic
+cleavage of dichloroacetoacetic ester.[6]
+
+
+[1] Jahresb.  1859, 345; 1871, 531; J. prakt.  Chem.  (2)4, 52
+(1871); Ber.  7, 467 (1874); 8, 1330, 1438 (1875); 26, 598
+(1893); 42, 3233 (1909); Ann.  279, 315 (1894)
+
+[2] Ber.  6, 1210 (1873); 13, 1706 (1880); 42, 3233 (1909); Ann.
+208, 355 (1881); 269, 46 (1892); Ann.  chim.  phys.  (6) 9, 145
+(1886); Bull.  soc.  chim.  (2) 36, 19 (1881).
+
+[3] Ann.  192, 93 (1878).
+
+[4] Compt.  rend.  94, 1428 (1882).
+
+[5] Ann.  269, 18 (1892).
+
+[6] Ber.  43, 3533 (1910).
+
+
+
+
+V
+
+_p_-DIMETHYLAMINOBENZALDEHYDE
+
+(CH3)2NC6H5 + HNO2--> (CH3)2NC6H4NO + H2O (CH3)2NC6H4NO + 2HCHO
+                        + 2C6H5N(CH3)2 --> (CH3)2NC6H4N
+        = CHC6H4N(CH3)2 + 2H2) + (CH3)2NC6H4CHO
+(CH3)2NC6H4N = CHC6H4N(CH3)2 + HCHO-->( CH3)2NC6H4N = CH2 + (CH3)2NC6H4CHO
+
+Prepared by ROGER ADAMS and G. H. COLEMAN.  Checked by H. T. CLARKE
+and W. W. HARTMAN.
+
+1.  Procedure
+
+IN a 3-l. round-bottom flask fitted with a mechanical stirrer 150 g.
+of technical dimethylaniline are dissolved in 750 cc.
+of diluted hydrochloric acid (1 part concentrated acid to 1
+part water). This solution is now cooled to 0'0 and a solution
+(previously cooled to 0'0) of 90 g.  of technical sodium nitrite
+in 150 cc.  of water is added through a separatory funnel.
+During the addition of the nitrite solution, mechanical stirring
+should be employed and the flask cooled well with ice and salt.
+The addition is made at such a rate (thirty to forty minutes
+for the entire addition) that the temperature does not rise above
+5'0. The precipitate of nitroso dimethylaniline hydrochloride
+is filtered off with suction, then washed with about 300 cc.
+of diluted hydrochloric acid (1:1).
+
+In a 2-l. beaker, 180 g.  of technical dimethylaniline, 125 cc.
+of formaldehyde (technical 40 per cent), and 300 cc.
+of concentrated hydrochloric acid are mixed and heated for ten
+minutes on a steam bath.  The mixture is now placed in a hood
+and the nitroso dimethylaniline added all at once, or as rapidly
+as possible.  The beaker is then covered with a watch glass.
+A vigorous reaction soon occurs and is complete in about five minutes.
+The resulting solution is transferred to a 5-l. flask and diluted
+to 4 l.; stirring is started, and a 25 per cent solution of sodium
+hydroxide is added until the red color disappears (about 650 cc.
+are required). The yellow benzylidene compound separates,
+is filtered with suction and washed with water.  The moist precipitate
+is transferred to a 4-l. glass jar, covered with 1000 cc.
+of 50 per cent acetic acid and 250 cc.  of formaldehyde,
+and stirred until twenty minutes after the benzylidene compound has
+gone into solution.  While the mixture is being stirred vigorously
+to prevent lumping of the precipitate, 400 cc.  of water and 200 g.
+of cracked ice are added during the course of five minutes.
+The dimethylaminobenzaldehyde generally separates gradually
+in fifteen to twenty minutes, but in some cases does not.
+If the precipitate does not form, the solution is placed
+in a refrigerator for a few hours or overnight.  The mixture is
+filtered with suction and washed at least ten times with 300 cc.
+of water.  The precipitate is sucked as dry as possible for fifteen
+to thirty minutes.
+
+The slightly moist aldehyde is distilled under diminished
+pressure from an oil bath, by means of a 1-l. Claisen flask.
+A small amount of water comes over first, then the thermometer
+rises rapidly to the boiling point of the aldehyde (180'0/22 mm.).
+In changing receivers between the water fraction and the aldehyde,
+care should be taken to keep the side-arm of the distilling
+flask warm; otherwise, on starting the distillation again,
+the aldehyde will solidify in the side-arm and cause trouble.
+It is advisable not to collect the very last portion of the distillate
+with the main portion, as the former is frequently quite red.
+This is best added to crude material from another run.  The main
+distillate is dissolved in 100 cc.  of alcohol in a 2-l. beaker,
+then 1000 cc.  of water are gradually added with vigorous mechanical
+stirring to prevent lumping.  The aldehyde separates, and is
+filtered with suction.  The product, when dry, weighs 125-130 g.
+(56-59 per cent of the theoretical amount), and melts at 73'0.
+
+The aldehyde prepared in this way is in the form of small
+granular crystals, which vary in different runs from a flesh color
+to a lemon yellow.  For practically all purposes, this slightly
+colored product is entirely satisfactory and is essentially pure,
+as can be judged by the melting point.  For reagent purposes it
+is desirable to remove the color completely, particularly since
+the product obtained as just described has a tendency to take
+on a reddish tinge on exposure to light.  Further purification can
+be accomplished by dissolving the aldehyde (it dissolves slowly)
+in dilute hydrochloric acid (1 part of concentrated acid, sp.  gr.
+1.19, to 6 parts of water), 125 g.  of aldehyde requiring 700 cc.
+of the acid.  The solution is placed in a jar and diluted with
+half its volume of water, and dilute sodium hydroxide solution
+(15-20 per cent) is added slowly with mechanical stirring.
+At the beginning, the aldehyde comes down slightly colored.
+After about 10 to 30 g.  are precipitated, however, the product
+appears white; this point can be readily seen.  The first precipitate
+is filtered off and added to the next run of crude material,
+or fractionally precipitated again from hydrochloric acid.
+The rest of the aldehyde is now precipitated by means of more sodium
+hydroxide solution, and comes down almost white.  At the very end of
+the neutralization, particularly if the original product was quite yellow,
+the last 4 to 5 g.  of aldehyde should be precipitated separately,
+as they are inclined to be slightly colored.  If too much alkali is
+added towards the end of the neutralization, a brown color appears,
+but the addition of a little hydrochloric acid will destroy this color.
+The main portion of the precipitate is filtered and dried; it weighs
+95-100 g., m.  p.  73'0. The succeeding runs yield 115-128 g.
+of finished product, on account of the extra crude material obtained
+from the distillation and reprecipitation of the previous run.  2.  Notes
+
+The aldehyde that is obtained without reprecipitation
+gradually takes on a pinkish tinge on exposure to light.
+After the reprecipitation, however, this characteristic disappears.
+
+Thorough washing of the crude aldehyde is particularly desirable,
+as it removes a reddish impurity which tends to distil over and
+color the product lemon yellow or sometimes even brownish yellow.
+When such a brownish product is obtained, it is quite necessary to make
+a second precipitation, as well as to observe the directions mentioned
+in the purification of the crude aldehyde, namely, to precipitate
+the first few grams and the last few grams of the aldehyde separately.
+The precaution of rejecting the first and last portions
+of the precipitate is unnecessary in the reprecipitation.
+In the reprecipitation of a deeply colored product, the portion
+of aldehyde at the end may be even purplish in color and particular
+care must be taken to keep this separate.
+
+Vigorous mechanical stirring must be employed during the precipitation
+of the crude aldehyde, as otherwise large lumps are formed which
+make washing difficult.
+
+A previous investigator has mentioned that the crude product must
+be dried before distilling.  This, however, is unnecessary.
+If the aldehyde is dried before distilling, it is possible to use
+a 500-cc. distilling flask instead of a 1-l one.
+
+In purifying the aldehyde by dissolving in acid and reprecipitating,
+it is essential not to use stronger acid than that specified
+(1:6), as stronger acid causes a deepening of the color of the solution.
+If the concentrated acid, which is to be diluted and used in this
+procedure, does not have a sp.  gr.  of 1.19, it will be necessary
+to add the equivalent amount of weaker acid in order to dissolve
+the _p_-dimethylaminobenzaldehyde. In purifying the aldehyde,
+sodium carbonate may be used in place of sodium hydroxide
+for precipitation, but it causes much foaming.
+
+When the apparatus for distilling, etc., is all set up,
+a run such as described above requires about five to six hours
+for completion.  3.  Other Methods of Preparation
+
+_p_-Dimethylaminobenzaldehyde has been made by the condensation
+of chloral with dimethylaniline, and subsequent hydrolysis;[1]
+by the hydrolysis of tetramethyldiaminobenzhydrol with acetic
+acid;[2] by the condensation of dimethylaniline, formaldehyde and
+_m_-sulfo-_p_-tolyl hydroxylamine followed by hydrolysis;[3] by the
+electrolytic reduction of a mixture of sodium nitrobenzene sulfonate,
+dimethylaniline and formaldehyde, and subsequent hydrolysis;[4]
+by the reduction of a mixture of dimethylaniline, formaldehyde and
+sodium nitrobenzene sulfonate with iron and hydrochloric acid,
+followed by hydrolysis;[5] by the condensation of alloxan with
+dimethylaniline followed by hydrolysis;[6] by the condensation
+of dimethylaniline, formaldehyde and sodium _p_-toluidine sulfonate
+in the presence of hydrochloric acid and potassium dichromate
+followed by hydrolysis.[7] The most satisfactory method, however,
+is the condensation of dimethylaniline, formaldehyde and nitroso
+dimethy]aniline, followed by hydrolysis,[8] a method which was first
+described by E. Noelting and later perfected in detail by L. Baumann.
+
+
+[1] Ber.  18, 1519 (1885); 19, 366 (1886); D. R. P. 61, 551; Frdl.
+3, 109 (1892).
+
+[2] Ber.  27, 3317 (1894).
+
+[3] D. R. P. 103,578; Frdl.  5, 101 (1899).
+
+[4] D. R. P. 105,103; Frdl.  5, 107 (1899).
+
+[5] D. R. P. 105,105; Frdl.  5, 109 (1899).
+
+[6] D. R. P. 108,086; Frdl.  5, 117 (1899).
+
+[7] D. R. P. 118,567; Frdl.  6, 133 (1901).
+
+[8] Ber.  37, 858 (1904); J. Biol.  Chem.  41, 146 (1920).
+
+
+
+VI
+
+ETHYL OXALATE
+
+(CO2H)2 + 2 C2H5OH--> (CO2C2H5)2 + 2H2O
+
+Prepared by H. T. CLARKE and ANNE W. DAVIS.  Checked by ROGER ADAMS
+and W. B. BURNETT.
+
+1.  Procedure
+
+
+IN a 5-l. flask are placed 1 kg.  of crystallized (hydrated) oxalic
+acid, 1.66 kg.  of 95 per cent ethyl alcohol, and 1.33 kg.
+of carbon tetrachloride.  The flask is then fitted with a fractionating
+column, I meter long, to which is attached a condenser and an automatic
+separator so arranged that the lighter liquid flows off to a receiver
+(Fig. 1). The heavier liquid flows through a tower of anhydrous
+potassium carbonate, and then returns to the reaction flask.
+The bottom of the tower is connected with a small separatory funnel
+through which any potassium carbonate solution, which flows from
+the solid in the tower, may be withdrawn from time to time.
+
+The mixture in the flask is slowly distilled.  As soon as about 500 cc.
+of the lighter liquid has collected, it is placed in a fractionating
+apparatus and distilled, the material which boils up to 79'0 being
+collected separately.  This fraction, which consists principally
+of alcohol, with a little carbon tetrachloride and moisture, is dried
+with potassium carbonate and returned to the reaction mixture.
+The higher fractions are redistilled.
+
+The above process is continued until the distillate no longer separates
+into two phases (about twenty-seven hours). The liquid in the flask
+is then distilled with the use of a column until the temperature
+of the vapor reaches 85'0; the residue is then distilled under
+reduced pressure, and the fraction which boils at 106-107/25 mm.
+is collected.  The yield is 920-960 g.  of a colorless liquid
+(80-84 per cent of the theoretical amount).
+
+
+2.  Notes
+
+Water, ethyl alcohol and carbon tetrachloride form a ternary
+mixture boiling at about 61'0. This vapor mixture, on condensation,
+separates into two phases; the heavier liquid consists of carbon
+tetrachloride and alcohol with only small amounts of water;
+the lighter liquid consists of approximately 65 per cent alcohol,
+25 per cent water and 10 per cent carbon tetrachloride.
+By taking advantage of this fact, it is possible to conduct
+the esterification at a temperature so low that the ethyl hydrogen
+oxalate first formed does not decompose into ethyl formate
+and other products, as is the case when the customary methods
+of esterification are employed.
+
+The reaction may be carried out somewhat more expeditiously
+if the oxalic acid be dehydrated independently before it is mixed
+with the alcohol; indeed, it is also possible to remove the bulk
+of the water from the alcohol itself by a similar method, before mixing
+it with the oxalic acid.  However, since water is formed during
+the esterification, little is gained by this procedure.
+
+It is not absolutely necessary to remove the last traces of water from
+the alcohol-carbon tetrachloride layer by means of potassium carbonate
+before returning it to the reaction mixture; this process is, however,
+so simple and requires so little attention that there is no doubt
+that it is of material aid in cutting down the time of operation.
+The advantages of using crystallized oxalic acid and commercial 95
+per cent alcohol, instead of the anhydrous reagents, are obvious.
+When technical oxalic acid is used, the yields are usually smaller
+by 5 to 10 per cent.
+
+The apparatus shown in Fig.  1 may be somewhat more simply constructed
+by using rubber connections in several places, thus eliminating a certain
+amount of glass blowing, and making a more flexible piece of apparatus.
+The side-arm of the separator may be made with two rubber connections,--
+one above and one below the tube leading to the potassium carbonate tube.
+The long return tube to the flask may be constructed with a rubber
+joint very near the carbonate tube and one near the flask.
+
+
+3.  Other Methods of Preparation
+
+Ethyl oxalate has been prepared in poor yields by the following methods:
+by distilling a mixture of anhydrous oxalic acid and absolute
+alcohol;[1] by heating a mixture of anhydrous oxalic acid and 97 per
+cent alcohol under a reflux condenser and fractionating the resulting
+mixture;[2] by distilling a mixture of anhydrous oxalic acid
+and absolute alcohol, the vapor of absolute alcohol being passed
+simultaneously into the mixture;[3] by allowing a saturated solution
+of oxalic acid in alcohol to stand for a long time at 40-50'0.[4]
+
+A good yield has been obtained by Anschutz[5] by a method involving
+saturation of a mixture of crystallized oxalic acid and alcohol
+with hydrogen chloride, removal of the alcohol and water by
+distillation under reduced pressure, and repetition of the treatment
+with the alcohol and hydrogen chloride, the process being carried
+out several times.
+
+
+[1] Jahresb.  1861, 598.
+
+[2] J prakt.  Chem.  (2), 34, 500 (1886).
+
+[3] Monatsh.  17, 614 (1896).
+
+[4] Ann.  65, 350 (1848).
+
+[5] Ber.  16, 2414 (1883),
+
+
+
+VII
+
+ETHYL PHENYLACETATE
+
+C6H5CH2CN + C2H5OH + H2SO4 + H2O--> C6H5CH2CO2C2H5 + NH4HSO4
+
+Prepared by ROGER ADAMS and A. F. THAL.  Checked by OLIVER KAMM.
+
+1.  Procedure
+
+IN a 3-l. round-bottom flask, fitted with an efficient
+reflux condenser, are mixed 750 g.  of 95 per cent alcohol, 750 g.
+of concentrated sulfuric acid and 450 g.  of benzyl cyanide.
+The mixture, which soon separates into two layers, is heated
+to boiling over a low flame, for six to seven hours, cooled and
+poured into 2 l.  of water, and the upper layer is separated.
+This is washed with a little 10 per cent sodium carbonate solution
+to remove small amounts of phenylacetic acid which may have been formed,
+and then distilled _in vacuo_.  A small amount of water goes
+over first and then a pure product boiling 132-138'0/32 mm.
+(120-125'0/17-18 mm.). The yield varies in general between 525 and 550 g.
+(83-87 per cent of the theoretical amount).
+
+
+2.  Notes
+
+The benzyl cyanide can be most conveniently prepared according
+to the directions in preparation III (p. 9); the product which boils
+over a 5'0 range should be used.
+
+In washing the layer of ethyl phenylacetate with sodium carbonate it
+is sometimes advisable to add a certain amount of sodium chloride
+so that the ester will separate more readily.
+
+The product obtained is water-clear and practically colorless.
+Although the product is collected over a 5'0 range, most of
+the liquid is found to boil over a 1'0 range, if distilled
+slowly without superheating.
+
+The boiling point of ethyl phenylacetate is near that of benzyl cyanide.
+However, a Kjeldahl analysis of the product shows that only a trace
+of nitrogen compounds is present.
+
+
+3.  Other Methods of Preparation
+
+Ethyl phenylacetate may be prepared by the treatment of benzyl
+cyanide with alcohol and hydrochloric acid gas.[1] It is much more
+convenient in the laboratory, however, to use sulfuric acid in place
+of hydrochloric acid; in fact, the yields obtained are better
+than those recorded in the literature.  This ester may also be
+made by the esterification of phenylacetic acid with hydrochloric
+acid and alcohol;[2] or with alcohol and sulfuric acid;[3]
+the following less important methods of preparation may be mentioned;
+the action of benzyl magnesium chloride upon ethyl chlorocarbonate,[4]
+and the action of copper on a mixture of bromobenzene and ethyl
+chloroacetate at 180'0.[5]
+
+
+[1] Ber.  20, 592 (1887); Ann.  296, 361 (1897)
+
+[2] Ber.  2, 208 (1869).
+
+[3] Ann.  296, 2, footnote (1897); Compt.  rend.  152, 1855 (1911).
+
+[4] Ber.  36, 3088 (1903).
+
+[5] Ber.  2, 738 (1869).
+
+
+
+VIII
+
+GLYCEROL a, g-DICHLOROHYDRIN
+
+C3H5(OH)3 + 2HCl--> CH2ClCHOHCH2Cl + 2H2O
+
+Prepared by J. B. CONANT and O. R. QUAYLE.  Checked by O. KAMM
+and A. O. MATTHEWS.
+
+
+1.  Procedure
+
+ONE kilo of 90 per cent glycerol (sp. gr.  1.243) and 20 g.
+of acetic acid are placed in a weighed 2-l. flask which is immersed
+in an oil bath heated to 100-110'0. The flask is fitted with a
+two-hole stopper, which carries a long tube reaching to the bottom
+of the flask and a short exit tube.  The former is connected
+to a hydrogen chloride generator, the latter to a catch-bottle
+and some system for absorbing any excess of hydrogen chloride.
+A stream of dry hydrogen chloride is passed into the mixture.
+The absorption of gas is very rapid at the start, but gradually
+falls off towards the end of the reaction; the stream of hydrogen
+chloride should be regulated accordingly.  The flask is removed
+from time to time and weighed; when the absorption of gas
+practically ceases, the increase in weight will be about 875 g.
+(25 per cent more than the theoretical amount).
+
+The product is now cooled, placed in a 4-l. beaker, and treated
+with solid sodium carbonate until just alkaline to litmus.
+Water is added from time to time, to facilitate the reaction
+with the sodium carbonate and to prevent the separation of salt;
+about 500 cc.  are required.  The mixture is transferred
+to a separatory funnel and the aqueous layer separated.
+The crude dichlorohydrin, which weighs 1250 g., is distilled in vacuo.
+The first fraction boiling below 68'0/14 mm.  weighs 225 g., and consists
+of water and some dichlorohydrin; the dichlorohydrin is collected
+between 68-75'0/14 mm., and weighs about 775 g.  The water is separated
+from the first fraction, which is then redistilled and yields 100 g.
+of dichlorohydrin.  A still further amount of material (40-45 g.)
+may be obtained by extracting with benzene, the aqueous layer obtained
+in the neutralization process.  This is, however, hardly profitable.
+The neutralization and distillation will require about four hours.
+
+The 875 g.  of dichlorohydrin thus obtained boils over a
+7'0 range; this is 70 per cent of the theoretical amount.
+Redistillation yields 700-720 g.  boiling 70-73'0/14 mm.
+(57 per cent of the theoretical amount).
+
+
+2.  Notes
+
+The most convenient hydrogen chloride generator is that described
+by Sweeney.[1] Concentrated hydrochloric acid is introduced
+into concentrated sulfuric acid, by means of a dropping funnel
+and a _capillary tube leading to the bottom of the sulfuric
+acid container_.  It is convenient to use a 3-l. bottle for this
+container and a 1-l. funnel to contain the hydrochloric acid.
+The gas is dried by passing through a wash-bottle containing
+concentrated sulfuric acid.  An empty catch-flask should be
+connected between the generator and the absorption flask in case
+any glycerol tends to suck back at the start of the reaction.
+About 6 kg.  of concentrated hydrochloric acid and 10 kg.
+of concentrated sulfuric acid are required in one run.
+The generating flask will have to be recharged every six hours;
+it should be half filled with sulfuric acid.  Aside from this,
+the apparatus needs no attention.  The oil bath can be conveniently
+heated on an electric hot plate.
+
+The dichlorohydrin boiling over a 7'0 range is sufficiently pure for
+most purposes.  It contains very little, if any, isomeric dichlorohydrin,
+since on oxidation it gives dichloroacetone in good yields.
+
+
+3.  Other Methods of Preparation
+
+The following methods of preparing dichlorohydrin are described
+in the literature:  the action of gaseous hydrogen chloride on
+glycerol;[1b] the action of gaseous hydrogen chloride on glycerol
+mixed with an equal volume of acetic acid;[2] the action of hydrogen
+chloride gas on glycerol containing 1-2 per cent of some organic acid,
+as acetic, as a catalyst;[3] the action of aqueous solution of
+hydrochloric acid on glycerol containing acetic acid as a catalyst;[4]
+the action of sulfur monochloride on glycerol.[5]
+
+The previous work, described in the literature, indicated that the best
+yields were obtained by the treatment of glycerol containing 1-2 per
+cent of acetic acid as a catalyst by gaseous hydrogen chloride.
+Therefore this method was employed.
+
+
+[1a] J. Am.  Chem.  Soc.  39, 2187 (1917)
+
+[1b] Ann.  88, 311 (1853); Ann.  chim.  phys.  (3) 41, 297 (1854);
+(6), 22, 437 (1891); Bull.  soc.  chim.  (2), 48, 237
+(1887); Z. physik.  Chem.  92, 717 (1918); 93, 59 (1919); 94, 691
+(1920); D. R P. 263,106; 272,337; Frdl.  11, 33 (1912).
+
+[2] Ann.  Spl.  1, 2I8 (1861); Ann.  chim.  phys.  (3) 60, 18 (1860).
+
+[3] D. R. P. 197,308; Frdl.  9, 33 (1908).
+
+[4] D. R. P. 197,309; Frdl.  9, 33 (1903).
+
+[5] Ann.  122, 73 (1862); 168, 43 (1873); Ber.  5, 354
+(1872); Ann.  chim.  phys.  (6) 22, 437 (1891).
+
+
+
+IX
+
+GLYCEROL a-MONOCHLOROHYDRIN
+
+C3H5(OH)3 + HCl--> CH2ClCHOHCH2OH + H2O
+
+Prepared by J. B. CONANT and O. R. QUAYLE.  Checked by O. KAMM
+and A. O. MATTHEWS.
+
+
+1.  Procedure
+
+FIVE HUNDRED grams of glycerol (90 per cent) and 10 g.
+of glacial acetic acid are mixed in a weighed 1-l. flask,
+which is placed in an oil bath heated to 105-110'0. A rapid
+stream of dry hydrogen chloride is introduced into the mixture.
+The flask is removed from the bath from time to time and reweighed.
+At the end of about four hours the flask will have gained 190 g.
+in weight.  The reaction is then complete.
+
+The product is distilled under diminished pressure.
+Below 114'0/14 mm., 220-250 g.  distil; this portion is mostly water.
+The monochlorohydrin is collected between 114-120'0/14 mm.;
+it weighs 360 g., which is 66 per cent of the theoretical amount.
+About 20 g.  more may be obtained by neutralizing the first fraction
+and separating the aqueous layer.
+
+
+2.  Notes
+
+The same apparatus is employed as in the preparation of dichlorohydrin
+(preparation VIII, p.  29).
+
+The portion boiling 120-130'0/14 mm.  only amounts to 15-30
+g., showing that very little of the b-compound is formed.
+This is further shown by the fact that the dichlorohydrin formed
+by continued action of hydrogen chloride under the same conditions
+contains very little, if any, a, b dichloride.
+
+Two kilograms of concentrated sulfuric acid and 750 g.
+of concentrated hydrochloric acid are sufficient to produce
+the necessary amount of hydrogen chloride.
+
+A light straw-colored final product is obtained in some cases.
+
+An alternative procedure which is slower and gives slightly
+lower yields, but does not require a hydrogen chloride generator,
+is as follows:
+
+Three hundred grams of glycerol, 600 cc.  of hydrochloric acid
+(sp. gr.  1.19) and 15 g.  of glacial acetic acid are heated
+under a reflux condenser for ten hours, in a 2-l. flask.
+The boiling should be very gentle in the early stage of
+the reaction, as considerable hydrochloric acid vapor is evolved.
+As the reaction progresses, and the evolution of acid vapors diminishes,
+the mixture is more strongly heated.
+
+The reaction products are distilled under ordinary pressure until
+the temperature of the liquid has reached 140'0 (thermometer bulb
+immersed in the liquid). The residual products are distilled
+under diminished pressure, and the following fractions obtained.
+(1) Up to 115'0/11 mm.; (2) 115-117'0/ 11 mm.; (3) 117-170'0/11 mm.
+(1) is mostly aqueous hydrochloric acid; (2) is the monochlorohydrin;
+and (3) is glycerol.  The second portion is redistilled and the portion
+boiling at 115-118'0/11 mm.  or 133-136'0/20 mm.  is collected.
+The yield is 190-205 g., 53-57 per cent of the theoretical amount.
+
+
+3.  Other Methods of Preparation
+
+The following methods of preparing monochlorohydrin are described
+in the literature:  action on glycerol of gaseous hydrogen
+chloride;[1] action of gaseous hydrogen chloride on glycerol
+mixed with an equal volume of acetic acid;[2] action of aqueous
+hydrochloric acid on glycerol[3] alone or with an organic acid
+(1-2 per cent), such as acetic, as a catalyst;[4] gaseous hydrogen
+chloride with an organic acid, as acetic, as a catalyst;[1b] gaseous
+hydrogen chloride with the ester of an organic or inorganic acid
+as a catalyst;[2b] the action of sulfur monochloride on glycerol.[3b]
+
+[1] Ann.  88, 311 (1853); Ann.  chim.  phys.  (3) 41, 297
+(1834); V. R. P. 254,709; 269,657; Frdl.  11, 31 (1912).
+
+[2] Ann.  chim.  phys.  (3) 60, 18 (1860).
+
+[3] D. R. P. 180,668; Frdl.  8, 27 (1907); J. Am.  Chem.  Soc.  42, 2096
+(1920).
+
+[4] D. R. P. 197,309; Frdl.  9, 34 (1908).
+
+[1b] D. R. P. 197,308; Frdl.  9, 33 (1908).
+
+[2b] D. R. P. Anm.  23,510; 16,579; Frdl.  9, 36 (1908).
+
+[3b] D. R. P. 201,230; Frdl.  9, 35 (1908).
+
+
+
+X
+
+HYDRAZINE SULFATE
+
+2 NH3 + NaOCl--> NH2NH2 + H2O + NaCl
+
+Prepared by ROGER ADAMS and B. K. BROWN.  Checked by J. B. CONANT
+and W. L. HANAWAY.
+
+1.  Procedure
+
+A NORMAL solution of sodium hypochlorite is prepared as follows:
+in a 5-l. round-bottom flask are placed 1800 g.  of sodium
+hydroxide solution (300 g.  of sodium hydroxide to 1500 g.
+of water) and 1500 g.  of ice.  Chlorine gas is then passed into
+the solution until it has gained in weight approximately 213 g.
+During this addition, the solution must be kept thoroughly
+cooled with ice, in order that chlorates will not be formed.
+After all the chlorine has been passed in, it is necessary to be
+certain that the mixture is slightly alkaline, since any excess
+of free chlorine in the solution prevents the formation of hydrazine.
+
+In a 14-inch evaporating dish are placed 1500 cc.
+of c.  p.  ammonia water (sp. gr.  0.90), 900 cc.  of distilled water,
+375 cc.  of 10 per cent gelatine solution, and 1200 cc.
+of the normal sodium hypochlorite solution prepared as above.
+This mixture is heated as rapidly as possible and boiled down
+until one-third of the original volume is left.  This solution
+is then cooled thoroughly with ice and filtered with suction,
+first through two layers of toweling and then through one
+thickness of ordinary filter paper over cloth, in order to remove
+finely divided solid impurities.  The solution is then placed
+in a precipitating jar, and cooled down thoroughly (0'0) with ice
+and salt; 10 cc.  of concentrated sulfuric acid for each 100 cc.
+of solution are gradually added with constant stirring.
+A precipitate of hydrazine sulfate (NH2NH2<.>H2SO4) forms.
+The mixture is allowed to stand in the cold for a few hours in order
+to complete the precipitation, and is then filtered by suction in the
+usual way and washed with cold alcohol.  The yield varies from 53 g.
+to 58 g.  per 1500 cc.  of ammonia water (34-37 per cent of the
+theoretical amount). The product is perfectly white and crystalline,
+and satisfactory for almost any purpose.  If an absolutely pure
+product is desired, it must be recrystallized from water.
+For every 21 g.  of crude product, 100 g.  of boiling water are used.
+If the crude hydrazine is brown, it is advisable to use a little
+bone-black. After the mixture has been filtered and cooled to 0'0, 19 g.
+of pure white crystals are obtained.
+
+
+2.  Notes
+
+In the preparation of the sodium hypochlorite solution it is quite
+necessary that the mixture be kept cold and be alkaline to red
+litmus paper at the end of the reaction, if good yields of hydrazine
+are to be obtained.
+
+Since iron is an anti-catalyzer, it is necesssary{sic} to use
+distilled water throughout the process.
+
+As a viscolizer, a substance such as starch, glycerol, glue or
+gelatine may be used; the last, however, gives by far the
+most satisfactory results.
+
+In order to obtain a pure white hydrazine sulfate as the
+first precipitate, it is necessary to cool the hydrazine solution
+thoroughly and filter it twice before the sulfuric acid is added.
+Moreover, the sulfuric acid must be added slowly and with stirring.
+If these conditions are not followed, material containing
+brown particles results.
+
+The mother liquor obtained from the crystallized hydrazine
+sulfate contains a small amount of hydrazine.  If 200 g.
+of copper sulfate are dissolved in water and added to 10 l.
+of the filtrates from the above processes, a light-blue crystalline
+precipitate of the double salt of copper sulfate and hydrazine
+sulfate will be formed after ten hours.  This salt, when suspended
+in ten times its weight of distilled water and treated with hydrogen
+sulfide, decomposes into copper sulfide and hydrazine sulfate.
+After the copper salt has been filtered off, the solution
+is concentrated until the hydrazine sulfate crystallizes.
+The yield of product is small, so that it is hardly advisable
+to undertake this recovery in the laboratory.
+
+It is possible for one man, simultaneously evaporating six dishes
+of the hydrazine mixture, to turn out from 20 to 25 runs in nine hours.
+The time for the evaporation of a solution, such as is mentioned
+in the experimental part, with a four-flame Bunsen burner, is two to
+three hours; if the evaporation is carried out more slowly than this,
+the yield of product is distinctly diminished.
+
+
+3.  Other Methods of Preparation
+
+Hydrazine salts have been prepared by the action of hypochlorites on
+ammonia[1] or urea;[2] by the hydrolysis of salts of sulfohydrazimethylene
+disulfonic acid;[3] by the hydrolysis of triazoacetic acid;[4] by the
+reduction of diazoacetic ester;[5] by the reduction of nitroguanidine
+followed by hydrolysis;[6] by the reduction of the nitroso derivatives
+of hexamethylene tetramine;[7] by the reduction of nitrates or nitrites
+with zinc in neutral solution;[8] by the action of sodium bisulfite
+on hyponitrous acid followed by reduction;[1b] by the reduction
+of K2SO3N2O2;[2b] by the action of ammonia on dichlorourea;[3b]
+by the reduction of nitrosoparaldimin;[4b] by the action of copper
+sulfate on ammonia at high temperatures;[5b] by the reduction of
+methylene diisonitrosoamine;[6b] by the hydrolysis of the addition
+product of diazoacetic ester and fumaric or cinnamic esters.[7b]
+
+
+[1] D. R. P. 192,783; Chem.  Zentr.  1908 (I), 427; Chem.  Ztg.  31, 926
+(1907); D. R. P. 198,307; Chem.  Zentr.  1908 (I), 1957; Eng.  Pat.
+22,957; C. A. 2, 1999 (1908); U. S. Pat.  910,858; C. A. 3, 1065
+(1909); French Pat.  382,357; C. A. 3, 2358 (1909); Ber.
+40, 4588 (1907); Laboratory Manual of Inorganic Preparations,
+by A. B. Lamb, Harvard University, Cambridge, Mass.
+
+[2] J. Russ.  Phys.  Chem.  Soc.  37, 1 (1905); Chem.  Zentr.  1905
+(I) 1227; D. R. P. 164,755; Frdl.  8, 53 (1905); French Pat.  329,430;
+J. Soc.  Chem.  Ind.  22, 1063 (1903); Chem.  Zentr.  1905 (I) 1227.
+
+[3] D. R. P. 79,885; Frdl.  4, 26 (1895); Ber.  28, 2381 (1895).
+
+[4] Ber.  20, 1632 (1887); Chem.  News 55, 288 (1887); D. R. P. 47,600;
+Frdl.  2, 554 (1889); J. prakt.  Chem.  (2) 39, 27 (1889).
+
+[5] Ber.  27, 775 (1894); 28, 1848 (1895); D. R. P. 58,751; Frdl.  3, 16
+(1891); D. R. P. 87,131; Frdl.  4, 28 (1896).
+
+[6] Ann.  270, 31 (1892); D. R. P. 59,241; Frdl.  3, 16
+(1891); Eng.  Pat.  6,786; J. Soc.  Chem.  Ind.  11, 370 (1892).
+
+[7] D. R. P. 80,466; Frdl.  4, 27 (1895); Ann.  288, 232 (1895).
+
+[8] Eng.  Pat.  11, 216; J. Soc.  Chem.  Ind.  14, 595 (1895). [1b] Ber.
+33, 2115 (1900); Ann.  288, 301 (1895).
+
+[2b] Ber.  27, 3498 (1894).
+
+[3b] J. Chem.  Soc.  95, 235 (1909); Chem.  News 98, 166 (1908).
+
+[4b] Ber.  23, 752 (1890).
+
+[5b] Chem.  News 66, 223 (1892).
+
+[6b] Ber.  27, 3292 (1894);
+
+[7b] Ber.  21, 2637 (1888).
+
+
+
+XI
+
+MESITYLENE
+
+3 CH3COCH3 + (H2SO4)--> C6H3(CH3)3 +3H2O
+
+Prepared by ROGER ADAMS and R. W. HUFFERD.  Checked by H. T. CLARKE
+and W. W. HARTMAN.
+
+1.  Procedure
+
+IN a 12-l. round-bottom flask, arranged so that the contents
+can be mechanically stirred, are placed 4600 g.  (5750 cc.)
+of technical acetone.  The flask is then well cooled with an
+ice-and-salt mixture, until the temperature of the acetone
+is between 0'0 and 5'0. Stirring is started, and 4160 cc.
+of commercial concentrated sulfuric acid is run in at such a rate
+that the temperature of the mixture never rises above about 10'0.
+This addition is accomplished in about five to ten hours.
+The stirring is continued for three to four hours longer,
+while the flask still remains immersed in the original
+freezing mixture to which no further amount of ice is added.
+The mixture is then allowed to stand at room temperature for eighteen
+to twenty-four hours.
+
+A 5-l. round-bottom flask is fitted with a rubber stopper or a cork
+stopper coated with pitch, carrying two glass tubes, one of which
+(for the entrance of steam) reaches to the bottom of the flask,
+while the other extends into the open end of a condenser set for
+downward distillation.  The stopper should be wired into the flask.
+The glass delivery tube into the condenser should not be less than a
+12-mm. bore, and the condenser should consist of two 120-cm. water-cooled
+condensers attached end to end.  To the end of the condensing system,
+an adapter is attached, the small end of which is at least 8 mm.
+in bore and is fitted tightly into a stopper in a 2-l. suction flask.
+To the side-arm of the suction flask is attached a tube leading to an
+exhaust fan, in order to carry away the gases which are evolved during
+the subsequent distillation.  In the 5-l. flask are placed about 2 l.
+of the sulfuric acid-acetone reaction mixture, and the flask
+is then heated with a free flame and shaken occasionally.
+A reaction starts at the end of about fifteen or twenty minutes,
+as shown by the evolution of gas (chiefly sulfur dioxide), and is
+allowed to run for about three minutes.  At the end of this time,
+a current of steam is passed in and continued for about three minutes.
+During this period a large proportion of the mesitylene distils
+and should be kept separate from the subsequent distillate.
+The steam distillation is continued at such a rate that about 800 cc.
+distils in twenty-five to thirty minutes and is collected as a
+second distillate.  At the end of this time, the distillation
+is stopped, the water poured off from the distilling flask
+and the tarry material emptied out while hot into waste jars.
+The total amount of original reaction mixture requires
+five distillations similar to the one just described.
+The first distillates from each of the five distillations are mixed,
+and the layer of mesitylene is separated from the water.
+This is shaken with sodium hydroxide solution until no more odor of sulfur
+dioxide is noticeable, then washed twice with water and distilled.
+The first portion of the distillate consists of a small amount of water
+and mesitylene and is added to the combined second distillates.
+The fraction which distils up to 210'0 is saved.  The second distillates
+are combined, washed in the same way as the first and then distilled;
+the fraction which distils up to 210'0 is combined with the corresponding
+fraction from the first distillates.
+
+These combined fractions (which boil up to 210'0) and 15 g.
+of sodium are placed in a 2-l. distilling flask, the side-arm of
+which is closed with a rubber tube and pinchcock and which is fitted
+with a reflux condenser.  The mixture is heated just below the boiling
+point for about three hours, during which time the impurities are
+attacked by the molten sodium, and a gelatinous, reddish mass forms.
+The reflux condenser is now removed and one set for downward
+distillation is attached to the side-arm. The mixture is distilled
+and about two-thirds of the liquid removed in this way.
+The residue is cooled, the liquid poured off from solid material
+and distilled up to 210'0.
+
+The distillates from the sodium treatment are now fractionated with
+a good column (at least 30 cm.  long), and the portion which boils
+at 163-167'0 is collected.  The yield of this fraction varies in
+different runs from 430 to 470 g.  (13-15 per cent of the theoretical
+amount), but very often will be as high as 500 g., and has reached,
+in certain experiments, 600 g.
+
+An alternative method for the purification of the crude material
+has been employed by Clarke and Hartman, and yields a slightly
+higher-grade product than the sodium method.  It is as follows:
+
+The combined distillates are treated with an equal volume of concentrated
+sulfuric acid and the solution warmed on a water bath for an hour,
+under a reflux condenser, with occasional shaking or, better, with
+mechanical stirring.  Upon cooling, mesitylene sulfonic acid crystallizes
+and the unsulfonated material remains as an oil on the surface.
+The mixture is filtered through flannel or a "filtrose" plate,
+and the crystals are washed with 60-70 per cent sulfuric acid.
+The oily layer is again warmed with sulfuric acid, as before.
+The acid and oily filtrates from the two sulfuric acid treatments are steam
+distilled, and the distillate combined with the next batch of material.
+The crystals are mixed with 2 l.  of 15 per cent hydrochloric
+acid and heated under a reflux condenser for two to three hours.
+The reaction mixture is now steam distilled, the mesitylene separated,
+dried over calcium chloride and fractionated; the portion which boils
+at 163-167'0 is collected.
+
+2.  Notes
+
+The cooling of the reaction flask must be very efficient, a 10-15 cm.
+blanket of a thorough mixture of ice and salt being used.
+If this precaution is not employed, the time for the addition
+of the sulfuric acid is greatly increased, provided the temperature
+of the reaction mixture is still kept within the limits mentioned.
+
+If a cork is used for the steam distillation of the reaction mixture
+of acetone and sulfuric acid, it should be coated well with pitch and wired
+into the flask.  This is necessary because the vapors of the reaction
+mixture attack an ordinary cork very badly, and soften it so much
+that it is necessary to rewire it to prevent it from slipping out.
+A rubber stopper is satisfactory and may be used in several runs.
+
+The evolution of gas is so vigorous that it is not possible to distil
+more than 2 l.  of the original reaction mixture at one time
+in the apparatus described.  The connections on the apparatus,
+in which the mesitylene is obtained from the crude reaction mixture,
+should be tight, since the fumes evolved during the heating
+are very irritating.
+
+The product which distils during the initial heating and the three
+minutes of steam distillation is mainly satisfactory material; the rest
+of the steam distillation yields only a small amount of pure product.
+The two portions of the distillate are, therefore, kept separate,
+since the second distillate always contains a considerable amount
+of high-boiling product which tends to cause emulsification of
+the alkali in the purification.  No recovery of acetone is made.
+
+The mechanism of the reaction is undoubtedly as follows:
+when the sulfuric acid and acetone are in contact for long periods
+of time, several molecules of the acetone condense to form aldol
+condensation products.  These do not break down into mesitylene until
+the temperature is raised in the second part of the experiment.
+
+While the original reaction mixture is standing, the temperature
+gradually rises to 40'0 or 50'0 in the course of six to ten hours,
+and then gradually cools off again.  It is probable that at the end
+of this time (when the flask has cooled again) the reaction mixture
+could be distilled with nearly as good a yield as is obtained
+after standing eighteen to twenty-four hours.
+
+The wide variation in yields which are mentioned in the experimental
+part is probably due to a slight change in the grade of the chemicals
+which are used in this preparation.  3.  Other Methods of Preparation
+
+The cheapest and most convenient method by which mesitylene may
+be prepared is by the action of a dehydrating agent upon acetone;
+the agent most commonly used is sulfuric acid.[1] It has been shown
+also that phosphoric acid will convert acetone to mesitylene.[2] A number
+of other methods have also been used for the preparation of mesitylene:
+the action of sulfuric acid on methyl acetylene;[3] the action
+of sulfuric acid on mesityl oxide and phorone;[4] the action of
+aluminium{sic(british)} chloride on methyl chloride and benzene;[5]
+the action of mineral acids upon mesitoyl or benzoyl mesitylene;[6]
+the action of phosphoric acid upon diaceto-mesitylene;[7] the treatment
+of methylene-3-dimethyl-1, 5-cyclo-hexene-1 with bromine and then
+with alcoholic potash.[8]
+
+[1] Ann.  141, 131 (1867); 147, 43 (1868); 278, 210 (1893); Bud.
+soc.  chim.  (2) 40, 267 (1883); J. prakt.  Chem.  (1) 15, 129
+(1838); Am.  Chem.  J. 15, 256 (1893); 20, 807 (1898).
+
+[2] J Chem.  Soc.  99, 1251 (1911).
+
+[3] Ber.  8, 17 (1875).
+
+[4] Ber.  7, 1169 (1874); 10, 858 (1877).
+
+[5] Ber.  12, 329 (1879); Ann.  chim.  phys.  (6) 1, 461 (1884).
+
+[6] Ber.  32, 1910 (1899).
+
+[7] Ber.  32, 1563 (1899).
+
+[8] Ber.  43, 3093 (1910).
+
+
+
+XII
+
+METHYL RED
+
+(_o_)HO2CC6H>4s>NH2 + HNO2 + HCl-->(_ o_)HO2CC6H4N2Cl + H2O
+(_o_) HO2CC6H4N2Cl + C6H5N(CH3)2-->(_ o_)HO2CC6H4N = NC6H4N(CH3)2 + HCl
+
+Prepared by H. T. CLARKE and W. R. KIRNER.  Checked by ROGER ADAMS
+and J. B. DAVIS.
+
+1.  Procedure
+
+TECHNICAL anthranilic acid (generally about 95 per cent pure)
+(685 g.) is dissolved in 1.5 l.  of water and 500 cc.
+of concentrated hydrochloric acid (sp. gr.  1.17), by heating.
+The insoluble dark impurity present in small amounts is filtered off,
+and the filtrate is transferred to a 10-l. crock and chilled
+with stirring.  It is then mixed with a mush of 2.5 kg.
+of ice and 750 cc.  of concentrated hydrochloric acid.  The crock
+is cooled externally with ice, and the contents stirred continuously.
+When the temperature reaches about 3'0, a filtered solution of 360 g.
+of sodium nitrite in 700 cc.  of water is dropped in slowly,
+through a long capillary tube reaching below the surface
+of the liquid, until a faint but permanent reaction to starch
+potassium iodide paper is obtained; the temperature is kept
+between 3'0 and 5'0. This operation requires all but about 30 cc.
+of the nitrite solution and occupies one and a half to two hours.
+To the solution of the diazonium salt are now added 848 g.
+of dimethylaniline; this may be done rapidly, as the temperature
+does not rise appreciably.  Stirring is continued for one hour,
+the temperature being kept at 5'0 Five hundred cc.  of a filtered
+solution of 680 g.  of crystallized sodium acetate diluted to 1200 cc.
+are then added, and the stirring continued for four hours.
+If a foamy solid rises to the surface during this time and refuses
+to become incorporated by the stirrer, a few drops of ethyl acetate may
+be added to reduce the foam.  The mixture is allowed to stand overnight
+in an ice bath which is well insulated by several thicknesses of burlap;
+the temperature must be kept below 7'0 to get a good yield of product.
+The remainder of the sodium acetate solution is then added
+with stirring, and after the mixture has been stirred for an
+additional period of one to three hours, the temperature is allowed
+to rise slowly to 20-25'0 in the course of twenty-four hours.
+Just enough sodium hydroxide solution is then added, with stirring,
+to cause the mixture to have a distinct odor of dimethylaniline
+(about 240 cc.  of a 40 per cent solution are generally required),
+and the mixture is allowed to stand for forty-eight hours or longer
+at room temperature (20-25'0).
+
+The solid is then filtered off, washed first with water, then with 400 cc.
+of 10 per cent acetic acid (to remove the dimethylaniline) and finally
+with distilled water.  The last filtrate is generally pale pink.
+The solid is sucked as dry as possible, spread out on a tray in order
+to allow most of the water to evaporate (fifteen to twenty hours)
+and then suspended in 4 l.  of methyl alcohol in a 12-l. flask.
+This mixture is stirred on the steam bath under a reflux condenser
+for one to two hours, allowed to cool slowly, and then chilled in an ice
+bath and filtered.  The solid product is washed with a second 4 l.
+of cold methyl alcohol.  After being dried in air, the product
+varies in weight from 820 to 870 g.
+
+The product is extracted with boiling toluene in the following manner:
+150 g.  are placed in a fluted filter paper of 29 cm.
+diameter in a 25-cm. glass funnel which passes through the cork
+of a 2-l. flat-bottom conical flask containing 1250 cc.
+of toluene (Fig. 2). The flask is heated on an electric stove,
+and a 12-l. round-bottom flask is placed on the funnel to act
+as a condenser, cold water being run through the flask.
+The toluene is boiled until the condensed liquid runs through
+almost colorless (this requires from four to ten hours). The heating
+is then discontinued, and, as soon as the liquid ceases to boil,
+the flask is removed to a bath containing water at 90-100'0;
+the level of the water should be slightly above the level
+of the liquid in the flask.  This arrangement permits the
+temperature to fall slowly so that large crystals are obtained.
+In the meantime a second conical flask containing 1250 cc.
+of toluene is attached to the funnel, and a new charge of 150 g.
+of crude methyl red is placed in the paper.  When extraction
+is complete it is found that a certain amount of black amorphous
+insoluble matter remains on the filter; this is discarded.
+The crystals of methyl red are filtered off and washed with a
+little toluene.  The weight of pure material is 755-805 g.
+The mother liquors are concentrated to one-fourth of their volume,
+and the crystals which separate on cooling are recrystallized
+from fresh toluene.  The recovered toluene can, of course,
+be employed again.  The total yield of pure methyl red is 790--840 g.
+It melts at 181-182'0.
+
+The watery mother liquors from the crude methyl red are rendered
+alkaline with sodium hydroxide and distilled until no more
+dimethylaniline passes over.  In this way 250 to 400 g.
+of moist dimethylaniline are recovered.
+
+
+2.  Notes
+
+The amount of hydrochloric acid indicated must not be reduced;
+otherwise, diazoamino compounds are formed.
+
+It is essential to keep the temperature low while unreacted diazobenzoic
+acid remains in solution, in order to avoid decomposition.
+If this precaution is not taken, the yields are considerably diminished,
+through the formation of tarry by-products.
+
+The use of a capillary tube for the addition of sodium nitrite
+prevents loss of nitrous acid by local reaction at the surface
+of the acid solution.  The tube should not be tightly connected
+to the dropping funnel, but should be so arranged that air is sucked
+through with every drop.  In this way, the entrance of the acid
+liquor into the capillary is prevented.
+
+The formation of the azo compound takes place slowly on the addition
+of the dimethylaniline, but the speed of the reaction is greatly
+increased when the hydrogen ion concentration is lowered
+by the addition of the sodium acetate.  It is nevertheless
+necessary to allow the reaction mixture to stand a long time;
+if the product be filtered off after only twenty-four hours,
+a further quantity of dye will separate from the filtrate on standing.
+The hydrochloride of methyl red is only sparingly soluble in
+cold water, and is apt to separate in blue needles if the acidity
+is not sufficiently reduced.
+
+The alcoholic filtrate, obtained on digesting and washing the crude
+methyl red, contains a more soluble red by-product which gives
+a brownish-yellow solution in alkali.  The methyl alcohol may be
+recovered with very little loss by distillation; it is, however,
+impracticable to attempt to recover any methyl red from the residue,
+owing to the tarry nature of the by-product. The proportion of this
+by-product is greatly increased if the temperature of the mixture
+is allowed to rise too soon after the addition of the sodium acetate.
+
+Methyl red is described as crystallizing in needles from glacial
+acetic acid; on recrystallization from toluene it separates in plates.
+
+When the methyl red is crystallized from toluene, it sometimes
+separates in the form of bright-red lumps, probably on account
+of too rapid crystallization.  Under these conditions it is advisable
+to crystallize again, using a somewhat larger amount of toluene.
+
+It is advisable to titrate the crude anthranilic acid with standard
+alkali and phenolphthalein before starting the experiment.
+In checking these directions, an 80 per cent anthranilic acid
+was used; it gave a correspondingly lower yield of methyl red
+(650-700 g.). The yield of methyl red is about 65 to 70 per cent
+based on the dimethylaniline actually used up, but only 58-63 per
+cent based on the anthranilic acid actually present in the technical
+anthranilic acid employed.
+
+
+3.  Other Methods of Preparation
+
+Methyl red was first prepared[1] by diazotization of anthranilic
+acid in alcoholic solution, the product being allowed to react with
+dimethylaniline in the same solvent.  It has been stated[2] that this
+process does not work satisfactorily and yields a different product,
+of brownish-red color.
+
+The preparation of methyl red in aqueous solution has been
+described by two workers, one of whom[3] gives but few details
+and claims a nearly quantitative yield; the other[4] gives fuller
+details and states the yield to be 43.1 per cent of the theory.
+The recrystallization of methyl red from toluene is stated[5]
+to yield a product melting at 183'0.
+
+[1] Ber.  41, 3905 (1908).
+
+[2] Chem.  Zentr.  1910, (1), 960; 1910, (11), 1561.
+
+[3] J. Chem.  Soc.  97, 2485 (1910).
+
+[4] C. A. 14, 3406 (1920)
+
+[5] J. Chem.  Soc.  99, 1334 (1911).
+
+
+
+XIII
+
+_p_-NITROBENZOIC ACID
+
+(_p_)NO2C6H4CH>3s> + 3O(Na2Cr2O7 + H2SO4)--> (_p_)NO2C6H4CO2H + 3H2O
+
+Prepared by O. KAMM and A. O. MATTHEWS.  Checked by H. T. CLARKE
+and W. W. HARTMAN.
+
+1.  Procedure
+
+IN a 5-l. round-bottom flask, fitted with a mechanical stirrer,
+are placed 680 g.  of sodium dichromate, 1500 cc.  of water,
+and 230 g.  of _p_-nitrotoluene. Stirring is started, and 1700 g.
+of concentrated sulfuric acid are allowed to flow in during about
+thirty minutes.  The heat of dilution of the sulfuric acid will cause
+the nitrotoluene to melt, and rapid oxidation will soon take place.
+The last half of the sulfuric acid must be added gradually,
+in order to prevent too violent a reaction.  Since a small amount
+of nitrotoluene is volatilized, it is advisable to carry on this
+work under a hood.
+
+After the sulfuric acid has been added and the spontaneous heating
+of the reaction mixture has subsided, the mixture is heated to gentle
+boiling for about half an hour.  After the reaction mixture has cooled,
+2 l.  of water are added, the cooled solution is filtered through
+a cloth filter, and the product washed with about 1 l.  of water.
+In order to remove the chromium salts as completely as possible,
+the crude nitrobenzoic acid is warmed on the water bath and agitated
+with 1 l.  of dilute (5 per cent) sulfuric acid solution.
+After cooling, the product is again filtered.  It is then dissolved
+in 5 per cent sodium hydroxide solution, filtered from any chromium
+hydroxide remaining, and also from unchanged nitrotoluene.
+The filtrate, which should be light yellow or greenish in color,
+is acidified with dilute sulfuric acid, with stirring.
+It is usually preferable to run the alkaline solution into
+the dilute sulfuric acid, rather than to use the reverse procedure,
+for the precipitation of the nitro acid.  The precipitated product
+is filtered with suction, washed thoroughly, and dried.  The product
+should possess only a light-lemon color.  The yield should be 230-240 g.
+(80-85 per cent of the theoretical amount).
+
+For a product of special purity, crystallization from benzene
+is advisable.  For most purposes, however, the nitrobenzoic acid
+may be used without crystallization, since its melting point is found
+to be within 2'0 of the correct value of 238'0.
+
+
+2.  Notes
+
+The above procedure differs from that recorded in the literature,
+mainly in the use of a fairly large excess of sulfuric acid.
+This shortens the reaction time from forty hours to about one hour,
+which is especially convenient in the preparation of the acid
+on a laboratory scale.  Because of the use of this large
+excess of sulfuric acid, the reaction is apt to be rather
+violent if the directions given are not carefully followed.
+The oxidation should be carried out under a hood.  Small amounts of
+nitrotoluene are lost by volatilization, but this loss is not serious,
+as can be seen from the yield of product obtained.
+
+Ten or 20 g.  of unchanged nitrotoluene can be recovered from
+the reaction mixture by steam distillation, but the value of
+the by-product would not pay for the time spent in recovery.
+
+The washing of the crude reaction product with dilute sulfuric acid
+is advisable, if good material is to be obtained.  If an efficient
+centrifuge is available for use at this stage of the operation,
+this separate washing may prove to be less essential.
+
+When a sparingly soluble organic acid is precipitated from
+fairly concentrated solution, the precipitate is liable
+to carry down with it some of the salt of the organic acid.
+Addition of the salt solution to the mineral acid, with stirring,
+avoids this difficulty.  3.  Other Methods of Preparation
+
+The nitration of benzoic acid produces only very small yields
+of the _p_-nitro product.[1] The only practical method for the
+preparation consists in the oxidation of _p_-nitrotoluene, although
+for this purpose various oxidizing agents are used.  In addition
+to nitrotoluene, _p_-nitrobenzyl alcohol, _p_-nitrocinnamic acid
+and similar compounds may be oxidized, but their cost is prohibitive
+in comparison with that of the cheaper nitro hydrocarbon.
+
+_p_-Nitrotoluene may be oxidized by means of strong nitric acid,[2]
+chromic acid mixture,[3] or permanganates.[4] Electrolytic
+oxidation[5] has also been proposed.  The procedure given above
+involves the use of chromic acid mixture, but, owing to a change
+in the concentration of sulfuric acid, the time of reaction is greatly
+shortened and the preparation is thus considerably improved.
+
+[1] Ber.  8, 528, 536 (1875)
+
+[2] Ann.  127, 137 (1863); 128, 257 (1863)
+
+[3] Ann.  139, 335 (1866).
+
+[4] J. Am.  Chem.  Soc.  41, 1575 (1919).
+
+[5] R. P. 117, 129; Frdl.  6, 112.
+
+
+
+XIV _ p_-NITROBENZYL CYANIDE
+
+C6H5CH2CN + HNO3--> (_p_)NO2C6H4CH2CN + H2O
+
+Prepared by G. R. ROBERTSON.  Checked by ROGER ADAMS and H. O. CALVERY.
+
+1.  Procedure
+
+IN a 2-l. round-bottom flask, fitted with a stopper holding a dropping
+funnel and a mechanical stirrer, is placed a mixture of 275 cc.
+of concentrated nitric acid (sp. gr.  1.42) and 275 cc.
+of concentrated sulfuric acid (sp. gr.  1.84). This is cooled to 10'0
+in a freezing mixture, and 100 g.  of benzyl cyanide (free from alcohol
+and water) are run in slowly, at such a rate that the temperature
+remains at about 10'0 and does not exceed 20'0. After all the benzyl
+cyanide has been added (about one hour), the ice bath is removed,
+the mixture is stirred for an hour and then poured on to 1200 g.
+of crushed ice.  A pasty mass slowly separates; more than half
+of this mass is _p_-nitrobenzyl cyanide, the other constituents
+being _o_-nitrobenzyl cyanide, and a variable amount of an oil
+which resists hydrolysis; apparently no dinitro compounds are formed.
+The mass is filtered on a porcelain funnel with suction, pressed well
+to remove as much oil as possible, and dissolved in 500 cc.
+of boiling alcohol (95 per cent). On cooling, _p_-nitrobenzyl
+cyanide crystallizes; the mother liquor, on distillation,
+gives an impure alcohol which can be used for the next run.
+Recrystallization from 550 cc.  of 80 per cent alcohol (sp. gr.
+0.86 to 0.87) yields 70 to 75 g.  (50-54 per cent) of a product
+which melts at 115-116'0.
+
+This product is satisfactory for most purposes, and incidentally
+for the preparation of _p_-nitrophenylacetic acid.  Occasionally
+it must be free even from traces of the ortho compound,
+and in this case should be crystallized again from 80 per cent alcohol;
+it then melts at 116-117'0.
+
+
+2.  Notes
+
+Fuming nitric acid may be used in nitrating benzyl cyanide,
+but the method here described is cheaper.
+
+The yield of 70 g.  is obtained from benzyl cyanide, which boils
+over a 5'0 range prepared as described in preparation III
+(p. 9). Very pure benzyl cyanide will give a slightly higher yield,
+while commercial grades may give only 50 g.  of _p_-nitrobenzyl
+cyanide and much oil.
+
+The reaction has been also carried out with 500 g.
+of benzyl cyanide.  Under these conditions a 5-l. flask was used,
+and it required two and a half hours to add the benzyl cyanide.
+The yield of product was 325 to 370 g.
+
+
+3.  Other Methods of Preparation
+
+Nitrobenzyl cyanide has hitherto been prepared by the action
+of fuming nitric acid[1] on benzyl cyanide.
+
+[1] Ber.  17, 505 (1884); 33, 170 (1900); J. Biol.  Chem.  39, 585
+(1919); J. Am.  Chem.  Soc.  43, 180 (1921).
+
+
+
+XV
+
+_p_-NITROPHENYLACETIC ACID
+
+(_p_)NO2C6H4CN + H2SO4 + 2H2O--> (_p_)NO2C6H4CH2CO2H + NH4HSO4
+
+Prepared by G. R. ROBERTSON.  Checked by ROGER ADAMS and H. O. CALVERY.
+
+1.  Procedure
+
+IN a 1-l. round-bottom flask are placed 100 g.  of _p_-nitrobenzyl
+cyanide.  A solution of 300 cc.  of concentrated sulfuric acid
+(sp. gr.  1.84) in 280 cc.  of water is prepared, and two-thirds
+of this solution is poured on to the _p_-nitrobenzyl cyanide.
+The mixture is shaken well, until the solid is all moistened
+with the acid.  Any solid material sticking to the walls of
+the vessel is now washed down into the liquid with the remainder
+of the acid, the flask is attached to a reflux condenser, then set,
+without shaking, over a 10-cm. hole in a large sheet of asbestos
+board which rests on a tripod, and heated until the mixture boils.
+The boiling is continued for fifteen minutes.
+
+The reaction mixture, which becomes rather dark, is diluted
+with an equal volume of cold water and cooled to 0'0 or below.
+The solution is filtered, the precipitate is washed several times
+with ice water and then dissolved in 1600 cc.  of boiling water.
+(A few grams of animal charcoal are added in dissolving the precipitate,
+if a technical _p_-nitrobenzyl cyanide has been used.)
+This solution is filtered as rapidly as possible through a large
+folded filter, preferably with a steam funnel.  In spite of
+all precautions, however, some solid usually separates on the filter.
+This must be redissolved in a minimum quantity of boiling water,
+and this solution then filtered into the main solution.
+The _p_-nitrophenylacetic acid separates in long, pale-yellow needles,
+which melt at 151-152'0. The yield is 103 to 106 g.
+(92- 3 per cent of the theoretical amount).
+
+
+2.  Notes
+
+If the flask is not protected with an asbestos board or the equivalent,
+decomposition occurs where the substance is super-heated on the side
+walls of the flask.  If crystals of the cyanide are allowed to remain
+on the upper walls of the flask, they are not easily washed down
+and so are not hydrolyzed.
+
+The solubility curve of _p_-nitrophenylacetic acid is very steep
+at temperatures near 100'0, so that the filtering of the boiling
+solution should be rapid.
+
+If a good grade of cyanide be used, it is not necessary to add
+bone-black in order to obtain the acid in a pure state.
+
+In making experiments with 500 g.  of _p_-nitrobenzyl cyanide,
+it was found that the time for hydrolysis was about the same as
+when smaller amounts were used.
+
+
+3.  Other Methods of Preparation
+
+_p_-Nitrophenylacetic acid has been formed by the nitration of
+phenylacetic acid;[1] by the hydrolysis of its ester[2] or its amid,[3]
+and by the hydrolysis of its nitrile with hydrochloric acid.[4]
+
+[1] Ber.  42, 3596 (1909).
+
+[2] Ber.  12, 1765 (1879).
+
+[3] Ber.  14, 2342 (1881).
+
+[4] Ber.  15, 834 (1882).
+
+
+
+
+XVI
+
+NITROSO-b-NAPHTHOL
+
+C10H7OH(b) + HNO2--> C10H6(OH)NO(1,2) + H2O
+
+Prepared by C. S. MARVEL and P. K. PORTER.  Checked by H. T. CLARKE
+and W. W. HARTMAN.
+
+1.  Procedure
+
+IN a 12-l. round-bottom flask fitted with a mechanical stirrer are placed
+500 g.  of technical b-naphthol dissolved in a warm solution of 140 g.
+of sodium hydroxide in 6 l.  of water.  The solution is cooled
+to 0'0 in an ice-and-salt bath, and 250 g.  of powdered technical
+sodium nitrite is added.  Stirring is started and 1100 g.
+of sulfuric acid (sp. gr.  1.32) are added from a dropping funnel,
+at such a rate that the whole is added in one to one and a half hours,
+the temperature being kept at 0'0. During the reaction crushed ice
+is added from time to time to maintain the temperature at 0'0;
+about 1 kg.  is usually used.  After all of the sulfuric acid
+has been added, the solution should react acid to Congo paper.
+The mixture is stirred one hour longer at the low temperature
+and then the nitroso-b-naphthol, which has gradually separated out
+during the reaction, is filtered with suction and washed thoroughly
+with water.  The product is at first light yellow in color,
+but after three to four days it gradually changes to a dark brown.
+The moisture content seems to have some effect on the color.
+After the product has been air-dried for about four days, the yield
+is about 665 g.; it melts at 97'0. A sample of this partially
+dried product, on drying _in vacuo_ over sulfuric acid for twenty hours,
+loses about 10 per cent of its weight and the melting point is 106'0.
+By longer drying under ordinary conditions, the melting point of 106'0
+is reached.  The total yield of dry product is about 595 g.
+(99 per cent of the theoretical amount).
+
+This product is satisfactory for all purposes.  It may be obtained
+in a crystalline condition, however, by recrystallizing from hot ligroin
+(sp. gr.  0.71-0.72). About 2 g.  of nitroso-b-naphthol will dissolve
+in 15 cc.  of boiling ligroin.  The product is not very soluble
+in cold ligroin, so that nearly all is recovered.
+
+
+2.  Notes
+
+It is very necessary to keep the temperature near 0'0 while
+adding the sulfuric acid, or a tarry product will be obtained.
+Vigorous stirring and the addition of the sulfuric acid at the proper
+rate are essential for a good product.
+
+A large vessel is needed for the reaction, as the nitroso-b-naphthol
+separates in a finely divided condition and there is some
+tendency to foam.
+
+The final air-dried product is pure except for its moisture content,
+as is shown by the fact that on drying _in vacuo_ it has a very good
+melting point.  A sample of Kahlbaum's nitroso-b-naphthol melted
+at 101--105.
+
+
+3.  Other Methods of Preparation
+
+Nitroso-b-naphthol has been made by the action of hydroxylamine
+hydrochloride on b-naphtho-quinone-chlorimide;[1] by the action
+of sulfuric acid upon a solution of potassium or sodium nitrite
+and the sodium salt of b-naphthol;[2] by the action of sodium nitrite
+upon an alcoholic solution of zinc chloride and b-naphthol;[3]
+by the action of sodium nitrite upon b-naphthol suspended in zinc
+sulfate solution;[4] by the action of nitrous acid on b-dinaphthol
+methane;[5] and by the action of nitrosyl sulfate upon the sodium
+salt of b-naphthol.[6]
+
+[1] Ber.  27, 241 (1894).
+
+[2] Ber.  8, 1026 (1875); 27, 3076 (1894); J. Chem.  Soc.  45, 295 (1884).
+
+[3] Ber.  18, 705 (1885).
+
+[4] D. R. P. 25,469; Frdl.  1, 335 (1883).
+
+[5] Ber.  33, 806 (1900).
+
+[6] J Chem.  Soc.  32, 47 (1877); Ann.  189, 146 (1877).
+
+
+
+XVII
+
+PHENYLACETIC ACID
+
+C6H5CH2CN + 2H2O + H2SO4--> C6H5CH2CO2H + NH4HSO4
+
+Prepared by ROGER ADAMS and A. F. THAL.  Checked by O. KAMM and
+A. O. MATTHEWS.
+
+1.  Procedure
+
+IN a 5-l. round-bottom flask, fitted with a mechanical stirrer
+and reflux condenser, are mixed 1150 cc.  of water, 840 cc.
+of commercial sulfuric acid and 700 g.  of benzyl cyanide
+(preparation III, p.  9). The mixture is heated under a reflux condenser
+and stirred for three hours, cooled slightly and then poured into 2 l.
+of cold water.  The mixture should be stirred so that a solid
+cake is not formed; the phenylacetic acid is then filtered off.
+This crude material should be melted under water and washed
+by decantation several times with hot water.  These washings,
+on cooling, deposit a small amount of phenylacetic acid which
+is filtered off and added to the main portion of material.
+The last of the hot water is poured off from the material while it
+is still molten and it is then transferred to a 2-l. Claisen
+distilling flask and distilled _in vacuo_.  A small amount of water
+comes over first and is rejected; about 20 cc., containing an
+appreciable amount of benzyl cyanide, then distils.  This fraction
+is used in the next run.  The distillate boiling 176-189'0/50 mm.
+is collected separately and solidifies on standing.  It is practically
+pure phenylacetic acid, m.  p.  76-76.5'0; it amounts to 630 g.
+(77.5 per cent of the theoretical amount). As the fraction which is
+returned to the second run of material contains a considerable
+portion of phenylacetic acid, the yield actually amounts to at least
+80 per cent.
+
+For the preparation of small quantities of phenylacetic acid,
+it is convenient to use the modified method given in the Notes.
+
+
+2.  Notes
+
+The standard directions for the preparation of phenylacetic acid
+specify that the benzyl cyanide is to be treated with dilute
+sulfuric acid prepared by adding three volumes of sulfuric acid
+to two volumes of water.  There action, however, goes so vigorously
+that it is always necessary to have a trap for collecting
+the benzyl cyanide which is blown out of the apparatus.
+The use of the more dilute acid, as described in the above directions,
+is more satisfactory.
+
+The phenylacetic acid may also be made by boiling under a reflux
+condenser for eight to fifteen hours, without a stirrer,
+but this method is not nearly so satisfactory as that described
+in the procedure.
+
+When only small quantities of the acid are required, the following
+modified procedure is of value.  One hundred grams of benzyl cyanide
+are added to a mixture containing 100 cc.  of water, 100 cc.
+of concentrated sulfuric acid, and 100 cc.  of glacial acetic acid.
+After this has been heated for forty-five minutes under
+a reflux condenser, the hydrolysis is practically complete.
+The reaction mixture is then poured into water, and the phenylacetic
+acid isolated in the usual manner.
+
+The odor of phenylacetic acid is disagreeable and persistent.
+
+
+3.  Other Methods of Preparation
+
+The standard method of preparation of phenylacetic acid is by the
+hydrolysis of benzyl cyanide with either alkali[1a] or acid.[2a] The acid
+hydrolysis runs by far the more smoothly and so was the only one studied.
+There are numerous other ways in which phenylacetic acid has been formed,
+but none of them is of practical importance for its preparation.
+These methods include the following:  the action of water on phenyl
+ketene;[3a] the hydrolysis and subsequent oxidation of the product
+between benzaldehyde and hippuric acid;[1] the reduction of mandelic
+acid;[2] the reduction of benzoylformic acid with hydriodic acid
+and phosphorus;[3] the hydrolysis of benzyl glyoxalidone;[4]
+the fusion of atropic acid with potassium hydroxide;[5] the action
+of alcoholic potash upon chlorophenylacetylene;[6] the action
+of benzoyl peroxide upon phenylacetylene;[7] the alkaline hydrolysis
+of triphenylphloroglucinol;[8] the action of ammonium sulfide
+upon acetophenone;[9] the heating of phenylmalonic acid;[10]
+the hydrolysis of phenylacetoacetic ester;[11] the action of hydriodic
+acid upon mandelonitrile.[12]
+
+
+[1a] Ann.  96, 247 (1855); Ber.  14, 1645 (1881); Compt.
+rend.  151, 236 (1910).
+
+[2a] Ber.  19, 1950 (1886).
+
+[3a] Ber.  44, 537 (1911).
+
+[1] Ann.  370, 371 (1909)a
+
+[2] Chem.  (2) 1, 443 (1865); Ber.  14, 239 (1881).
+
+[3] Ber.  10, 847 (1877)
+
+[4] J. prakt.  Chem.  (2) 82, 52, 58 (1910).
+
+[5] Ann.  148, 242 (1868).
+
+[6] Ann.  308, 318 (1899).
+
+[7] J. Russ.  Phys.  Chem.  Soc.  42, 1387 (1910); Chem.  Zentr.
+1911 (I) 1279.
+
+[8] Ann.  378, 263 (1911).
+
+[9 Ber.  21, 534 (1888); J. prakt.  Chem.  (2) 81, 384 (1910).
+
+[10] Ber.  27, (1894).
+
+[11] Ber.  31, 3163 (1898)
+
+[12] Inaugural Dissertation of A. Kohler (1909), Univ.  of Bern.
+
+
+
+XVIII
+
+PHENYLACETYLENE
+
+C6H5CH=CHBr + KOH--> C6H5CTBCH + KBr + H2O
+
+Prepared by JOHN C. HESSLER.  Checked by J. B. CONANT and E. R. BARRETT.
+
+1.  Procedure
+
+IN a 500-cc. Pyrex distilling flask are placed 150 g.
+of potassium hydroxide.  The mouth of the flask is provided with a
+one-hole stopper holding a dropping funnel; the side tube of the flask
+is connected with a condenser set for downward distillation.
+The b-bromostyrene (100 g.) is placed in the dropping funnel.
+
+The distilling flask is gradually heated in an oil bath until
+the temperature of the bath is 200'0, and the bromostyrene is
+then dropped in upon the molten potassium hydroxide, at the rate
+of somewhat less than a drop a second.  Since the boiling point of
+phenylacetylene is 142-143'0, and that of bromostyrene is 218-220'0,
+the phenylacetylene distils away from the unchanged bromostyrene.
+
+While the bromostyrene is being dropped in, the temperature
+of the oil bath is raised very gradually to 215-220'0, and is kept
+at this temperature until all the bromostyrene has been added.
+Finally the temperature is raised to 230'0, and is held there
+until no more distillate comes over.  The distillate is colorless;
+it consists of two layers, the lower one being water.
+The upper layer is separated and dried with solid potassium hydroxide.
+It is then distilled.  The yield of the distilled phenylacetylene,
+boiling at 142-144'0, is 37 g.  (67 per cent of the theoretical
+amount). 2.  Notes
+
+Toward the end of the reaction, a crust of potassium bromide
+may tend to cover the melted potassium hydroxide.  One can break
+the crust by shaking the distilling flask gently, or by using
+a glass rod inserted through a second hole in the stopper holding
+the dropping funnel.
+
+It is convenient to have such a rod or stirrer passing through
+a mercury seal in the stopper of the flask.  An occasional turn
+of this stirrer breaks the crust and facilitates the operation.
+Mechanical stirring should not be employed, as it reduces
+the yield tremendously.  Apparently this is because it facilitates
+the solution of bromostyrene in the tarry by-products and thus causes
+it to polymerize instead of reacting with the potassium hydroxide.
+A single Pyrex flask can be used for only three or four runs.
+The flask should be emptied while still very hot.
+
+The yield of material can be somewhat increased by working with small lots
+(25 g.  of bromostyrene).
+
+The use of steel or copper vessels in place of a glass flask seems
+to diminish the yield slightly.
+
+
+3.  Other Methods of Preparation
+
+Phenylacetylene has been prepared by the elimination of carbon
+dioxide from phenylpropiolic acid by means of phenol[1] or aniline[2]
+or by heating with barium hydroxide;[3] from styrene dibromide,
+by heating with potassium hydroxide in alcohol;[4] by heating b-bromo
+or chloro styrene with sodium ethylate or potassium hydroxide
+in alcohol;[5] by passing the vapors of a-dichloroethylbenzene over
+hot soda lime;[6] by the action of alcoholic potassium hydroxide
+on dibenzal-acetone tetra-bromide;[1b] by the action of aqueous
+potassium hydroxide on phenyl propargylaldehyde;[2b] by the action
+of molten potassium hydroxide on b-bromo-styrene.[3b]
+
+
+[1] Ber.  20, 3081 (1887).
+
+[2] Rec.  trav.  chim.  16, 157 (1896).
+
+[3] Arm.  221, 70 (1883).
+
+[4] Ann.  154, 155 (1870); 235, 13 (1886); Bull.  soc.  chim.  35, 55
+(1881); (3) 25, 309 (1901).
+
+[5] Ann.  308, 265 (1899); 342, 220 (1905).
+
+[6] Jahresb.  1876, 308; Gazz.  chim.  ital.  22 (2), 67
+(1892); Bull.  soc.  chim.  (3) 25, 309 (1901).
+
+[1b] Ber.  39, 4146 (1900).
+
+[2b] Ber.  31, 1023 (1898).
+
+[3b] J. Am.  Chem.  Soc.  44, 425 (1922).
+
+
+
+XIX
+
+PHENYLHYDRAZINE
+
+C6H5NH2<.>HCl + NaNO2 + HCl--> C6H5N2Cl + NaCl + 2H2O C6H5N2Cl
++ 4H(Na2SO3)--> C6H5NHNH2<.>HCl
+
+Prepared by G. H. COLEMAN.  Checked by J. B. CONANT and H. R. THOMPSON.
+
+
+1.  Procedure
+
+IN a 12-l. round-bottom flask, fitted with a mechanical stirrer,
+are placed 1045 cc.  of concentrated commercial hydrochloric acid
+(sp. gr.  1.138). The flask is surrounded with a freezing mixture
+of ice and salt, and when the contents are at 0'0, stirring is started
+and 500 g.  of cracked ice are added; then 372 g.  of aniline,
+also cooled to 0'0, are run in during five minutes.  The mixture
+is treated with 500 g.  more of cracked ice, and a cold solution
+(0'0) of 290 g.  of technical sodium nitrite dissolved in 600 cc.
+of water are allowed to run in slowly (twenty to thirty minutes)
+from a dropping funnel, the end of which is drawn to a small tip,
+and reaches nearly to the bottom of the flask.  During this addition,
+the stirrer is operated rather vigorously, and the temperature is
+kept as near 0'0 as possible by the frequent addition of cracked ice
+(about 1 kg).
+
+In the meantime, a sodium sulfite solution is prepared by dissolving
+890 g.  of sodium hydroxide, of about 90 per cent purity, in about 1 l.
+of water and then diluting to 6 l.  A few drops of phenolphthalein
+solution are added and sulfur dioxide passed in, first until an acid
+reaction is indicated and then for two or three minutes longer.
+During the addition of the sulfur dioxide, the solution is cooled
+with running water.  On account of the strong alkaline solution,
+the original color produced by the phenolphthalein is very faint,
+but this slowly increases until it becomes deep just before the acid
+point is reached.  It is best to remove a small sample of the liquid
+from time to time, dilute with three or four volumes of water
+and add a drop more of phenolphthalein.
+
+The sodium sulfite solution is placed in a 12-l. flask and cooled
+to about 5'0. Approximately 500 g.  of cracked ice are added, and then,
+with mechanical stirring, the diazonium salt solution is run in as
+rapidly as possible.  The mixture becomes a bright orange-red. The
+flask is now warmed to about 20'0 on a steam bath, until the solid
+sodium sulfite, which has separated while cooling, redissolves.
+The total amount of liquid is now about 10 l.  One-half of this
+is poured into another 12-l. flask, and both halves are warmed
+on the steam bath to 60-70'0, until the color becomes quite dark
+(thirty to sixty minutes). Sufficient hydrochloric acid (300-400 cc.)
+is now added to each flask to make the solutions acid to litmus.
+The heating is continued and the color gradually becomes lighter until,
+after four to six hours, the solutions have become nearly colorless;
+they may be heated overnight, if desired.
+
+To the hot solutions are now added about one-third of their volume
+of concentrated hydrochloric acid (2 l.  to each portion) and the
+mixtures cooled, first in running water, then in a freezing mixture,
+to 0'0. The phenylhydrazine hydrochloride precipitates in the form
+of slightly yellowish or pinkish crystals which may be filtered
+off and dried.
+
+The free base is liberated by adding to the phenylhydrazine
+hydrochloride 1 l.  of a 25 per cent solution of sodium hydroxide.
+The phenylhydrazine separates and is taken up with benzene
+(two 300-cc. portions). The combined extractions are well dried
+with 200 g.  of solid sodium hydroxide, poured off, and distilled.
+Most of the benzene may be distilled under ordinary pressure,
+and the remainder, and any low-boiling impurities,
+under diminished pressure.  The pure phenylhydrazine boils
+at 137-138'0/18 mm., and is obtained as a pale-yellow liquid.
+It can be crystallized on cooling in an ice bath; the crystals
+melt at 230.  The crude phenylhydrazine from two lots of aniline
+(744 g.) is best distilled at one time and gives 695-725 g.
+of pure product (80-84 per cent of the theoretical amount).
+
+
+2.  Notes
+
+If the sodium sulfite solution contains an excess of alkali,
+a black tar tends to form when the solution is warmed, and very
+little phenylhydrazine is obtained.  Great care must be taken
+in determining the end point in the neutralization of the sodium
+hydroxide by the sulfur dioxide.
+
+If the sodium sulfite-diazonium salt mixture is acidified before
+warming or before becoming dark, the red color of the solution does
+not disappear on heating, and the precipitated phenylhydrazine
+hydrochloride obtained is colored red.
+
+The benzene solution of phenylhydrazine should be well dried
+before distilling, since the presence of moisture causes an increased
+amount of foaming to take place just after the benzene has distilled off.
+When the distillation is carried out carefully, practically no
+phenylhydrazine distils with the benzene or other low-boiling impurities.
+
+In order to obtain the maximum yield, it is necessary to cool the
+hydrochloric acid solution of the phenylhydrazine hydrochloride from 20'0
+to 0'0, before filtration.  From 5 to 10 per cent of product separates
+between these two temperatures.  When this is done, no more phenylhydrazine
+hydrochloride is obtained by concentration of the mother liquor.
+An increase in the amount of hydrochloric acid above 2 l.
+for the precipitation of the hydrochloride produces no increase
+in yield of product.
+
+Most published directions for the preparation of phenylhydrazine
+specify the use of zinc dust and acetic acid following the reduction
+with sodium sulfite.  No improvement in the quality or quantity
+of the product was obtained by using zinc and acetic acid.
+
+It is best to use freshly prepared sodium sulfite for the reduction,
+since the commercial quality is poor and gives a lower yield
+of phenylhydrazine.  A cylinder of liquid sulfur dioxide should,
+of course, be available.
+
+The rapid addition of the diazonium salt solution to the sodium
+sulfite seems to be advantageous.
+
+Pure phenylhydrazine dissolves in dilute acetic acid to yield
+a perfectly clear solution.
+
+The phenylhydrazine hydrochloride may be purified by crystallizing
+from water.  A 600-cc. portion of water is used for 100 g.
+of crude hydrochloride, and the solution boiled a short time
+with a few grams of animal charcoal.  After filtering, 200 cc.
+of concentrated hydrochloric acid are added, and the mixture cooled
+to 0'0. Pure white crystals in a yield of 85-90 g.  are obtained.
+
+Rubber gloves should be worn when working with large quantities
+of phenylhydrazine, since the product may cause serious injury
+to the skin.  The vapors of phenylhydrazine should not be inhaled.
+
+
+3.  Other Methods of Preparation
+
+Phenylhydrazine has been prepared by the reduction of benzene diazonium
+salts with sulfites;[1] by the reduction of benzene diazonium
+chloride with stannous chloride;[2] by the reduction of benzene
+diazonium hydrate with zinc or sulfur dioxide;[3] by the reduction
+of sodium benzene diazotate with sodium stannite;[4] by the reduction
+of diazoamino benzene;[5] by the reduction of nitrosophenyl
+hydroxylamine or its methyl ether;[6] and by the action of hydrazine
+hydrate on phenol.[7]
+
+
+[1] Ann.  190, 79 (3878); Ber.  20, 2463, (1887).
+
+[2] Ber.  16, 2976 (1883); 17, 572, footnote (1884).
+
+[3] Ber.  31, 346 (1898).
+
+[4] Ber.  36, 816 (1903).
+
+[5] Ber.  31, 582 (1898).
+
+[6] Ann.  190, 77 (1878).
+
+[7] Ber.  31, 2910 (1898).
+
+
+The most feasible method consists in the reduction of diazonium
+salts with sodium sulfite.  Although this method is given in several
+laboratory manuals, the results were not found entirely satisfactory.
+The present directions provide for a lengthy but essential
+heating of the diazonium-sulfite mixture, omit the useless zinc
+dust reduction, and supply exact details for preparation on a fairly
+large laboratory scale.
+
+
+
+XX
+
+PHTHALIMIDE CO CO C6H4< >O + NH4OH--> C6H4< >NH + 2H2O
+           CO                             CO
+            CO                                         CO
+2C<6s<H<s>4< >O + (NH4)2CO3--> 2<C6H4< >NH + CO2 + 3H2O CO CO
+
+Prepared by W. A. NOYES and P. K. PORTER.  Checked by H. T. CLARKE
+and J. H. BISHOP.
+
+1.  Procedure
+
+IN a 5-l. round-bottom flask (Pyrex) is placed a mixture of 500 g.
+of phthalic anhydride and 400 g.  of 28 per cent ammonium hydroxide.
+The flask is fitted with an air condenser not less than 10 mm.
+in diameter and is then slowly heated with a free flame until the mixture
+is in a state of quiet fusion at a temperature of about 300'0. It
+requires about one hour before all the water has gone and about
+one and a half to two hours before the temperature of the reaction
+mixture reaches 300'0 and the mixture is a homogeneous melt.
+It is advisable, during the heating, to shake the flask occasionally;
+some material sublimes into the condenser and must be pushed
+down with a glass rod.  The hot reaction mixture is now poured out
+into a crock, covered with a paper to prevent loss by sublimation,
+and allowed to cool.  The product is practically pure without
+further treatment, and melts at 232-235'0. The yield is 470-480 g.
+(94-95 per cent of the theoretical amount).
+
+Phthalimide may also be made by using 500 g.  of phthalic anhydride
+and 500 g.  of ammonium carbonate which has been previously ground
+in a mortar.  The subsequent procedure is the same as when aqueous
+ammonia is used.  Frequent shaking is necessary, and the sublimed
+material must be occasionally pushed back into the reaction flask.
+About two hours are required for completion.
+
+
+2.  Notes
+
+Several smaller runs of 25 g.  of phthalic anhydride gave
+the same percentage yield.
+
+Phthalimide may be recrystallized from water, but only about 4 g.
+of phthalimide will dissolve in a liter of boiling water.
+It may also be crystallized from alcohol, in which solvent it dissolves
+to the extent of five parts in a hundred at boiling temperature.
+
+On a large scale, it would be advisable to collect the small amount
+of ammonia given off during the reaction.
+
+If desired, the product obtained by pouring the reaction mass
+into the crock may be treated with hot water to soften the cake,
+broken up with a glass rod, transferred to a flask and boiled with water
+for a few minutes.  This treatment, however, is quite unnecessary;
+for all practical purposes, the crude cake, as it is obtained,
+may be ground up and used directly.
+
+
+3.  Other Methods of Preparation
+
+Phthalimide has been formed by heating ammonium phthalate;[1]
+by heating acid ammonium phthalate;[2] by passing dry ammonia over
+heated phthalic anhydride;[3] by treating phthalyl chloride with dry
+ammonia;[4] by heating phthalamide;[5] by heating phthalic anhydride
+with ammonium thiocyanate;[6] by heating phthalic anhydride with
+urea;[7] by heating phthalic anhydride with ammonium carbonate;[1b]
+by heating phthalic acid with nitriles;[2b] by fusing _o_-cyanobenzoic
+acid;[3b] and by the action of potash on _o_-cyanobenzaldehyde.[4b]
+
+
+[1] Jahresb.  1868, 549; Ann.  19, 47 (1836); 41, 110 (1842); 42, 220
+(1842); 205, 300 (1880); 215, 181 (1882).
+
+[2] Jahresb.  1847-1848, 590.
+
+[3] Am.  Chem.  J. 3, 29 (1881).
+
+[4] Am.  Chem.  J. 3, 28 (1881).
+
+[5] Ber.  39, 2278 (1906).
+
+[6] Ber.  19, 1398 (1886),
+
+[7] Ber.  10, 1166 (1877); Am.  Chem.  J. 18, 333 (1896);
+J. Am.  Chem.  Soc.  32, 116 (1910); Z. angew.  Chem.  32, I, 301 (1919).
+
+[1b] J. Am.  Chem.  Soc.  42, 1282 (1920).
+
+[2b] J Am.  Chem.  Soc.  18, 680 (1896); 20, 654 (1898).
+
+[3b] Rec.  trav.  chim.  (I) 11, 93 (1892).
+
+[4b] Ber.  30, 1698 (1897).
+
+
+Of these, the first three are the only ones which need be
+considered as methods for the preparation of phthalimide.
+It was found that the third was by no means easy to bring about:
+dry phthalic anhydride is apparently only superficially affected
+by the dry ammonia, and it was difficult to introduce sufficient heat
+into the loose mass of crystals to cause the reaction to start.
+
+
+
+
+XXI
+
+QUINOLINE
+
+/ \ / \ C3H5(OH)3 + C6H5NH2 + 4O(C6H5NO2)--> | | | + 4H2O \ / \n/
+
+Prepared by H. T. CLARKE and ANNE W. DAVIS.  Checked by ROGER ADAMS
+and A. W. SLOAN.
+
+1.  Procedure
+
+IN a 5-l. round-bottom flask, fitted with an efficient reflux
+condenser of wide bore, are placed, in the following order, 80 g.
+of powdered crystalline ferrous sulfate, 865 g.  of glycerol
+(c. p.), 218 g.  of aniline, 170 g.  of nitrobenzene, and 400 cc.
+of concentrated sulfuric acid (sp. gr.  1.84). The contents of the flask
+are well mixed and the mixture heated gently over a free flame.
+As soon as the liquid begins to boil, the flame is removed, since the heat
+evolved by the reaction is sufficient to keep the mixture boiling
+for one-half to one hour.  If the reaction proceeds too violently at
+the beginning, the reflux condenser may be assisted by placing a wet
+towel over the upper part of the flask.  When the boiling has ceased
+the heat is again applied and the mixture boiled for five hours.
+It is then allowed to cool to about 100'0 and transferred to a 12-l. flask;
+the 5-l. flask is rinsed out with a small quantity-of water.
+The 12-l. flask is then connected with the steam-distillation
+apparatus shown in Fig.  3, a 12-l. flask being used as a receiver;
+steam is passed in (without external heat) until 1500 cc.
+have distilled (ten to thirty minutes). This removes all
+the unchanged nitrobenzene (10-20 cc.). The current of steam
+is then interrupted, the receiver is changed, and 1500 g.
+of 40 per cent sodium hydroxide solution are added cautiously
+through the steam inlet.  The heat of neutralization is sufficient
+to cause the liquids to boil and thus become thoroughly mixed.
+Steam is then passed in as rapidly as possible until all the quinoline
+has distilled.  In this process, 6-8 l.  of distillate are collected
+(two and a half to three and a half hours are required, unless a
+very efficient condensing apparatus is used, under which conditions
+the distillation may be complete in one-half to one and a half hours).
+The distillate is allowed to cool, and the crude quinoline separated.
+The aqueous layer of the distillate is again distilled with steam
+until all the quinoline has been volatilized and collected in about
+3 l.  of distillate.
+
+These 3 l.  of distillate are then mixed with the first yield of quinoline
+and 280 g.  (150 cc.) of concentrated sulfuric acid are added.
+The solution is cooled to 0-5'0, and a saturated solution of sodium
+nitrite added until a distinct excess of nitrous acid is present
+(as shown either by starch-potassium iodide paper or by the odor).
+This generally requires 50 to 70 g.  of sodium nitrite.
+The mixture is then warmed on a steam bath for an hour, or until
+active evolution of gas ceases, and is then distilled with steam
+until all the volatile material has been expelled (41. of distillate
+will result) The receiver is then changed and the mixture in
+the distillation flask is neutralized, as before, with 700 g.
+of 40 per cent sodium hydroxide solution.  The quinoline is distilled
+exactly as described above, the aqueous portions of the distillate
+being distilled with steam until all the quinoline has been isolated.
+The crude product is then distilled under reduced pressure,
+and the fraction which boils at 110-114'0/14 mm.  is collected.
+The foreruns are separated from any water which may be present, dried with
+a little solid alkali, and redistilled.  The total yield is 255-275 g.
+(84-91 per cent of the theoretical amount based on the aniline taken).
+
+
+2.  Notes
+
+Although these directions have been used many times with results
+exactly as described, in a few cases the yields have dropped to 60-65
+per cent without any apparent reason.  At present no explanation
+can be given for this.
+
+In the Skraup synthesis of quinoline the principal difficulty has
+always been the violence with which the reaction generally takes place;
+it occasionally proceeds relatively smoothly, but in the majority
+of cases gets beyond control, with consequent loss of material
+through the condenser.  By the addition of ferrous sulfate,
+which undoubtedly functions as an oxygen carrier, the reaction
+is extended over a longer period of time.  It is thus possible
+to work with much larger quantities of material when ferrous
+sulfate is employed.
+
+It is important that the materials should be added in the correct order;
+should the sulfuric acid be added before the ferrous sulfate,
+the reaction may start at once.  It is also important to mix
+the materials well before applying heat; the aniline sulfate should
+have dissolved almost completely and the ferrous sulfate should be
+distributed throughout the solution.  To avoid danger of overheating,
+it is well to apply the flame away from the center of the flask
+where any solids would be liable to congregate.
+
+In the apparatus for steam distillation, the greater portion
+of the condensation is effected by the stream of water passing
+over the receiver.  It is, therefore, necessary that the stream
+passing through the condenser should be sufficiently rapid to cause
+it to form a uniform film over the receiving flask.  A 12-l. flask
+is even more efficient as a condenser than the 5-l. flask.  It is
+important that the tube through which the vapors leave the distillation
+flask should be neither too short nor, especially, too narrow.
+Where the external diameter of the steam inlet tube is 5-8 mm.,
+the internal diameter of this steam head should be not less than 28 mm.
+Were it less, the current of steam passing through it would be so rapid
+as to prevent small quantities of liquid from returning to the flask,
+and these would be driven over into the receiver.
+
+Much time can be saved by the use of the steam distillation apparatus
+described, especially when large quantities have to be handled.
+The above directions avoid the use of extraction methods, which not
+only consume more time but may lead to appreciable losses of material.
+If the downward condenser is of iron, the apparatus is even more
+efficient and the time for the steam distillation is halved.
+
+The percentage yields have been based on the amount of aniline taken.
+It would probably be more legitimate to base the calculation on the amounts
+of aniline taken and of nitrobenzene not recovered, since undoubtedly
+the latter is reduced to aniline during the course of the reaction.
+If this be done, the yield is found to be only 55 to 60 per cent
+of the calculated amount.
+
+In a number of experiments, the glycerol used contained an appreciable
+amount of water.  Under these conditions, the yield of product
+is much lower.  "Dynamite" glycerol containing less than half a per
+cent of water is best employed; U. S. P. glycerol contains 5 per
+cent of water and usually gives lower yields.
+
+
+3.  Other Methods of Preparation
+
+Quinoline has been produced by passing the vapor of allylaniline
+over red-hot lead oxide;[1a] by heating acrylideneaniline, or better,
+a mixture of aniline, glycerol and sulfuric acid;[2a] by heating
+aniline with glycerol and sulfuric acid, using nitrobenzene as an
+oxidizing agent;[1] by treating a mixture of glyoxal and _o_-toluidine
+with alkali;[2] by treating a solution of _o_-aminobenzaldehyde with
+acetaldehyde and alkali;[3] by heating methylacetanilide with zinc
+chloride;[4] by heating aminoazobenzene with glycerol and sulfuric
+acid;[5] by heating a mixture of aniline, glycerol and sulfuric
+acid with arsenic acid.[6]
+
+
+[1a] Ber.  12, 453 (1879).
+
+[2a] Ber.  13, 911 (1880); Monatsh.  1, 316 (1880).
+
+[1] Monatsh.  2, 141 (1881); J. prakt.  Chem.  (2) 49, 549 (1894),
+
+[2] Monatsh.  15, 277 (1894).
+
+[3] Ber.  15, 2574 (1882); 16, 1833 (1883).
+
+[4] Ber.  23, 1903 (1890).
+
+[5] Ber.  24, 2623 (1891)
+
+[6] Ber.  29, 704 (1896)
+
+
+Of the above methods, the only ones which need be considered are
+those in which a mixture of aniline, glycerol and sulfuric acid
+is heated with an oxidizing agent.  With the use of nitrobenzene,
+the reaction, according to the original method, takes place
+with extreme violence.
+
+The method above described is the most satisfactory for the preparation
+of quinoline itself, but for the preparation of homologues
+of quinoline, the use of arsenic acid is preferable, since the yields
+are somewhat greater.
+
+Since the work was carried out, a method has been published[7] in
+which aniline, glycerol and sulfuric acid are treated with ferric oxide.
+By this method Adams and Parks were unable to obtain yields comparable
+with those resulting from the above directions.
+
+[7] Chem.  News 121, 205 (1920).
+
+
+
+
+XXII
+
+QUINONE
+
+(1)HOC6H4OH(4) + O(Na2Cr2O7 + H2SO4)--> O=C6H4=O + H2O Prepared
+by E. B. VLIET.  Checked by ROGER ADAMS and E. E. DREGER.
+
+
+1.  Procedure
+
+IN a 2.5-l. beaker, 100 g.  of hydroquinone are dissolved
+in 2000 cc.  of water heated to about 50'0. After the solid
+is completely dissolved, the solution is cooled to 20'0, 100 g.
+of concentrated sulfuric acid are slowly poured in, and the mixture
+is again cooled to 20'0. A concentrated solution of technical sodium
+dichromate is prepared by dissolving 140 g.  in 65 cc.  of water.
+This solution is then added gradually to the hydroquinone solution,
+with the use of a mechanical stirrer (see notes), the mixture being
+cooled so that the temperature never rises above 30'0. At first
+a greenish-black precipitate forms, but upon further addition of
+the sodium dichromate solution, the color changes to yellowish green.
+As soon as this color remains permanent (a slight excess
+of sodium dichromate does no harm) the reaction is complete.
+This requires about one-half to three-quarters of an hour;
+90 to 110 cc.  of sodium dichromate solution is necessary.
+The mixture is then cooled to about 10'0 and filtered with suction.
+As much water as possible is pressed out of the crystals.
+
+The filtrate is extracted twice, 150 cc.  of benzene being used
+for each extraction.  The precipitate of quinone is transferred
+to a 1-l. beaker, and 500 cc.  of benzene, including the 300 cc.
+used to extract the filtrate, are added, The mixture is now heated
+with stirring on a steam-bath, and as soon as most of the quinone
+has dissolved the benzene layer is decanted into another beaker.
+It is dried while hot by stirring a short time with a little
+calcium chloride, and then filtered through an ordinary funnel
+into a 1-l. distilling flask before it cools.  There is a certain
+amount of quinone which does not go into the 500 cc.  of benzene,
+so that the residue is extracted a second time with about 100 cc.
+of benzene, which is dried and filtered with the first extract.
+During these extractions, the benzene should not be at the boiling point,
+as this will cause a considerable volatilization of the quinone.
+
+The distilling flask is now attached to a condenser set
+for downward distillation, and the benzene is distilled.
+As soon as the quinone starts to separate, the residue in the flask
+is transferred to a beaker and cooled in an ice bath.  The precipitate
+is filtered off with suction and the product spread out for a short
+time to dry.  The product is yellow in color and weighs 75 to 80 g.
+(76-81 per cent of the theoretical amount). Material made in this way
+will hold its yellow color over long periods of time, provided it
+is protected from light.
+
+The benzene distillate is yellow and contains some quinone.
+This, as well as the benzene from the final filtration of
+the quinone crystals, may be used in a subsequent run and thus
+raises the yield of the subsequent runs to about 85-90 g.
+(85-90 per cent of the theoretical amount).
+
+
+2.  Notes
+
+As the mixture becomes thick during the oxidation, it is very necessary
+to use a stirrer which will keep the whole mass agitated by reaching
+to the sides and bottom of the beaker.
+
+If impure hydroquinone is used, a black, sticky precipitate will
+usually appear after the addition of the sulfuric acid to the
+hydroquinone solution.  This should be removed, before the oxidation
+is started, by filtration without suction through a fluted filter.
+
+When technical sodium dichromate is used, the solution should be
+filtered with suction, before it is added to the hydroquinone,
+in order to remove any insoluble impurities.
+
+In the laboratory it is convenient to make several small runs
+of the size indicated, as far as the oxidation is concerned;
+but the benzene extractions can be combined.
+
+It is also possible to obtain good yields of quinone in the
+following manner:  1500 cc.  of water, 465 g.  of concentrated
+sulfuric acid and 300 g.  of hydroquinone are mixed in a 3-l. beaker.
+The mixture is cooled to 0'0, and 330 g.  of sodium dichromate are added
+in powdered form, the temperature being kept below 5'0 at all times.
+This procedure requires a longer time and much more care in the control
+of conditions than the method described above.
+
+
+3.  Other Methods of Preparation
+
+Quinone may be prepared by the oxidation of aniline with
+dichromate or manganese dioxide and sulfuric acid.[1] This
+is a more feasible commercial method than the one given.
+However, the oxidation of hydroquinone is more rapid and
+convenient and, hence is more desirable for use in the laboratory.
+Various materials have been oxidized by chemical means to give quinone:
+they are quinic-acid,[2] hydroquinone,[3] benzidine,[4]
+_p_-phenylenediamine,[5] sulfanilic acid,[6] _p_-phenolsulfonic
+acid,[7] arbutin,[8] aniline black,[9] and the leaves of various
+plants.[10] Quinone is also formed by several other methods:
+by the fermentation of fresh grass;[11] by the action of iodine
+on the lead salt of hydroquinone;[1b] by the decomposition
+of the compound, C6H4<.>2CrO2Cl with water;[2b] by the action of
+sulfuric acid on phenol blue;[3b] by the electrochemical oxidation
+of aniline,[4b] hydroquinone[5b] or benzene;[6b] by the catalytic
+oxidation of benzene.[7b]
+
+
+[1] Jahresb.  1863, 415; Ber.  10, 1934, 2005 (1877); 16, 687
+(1883); 19, 1468 (1886); 20, 2283 (1887); 31, 1524 (1898); Ann.
+200, 240 (1880); 215, 127 (1882).
+
+[2] Ann.  27, 268 (1838).
+
+[3] Ann.  51, 152 (1844) j Am.  Chem.  J. 14, 555 (1892).
+
+[4] Jahresb.  1863, 415.
+
+5 Jahresb.  1863, 422.
+
+6 Ann.  159, 7 (1871); Ber.  8, 760 (1875).
+
+[7] Ber.  8, 760 (1875).
+
+[8] Ann.  107, 233 (1858).
+
+[9] Ber.  10, 1934 (1877); 34, 1285 (1901).
+
+[10] Ann.  89, 247 (1854); Ber.  34, 1162 (1901).
+
+[11] Ber.  30, 1870 (1897).
+
+[1b] Ber.  31, 1458 (1898); Am.  Chem.  J. 26, 20 (1901).
+
+[2b] Ann.  chim.  phys.  (5) 22, 270 (1881).
+
+[3b] Ber.  18, 2915 (1885); 21, 889 (1888).
+
+[4b] D. R. P. 109,012; Frdl.  5, 664 (1900); D. R. P. 117,129; Frdl.
+6, 112 (1901); J. Soc.  Dyers and Colourists, 36, 138 (1920).
+
+[5b] D. R P. 117,129; Frdl.  6, 112 (1901).
+
+[6b] D. R. P. 117,251; Frdl.  6, 109 (1901); U. S. Pat.
+1,322,580 (1919); C. A. 14, 287 (1920); Rev. produits chim.
+21, 219 (1918); 21, 288 (1918).
+
+[7b] U. S. Pat.  1,318,631 (1919); C. A. 14, 70 (1920).
+
+
+
+XXIII
+
+SODIUM _p_-TOLUENESULFINATE
+
+2CH3C6H4SO2Cl + 3Zn--> (CH3C6H4SO2)2Zn + ZnCl2 (CH3C6H4SO2)2Zn +
+Na2CO3--> 2CH3C6H4SO2Na + ZnCO3
+
+Prepared by FRANK C. WHITMORE and FRANCIS H. HAMILTON Checked
+by J. B. CONANT and PAUL ALLEN, JR.
+
+
+1.  Procedure
+
+FIVE HUNDRED grams of technical _p_-toluenesulfonyl chloride are ground
+in a mortar to break up all lumps.  Three liters of water are placed
+in a 12-l. crock provided with a large brass stirrer and a tube
+for passing steam directly into the liquid.  Dry steam is passed
+into the water until the temperature reaches 70'0. The steam is then
+shut off and 400 g.  of zinc dust (90 to 100 per cent pure) is added.
+The sulfonyl chloride is then added in small portions by means
+of a porcelain spoon.  The addition takes about ten minutes.
+The temperature rises to about 80'0. Stirring is continued
+for ten minutes after the last of the chloride has been added.
+Steam is then passed into the mixture until the temperature
+reaches 90'0. If it is heated any hotter, bumping takes place.
+The steam is shut off, and 250 cc.  of 12 _N_.  sodium hydroxide
+solution is added.  Finely powdered sodium carbonate is then
+added in 50-g. portions until the mixture is strongly alkaline.
+The mixture froths considerably, but this causes no trouble unless
+too small a crock is used.  The stirrer is loosened and the crock
+is removed.  The mixture is filtered by suction in a large funnel.
+The filtrate has a volume of about 4.5 l.  The cake of unchanged
+zinc dust and zinc compounds is transferred to a 3-l. battery jar
+and placed under the stirrer, and the latter is clamped in place.
+Water (750 cc.) is added, the stirrer is started, and steam
+is passed in until the mixture starts to froth too violently.
+The steam is then shut off, but the stirring is continued
+for ten minutes.  The mixture is filtered and the filtrate
+is added to the main solution in a large evaporating dish.
+The liquid is evaporated over a large burner to a volume of about
+1 l., or until a considerable crust forms around the edges.
+The mixture is then cooled.  Large, flat, transparent crystals separate.
+The thoroughly cooled mixture is filtered by suction,
+and the crystals are air-dried until efflorescence just starts.
+They are then bottled.  The product is CH3C6H4SO2Na<.>2H2O. Yield 360 g.
+(64 per cent of the theoretical amount). Careful acidification
+of the mother liquor with dilute hydrochloric acid yields 15 g.
+of the free sulfinic acid.
+
+
+2.  Notes
+
+The free sulfinic acid may be prepared by dissolving the sodium salt in
+cold water and carefully acidifying the solution with hydrochloric acid.
+An excess of the latter must be avoided, as it dissolves the acid
+to a certain extent.  The sulfinic acid is difficult to dry without
+partial conversion into the sulfonic acid.
+
+
+3.  Other Methods of Preparation
+
+Toluenesulfinic acid and its salts have been prepared by three
+general methods:  (1) The reduction of the sulfonyl chloride.
+The reagents which have been used for this are sodium amalgam,[1] zinc
+dust in alcohol or water,[2] sodium sulfite,[3] sodium sulfide,[4]
+potassium hydrosulfide[5] (the thio acid being first formed)
+and sodium arsenite.[6] (2) From toluene by the Friedel and
+Crafts reaction, using either sulfur dioxide and hydrogen chloride[7]
+or sulfuryl chloride.[8] (3) From _p_-toluidine by diazotization
+and subsequent treatment with sulfur dioxide and finely divided
+copper.[1b] The compound has also been obtained in certain
+reactions which, however, would not be suitable for preparative work;
+thus it is formed by hydrolysis and reduction of certain thio
+derivatives[2b] prepared from the acid itself and also by the
+decomposition of ditolylsulfonmethylamine.[3b]
+
+
+[1] Ann.  142, 93 (1867).
+
+[2] Ber.  9, 1586 (1876).
+
+[3] Ber.  3, 965 (1870).
+
+[4] D. R. P. 224,019; Chem.  Zentr.  1910, (II), 513.
+
+[5] Ber.  42, 3821 (1909).
+
+[6] Ber.  41, 3351 (1908); Ber.  42, 480 (1909).
+
+[7] Ber.  41, 3318 (1908); J. Chem.  Soc.  93, 754 (1908).
+
+[8] Rec.  trav.  chim.  (2) 30, 381 (1911).
+
+[1b] Ber.  32, 1141 (1899); J. Chem.  Soc.  95, 344 (1909).
+
+[2b] Ber.  15, 130 (1882); 20, 2088 (1887); 41, 3351 (1908).
+
+[3b] J. prakt.  Chem.  (2) 63, 170 (1901).
+
+
+
+XXIV
+
+1,3,5-TRINITROBENZENE
+
+C6H2(NO2)3CO2H--> C6H3(NO2)3 + CO2
+
+Prepared by H. T. CLARKE and W. W. HARTMAN.  Checked by J. B. CONANT
+and J. J. TOOHY.
+
+1.  Procedure
+
+THE crude trinitrobenzoic acid obtained by oxidation of 360 g.
+of trinitrotoluene (prep. XXV, p.  95) is mixed with 2 l.
+of water at 35'0 in a 5-l. flask provided with a stirrer.
+Fifteen per cent sodium hydroxide solution is added,
+with continuous stirring, until a FAINT red color is just produced.
+(See Notes.) The color is then immediately discharged by means
+of one or two drops of acetic acid, and the liquid is filtered
+from unchanged trinibrotoluene.  The filtrate is transferred
+to a 5-l. flask, and 70 cc.  of glacial acetic acid are added.
+The mixture is then gently heated, with continuous stirring,
+when trinitrobenzene separates in crystalline condition,
+and floats on the surface of the liquid as a frothy layer.
+After about one and a half hours the evolution of gas ceases;
+at this point the crystals begin to stir into the solution.
+The heating and stirring is continued for three-quarters of an hour,
+when the mixture is allowed to cool, and the crystals filtered off.
+A sample of the filtrate should be tested for undecomposed
+trinitrobenzoic acid:  if a precipitate is produced by
+the addition of sulfuric acid the process must be continued.
+After recrystallization from glacial acetic acid, the product
+melts at 121-122'0. The yield is 145-155 g.  (43 to 46 per cent
+of the theoretical amount calculated from the trinitrotoluene). 2.
+Notes
+
+During the solution of the trinitrobenzoic acid, the temperature should
+not be below 35'0, owing to the slight solubility of trinitrobenzoic
+acid in cold water.  The heat of neutralization raises the temperature
+to 45-55'0, but the latter temperature should not be exceeded,
+since any trinitrobenzene formed at this point would later be removed
+with the unreacted trinitrotoluene.
+
+Care must be taken that no more alkali is added than is just sufficient
+to produce the faint red color.  If an excess of alkali is added it
+produces a permanent color, which is not removed by acid and colors
+the final product.
+
+When once the evolution of carbon dioxide sets in, the flame must
+be cut down so as to avoid the formation of a thick layer of froth
+which might foam over.
+
+
+3.  Other Methods of Preparation
+
+1,3,5-Trinitrobenzene can be prepared by heating _m_-dinitrobenzene
+with nitric acid and sulfuric acid to 120'0;[1] by heating
+2,4,6-trinitrotoluene with fuming nitric acid in a sealed tube
+at 180'0 for three hours;[2] by heating 2,4,6-trinitrobenzoic acid
+or its sodium salt with water, alcohol, dilute sodium carbonate
+or other suitable solvent.[3]
+
+
+[1] Ber.  9, 402 (1876); Ann.  215, 344 (1882).
+
+[2] Ber.  16, 1596 (1883).
+
+[3] D. R. P. 77,353; Frdl.  4, 34 (1894).
+
+
+
+XXV
+
+2, 4, 6-TRINITROBENZOIC ACID
+
+C6H2(NO2)3CH3 + 3O(Na2Cr2O7 + H2SO4)--> C6H2(NO2)3CO2H + H2O
+
+Prepared by H. T. CLARKE and W. W. HARTMAN.  Checked by J. B. CONANT
+and J. J. TOOHY.
+
+1.  Procedure
+
+To 3600 g.  of concentrated sulfuric acid, in a 5-l. flask placed
+in an empty water bath, are added 360 g.  of technical trinitrotoluene,
+while the mixture is stirred mechanically.  Sodium dichromate
+(Na2Cr2O7 2H2O) is now added in small quantities (PRECAUTION: see Notes),
+with constant stirring, until the temperature of the mixture reaches 40'0;
+the empty water bath is now filled with cold water and the addition
+of sodium dichromate continued at such a rate that the temperature
+remains at 45-55'0. In all 540 g.  of sodium dichromate are added,
+the addition taking one to two hours.  When all has been added,
+the mixture, which has now become very thick, is stirred for two
+hours at 45-55'0, and poured into a crock containing 4 kg.
+of crushed ice.  The insoluble trinitrobenzoic acid is filtered off,
+and carefully washed with cold water until free from chromium salts.
+On drying it weighs 320-340 g.
+
+The product is now mixed with 2 l.  of distilled water at 35'0
+in a 5-l. flask provided with a stirrer, and 15 per cent sodium
+hydroxide solution is dropped in with continuous stirring until
+a FAINT red color is just produced.  Should this disappear,
+it is restored by the addition of a few drops more.  When it has
+persisted for five minutes, the color is discharged by the addition
+of a few drops of acetic acid, and the insoluble unattacked
+trinitrotoluene filtered off and washed with a little water.
+The trinitrobenzoic acid is precipitated from the filtrate
+by the addition of a slight excess of 50 per cent sulfuric acid.
+The solution is chilled, and the acid filtered and washed free
+from salts with ice water.  When dried in air it weighs 230-280 g.
+(57 to 69 per cent of the theoretical amount).
+
+2.  Notes
+
+The mother liquors and washings lose carbon dioxide on boiling,
+and the insoluble trinitrobenzene separates see preparation XXIV);
+after filtering, washing, and drying, it weighs 15-20 g.
+(4 to 6 per cent of the theoretical amount).
+
+It is essential that the stirring should be most efficient,
+so that when the mixture becomes thick the dichromate will be evenly
+distributed throughout the liquid, as rapidly as it is added.
+If the stirring is not efficient, local reactions of extreme violence
+(in certain cases leading to conflagration) will occur.
+An iron stirrer may be employed in the oxidation reaction,
+but not in the purification.
+
+Technical sodium dichromate generally contains a certain amount
+of chlorides, and the chlorine liberated from these tends
+to cause a troublesome foam towards the end, of the reaction.
+Only a very efficient stirrer, which draws down the surface of the liquid,
+is able to combat this difficulty.  The amount of solid sodium
+dichromate given is for the dry crystalline compound containing
+two molecules of water of crystallization.
+
+Great care should be taken in dissolving the crude acid in the alkali.
+If an excess of alkali persists for any length of time, a permanent
+color is produced which will discolor the final product.
+The acid is fairly soluble in cold water and should be washed with care.
+
+
+3.  Other Methods of Preparation
+
+2,4,6-Trinitrobenzoic acid has been prepared by heating trinitrotoluene
+with fuming acid in a sealed tube to 100'0, for two weeks,[1a]
+the oxidation being only partial.  It can also be prepared by heating
+trinitrotoluene under a reflux condenser, with a mixture of 5 parts
+of concentrated nitric acid and 10 parts of concentrated sulfuric
+acid;[1] this method is, however, unsuitable in the laboratory
+owing to the difficulty of devising suitable apparatus.
+Another method is to dissolve trinitrotoluene in nitric acid and,
+to this solution (at 95'0), to add potassium chlorate at such a rate
+that the temperature does not fall;[2] this method has been found
+to be difficult to control on a laboratory scale.
+
+
+[1a] Ber.  3, 223 (1870)
+
+[1] D. R. P. 77,559; Frdl.  4, 34 (1894)
+
+[2] D. R. P. 226,225; Frdl.  10, 167 (1910).
+
+
+The method described above is a modification of a patented process,[3]
+in which trinitrotoluene suspended in sulfuric acid is treated
+with chromic anhydride.
+
+[3] D. R. P. 127,325; Frdl.  6, 148 (1901).
+
+
+
+INDEX
+
+A
+
+Acetic acid, 18, 33, 64 Acetone, 41 Acetophenone, 1 Ammonium carbonate,
+75 Ammonium hydroxide, 37, 75 Aniline, 71, 79 Anthranilic acid, 47
+
+B
+
+Benzalacetophenone, 1 Benzaldehyde, 1, 5 Benzoic acid, 5 Benzyl alcohol,
+5 Benzyl benzoate, 6 Benzyl chloride 9 Benzyl cyanide, 9-11, 27,
+57, 63 Bromostyrene, 67
+
+C
+
+Carbon tetrachloride, 23 Chlorine, 37 Copper sulfate, 38
+
+D
+
+Dibenzyl ether, 6 a, g-Dichloroacetone, 13-15 Dimethylaminobenzaldehyde,
+17-21 Dimethylaniline, 17, 47
+
+E
+
+Ethyl alcohol, 23, 27 Ethyl oxalate, 23-26 Ethyl phenylacetate, 27-28
+
+F
+
+Ferrous sulfate, 79 Formaldehyde, 17
+
+G
+
+Gelatine solution, 37 Glycerol, 29, 33, 79 Glycerol a,
+g-dichlorohydrin, 29-31 Glycerol a-monochlorohydrin, 33-35
+
+H
+
+Hydrazine sulfate, 37 40 Hydrochloric acid, 17, 30, 34, 47,
+71 Hydroquinone, 85
+
+M
+
+Mesitylene, 41-45 Methyl red, 47-61
+
+N
+
+Naphthol, 61 Nitric acid, 57 Nitrobenzene, 79 _p_-Nitrobenzoic acid,
+63-66 _p_-Nitrobenzyl cyanide, 67-58, 59 _p_-Nitrophenylacetic acid,
+6940 Nitrosodimethylaniline hydrochloride, 17 Nitroso-,3-naphthol,
+61-62 Nitrotoluene, 53
+
+O
+
+Oxalic acid, 23
+
+P
+
+Phenylacetic acid, 10, 63-65 Phenylacetylene, 67-69 Phenylhydrazine,
+71-74 Phthalic anhydride, 75 Phthalimide, 7~78 Potassium hydroxide, 67
+
+Q Quinoline, 79 83 Quinone, 86 88 S
+
+Sodium acetate, 48 Sodium benzylate, 6 Sodium cyanide, 9 Sodium dichromate,
+13, 53, 85, 95 Sodium hydroxide, 1, 37, 61, 93 Sodium hypochlorite,
+37 Sodium, metallic, 5, 42
+
+Sodium nitrite, 17, 47, 61, 71, 80 Sodium sulfite, 71 Sodium
+_p_-toluene sulfinate,--91 Sulfur dioxide, 71 Sulfuric acid,
+13, 27, 30.  34, 37, 41, 43, 53, 57, 59, 63, 79, 85, 95
+
+T Toluene, 48 Toluenesulfonyl chloride, 89 I, 3, s-Trinitrobenzene, 93--
+94, 96 2, 4, 6-Trinitrobenzoic acid, 93, 96 97 2, 4, 6-Trinitrotoluene, 93,
+95 Zinc dust, 89
+
+
+
+
+
+End of The Project Gutenberg Etext of Organic Syntheses, Conant, Editor
+

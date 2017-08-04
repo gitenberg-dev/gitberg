@@ -6,10 +6,13 @@ Makes an organized git repo of a book folder
 
 from __future__ import print_function
 import codecs
+import os
 from os.path import abspath, dirname
 
 import jinja2
 import sh
+
+from .parameters import GITHUB_ORG
 
 class NewFilesHandler():
     """ NewFilesHandler - templates and copies additional files to book repos
@@ -25,14 +28,14 @@ class NewFilesHandler():
 
     def add_new_files(self):
         self.template_readme()
+        self.travis_files()
         self.copy_files()
 
     def template_readme(self):
         template = self.env.get_template('README.rst.j2')
         readme_text = template.render(
-            title=self.book.meta.title,
-            author=self.book.meta.author,
-            book_id=self.book.book_id
+            authors=self.book.meta.authors_short(), 
+            **self.book.meta.metadata
         )
 
         readme_path = "{0}/{1}".format(
@@ -42,8 +45,28 @@ class NewFilesHandler():
         with codecs.open(readme_path, 'w', 'utf-8') as readme_file:
             readme_file.write(readme_text)
 
+    def travis_files(self):
+        template = self.env.get_template('.travis.yml')
+        travis_key = self.book.github_repo.travis_key()
+        travis_text = template.render({
+            'epub_title': 'book',
+            'encrypted_key': travis_key,
+            'repo_name': self.book.meta._repo,
+            'repo_owner': GITHUB_ORG
+        })
+
+        fpath = os.path.join(self.book.local_path, ".travis.yml")
+        with open(fpath, 'w') as f:
+            f.write(travis_text)
+        if self.book.github_repo.travis_key():
+            fpath = os.path.join(self.book.local_path, ".travis.deploy.api_key.txt")
+            with open(fpath, 'w') as f:
+                f.write(travis_key)
+
     def copy_files(self):
-        """ Copy the LICENSE and CONTRIBUTING files to each folder repo """
+        """ Copy the LICENSE and CONTRIBUTING files to each folder repo 
+        Generate covers if needed. Dump the metadata.
+        """
         files = [u'LICENSE', u'CONTRIBUTING.rst']
         this_dir = dirname(abspath(__file__))
         for _file in files:
@@ -57,4 +80,10 @@ class NewFilesHandler():
             self.book.meta.rdf_path,
             '{0}/'.format(self.book.local_path)
         )
-        self.book.meta.dump_file('{0}/metadata.yaml'.format(self.book.local_path))
+        if 'GITenberg' not in self.book.meta.subjects:
+            self.book.meta.metadata['subjects'].append('GITenberg')
+        if not self.book.meta._version:
+            self.book.meta.matadata["_version"] = "0.0.1"
+
+        self.book.meta.dump_file(os.path.join(self.book.local_path, 'metadata.yaml'))
+        

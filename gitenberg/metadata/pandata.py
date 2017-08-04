@@ -1,3 +1,6 @@
+'''
+A wrapper class that makes it easier to work with json or yaml formatted metadata for books
+'''
 import yaml
 import copy
 import requests
@@ -166,7 +169,8 @@ class Pandata(object):
             return 'book'  #this will be the default file name
 
     def get_edition_list(self):
-        yield self
+        if self.edition_identifiers or not self.edition_list:
+            yield self
         for edition in self.edition_list:
             new_self = Pandata(self)
             for key in edition.keys():

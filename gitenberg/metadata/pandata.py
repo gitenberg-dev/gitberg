@@ -1,10 +1,9 @@
 import yaml
-import json
 import copy
 import requests
 import httplib
 import datetime
-from .utils import marc_rels, inverse_marc_rels, plural, reverse_name
+from .utils import plural
 
 class TypedSubject(tuple):
     pass

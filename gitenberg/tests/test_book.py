@@ -7,7 +7,7 @@ from mock import patch
 import gitenberg
 from gitenberg.book import Book
 
-    
+
 class TestBookPath(unittest.TestCase):
     def setUp(self):
         self.test_book_dir = 'test_book'
@@ -18,6 +18,7 @@ class TestBookPath(unittest.TestCase):
             with patch('github3.login') as login:
                 self.login = login
                 self.book = Book(1234)
+                self.fakebook = Book(1235)
 
     def test_remote_path(self):
         self.assertEqual(
@@ -40,7 +41,15 @@ class TestBookPath(unittest.TestCase):
 
     @patch('os.makedirs')
     @patch('os.chmod')
-    def test_make_local_path(self, mock_chmod, mock_makedirs):
-        self.book.set_existing_local_path(self.test_book_dir)
+    def test_make_new_local_path(self, mock_chmod, mock_makedirs):
+        self.fakebook.make_local_path()
         mock_makedirs.assert_called_once()
         mock_chmod.assert_called_once()
+
+    @patch('os.makedirs')
+    @patch('os.chmod')
+    def test_make_existing_local_path(self, mock_chmod, mock_makedirs):
+        self.book.set_existing_local_path(self.test_book_dir)
+        self.book.make_local_path()
+        mock_makedirs.assert_not_called()
+        mock_chmod.assert_not_called()

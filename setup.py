@@ -56,9 +56,12 @@ setup(name='gitberg',
           'cairocffi==0.8.0',
           'pycparser==2.17',
           'cryptography==1.7.2',
+          'pyepub',
       ],
       test_suite='nose.collector',
-      tests_require=['nose'],
+      tests_require=[
+          'nose',
+      ],
       classifiers=[
           'Development Status :: 3 - Alpha',
           'Intended Audience :: Developers',
@@ -67,4 +70,7 @@ setup(name='gitberg',
           # 'Programming Language :: Python :: 3.4',
       ],
       keywords="books ebooks gitenberg gutenberg epub metadata",
+      dependency_links=[
+          "https://github.com/Gluejar/pyepub/archive/master.zip#egg=pyepub-0.3.1",
+      ],
       )

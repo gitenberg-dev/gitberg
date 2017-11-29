@@ -33,7 +33,7 @@ def makeTables(connection, cursor, makeBook=True, makeAuthor=True, makeCover=Tru
         cursor.execute("""create table Author (
         author_id     int CONSTRAINT authorkey PRIMARY KEY,
         name          varchar(100),
-        alias         varchar(100),
+        aliases       text,
         birth         int,
         death         int,
         wikipedia_url varchar(200)

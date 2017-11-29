@@ -57,7 +57,8 @@ setup(name='gitberg',
           'pycparser>=2.17',
           'cryptography>=1.7.2',
           'pyepub',
-          'wget>=3.2'
+          'wget>=3.2',
+          'psycopg2'
       ],
       test_suite='nose.collector',
       tests_require=[

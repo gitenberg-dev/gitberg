@@ -5,7 +5,7 @@ import six # check file types
 from gitenberg import book as Book
 from gitenberg.metadata.pg_rdf import pg_rdf_to_yaml
 from gitenberg.util.catalog import BookMetadata
-import util
+from gitenberg.util import util
 
 # for parsing yaml tags
 def default_ctor(loader, tag_suffix, node):

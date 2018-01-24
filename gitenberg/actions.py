@@ -9,7 +9,7 @@ def get_id(repo):
     book = Book(None, repo_name=repo)
 
     repo = book.github_repo.github.repository(orgname, repo)
-    print repo.id
+    print (repo.id)
     return repo.id
 
 def get_book(repo_name):
@@ -27,11 +27,11 @@ def delete(repo_name):
     repo = book.github_repo.github.repository(orgname, repo_name)
     if repo:
         if repo.delete():
-            print "{} deleted".format(repo_name)
+            print ("{} deleted".format(repo_name))
         else:
-            print "couldn't delete {}".format(repo_name)
+            print ("couldn't delete {}".format(repo_name))
     else:
-        print "{} didn't exist".format(repo_name)
+        print ("{} didn't exist".format(repo_name))
 
 def add_generated_cover(repo_name, tag=False):
     book = get_cloned_book(repo_name)

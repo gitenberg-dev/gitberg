@@ -37,7 +37,7 @@ class Yaml2MarcTest(unittest.TestCase):
         self.pandata = Pandata(TESTDATA_FILENAME)
         
     def test_pandata(self):
-        print self.pandata
+        print (self.pandata)
         self.assertEqual( self.pandata.gutenberg_issued , "2007-03-03")
         self.assertTrue( isinstance( self.pandata.creator , dict))
         self.assertTrue( isinstance( self.pandata.subjects[0] , tuple ))

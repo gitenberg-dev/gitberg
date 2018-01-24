@@ -23,7 +23,7 @@ class TestMakeCovers(unittest.TestCase):
             self.assertTrue(os.path.exists(self.test_path))
         except OSError:
             # eat this exception so the test will pass in server environments
-            print "OSError, probably Cairo not installed."
+            print ("OSError, probably Cairo not installed.")
             return None
 
     def tearDown(self):

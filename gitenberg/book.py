@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 
 import gc
 import logging
@@ -182,7 +183,7 @@ class Book():
             self.fetch()
             self.make()
             self.push()
-            print (u"{0} {1} added".format(self.book_id, self.meta._repo))
+            print(u"{0} {1} added".format(self.book_id, self.meta._repo))
         except sh.ErrorReturnCode_12:
             logging.error(u"{0} {1} timeout".format(self.book_id, self.meta._repo))
         except sh.ErrorReturnCode_23:
@@ -247,7 +248,7 @@ class Book():
             )
             return cover_image
         except OSError:
-            print ("OSError, probably Cairo not installed.")
+            print("OSError, probably Cairo not installed.")
             return None
 
     def add_covers(self):

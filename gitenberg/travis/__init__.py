@@ -1,3 +1,4 @@
+from __future__ import print_function
 import glob
 import subprocess
 import uuid
@@ -99,9 +100,9 @@ def build_epub_from_asciidoc (version, epub_title='book'):
         output = subprocess.check_output("./{fname} {version} {epub_title}".format(fname=fname, 
               version=version, epub_title=epub_title), 
               shell=True)
-        print (output)
+        print(output)
     except Exception as e:
-        print (e)
+        print(e)
     finally:
         os.remove(fname)
 
@@ -138,7 +139,7 @@ def build_epub(epub_title='book'):
         add_gitberg_info(epub_file)
         
         if epub_file <> u"{title}-epub.epub".format(title=md['title']):
-            print ("actual epub_file: {}".format(epub_file))
+            print("actual epub_file: {}".format(epub_file))
 
     else:
         # error code?

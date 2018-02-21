@@ -3,6 +3,7 @@
 """
 submodule which holds workflow methods
 """
+from __future__ import print_function
 import logging
 import requests
 
@@ -63,10 +64,10 @@ def apply_list(arg_action, id_list):
     for book_id in id_list:
         try:
             book = action(book_id)
-            print u'{}\t{}\t{}'.format(arg_action, book_id, book.meta.title)
+            print(u'{}\t{}\t{}'.format(arg_action, book_id, book.meta.title))
             book.remove()
         except Exception as e:
-            print u'error\t{}'.format(book_id)
+            print(u'error\t{}'.format(book_id))
             logging.error(u"Error processing: {}\r{}".format(book_id, e))
 
 

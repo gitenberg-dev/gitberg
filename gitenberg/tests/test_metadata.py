@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 import unittest
 import gitenberg.metadata.marc as marc
@@ -25,9 +26,9 @@ creator:
     url: http://www.gutenberg.org/2009/agents/1735
     wikipedia: http://en.wikipedia.org/wiki/Franz_Kafka
 subjects:
-- '!lcsh:Psychological fiction'
-- '!lcc:PT'
-- '!lcsh:Metamorphosis -- Fiction'
+  - !lcsh Psychological fiction
+  - !lcc PT
+  - !lcsh 'Metamorphosis -- Fiction'
 title: Metamorphosis
 url: http://www.gutenberg.org/ebooks/5200
 '''
@@ -37,7 +38,7 @@ class Yaml2MarcTest(unittest.TestCase):
         self.pandata = Pandata(TESTDATA_FILENAME)
         
     def test_pandata(self):
-        print self.pandata
+        print(self.pandata)
         self.assertEqual( self.pandata.gutenberg_issued , "2007-03-03")
         self.assertTrue( isinstance( self.pandata.creator , dict))
         self.assertTrue( isinstance( self.pandata.subjects[0] , tuple ))
@@ -81,7 +82,6 @@ class FileinfoTest(unittest.TestCase):
 class PandataTest(unittest.TestCase):
     def test_smart_properties(self):
         pandata = Pandata(TESTDATA_FILENAME)
-        #print pandata.metadata
         self.assertEqual(pandata.publication_date,'2007-03-03')
         pandata.metadata["gutenberg_issued"] = None
         self.assertNotEqual(pandata.publication_date,'2007-03-03')

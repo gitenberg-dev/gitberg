@@ -1,3 +1,4 @@
+from __future__ import print_function
 """ Implements functionality for cloning a gitenberg repo book from GITenberg """
 import logging
 import os
@@ -56,6 +57,6 @@ class CloneVat(object):
             self.local_repo = git.Repo.clone_from(self.get_clone_url_ssh(), self.library_book_dir())
             return True, "Success! Cloned {0}".format(self.book_repo_name)
         except git.exc.GitCommandError as e:
-            print e
+            print(e)
             logging.debug("clone ran into an issue, likely remote doesn't exist")
             return False, "Error git returned  a fail code"

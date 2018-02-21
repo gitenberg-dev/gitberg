@@ -26,9 +26,9 @@ creator:
     url: http://www.gutenberg.org/2009/agents/1735
     wikipedia: http://en.wikipedia.org/wiki/Franz_Kafka
 subjects:
-- '!lcsh:Psychological fiction'
-- '!lcc:PT'
-- '!lcsh:Metamorphosis -- Fiction'
+  - !lcsh Psychological fiction
+  - !lcc PT
+  - !lcsh 'Metamorphosis -- Fiction'
 title: Metamorphosis
 url: http://www.gutenberg.org/ebooks/5200
 '''

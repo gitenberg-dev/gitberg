@@ -80,9 +80,9 @@ class GithubRepo():
             self.github.set_user_agent('{}: {}'.format(self.org_name, self.org_homepage))
         try:
             self.org = self.github.organization(self.org_name)
-        except github3.models.GitHubError:
+            logging.info("ratelimit: " + str(self.org.ratelimit_remaining))
+        except github3.GitHubError:
             logging.error("Possibly the github ratelimit has been exceeded")
-        logging.info("ratelimit: " + str(self.org.ratelimit_remaining))
 
     def format_desc(self):
         return u'{0} by {1}\n is a Project Gutenberg book, now on Github.'.format(
@@ -191,4 +191,3 @@ class GithubRepo():
             if travis_key:
                 return travis_key
         return self.travis_encrypt(self.repo_token())
-    

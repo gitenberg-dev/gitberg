@@ -19,7 +19,9 @@ Arguments:
     <book_repo_name> -- The name of a repo in Gitenberg, `Frankenstein_84`. If you supply only a
                         number, it will be construed as a book_id, and the repo_name will be looked
                         up from a table.
-    <action> -- action to apply to repo.
+    <action> -- Action to apply to repo. Accepts either the full repo name or the Gutenberg id.         
+                Available actions: get_cloned_book, delete, add_generated_cover, config_travis,
+                refresh_repo, refresh_repo_desc
     <book_id_list> -- a filename for a list of book_id (one per line)
 
 Options:

@@ -110,6 +110,7 @@ class Book():
             self.meta.metadata['_repo'] = self.repo_name
         else:
             self.format_title()
+            
 
     @property
     def remote_path(self):
@@ -273,7 +274,10 @@ class Book():
                             {"image_path": "cover.png", "cover_type":"generated"}
                         )
                 comment =  "generated cover"
-            self.meta.metadata['_version'] =  semver.bump_minor(self.meta._version)
+            if '_version' in self.meta.metadata:
+                self.meta.metadata['_version'] =  semver.bump_minor(self.meta._version)
+            else:
+                self.meta.metadata['_version'] =  '0.1.0'
         self.meta.metadata['covers'] = new_covers
         return comment
 

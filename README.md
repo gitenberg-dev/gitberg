@@ -39,6 +39,8 @@ Main config values:
     gh_password: <your github account password>
     library_path: '~/data/library'
     rdf_library: location of your cache of the PG RDF demp
+    
+To push to github, you will need to configure SSH keys. See [Github's documentation}(https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
 
 ### Development
 

@@ -64,6 +64,7 @@ def refresh_repo(repo_name):
     book.local_repo.commit('Update cover, travis files')
     book.github_repo.update_repo()
     book.tag()
+    book.github_repo.enable_travis()
     return book
 
 def refresh_repo_desc(repo_name):
@@ -71,5 +72,9 @@ def refresh_repo_desc(repo_name):
     book.github_repo.update_repo()
     return book
 
+def enable_travis(repo_name):
+    book = get_cloned_book(repo_name)
+    book.github_repo.enable_travis()
+    return book
 
     

@@ -1,11 +1,12 @@
 requests>=2.7.0
 uritemplate.py>=0.3.0
 github3.py>=0.9.0
-GitPython>=2.0.0
-docopt==0.6.1
-sh==1.09
-Jinja2==2.7.3
+GitPython>=2.1.8
+docopt>=0.6
+sh>=1
+Jinja2>=2.7
 semver==2.2.0
+'tox>=2.5.0',
 beautifulsoup4==4.4.1
 wikipedia==1.4.0
 appdirs==1.4.0
@@ -22,9 +23,11 @@ pyparsing==2.1.10
 rdflib==4.2.0
 rdflib-jsonld==0.3
 
-cffi==1.9.1
+cffi>=1.9.1
 cairocffi==0.8.0
-pycparser==2.17
-cryptography==1.7.2
+pycparser>=2.17
+cryptography>=1.7.2
 # test
 mock==2.0.0
+
+travispy==0.3.5

@@ -16,6 +16,7 @@ import git
 import github3
 import requests
 import semver
+from travispy import TravisPy
 
 from . import config
 from .parameters import GITHUB_ORG, ORG_HOMEPAGE
@@ -202,6 +203,12 @@ class GithubRepo():
         )
 
         return base64.b64encode(ciphertext)
+        
+    def enable_travis(self):
+        travis = TravisPy.github_auth(self.github_token())
+        travis_repo = travis.repo(self.repo_id)
+        return travis_repo.enable()
+
 
     def travis_key(self):
         if self.book.local_repo:

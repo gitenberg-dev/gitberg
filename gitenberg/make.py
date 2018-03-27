@@ -76,14 +76,19 @@ class NewFilesHandler():
             )
 
         # copy metadata rdf file
-        sh.cp(
-            self.book.meta.rdf_path,
-            '{0}/'.format(self.book.local_path)
-        )
+        if self.book.meta.rdf_path: # if None, meta is from yaml file
+            sh.cp(
+                self.book.meta.rdf_path,
+                '{0}/'.format(self.book.local_path)
+            )
+            
         if 'GITenberg' not in self.book.meta.subjects:
             self.book.meta.metadata['subjects'].append('GITenberg')
+        self.save_meta()
+
+    def save_meta(self):
         if not self.book.meta._version:
-            self.book.meta.matadata["_version"] = "0.0.1"
+            self.book.meta.metadata["_version"] = "0.0.1"
 
         self.book.meta.dump_file(os.path.join(self.book.local_path, 'metadata.yaml'))
         

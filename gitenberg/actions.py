@@ -14,7 +14,10 @@ def get_id(repo):
     return repo.id
 
 def get_book(repo_name):
-    return Book(None, repo_name=repo_name)
+    if isinstance(repo_name, int):
+        return Book(repo_name)
+    else:
+        return Book(None, repo_name=repo_name)
 
 def get_cloned_book(repo_name):
     book = get_book(repo_name)
@@ -55,11 +58,23 @@ def refresh_repo(repo_name):
     book = get_cloned_book(repo_name)
     filemaker = NewFilesHandler(book)
     filemaker.travis_files()
+    filemaker.copy_files()
     book.add_covers()
     book.local_repo.add_all_files()
     book.local_repo.commit('Update cover, travis files')
+    book.github_repo.update_repo()
     book.tag()
+    book.github_repo.enable_travis()
     return book
 
+def refresh_repo_desc(repo_name):
+    book = get_cloned_book(repo_name)
+    book.github_repo.update_repo()
+    return book
+
+def enable_travis(repo_name):
+    book = get_cloned_book(repo_name)
+    book.github_repo.enable_travis()
+    return book
 
     

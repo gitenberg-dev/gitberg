@@ -16,6 +16,7 @@ import git
 import github3
 import requests
 import semver
+from travispy import TravisPy
 
 from . import config
 from .parameters import GITHUB_ORG, ORG_HOMEPAGE
@@ -26,7 +27,6 @@ class GithubRepo():
         self.org_name = GITHUB_ORG
         self.org_homepage = ORG_HOMEPAGE
         self.book = book
-
         self._repo_token = None
         self._github_token = None
         self._travis_repo_public_key = None
@@ -85,15 +85,19 @@ class GithubRepo():
         logging.info("ratelimit: " + str(self.org.ratelimit_remaining))
 
     def format_desc(self):
-        return u'{0} by {1}\n is a Project Gutenberg book, now on Github.'.format(
-            self.book.meta.title, self.book.meta.author
-        )
-
+        if hasattr(self.book, 'meta'):
+            title = self.book.meta.title
+            author = u' by {}'.format(self.book.meta.authors_short())
+        else:
+            title = self.book.repo_name
+            author = ''
+        return u'{0}{1} is a Project Gutenberg book, now on Github.'.format(title, author)
 
     def create_repo(self):
         try:
             self.repo = self.org.create_repo(
-                self.book.meta._repo,
+                self.book.repo_name,
+                description=self.format_desc(),
                 homepage=self.org_homepage,
                 private=False,
                 has_issues=True,
@@ -102,7 +106,22 @@ class GithubRepo():
             )
         except github3.GitHubError as e:
             logging.warning(u"repo already created?: {}".format(e))
-            self.repo = self.github.repository(self.org_name, self.book.meta._repo)
+            self.repo = self.github.repository(self.org_name, self.book.repo_name)
+
+    def update_repo(self):
+        try:
+            self.repo = self.github.repository(self.org_name, self.book.repo_name)
+            self.repo.edit(
+                self.book.repo_name,
+                description=self.format_desc(),
+                homepage=self.org_homepage,
+                private=False,
+                has_issues=True,
+                has_wiki=False,
+                has_downloads=True
+            )
+        except github3.GitHubError as e:
+            logging.warning(u"couldn't edit repo: {}".format(e))
 
     def add_remote_origin_to_local_repo(self):
         try:
@@ -184,6 +203,12 @@ class GithubRepo():
         )
 
         return base64.b64encode(ciphertext)
+        
+    def enable_travis(self):
+        travis = TravisPy.github_auth(self.github_token())
+        travis_repo = travis.repo(self.repo_id)
+        return travis_repo.enable()
+
 
     def travis_key(self):
         if self.book.local_repo:

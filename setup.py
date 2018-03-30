@@ -57,6 +57,7 @@ setup(name='gitberg',
           'pycparser>=2.17',
           'cryptography>=1.7.2',
           'pyepub',
+          'travispy==0.3.5',
       ],
       test_suite='nose.collector',
       tests_require=[

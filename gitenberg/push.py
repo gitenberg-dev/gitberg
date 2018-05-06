@@ -76,13 +76,16 @@ class GithubRepo():
                                     password=config.data['gh_password'])
         except KeyError as e:
             raise config.NotConfigured(e)
+
         if hasattr(self.github, 'set_user_agent'):
             self.github.set_user_agent('{}: {}'.format(self.org_name, self.org_homepage))
         try:
             self.org = self.github.organization(self.org_name)
-        except github3.models.GitHubError:
+            # this is not how the github3 api works, always errors
+        except github3.GitHubError:
             logging.error("Possibly the github ratelimit has been exceeded")
-        logging.info("ratelimit: " + str(self.org.ratelimit_remaining))
+            # logging.info("ratelimit: " + str(self.org.ratelimit_remaining))
+            # setting org failed... we can't expect self.org.ratelimit to exist
 
     def format_desc(self):
         if hasattr(self.book, 'meta'):
@@ -203,7 +206,7 @@ class GithubRepo():
         )
 
         return base64.b64encode(ciphertext)
-        
+
     def enable_travis(self):
         travis = TravisPy.github_auth(self.github_token())
         travis_repo = travis.repo(self.repo_id)
@@ -216,4 +219,3 @@ class GithubRepo():
             if travis_key:
                 return travis_key
         return self.travis_encrypt(self.repo_token())
-    

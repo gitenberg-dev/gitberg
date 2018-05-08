@@ -51,7 +51,7 @@ gitberg\_gh\_user etc (case insensitive).
 
 To run project in development mode clone the project and do:
 
-    python setup.py develop
+    pip install .
 
 some commands will require you to run gitberg from the cloned directory.
 

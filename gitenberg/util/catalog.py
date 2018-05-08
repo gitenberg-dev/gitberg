@@ -12,6 +12,7 @@ from .. import pg_wikipedia
 from ..config import NotConfigured
 from ..metadata.pandata import Pandata
 from ..metadata.pg_rdf import pg_rdf_to_json
+from ..parameters import GITHUB_ORG
 
 # sourced from http://www.gutenberg.org/MIRRORS.ALL
 MIRRORS = {'default': 'ftp://gutenberg.pglaf.org/mirrors/gutenberg/'}
@@ -30,6 +31,11 @@ with open(os.path.join(os.path.dirname(__file__), '../data/GITenberg_repo_list.t
     for row in csv.reader(repofile, delimiter='\t', quotechar='"'):
         repo_list.append(row)
 repo_for_pgid = {int(pgid): value for (pgid, value) in repo_list}
+
+def get_all_repo_names():
+    """Yields the full names of all the book repositories."""
+    for repo in repo_for_pgid.values():
+        yield '%s/%s' % (GITHUB_ORG, repo)
 
 def get_repo_name(repo_name):
     if re.match( r'^\d+$', repo_name):

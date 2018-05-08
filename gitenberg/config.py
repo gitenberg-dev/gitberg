@@ -11,6 +11,8 @@ import yaml
 
 from .dialog import ConfigGenerator
 
+_ENV_PREFIX = 'gitberg_'
+
 class NotConfigured(Exception):
     pass
 
@@ -78,6 +80,10 @@ class ConfigFile(object):
         global data
         data = yaml.load(self.read())
         data = {} if data is None else data
+        for key, value in os.environ.items():
+            lower_key = key.lower()
+            if lower_key.startswith(_ENV_PREFIX):
+                data[lower_key[len(_ENV_PREFIX):]] = value
         self.data = data
 
     def check_self(self):

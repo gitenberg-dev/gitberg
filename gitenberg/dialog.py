@@ -15,10 +15,10 @@ class ConfigGenerator(object):
         self.current = current
         if not self.current.get('library_path', ''):
             current['library_path']= user_data_dir('gitberg', 'Free Ebook Foundation')
-        
-    
-    def ask_generic(self, key, prompt, pwd = False):
-        if pwd:
+
+
+    def ask_generic(self, key, prompt, is_password = False):
+        if is_password:
             answer = getpass( prompt )
         else:
             if self.current.get(key,None):
@@ -27,7 +27,7 @@ class ConfigGenerator(object):
                 prompt = '{} >'.format(prompt)
             answer = input( prompt )
         self.answers[key] = answer if answer else self.current.get(key,None)
-    
+
     def ask_username(self):
         self.ask_generic('gh_user', "What is your GitHub username?")
 
@@ -41,7 +41,7 @@ class ConfigGenerator(object):
         self.ask_generic('gh_password',
             "What is the GitHub password for the {0} user?".format(
                 self.answers.get('gh_user','[not set]')
-            ), pwd=True
+            ), is_password=True
         )
 
     def ask_library(self):

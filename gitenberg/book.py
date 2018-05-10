@@ -182,6 +182,7 @@ class Book():
     def all(self):
         try:
             self.fetch()
+            self.local_repo = LocalRepo(self.local_path)
             self.make()
             self.push()
             print(u"{0} {1} added".format(self.book_id, self.meta._repo))
@@ -194,7 +195,6 @@ class Book():
         except sh.ErrorReturnCode_1:
             logging.error(u"{0} {1} nopush".format(self.book_id, self.meta._repo))
         finally:
-
             self.remove()
 
     def remove(self):

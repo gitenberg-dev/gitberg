@@ -89,7 +89,7 @@ class GithubRepo():
 
     def format_desc(self):
         if hasattr(self.book, 'meta'):
-            title = self.book.meta.title
+            title = self.book.meta.title.replace('\n', ' ')
             author = u' by {}'.format(self.book.meta.authors_short())
         else:
             title = self.book.repo_name
@@ -98,14 +98,13 @@ class GithubRepo():
 
     def create_repo(self):
         try:
-            self.repo = self.org.create_repo(
+            self.repo = self.org.create_repository(
                 self.book.repo_name,
                 description=self.format_desc(),
                 homepage=self.org_homepage,
                 private=False,
                 has_issues=True,
-                has_wiki=False,
-                has_downloads=True
+                has_wiki=False
             )
         except github3.GitHubError as e:
             logging.warning(u"repo already created?: {}".format(e))

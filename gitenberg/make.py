@@ -83,6 +83,8 @@ class NewFilesHandler():
             )
             
         if 'GITenberg' not in self.book.meta.subjects:
+            if not self.book.meta.subjects:
+                self.book.meta.metadata['subjects'] = []
             self.book.meta.metadata['subjects'].append('GITenberg')
         self.save_meta()
 

@@ -186,7 +186,7 @@ class Pandata(object):
         elif self.metadata.get("gutenberg_issued", None):
             return self.metadata["gutenberg_issued"]
         else:
-            return str(datetime.datetime.now().date())
+            return ''
 
     # gets the right edition. stub method for compatibility with marc converter
     @staticmethod

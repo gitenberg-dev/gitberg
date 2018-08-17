@@ -77,6 +77,6 @@ setup(name='gitberg',
       ],
       keywords="books ebooks gitenberg gutenberg epub metadata",
       dependency_links=[
-          "https://github.com/Gluejar/pyepub/archive/0.3.2.zip",
+          "https://github.com/Gluejar/pyepub/archive/0.3.2.zip#egg=pyepub-0.3.2"
       ],
       )

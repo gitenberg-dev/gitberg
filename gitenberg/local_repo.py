@@ -63,7 +63,7 @@ class LocalRepo(object):
 
     @property
     def metadata_file(self):
-        if os.path.isfile(os.path.join(self.repo_path, 'metadata.yaml')):
+        if self.repo_path and os.path.isfile(os.path.join(self.repo_path, 'metadata.yaml')):
             return os.path.join(self.repo_path, 'metadata.yaml')
         else:
             return None

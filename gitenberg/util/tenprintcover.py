@@ -22,6 +22,7 @@ This file is MIT licensed and maintained at https://github.com/mgiraldo/tenprint
 #
 
 from __future__ import division
+from __future__ import print_function
 
 import argparse
 import itertools

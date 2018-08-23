@@ -33,6 +33,7 @@ Options:
 """
 # TODO  use `--` to separate arguments and files
 #       ex: `git checkout -b foo -- file file1 file2
+from __future__ import print_function
 import logging
 
 from docopt import docopt
@@ -117,7 +118,7 @@ if __name__ == '__main__':
             book.push()
 
         elif arguments['metadata']:
-            print book.meta.__unicode__()
+            print(book.meta.__unicode__())
 
         elif arguments['all']:
             upload_all_books(arguments['BOOKID'], arguments['BOOKIDEND'], rdf_library=rdf_library)
@@ -146,7 +147,7 @@ if __name__ == '__main__':
                 action = getattr(actions, arg_action)
                 action(book_repo_name)
             except AttributeError:
-                print "{} is not a supported action".format(arg_action)        
+                print("{} is not a supported action".format(arg_action))   
 
         elif arguments['apply_all']:
             workflow.apply_all(arguments['<action>'], arguments['BOOKID'], arguments['BOOKIDEND'])

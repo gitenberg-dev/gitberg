@@ -4,7 +4,6 @@
 Fetches a folder of book files from a remote to local
 """
 
-from __future__ import print_function
 import os
 
 import sh

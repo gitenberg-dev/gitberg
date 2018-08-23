@@ -24,6 +24,7 @@ from .util import tenprintcover
 from .util.catalog import BookMetadata, get_repo_name
 from .metadata.pandata import Pandata
 
+logger = logging.getLogger(__name__)
 
 class Book():
     """ An index card tells you where a book lives
@@ -82,7 +83,7 @@ class Book():
                 os.makedirs(path)
                 self.local_path = path
             except OSError:
-                logging.error("couldn't make path: {}".format(path))
+                logger.error("couldn't make path: {}".format(path))
             finally:  # weird try-except-finally, I know
                 os.chmod(path, 0o777)
 
@@ -141,7 +142,7 @@ class Book():
     def make(self):
         """ turn fetched files into a local repo, make auxiliary files
         """
-        logging.debug("preparing to add all git files")
+        logger.debug("preparing to add all git files")
         num_added = self.local_repo.add_all_files()
         if num_added:
             self.local_repo.commit("Initial import from Project Gutenberg")
@@ -186,15 +187,15 @@ class Book():
                 self.local_repo = LocalRepo(self.local_path)
             self.make()
             self.push()
-            print(u"{0} {1} added".format(self.book_id, self.meta._repo))
+            logger.info(u"{0} {1} added".format(self.book_id, self.meta._repo))
         except sh.ErrorReturnCode_12:
-            logging.error(u"{0} {1} timeout".format(self.book_id, self.meta._repo))
+            logger.error(u"{0} {1} timeout".format(self.book_id, self.meta._repo))
         except sh.ErrorReturnCode_23:
-            logging.error(u"{0} {1} notfound".format(self.book_id, self.meta._repo))
+            logger.error(u"{0} {1} notfound".format(self.book_id, self.meta._repo))
         except github3.GitHubError as e:
-            logging.error(u"{0} {1} already".format(self.book_id, self.meta._repo))
+            logger.error(u"{0} {1} already".format(self.book_id, self.meta._repo))
         except sh.ErrorReturnCode_1:
-            logging.error(u"{0} {1} nopush".format(self.book_id, self.meta._repo))
+            logger.error(u"{0} {1} nopush".format(self.book_id, self.meta._repo))
         finally:
             self.remove()
 
@@ -234,8 +235,7 @@ class Book():
             repo_title = "{0}__{1}".format(_title[:title_length], self.book_id)
         else:
             repo_title = "{0}_{1}".format(_title[:title_length], self.book_id)
-        # FIXME: log debug, title creation
-        #print(len(repo_title), repo_title)
+        logger.debug("%s %s" % (len(repo_title), repo_title))
         self.meta.metadata['_repo'] = repo_title
         return repo_title
 
@@ -250,7 +250,7 @@ class Book():
             )
             return cover_image
         except OSError:
-            print("OSError, probably Cairo not installed.")
+            logger.error("OSError, probably Cairo not installed.")
             return None
 
     def add_covers(self):

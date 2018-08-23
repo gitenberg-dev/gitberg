@@ -3,6 +3,7 @@
 """
 A module to manage a collection of git book repos
 """
+from __future__ import print_function
 import os
 
 from . import config

@@ -10,6 +10,8 @@ import requests
 from .book import Book
 from . import actions
 
+logger = logging.getLogger(__name__)
+
 # extend this to all repos when ready
 REPOS_LIST_URL = "https://raw.githubusercontent.com/gitenberg-dev/Second-Folio/master/list_of_repos.txt"
 
@@ -19,7 +21,7 @@ def upload_all_books(book_id_start, book_id_end, rdf_library=None):
     """
 
     # TODO refactor appname into variable
-    logging.info(
+    logger.info(
         "starting a gitberg mass upload: {0} -> {1}".format(
             book_id_start, book_id_end
         )
@@ -38,13 +40,13 @@ def upload_list(book_id_list, rdf_library=None):
 
 
 def upload_book(book_id, rdf_library=None):
-    logging.info("--> Beginning {0}".format(book_id))
+    logger.info("--> Beginning {0}".format(book_id))
     book = Book(book_id)
 
     try:
         book.parse_book_metadata(rdf_library)
     except:
-        logging.error(u"Can't parse metadata for this book: {0}".format(book.book_id))
+        logger.error(u"Can't parse metadata for this book: {0}".format(book.book_id))
         return
     book.all()
 
@@ -68,7 +70,7 @@ def apply_list(arg_action, id_list):
             book.remove()
         except Exception as e:
             print(u'error\t{}'.format(book_id))
-            logging.error(u"Error processing: {}\r{}".format(book_id, e))
+            logger.error(u"Error processing: {}\r{}".format(book_id, e))
 
 
 def apply_to_repos(action, args=None, kwargs=None, repos=None):

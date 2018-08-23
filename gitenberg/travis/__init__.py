@@ -1,5 +1,5 @@
-from __future__ import print_function
 import glob
+import logging
 import subprocess
 import uuid
 import os
@@ -41,6 +41,8 @@ function build_epub_from_asciidoc {
 
 build_epub_from_asciidoc $1 $2
 """
+
+logger = logging.getLogger(__name__)
 
 def repo_metadata ():
 
@@ -100,15 +102,15 @@ def build_epub_from_asciidoc (version, epub_title='book'):
         output = subprocess.check_output("./{fname} {version} {epub_title}".format(fname=fname, 
               version=version, epub_title=epub_title), 
               shell=True)
-        print(output)
+        logger.info(output)
     except Exception as e:
-        print(e)
+        logger.error(e)
     finally:
         os.remove(fname)
 
 
 def build_epub(epub_title='book'):
-
+    logger.info('building epub for %s' % epub_title)
     md = repo_metadata()
 
     source_path = source_book(md['repo_name'])
@@ -139,7 +141,7 @@ def build_epub(epub_title='book'):
         add_gitberg_info(epub_file)
         
         if epub_file <> u"{title}-epub.epub".format(title=md['title']):
-            print("actual epub_file: {}".format(epub_file))
+            logger.info("actual epub_file: {}".format(epub_file))
 
     else:
         # error code?

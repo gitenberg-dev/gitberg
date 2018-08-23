@@ -4,7 +4,6 @@
 Syncs a local git book repo to a remote git repo (by default, github)
 """
 
-from __future__ import print_function
 import base64
 import datetime
 import logging
@@ -20,6 +19,8 @@ from travispy import TravisPy
 
 from . import config
 from .parameters import GITHUB_ORG, ORG_HOMEPAGE
+
+logger = logging.getLogger(__name__)
 
 class GithubRepo():
 
@@ -66,7 +67,7 @@ class GithubRepo():
         self.update(message if message else 'bump version metadata')
         ref = self.book.local_repo.tag(version)
         self.push()
-        logging.info("tagged and pushed " + str(ref))
+        logger.info("tagged and pushed " + str(ref))
 
 
     def create_api_handler(self):
@@ -83,8 +84,8 @@ class GithubRepo():
             self.org = self.github.organization(self.org_name)
             # this is not how the github3 api works, always errors
         except github3.GitHubError:
-            logging.error("Possibly the github ratelimit has been exceeded")
-            # logging.info("ratelimit: " + str(self.org.ratelimit_remaining))
+            logger.error("Possibly the github ratelimit has been exceeded")
+            # logger.info("ratelimit: " + str(self.org.ratelimit_remaining))
             # setting org failed... we can't expect self.org.ratelimit to exist
 
     def format_desc(self):
@@ -107,7 +108,7 @@ class GithubRepo():
                 has_wiki=False
             )
         except github3.GitHubError as e:
-            logging.warning(u"repo already created?: {}".format(e))
+            logger.warning(u"repo already created?: {}".format(e))
             self.repo = self.github.repository(self.org_name, self.book.repo_name)
 
     def update_repo(self):
@@ -123,13 +124,13 @@ class GithubRepo():
                 has_downloads=True
             )
         except github3.GitHubError as e:
-            logging.warning(u"couldn't edit repo: {}".format(e))
+            logger.warning(u"couldn't edit repo: {}".format(e))
 
     def add_remote_origin_to_local_repo(self):
         try:
             origin = self.book.local_repo.git.create_remote('origin', self.repo.ssh_url)
         except git.exc.GitCommandError:
-            print("We may have already added a remote origin to this repo")
+            logger.warning("We may have already added a remote origin to this repo")
             return self.book.local_repo.git.remote('origin')
         return origin
 

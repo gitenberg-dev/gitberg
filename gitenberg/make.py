@@ -4,8 +4,8 @@
 Makes an organized git repo of a book folder
 """
 
-from __future__ import print_function
 import codecs
+
 import os
 from os.path import abspath, dirname
 

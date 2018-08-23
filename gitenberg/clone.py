@@ -9,14 +9,15 @@ from . import config
 from .local_repo import LocalRepo
 from .parameters import GITHUB_ORG
 
+logger = logging.getLogger(__name__)
 clone_url_ssh_template = u"git@github.com:{org_name}/{repo_name}.git"
 
 def clone(book_repo_name, library_path=None):
-    logging.info("running clone for{}".format(book_repo_name))
+    logger.info("running clone for{}".format(book_repo_name))
     vat = CloneVat(book_repo_name)
 
     success, message = vat.clone()
-    logging.info(message)
+    logger.info(message)
     return LocalRepo(None, cloned_repo=vat.local_repo)
 
 
@@ -48,7 +49,7 @@ class CloneVat(object):
         assumes you are authenticated to git clone from repo?
         returns True/False, message
         """
-        logging.debug("Attempting to clone {0}".format(self.book_repo_name))
+        logger.debug("Attempting to clone {0}".format(self.book_repo_name))
 
         if self.path_exists():
             return False, "Error: Local clone of {0} already exists".format(self.book_repo_name)
@@ -58,5 +59,5 @@ class CloneVat(object):
             return True, "Success! Cloned {0}".format(self.book_repo_name)
         except git.exc.GitCommandError as e:
             print(e)
-            logging.debug("clone ran into an issue, likely remote doesn't exist")
+            logger.debug("clone ran into an issue, likely remote doesn't exist")
             return False, "Error git returned  a fail code"

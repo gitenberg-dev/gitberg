@@ -7,6 +7,8 @@ import csv
 import requests
 import logging
 
+logger = logging.getLogger(__name__)
+
 _table={}
 def get_item_summary(wd_id, lang='en'):
     if wd_id is None:
@@ -14,14 +16,14 @@ def get_item_summary(wd_id, lang='en'):
     try:
         r = requests.get(u'https://www.wikidata.org/wiki/Special:EntityData/{}.json'.format(wd_id))
     except:
-        logging.warning( u"couldn't get https://www.wikidata.org/wiki/Special:EntityData/{}.json".format(wd_id))
+        logger.warning( u"couldn't get https://www.wikidata.org/wiki/Special:EntityData/{}.json".format(wd_id))
         return ""
     try:
         title = r.json()['entities'][wd_id]['sitelinks']['{}wiki'.format(lang)]['title']
         try:
             return wikipedia.summary(title)
         except (PageError,WikipediaException,DisambiguationError):
-            logging.warning(u"couldn't get wikipedia.summary({})".format(title))
+            logger.warning(u"couldn't get wikipedia.summary({})".format(title))
             return ''
     except ValueError:
         #not JSON

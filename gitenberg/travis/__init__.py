@@ -120,13 +120,13 @@ def build_epub(epub_title='book'):
 
     elif source_path:
         if md['cover']:
-            cmd = u"""epubmaker --title "{title}" --author "{author}" --cover {cover} {source_path}""".format(
+            cmd = u"""epubmaker --max-depth=5 --title "{title}" --author "{author}" --cover {cover} {source_path}""".format(
                    title=md['title'],
                    author=md['author'],
                    cover=md['cover'],
                    source_path=source_path)
         else:
-            cmd = u"""epubmaker --title "{title}" --author "{author}" {source_path}""".format(
+            cmd = u"""epubmaker --max-depth=5 --title "{title}" --author "{author}" {source_path}""".format(
                    title=md['title'],
                    author=md['author'],
                    source_path=source_path)

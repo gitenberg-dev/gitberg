@@ -10,8 +10,8 @@ tox>=2.5.0
 beautifulsoup4==4.4.1
 wikipedia==1.4.0
 appdirs==1.4.0
-six==1.10.0
-git+https://github.com/Gluejar/pyepub
+six>=1.10.0
+pyepub==0.3.2
 pymarc==3.0.3
 PyYAML==3.11
 

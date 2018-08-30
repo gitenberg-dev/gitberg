@@ -82,11 +82,9 @@ class GithubRepo():
             self.github.set_user_agent('{}: {}'.format(self.org_name, self.org_homepage))
         try:
             self.org = self.github.organization(self.org_name)
-            # this is not how the github3 api works, always errors
         except github3.GitHubError:
             logger.error("Possibly the github ratelimit has been exceeded")
-            # logger.info("ratelimit: " + str(self.org.ratelimit_remaining))
-            # setting org failed... we can't expect self.org.ratelimit to exist
+            logger.info("ratelimit: " + str(self.github.ratelimit_remaining))
 
     def format_desc(self):
         if hasattr(self.book, 'meta'):

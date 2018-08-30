@@ -91,14 +91,14 @@ class Book():
         # cloned repo
         if self.local_repo and self.local_repo.metadata_file:
             self.meta = Pandata(datafile=self.local_repo.metadata_file)
-            return
+            return 'update metadata '
 
         # named repo
         if self.repo_name:
             named_path = os.path.join(self.library_path, self.repo_name, 'metadata.yaml')
             if os.path.exists(named_path):
                 self.meta = Pandata(datafile=named_path)
-                return
+                return 'update metadata '
 
         # new repo
         if not rdf_library:
@@ -111,7 +111,7 @@ class Book():
             self.meta.metadata['_repo'] = self.repo_name
         else:
             self.format_title()
-            
+        return 'new repo '
 
     @property
     def remote_path(self):
@@ -255,7 +255,7 @@ class Book():
 
     def add_covers(self):
         new_covers = []
-        comment = None
+        comment = ''
         for cover in self.meta.covers:
             #check that the covers are in repo
             cover_path = os.path.join(self.local_path, cover.get("image_path", ""))
@@ -267,14 +267,14 @@ class Book():
                 new_covers.append(
                         {"image_path": cover_files[0], "cover_type":"archival"}
                     )
-                comment = "added archival cover"
+                comment = " added archival cover"
             else:
                 with open('{}/cover.png'.format(self.local_path), 'w+') as cover:
                     self.generate_cover().save(cover)
                     new_covers.append(
                             {"image_path": "cover.png", "cover_type":"generated"}
                         )
-                comment =  "generated cover"
+                comment =  " generated cover"
             if '_version' in self.meta.metadata:
                 self.meta.metadata['_version'] =  semver.bump_minor(self.meta._version)
             else:

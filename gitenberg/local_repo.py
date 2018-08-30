@@ -67,11 +67,3 @@ class LocalRepo(object):
             return os.path.join(self.repo_path, 'metadata.yaml')
         else:
             return None
-
-    @property
-    def travis_key(self):
-        if os.path.isfile(os.path.join(self.repo_path, '.travis.deploy.api_key.txt')):
-            with open(os.path.join(self.repo_path, '.travis.deploy.api_key.txt'), 'r') as f:
-                return f.read()
-        else:
-            return None

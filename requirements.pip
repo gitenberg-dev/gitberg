@@ -29,8 +29,6 @@ pycparser>=2.17
 # test
 mock==2.0.0
 
-travispy==0.3.5
-
 python-dateutil>=2.6.0
 pyasn1==0.4.2
 pyOpenSSL>=0.13

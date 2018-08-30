@@ -46,14 +46,6 @@ def add_generated_cover(repo_name, tag=False):
         book.local_repo.commit(result)
     return book
 
-def config_travis(repo_name, tag=False):
-    book = get_cloned_book(repo_name)
-
-    filemaker = NewFilesHandler(book)
-    filemaker.travis_files()
-    book.local_repo.commit('Configure travis files')
-    return book
-
 def refresh_repo(repo_name):
     book = get_cloned_book(repo_name)
     filemaker = NewFilesHandler(book)
@@ -71,10 +63,3 @@ def refresh_repo_desc(repo_name):
     book = get_cloned_book(repo_name)
     book.github_repo.update_repo()
     return book
-
-def enable_travis(repo_name):
-    book = get_cloned_book(repo_name)
-    book.github_repo.enable_travis()
-    return book
-
-    

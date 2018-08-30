@@ -66,5 +66,4 @@ class TestLocalRepo(unittest.TestCase):
         
     def test_file_checks(self):
         self.assertFalse(self.local_repo.metadata_file)
-        self.assertFalse(self.local_repo.travis_key)
 

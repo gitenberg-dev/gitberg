@@ -28,7 +28,6 @@ class NewFilesHandler():
 
     def add_new_files(self):
         self.template_readme()
-        self.travis_files()
         self.copy_files()
 
     def template_readme(self):
@@ -44,24 +43,6 @@ class NewFilesHandler():
         )
         with codecs.open(readme_path, 'w', 'utf-8') as readme_file:
             readme_file.write(readme_text)
-
-    def travis_files(self):
-        template = self.env.get_template('.travis.yml')
-        travis_key = self.book.github_repo.travis_key()
-        travis_text = template.render({
-            'epub_title': 'book',
-            'encrypted_key': travis_key,
-            'repo_name': self.book.meta._repo,
-            'repo_owner': GITHUB_ORG
-        })
-
-        fpath = os.path.join(self.book.local_path, ".travis.yml")
-        with open(fpath, 'w') as f:
-            f.write(travis_text)
-        if self.book.github_repo.travis_key():
-            fpath = os.path.join(self.book.local_path, ".travis.deploy.api_key.txt")
-            with open(fpath, 'w') as f:
-                f.write(travis_key)
 
     def copy_files(self):
         """ Copy the LICENSE and CONTRIBUTING files to each folder repo 

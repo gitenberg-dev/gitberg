@@ -32,27 +32,8 @@ class TestNewFileHandler(unittest.TestCase):
             os.path.exists(os.path.join(os.path.dirname(__file__),'test_data/1234/README.rst'))
         )
     
-    @patch.object(LocalRepo, 'travis_key', new='fake_travis_key')
-    def test_travis_files(self):
-        #LocalRepo.travis_key = 'fake_travis_key'
-        self.file_maker.travis_files()
-        self.assertTrue(os.path.exists(
-            os.path.join(os.path.dirname(__file__),'test_data/1234/.travis.yml')
-        ))
-        self.assertTrue(os.path.exists(
-            os.path.join(os.path.dirname(__file__),'test_data/1234/.travis.deploy.api_key.txt')
-        ))
-
     def tearDown(self):
         if os.path.exists(os.path.join(os.path.dirname(__file__),'test_data/1234/.git')):
             shutil.rmtree(os.path.join(os.path.dirname(__file__),'test_data/1234/.git'))
         if os.path.exists(os.path.join(os.path.dirname(__file__),'test_data/1234/README.rst')):
             os.remove(os.path.join(os.path.dirname(__file__),'test_data/1234/README.rst'))
-        if os.path.exists(os.path.join(os.path.dirname(__file__),'test_data/1234/.travis.yml')):
-            os.remove(os.path.join(os.path.dirname(__file__),'test_data/1234/.travis.yml'))
-        if os.path.exists(os.path.join(
-            os.path.dirname(__file__),'test_data/1234/.travis.deploy.api_key.txt'
-        )):
-            os.remove(os.path.join(
-                os.path.dirname(__file__),'test_data/1234/.travis.deploy.api_key.txt'
-            ))

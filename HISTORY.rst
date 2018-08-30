@@ -2,6 +2,32 @@
 
 History
 -------
+
+0.4.0 (2018-08-30)
+==================
+* no more travis. that code lives on  in gitberg-build, and ebook building stuff moves to gitberg-autoupdate
+* smarter commit comments
+
+0.3.5 (2018-08-26)
+==================
+* packaging
+* bugfixes
+
+0.3.3 (2018-08-17)
+==================
+* mostly updates to add travis files
+* adds code to do ebook building for releases
+* adds tagging
+* update to github3 API. Needed to update openssl and crypto.
+* fix problematic behavior setting pubdate to today if no pubdate
+
+0.3.1 (2017-03-29)
+==================
+* mostly updates to add travis files
+* adds code to do ebook building for releases
+* adds tagging
+
+
 0.2.4 (2016-03-16)
 ==================
 * Rewrite of config, add redf_library to config

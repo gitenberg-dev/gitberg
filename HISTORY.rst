@@ -3,9 +3,9 @@
 History
 -------
 
-0.4.0 (2018-08-30)
+0.4.1 (2018-08-31)
 ==================
-* no more travis. that code lives on  in gitberg-build, and ebook building stuff moves to gitberg-autoupdate
+* no more travis. that code lives on in gitberg-build, and ebook building stuff moves to gitberg-autoupdate
 * smarter commit comments
 
 0.3.5 (2018-08-26)

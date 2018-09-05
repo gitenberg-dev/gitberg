@@ -97,7 +97,6 @@ if __name__ == '__main__':
 
         if book_id or repo_name:
             book = Book(book_id, repo_name=repo_name)
-            book.parse_book_metadata(rdf_library)
         else:
             book = None
 

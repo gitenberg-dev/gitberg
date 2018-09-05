@@ -41,10 +41,10 @@ def upload_list(book_id_list, rdf_library=None):
 
 def upload_book(book_id, rdf_library=None):
     logger.info("--> Beginning {0}".format(book_id))
-    book = Book(book_id)
+    book = Book(book_id, rdf_library=rdf_library)
 
     try:
-        book.parse_book_metadata(rdf_library)
+        book.parse_book_metadata()
     except:
         logger.error(u"Can't parse metadata for this book: {0}".format(book.book_id))
         return

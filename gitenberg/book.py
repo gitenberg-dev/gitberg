@@ -21,7 +21,7 @@ from .local_repo import LocalRepo
 from .parameters import GITHUB_ORG
 from .push import GithubRepo
 from .util import tenprintcover
-from .util.catalog import BookMetadata, get_repo_name
+from .util.catalog import BookMetadata, get_repo_name, NoRDFError
 from .metadata.pandata import Pandata
 
 logger = logging.getLogger(__name__)
@@ -30,17 +30,25 @@ class Book():
     """ An index card tells you where a book lives
         `book_id` is PG's unique book id
         `remote_path` is where it should live on PG servers
-        `srepo_name` is the name the repo should have on GitHub
+        `repo_name` is the name the repo should have on GitHub
         `local_path` is where it IS stored locally
+        `local_repo` the repo at `local_path`
+        `library_path` local directory where repos will live
+        `rdf_library` local directory where rdf has been cached
     """
 
-    def __init__(self, book_id, repo_name=None, library_path='./library'):
+    def __init__(self, book_id, repo_name=None, library_path='./library', rdf_library=None):
         # rename to avoid confusion
         arg_repo_name = repo_name
         self.local_path = None
+        self.repo_name = None
+        self.rdf_library = rdf_library
+        self.local_repo = None
 
         # do config
-        self.library_path = config.get_library_path(library_path)
+        self.library_path = config.get_library_path(library_path) 
+        if not self.rdf_library:
+            self.rdf_library = config.data.get("rdf_library","")
 
         # parse the inputs to figure out the book
         if arg_repo_name and not book_id:
@@ -48,19 +56,21 @@ class Book():
 
         if book_id:
             self.book_id = str(book_id)
-            self.repo_name = get_repo_name(self.book_id)
-            self.set_existing_local_path(self.book_id)
+            self.set_local_path_ifexists(self.book_id)
+            try:
+                self.parse_book_metadata()
+            except NoRDFError:
+                logger.error('no rdf file exists for {}'.format(self.book_id))
         else:
             self.book_id = None
-            self.repo_name = None
 
         # check if there's a directory named with the arg_repo_name
         if arg_repo_name and not self.local_path:
-            self.set_existing_local_path(arg_repo_name)
+            self.set_local_path_ifexists(arg_repo_name)
 
         # or, check if there's a directory named with the github name
         if self.repo_name and not self.local_path:
-            self.set_existing_local_path(self.repo_name)
+            self.set_local_path_ifexists(self.repo_name)
 
         # set up the local repo
         if self.local_path:
@@ -71,10 +81,11 @@ class Book():
         # set up the Github connection
         self.github_repo = GithubRepo(self)
 
-    def set_existing_local_path(self, name):
+    def set_local_path_ifexists(self, name):
         path = os.path.join(self.library_path, name)
         if os.path.exists(path):
             self.local_path = path
+            logger.info('local_path set to {}'.format(path))
         
     def make_local_path(self):
         path = os.path.join(self.library_path, self.book_id)
@@ -87,7 +98,7 @@ class Book():
             finally:  # weird try-except-finally, I know
                 os.chmod(path, 0o777)
 
-    def parse_book_metadata(self, rdf_library=None):
+    def parse_book_metadata(self):
         # cloned repo
         if self.local_repo and self.local_repo.metadata_file:
             self.meta = Pandata(datafile=self.local_repo.metadata_file)
@@ -100,17 +111,15 @@ class Book():
                 self.meta = Pandata(datafile=named_path)
                 return 'update metadata '
 
-        # new repo
-        if not rdf_library:
-            self.meta = BookMetadata(self, rdf_library=config.data.get("rdf_library",""))
-        else:
-            self.meta = BookMetadata(self, rdf_library=rdf_library)
+        # create metadata
+        self.meta = BookMetadata(self, rdf_library=self.rdf_library)
 
         # preserve existing repo names
         if self.repo_name:
             self.meta.metadata['_repo'] = self.repo_name
-        else:
-            self.format_title()
+            logger.info('using existing repo name: {}'.format(self.repo_name))
+            return 'existing repo'
+        self.repo_name = self.format_title()
         return 'new repo '
 
     @property

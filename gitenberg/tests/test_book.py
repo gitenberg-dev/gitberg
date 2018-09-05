@@ -49,7 +49,7 @@ class TestBookPath(unittest.TestCase):
     @patch('os.makedirs')
     @patch('os.chmod')
     def test_make_existing_local_path(self, mock_chmod, mock_makedirs):
-        self.book.set_existing_local_path(self.test_book_dir)
+        self.book.set_local_path_ifexists(self.test_book_dir)
         self.book.make_local_path()
         mock_makedirs.assert_not_called()
         mock_chmod.assert_not_called()

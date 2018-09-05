@@ -3,6 +3,13 @@
 History
 -------
 
+0.4.2 (2018-09-05)
+==================
+* fixed issue with newly fetched books and setting correct repo_name
+* fixed tests which broke other tests
+* parse_book_metadata moved out of command-line script into book init
+* this necessitated a more uniform handling of rdf_library config
+
 0.4.1 (2018-08-31)
 ==================
 * no more travis. that code lives on in gitberg-build, and ebook building stuff moves to gitberg-autoupdate

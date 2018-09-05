@@ -38,7 +38,7 @@ class TestConfig(unittest.TestCase):
         # Avoid leaking our test data to other tests which expect it to start as
         # empty.
         del os.environ['gitberg_rdf_library']
-        config.data = None
+        config.data = {}
 
     def test_from_environment_uppercase(self):
         os.environ['GITBERG_RDF_LIBRARY'] = 'test library path'
@@ -48,7 +48,7 @@ class TestConfig(unittest.TestCase):
         # Avoid leaking our test data to other tests which expect it to start as
         # empty.
         del os.environ['GITBERG_RDF_LIBRARY']
-        config.data = None
+        config.data = {}
 
     def tearDown(self):
         # TODO destroy test folder

@@ -52,7 +52,7 @@ class GithubRepo():
         self.push()
 
     def tag(self, version, message=''):
-        if version == "bump":
+        if version == "bump" or not version:
             old_version = self.book.meta._version
             if old_version:
                 version = old_version

@@ -197,6 +197,7 @@ class Book():
             self.make()
             self.push()
             logger.info(u"{0} {1} added".format(self.book_id, self.meta._repo))
+            self.github_repo.tag('0.1.0', message='initial tag from Project Gutenberg')
         except sh.ErrorReturnCode_12:
             logger.error(u"{0} {1} timeout".format(self.book_id, self.meta._repo))
         except sh.ErrorReturnCode_23:

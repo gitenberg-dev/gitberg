@@ -7,7 +7,7 @@ sh>=1
 Jinja2>=2.7
 semver==2.2.0
 tox>=2.5.0
-beautifulsoup4==4.4.1
+beautifulsoup4>=4.4.1
 wikipedia==1.4.0
 appdirs==1.4.0
 six>=1.10.0
@@ -17,7 +17,7 @@ PyYAML==3.11
 
 #added for rdf conversion
 SPARQLWrapper==1.6.4
-html5lib==0.999999
+html5lib==1.0.1
 isodate==0.5.1
 pyparsing==2.1.10
 rdflib==4.2.0
@@ -30,7 +30,7 @@ pycparser>=2.17
 mock==2.0.0
 
 python-dateutil>=2.6.0
-pyasn1==0.4.2
+pyasn1>=0.4.2
 pyOpenSSL>=0.13
 certifi>=2017.4.17
 cryptography>=2.1.4

@@ -7,6 +7,7 @@ Syncs a local git book repo to a remote git repo (by default, github)
 import base64
 import datetime
 import logging
+import re
 
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
@@ -86,7 +87,7 @@ class GithubRepo():
 
     def format_desc(self):
         if hasattr(self.book, 'meta'):
-            title = self.book.meta.title.replace('\n', ' ')
+            title = re.sub(r'[\r\n ]+', ' ', self.book.meta.title)
             author = u' by {}'.format(self.book.meta.authors_short())
         else:
             title = self.book.repo_name

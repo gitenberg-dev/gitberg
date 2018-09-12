@@ -27,7 +27,7 @@ def upload_all_books(book_id_start, book_id_end, rdf_library=None):
         )
     )
 
-    for book_id in range(int(book_id_start), int(book_id_end)):
+    for book_id in range(int(book_id_start), int(book_id_end) + 1):
         upload_book(book_id, rdf_library=rdf_library)
 
 def upload_list(book_id_list, rdf_library=None):
@@ -42,12 +42,6 @@ def upload_list(book_id_list, rdf_library=None):
 def upload_book(book_id, rdf_library=None):
     logger.info("--> Beginning {0}".format(book_id))
     book = Book(book_id, rdf_library=rdf_library)
-
-    try:
-        book.parse_book_metadata()
-    except:
-        logger.error(u"Can't parse metadata for this book: {0}".format(book.book_id))
-        return
     book.all()
 
 def apply_file(action, book_id_file, limit=10):
@@ -58,7 +52,7 @@ def apply_file(action, book_id_file, limit=10):
     apply_list(action, book_list[:limit])
 
 def apply_all(action, book_id_start, book_id_end):
-    book_list = range(int(book_id_start), int(book_id_end))
+    book_list = range(int(book_id_start), int(book_id_end) + 1)
     apply_list(action, book_list)
 
 def apply_list(arg_action, id_list):

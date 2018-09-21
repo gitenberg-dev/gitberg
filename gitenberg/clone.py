@@ -33,6 +33,7 @@ class CloneVat(object):
             config.ConfigFile()
 
     def library_book_dir(self):
+        logger.info('clone {} {}'.format(config.data['library_path'], self.book_repo_name))
         return os.path.join(config.data['library_path'], self.book_repo_name)
 
     def path_exists(self):

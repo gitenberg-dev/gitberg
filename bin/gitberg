@@ -152,11 +152,11 @@ if __name__ == '__main__':
             workflow.apply_all(arguments['<action>'], arguments['BOOKID'], arguments['BOOKIDEND'])
 
         elif arguments['apply_list']:
-            limit = arguments['-x'] if '-x' in arguments else None
+            limit = int(arguments['-x']) if arguments['-x'] else 0
             workflow.apply_file(
                 arguments['<action>'],
                 arguments['<book_id_list>'],
-                limit=int(limit)
+                limit=limit
             )
 
 

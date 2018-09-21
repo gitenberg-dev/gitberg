@@ -28,15 +28,23 @@ def upload_all_books(book_id_start, book_id_end, rdf_library=None):
     )
 
     for book_id in range(int(book_id_start), int(book_id_end) + 1):
-        upload_book(book_id, rdf_library=rdf_library)
+        errors = 0
+        try:
+            upload_book(book_id, rdf_library=rdf_library)
+        except Exception as e:
+            print(u'error\t{}'.format(book_id))
+            logger.error(u"Error processing: {}\r{}".format(book_id, e))
+            errors += 1
+            if errors > 10:
+                print('error limit reached!')
+                break
 
 def upload_list(book_id_list, rdf_library=None):
     """ Uses the fetch, make, push subcommands to add a list of pg books
     """
     with open(book_id_list, 'r') as f:
-        book_list = f.read().split('\r')
-    for book_id in book_list:
-        upload_book(book_id, rdf_library=rdf_library)
+        for book_id in f:
+            upload_book(book_id.strip(), rdf_library=rdf_library)
 
 
 def upload_book(book_id, rdf_library=None):
@@ -49,7 +57,8 @@ def apply_file(action, book_id_file, limit=10):
     with open(book_id_file, 'r') as f:
         for line in f:
             book_list.append(line.strip())
-    apply_list(action, book_list[:limit])
+    book_list = book_list[:limit] if limit else book_list
+    apply_list(action, book_list)
 
 def apply_all(action, book_id_start, book_id_end):
     book_list = range(int(book_id_start), int(book_id_end) + 1)

@@ -61,6 +61,7 @@ class Book():
                 self.parse_book_metadata()
             except NoRDFError:
                 logger.error('no rdf file exists for {}'.format(self.book_id))
+                raise NoRDFError
         else:
             self.book_id = None
 
@@ -146,7 +147,8 @@ class Book():
         else:
             self.local_repo = clone(self.repo_name)
             self.local_path = self.local_repo.repo_path
-            self.parse_book_metadata() # reload with cloned metadata.yaml
+        # always load metadata.yaml if it exists
+        self.parse_book_metadata() # reload with cloned metadata.yaml
 
     def make(self):
         """ turn fetched files into a local repo, make auxiliary files

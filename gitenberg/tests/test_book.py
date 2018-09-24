@@ -18,7 +18,6 @@ class TestBookPath(unittest.TestCase):
             with patch('github3.login') as login:
                 self.login = login
                 self.book = Book(1234)
-                self.fakebook = Book(1235)
 
     def test_remote_path(self):
         self.assertEqual(
@@ -38,13 +37,6 @@ class TestBookPath(unittest.TestCase):
                 self.book.remote_path,
                 "7/"
             )
-
-    @patch('os.makedirs')
-    @patch('os.chmod')
-    def test_make_new_local_path(self, mock_chmod, mock_makedirs):
-        self.fakebook.make_local_path()
-        mock_makedirs.assert_called_once()
-        mock_chmod.assert_called_once()
 
     @patch('os.makedirs')
     @patch('os.chmod')

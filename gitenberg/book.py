@@ -52,7 +52,11 @@ class Book():
 
         # parse the inputs to figure out the book
         if arg_repo_name and not book_id:
-            book_id = arg_repo_name.split('_')[-1]
+            maybe_book_id = arg_repo_name.split('_')[-1]
+            try:
+                book_id = str(int(maybe_book_id))
+            except ValueError:
+                pass
         
         # local directories are used if they are name with the book_id, the repo_name, 
         # or the github name, in that order
@@ -98,7 +102,10 @@ class Book():
         self.set_local_repo()
         
     def make_local_path(self):
+        if not self.book_id:
+            return
         path = os.path.join(self.library_path, self.book_id)
+
         if not os.path.exists(path):
             try:
                 os.makedirs(path)

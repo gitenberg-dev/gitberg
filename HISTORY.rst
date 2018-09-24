@@ -2,6 +2,11 @@
 
 History
 -------
+0.4.4 (2018-09-24)
+==================
+* fixed issue where gitberg refused to use the metadata from metadata.yaml, esp. repo_name
+* misc bugfixes
+* updated requirements, esp. bs4 and html5lib
 
 0.4.2 (2018-09-05)
 ==================

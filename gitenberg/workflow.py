@@ -44,7 +44,11 @@ def upload_list(book_id_list, rdf_library=None):
     """
     with open(book_id_list, 'r') as f:
         for book_id in f:
-            upload_book(book_id.strip(), rdf_library=rdf_library)
+            try:
+                upload_book(book_id.strip(), rdf_library=rdf_library)
+            except Exception as e:
+                print(u'error\t{}'.format(book_id.strip()))
+                logger.error(u"Error processing: {}\r{}".format(book_id.strip(), e))
 
 
 def upload_book(book_id, rdf_library=None):
@@ -69,7 +73,7 @@ def apply_list(arg_action, id_list):
     for book_id in id_list:
         try:
             book = action(book_id)
-            print(u'{}\t{}\t{}'.format(arg_action, book_id, book.meta.title))
+            print(u'{}\t{}'.format(arg_action, book_id))
             book.remove()
         except Exception as e:
             print(u'error\t{}'.format(book_id))

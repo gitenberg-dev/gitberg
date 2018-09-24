@@ -53,10 +53,13 @@ class Book():
         # parse the inputs to figure out the book
         if arg_repo_name and not book_id:
             book_id = arg_repo_name.split('_')[-1]
-
+        
+        # local directories are used if they are name with the book_id, the repo_name, 
+        # or the github name, in that order
         if book_id:
             self.book_id = str(book_id)
             self.set_local_path_ifexists(self.book_id)
+            
             try:
                 self.parse_book_metadata()
             except NoRDFError:
@@ -73,20 +76,25 @@ class Book():
         if self.repo_name and not self.local_path:
             self.set_local_path_ifexists(self.repo_name)
 
-        # set up the local repo
+        # set up the Github connection
+        self.github_repo = GithubRepo(self)
+
+    def set_local_repo(self):
+        if self.local_repo:
+            return
         if self.local_path:
             self.local_repo = LocalRepo(self.local_path)
         else:
             self.local_repo = None
 
-        # set up the Github connection
-        self.github_repo = GithubRepo(self)
-
     def set_local_path_ifexists(self, name):
+        if self.local_path:
+            return
         path = os.path.join(self.library_path, name)
         if os.path.exists(path):
             self.local_path = path
             logger.info('local_path set to {}'.format(path))
+        self.set_local_repo()
         
     def make_local_path(self):
         path = os.path.join(self.library_path, self.book_id)
@@ -103,6 +111,7 @@ class Book():
         # cloned repo
         if self.local_repo and self.local_repo.metadata_file:
             self.meta = Pandata(datafile=self.local_repo.metadata_file)
+            self.repo_name = self.meta._repo
             return 'update metadata '
 
         # named repo
@@ -110,6 +119,7 @@ class Book():
             named_path = os.path.join(self.library_path, self.repo_name, 'metadata.yaml')
             if os.path.exists(named_path):
                 self.meta = Pandata(datafile=named_path)
+                self.repo_name = self.meta._repo
                 return 'update metadata '
 
         # create metadata

@@ -37,7 +37,7 @@ class Book():
         `rdf_library` local directory where rdf has been cached
     """
 
-    def __init__(self, book_id, repo_name=None, library_path='./library', rdf_library=None):
+    def __init__(self, book_id, repo_name=None, library_path='./library', rdf_library=None, local=False):
         # rename to avoid confusion
         arg_repo_name = repo_name
         self.local_path = None
@@ -77,7 +77,8 @@ class Book():
             self.set_local_path_ifexists(self.repo_name)
 
         # set up the Github connection
-        self.github_repo = GithubRepo(self)
+        if not local:
+            self.github_repo = GithubRepo(self)
 
     def set_local_repo(self):
         if self.local_repo:

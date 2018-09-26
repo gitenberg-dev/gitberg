@@ -99,6 +99,8 @@ class Book():
         if os.path.exists(path):
             self.local_path = path
             logger.info('local_path set to {}'.format(path))
+            # make sure to use metadata in metadata.yaml
+            self.parse_book_metadata()
         self.set_local_repo()
         
     def make_local_path(self):
@@ -118,6 +120,7 @@ class Book():
     def parse_book_metadata(self):
         # cloned repo
         if self.local_repo and self.local_repo.metadata_file:
+            logger.info("using %s" % self.local_repo.metadata_file)
             self.meta = Pandata(datafile=self.local_repo.metadata_file)
             self.repo_name = self.meta._repo
             return 'update metadata '
@@ -125,19 +128,23 @@ class Book():
         # named repo
         if self.repo_name:
             named_path = os.path.join(self.library_path, self.repo_name, 'metadata.yaml')
+            logger.info("trying %s" % named_path)
             if os.path.exists(named_path):
                 self.meta = Pandata(datafile=named_path)
                 self.repo_name = self.meta._repo
                 return 'update metadata '
-
+        logger.info("using RDF")
         # create metadata
         self.meta = BookMetadata(self, rdf_library=self.rdf_library)
-
         # preserve existing repo names
         if self.repo_name:
             self.meta.metadata['_repo'] = self.repo_name
             logger.info('using existing repo name: {}'.format(self.repo_name))
             return 'existing repo'
+        if self.book_id:
+            self.repo_name = get_repo_name(self.book_id)
+            if self.repo_name != self.book_id:
+                return 'redone repo'
         self.repo_name = self.format_title()
         return 'new repo '
 

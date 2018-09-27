@@ -76,7 +76,7 @@ class GithubRepo():
                                     password=config.data['gh_password'])
         except KeyError as e:
             raise config.NotConfigured(e)
-
+        logger.info("ratelimit remaining: {}".format(self.github.ratelimit_remaining))
         if hasattr(self.github, 'set_user_agent'):
             self.github.set_user_agent('{}: {}'.format(self.org_name, self.org_homepage))
         try:

@@ -37,13 +37,14 @@ class Book():
         `rdf_library` local directory where rdf has been cached
     """
 
-    def __init__(self, book_id, repo_name=None, library_path='./library', rdf_library=None, local=False):
+    def __init__(self, book_id, repo_name=None, library_path='./library', rdf_library=None, local=False, cache={}):
         # rename to avoid confusion
         arg_repo_name = repo_name
         self.local_path = None
         self.repo_name = None
         self.rdf_library = rdf_library
         self.local_repo = None
+        self.cache = cache
 
         # do config
         self.library_path = config.get_library_path(library_path) 
@@ -82,8 +83,18 @@ class Book():
 
         # set up the Github connection
         if not local:
-            self.github_repo = GithubRepo(self)
+            self.github_repo = self.get_github()
 
+    # hook to allow login caching
+    def get_github(self):
+        gh = self.cache.get('github' , None)
+        if gh:
+            gh.book = self
+        else:
+            gh = GithubRepo(self)
+            self.cache['github'] = gh
+        return gh
+    
     def set_local_repo(self):
         if self.local_repo:
             return
@@ -104,10 +115,7 @@ class Book():
         self.set_local_repo()
         
     def make_local_path(self):
-        if not self.book_id:
-            return
         path = os.path.join(self.library_path, self.book_id)
-
         if not os.path.exists(path):
             try:
                 os.makedirs(path)
@@ -242,7 +250,7 @@ class Book():
         if self.local_repo:
             self.local_repo.git.git.clear_cache()
         
-        shutil.rmtree(self.local_path)
+            shutil.rmtree(self.local_path)
 
     def format_title(self):
         def asciify(_title):

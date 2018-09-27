@@ -6,27 +6,27 @@ from .book import Book
 from .make import NewFilesHandler
 from .parameters import GITHUB_ORG as orgname
 
-def get_id(repo):
-    book = Book(None, repo_name=repo)
+def get_id(repo, cache={}):
+    book = Book(None, repo_name=repo, cache=cache)
 
     repo = book.github_repo.github.repository(orgname, repo)
     print(repo.id)
     return repo.id
 
-def get_book(repo_name):
+def get_book(repo_name, cache={}):
     if isinstance(repo_name, int):
-        return Book(repo_name)
+        return Book(repo_name, cache=cache)
     else:
-        return Book(None, repo_name=repo_name)
+        return Book(None, repo_name=repo_name, cache=cache)
 
-def get_cloned_book(repo_name):
-    book = get_book(repo_name)
+def get_cloned_book(repo_name, cache={}):
+    book = get_book(repo_name, cache=cache)
     book.clone_from_github()
     book.parse_book_metadata()
     return book
 
-def delete(repo_name):
-    book = get_book(repo_name)
+def delete(repo_name, cache={}):
+    book = get_book(repo_name, cache=cache)
 
     repo = book.github_repo.github.repository(orgname, repo_name)
     if repo:
@@ -37,8 +37,8 @@ def delete(repo_name):
     else:
         print("{} didn't exist".format(repo_name))
 
-def add_generated_cover(repo_name, tag=False):
-    book = get_cloned_book(repo_name)
+def add_generated_cover(repo_name, tag=False, cache={}):
+    book = get_cloned_book(repo_name, cache=cache)
 
     result = book.add_covers() # None if there was already a cover
     if result:
@@ -46,8 +46,8 @@ def add_generated_cover(repo_name, tag=False):
         book.local_repo.commit(result)
     return book
 
-def refresh_repo(repo_name):
-    book = get_cloned_book(repo_name)
+def refresh_repo(repo_name, cache={}):
+    book = get_cloned_book(repo_name, cache=cache)
     filemaker = NewFilesHandler(book)
     filemaker.copy_files()
     book.add_covers()
@@ -57,7 +57,7 @@ def refresh_repo(repo_name):
     book.tag()
     return book
 
-def refresh_repo_desc(repo_name):
-    book = get_cloned_book(repo_name)
+def refresh_repo_desc(repo_name, cache={}):
+    book = get_cloned_book(repo_name, cache=cache)
     book.github_repo.update_repo()
     return book

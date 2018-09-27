@@ -28,9 +28,10 @@ def upload_all_books(book_id_start, book_id_end, rdf_library=None):
     )
 
     for book_id in range(int(book_id_start), int(book_id_end) + 1):
+        cache = {}
         errors = 0
         try:
-            upload_book(book_id, rdf_library=rdf_library)
+            upload_book(book_id, rdf_library=rdf_library, cache=cache)
         except Exception as e:
             print(u'error\t{}'.format(book_id))
             logger.error(u"Error processing: {}\r{}".format(book_id, e))
@@ -43,17 +44,18 @@ def upload_list(book_id_list, rdf_library=None):
     """ Uses the fetch, make, push subcommands to add a list of pg books
     """
     with open(book_id_list, 'r') as f:
+        cache = {}
         for book_id in f:
             try:
-                upload_book(book_id.strip(), rdf_library=rdf_library)
+                upload_book(book_id.strip(), rdf_library=rdf_library, cache=cache)
             except Exception as e:
                 print(u'error\t{}'.format(book_id.strip()))
                 logger.error(u"Error processing: {}\r{}".format(book_id.strip(), e))
 
 
-def upload_book(book_id, rdf_library=None):
+def upload_book(book_id, rdf_library=None, cache={}):
     logger.info("--> Beginning {0}".format(book_id))
-    book = Book(book_id, rdf_library=rdf_library)
+    book = Book(book_id, rdf_library=rdf_library, cache=cache)
     book.all()
 
 def apply_file(action, book_id_file, limit=10):
@@ -70,14 +72,15 @@ def apply_all(action, book_id_start, book_id_end):
 
 def apply_list(arg_action, id_list):
     action = getattr(actions, arg_action)
+    cache = {}
     for book_id in id_list:
-        try:
-            book = action(book_id)
-            print(u'{}\t{}'.format(arg_action, book_id))
-            book.remove()
-        except Exception as e:
-            print(u'error\t{}'.format(book_id))
-            logger.error(u"Error processing: {}\r{}".format(book_id, e))
+        #try:
+        book = action(book_id, cache=cache)
+        print(u'{}\t{}'.format(arg_action, book_id))
+        book.remove()
+        #except Exception as e:
+            #print(u'error\t{}'.format(book_id))
+            #logger.error(u"Error processing: {}\r{}".format(book_id, e))
 
 
 def apply_to_repos(action, args=None, kwargs=None, repos=None):

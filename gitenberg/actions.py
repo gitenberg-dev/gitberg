@@ -48,13 +48,16 @@ def add_generated_cover(repo_name, tag=False, cache={}):
 
 def refresh_repo(repo_name, cache={}):
     book = get_cloned_book(repo_name, cache=cache)
+    if book.meta.pg_modified() > book.source_mod_date():
+        book.fetch()
     filemaker = NewFilesHandler(book)
     filemaker.copy_files()
-    book.add_covers()
-    book.local_repo.add_all_files()
-    book.local_repo.commit('Update cover')
-    book.github_repo.update_repo()
-    book.tag()
+    comment = book.add_covers()
+    num_changed = book.local_repo.add_all_files()
+    comment = comment + 'added {} file. '.format(num_changed) if num_changed else comment
+    commit = book.local_repo.commit(comment)
+    if commit or book.local_repo.no_tags():
+        book.github_repo.tag('bump', message=comment)
     return book
 
 def refresh_repo_desc(repo_name, cache={}):

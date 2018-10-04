@@ -169,7 +169,8 @@ class Book():
     def fetch(self):
         """ just pull files from PG
         """
-        self.make_local_path()
+        if not self.local_path:
+            self.make_local_path()
         fetcher = BookFetcher(self)
         fetcher.fetch()
 

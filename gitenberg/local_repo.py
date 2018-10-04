@@ -51,6 +51,11 @@ class LocalRepo(object):
 
     def tag(self, version):
         return self.git.create_tag(version, message='bump version')
+        
+    def no_tags(self):
+        for tag in self.git.tags:
+            return False
+        return True
 
     def mod_date(self, path):
         return dateutil.parser.parse(self.git.git.log('-1', '--format=%aI', '--', path))

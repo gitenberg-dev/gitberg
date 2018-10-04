@@ -46,6 +46,7 @@ class Book():
         self.rdf_library = rdf_library
         self.local_repo = None
         self.cache = cache
+        self.local = local
 
         # do config
         self.library_path = config.get_library_path(library_path) 
@@ -144,7 +145,7 @@ class Book():
                 return 'update metadata '
         logger.info("using RDF")
         # create metadata
-        self.meta = BookMetadata(self, rdf_library=self.rdf_library)
+        self.meta = BookMetadata(self, rdf_library=self.rdf_library, enrich=(not self.local))
         # preserve existing repo names
         if self.repo_name:
             self.meta.metadata['_repo'] = self.repo_name

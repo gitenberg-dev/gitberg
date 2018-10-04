@@ -23,6 +23,7 @@ from .push import GithubRepo
 from .util import tenprintcover
 from .util.catalog import BookMetadata, get_repo_name, NoRDFError
 from .metadata.pandata import Pandata
+from .util.pg import source_start
 
 logger = logging.getLogger(__name__)
 
@@ -327,4 +328,10 @@ class Book():
         self.meta.metadata['covers'] = new_covers
         return comment
 
-
+    def source_mod_date(self):
+        if not self.book_id or not self.local_path:
+            return
+        source_file = source_start(self.local_path, self.book_id)
+        return self.local_repo.mod_date(source_file)
+        
+        

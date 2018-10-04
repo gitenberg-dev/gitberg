@@ -1,6 +1,7 @@
 import rdflib
 import string
 import yaml
+
 from .licenses import CCLicense
 from .marc import plural, marc_rels
 from .pandata import TypedSubject
@@ -318,3 +319,41 @@ def pg_rdf_to_json(file_path):
     
 #print(json.dumps(pg_rdf_to_yaml('/Users/eric/Downloads/cache/epub/19218/pg19218.rdf'),indent=2, separators=(',', ': '), sort_keys=True))
 
+def htm_modified(file_path):
+    g = rdflib.Graph()
+    try:
+        g.load(file_path)
+    except IOError:
+        return None
+
+    ld = serializer.from_rdf(g, context_data=context, base=None,
+            use_native_types=False, use_rdf_type=False,
+            auto_compact=False, startnode=None, index=False)
+
+    graph = ld['@graph']
+    nodes = {}
+    for obj in graph:
+        if isinstance(obj,dict):
+            obj = obj.copy()
+            if "@id" in obj and obj["@id"].startswith("_"):
+                nodeid = obj["@id"]
+                node = nodes.get(nodeid, {})
+                del obj["@id"]
+                node.update(obj)
+                nodes[nodeid] = node
+            
+    # now remove the blank nodes and the files
+    newnodes = []
+    top = None
+    mod_date = u"0"
+    for obj in unblank_node(graph,nodes):
+        try:
+            #
+            if obj[u'@type']== u'pgterms:file':
+                obj_id = unicode(obj[u'@id'])
+                if obj_id.endswith('.htm') or obj_id.endswith('.txt'):
+                    new_mod = obj[u'dcterms:modified' ][u'@value']
+                    mod_date = new_mod if new_mod > mod_date else mod_date
+        except:
+            pass
+    return mod_date

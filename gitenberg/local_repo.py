@@ -5,6 +5,7 @@ import logging
 import os
 
 import git
+import dateutil.parser
 
 from .util.filetypes import IGNORE_FILES
 
@@ -50,6 +51,9 @@ class LocalRepo(object):
 
     def tag(self, version):
         return self.git.create_tag(version, message='bump version')
+
+    def mod_date(self, path):
+        return dateutil.parser.parse(self.git.git.log('-1', '--format=%aI', '--', path))
 
     def cover_files(self):
         covers = []

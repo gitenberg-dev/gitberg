@@ -6,16 +6,19 @@
 import csv
 import json
 import os
+import pytz
 import re
+import dateutil.parser
 
 from .. import pg_wikipedia
 from ..config import NotConfigured
 from ..metadata.pandata import Pandata
-from ..metadata.pg_rdf import pg_rdf_to_json
+from ..metadata.pg_rdf import pg_rdf_to_json, htm_modified
 from ..parameters import GITHUB_ORG
 
 # sourced from http://www.gutenberg.org/MIRRORS.ALL
 MIRRORS = {'default': 'ftp://gutenberg.pglaf.org/mirrors/gutenberg/'}
+utc=pytz.UTC
 
 with open(
         os.path.join(os.path.dirname(__file__),
@@ -49,7 +52,13 @@ class NoRDFError(Exception):
     pass
 
 class BookMetadata(Pandata):
-    def __init__(self, book, rdf_library='./rdf_library', enrich=True):
+    def __init__(self, book, rdf_library='./rdf_library', enrich=True, datafile=None):
+        if datafile:
+            super(BookMetadata, self).__init__(datafile=datafile)
+            self.rdf_path = "{0}/{1}/pg{1}.rdf".format(
+                book.rdf_library, book.book_id
+            )
+            return
         self.book = book
         try:
             assert(os.path.exists(rdf_library))
@@ -88,3 +97,7 @@ class BookMetadata(Pandata):
         if not description:
             description = self.description
         self.metadata['description'] = description
+
+    def pg_modified(self):
+        mod_str = htm_modified(self.rdf_path)
+        return utc.localize(dateutil.parser.parse(mod_str))

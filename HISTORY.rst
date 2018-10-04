@@ -2,9 +2,10 @@
 
 History
 -------
-0.5.0 (2018-10-04)
+0.5.1 (2018-10-04)
 ==================
 * added handling for an api cache to avoid running out of github calls
+* save an api call by caching github repo object in book
 * added modification date methods for files in git and files in rdf
 * book.meta is now always a BookMetadata object
 * refresh_repo action checks rdf for revised files and revises repo

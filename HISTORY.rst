@@ -2,7 +2,7 @@
 
 History
 -------
-0.5.1 (2018-10-04)
+0.5.2 (2018-10-04)
 ==================
 * added handling for an api cache to avoid running out of github calls
 * save an api call by caching github repo object in book

@@ -225,7 +225,7 @@ class Book():
         self.github_repo.tag(version, message=message)
 
     def repo(self):
-        if not self._repo:
+        if self._repo:
             return self._repo
         if self.repo_name:
             self._repo = self.github_repo.github.repository(GITHUB_ORG, self.repo_name)

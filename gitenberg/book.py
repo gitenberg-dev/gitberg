@@ -46,6 +46,7 @@ class Book():
         self.local_repo = None
         self.cache = cache
         self.local = local
+        self._repo = None
 
         # do config
         self.library_path = config.get_library_path(library_path) 
@@ -209,7 +210,8 @@ class Book():
         """ create a github repo and push the local repo into it
         """
         self.github_repo.create_and_push()
-        return self.github_repo.repo
+        self._repo = self.github_repo.repo
+        return self._repo
 
     def update(self, message='Update files'):
         """ commit changes
@@ -223,8 +225,11 @@ class Book():
         self.github_repo.tag(version, message=message)
 
     def repo(self):
+        if not self._repo:
+            return self._repo
         if self.repo_name:
-            return self.github_repo.github.repository(GITHUB_ORG, self.repo_name)
+            self._repo = self.github_repo.github.repository(GITHUB_ORG, self.repo_name)
+            return self._repo
 
     def all(self):
         try:

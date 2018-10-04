@@ -2,9 +2,20 @@
 
 History
 -------
+0.5.0 (2018-10-04)
+==================
+* added handling for an api cache to avoid running out of github calls
+* added modification date methods for files in git and files in rdf
+* book.meta is now always a BookMetadata object
+* refresh_repo action checks rdf for revised files and revises repo
+* "local" keyword also turns off wikidata
+* updated repo list
+
+
 0.4.4 (2018-09-24)
 ==================
 * fixed issue where gitberg refused to use the metadata from metadata.yaml, esp. repo_name
+* added "local" keyword that turns off github linking in Book objects (much faster!)
 * misc bugfixes
 * updated requirements, esp. bs4 and html5lib
 

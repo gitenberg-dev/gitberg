@@ -22,7 +22,6 @@ from .parameters import GITHUB_ORG
 from .push import GithubRepo
 from .util import tenprintcover
 from .util.catalog import BookMetadata, get_repo_name, NoRDFError
-from .metadata.pandata import Pandata
 from .util.pg import source_start
 
 logger = logging.getLogger(__name__)
@@ -131,7 +130,7 @@ class Book():
         # cloned repo
         if self.local_repo and self.local_repo.metadata_file:
             logger.info("using %s" % self.local_repo.metadata_file)
-            self.meta = Pandata(datafile=self.local_repo.metadata_file)
+            self.meta = BookMetadata(self, datafile=self.local_repo.metadata_file)
             self.repo_name = self.meta._repo
             return 'update metadata '
 
@@ -140,7 +139,7 @@ class Book():
             named_path = os.path.join(self.library_path, self.repo_name, 'metadata.yaml')
             logger.info("trying %s" % named_path)
             if os.path.exists(named_path):
-                self.meta = Pandata(datafile=named_path)
+                self.meta = BookMetadata(self, datafile=named_path)
                 self.repo_name = self.meta._repo
                 return 'update metadata '
         logger.info("using RDF")

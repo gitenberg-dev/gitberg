@@ -130,7 +130,7 @@ class Book():
     def parse_book_metadata(self):
         # cloned repo
         if self.local_repo and self.local_repo.metadata_file:
-            logger.info("using %s" % self.local_repo.metadata_file)
+            logger.debug("using %s" % self.local_repo.metadata_file)
             self.meta = BookMetadata(self, datafile=self.local_repo.metadata_file)
             self.repo_name = self.meta._repo
             return 'update metadata '
@@ -143,13 +143,13 @@ class Book():
                 self.meta = BookMetadata(self, datafile=named_path)
                 self.repo_name = self.meta._repo
                 return 'update metadata '
-        logger.info("using RDF")
+        logger.debug("using RDF")
         # create metadata
         self.meta = BookMetadata(self, rdf_library=self.rdf_library, enrich=(not self.local))
         # preserve existing repo names
         if self.repo_name:
             self.meta.metadata['_repo'] = self.repo_name
-            logger.info('using existing repo name: {}'.format(self.repo_name))
+            logger.debug('using existing repo name: {}'.format(self.repo_name))
             return 'existing repo'
         if self.book_id:
             self.repo_name = get_repo_name(self.book_id)

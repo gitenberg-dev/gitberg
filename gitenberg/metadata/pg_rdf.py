@@ -351,7 +351,7 @@ def htm_modified(file_path):
             #
             if obj[u'@type']== u'pgterms:file':
                 obj_id = unicode(obj[u'@id'])
-                if obj_id.endswith('.htm') or obj_id.endswith('.txt'):
+                if obj_id.endswith('.htm') or obj_id.endswith('.txt') or obj_id.endswith('.pdf'):
                     new_mod = obj[u'dcterms:modified' ][u'@value']
                     mod_date = new_mod if new_mod > mod_date else mod_date
         except:

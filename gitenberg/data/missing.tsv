@@ -5,25 +5,25 @@
 116	MovingImage	Motion-Pictures-of-the-Apollo-11-Lunar-Landing_116
 127	Dataset	The-Number--e-_127
 129	Dataset	The-Square-Root-of-2_129
-181	Reserved
-182	Reserved
-183	Reserved
-184	Reserved
-185	Reserved
-186	Reserved
-187	Reserved
-188	Reserved
-189	Reserved
-190	Reserved
-191	Reserved
-192	Reserved
-193	Reserved
-194	Reserved
-195	Reserved
-196	Reserved
-197	Reserved
-198	Reserved
-199	Reserved
+181	Reserved	
+182	Reserved	
+183	Reserved	
+184	Reserved	
+185	Reserved	
+186	Reserved	
+187	Reserved	
+188	Reserved	
+189	Reserved	
+190	Reserved	
+191	Reserved	
+192	Reserved	
+193	Reserved	
+194	Reserved	
+195	Reserved	
+196	Reserved	
+197	Reserved	
+198	Reserved	
+199	Reserved	
 239	StillImage	Radar-Map-of-the-United-States_239
 256	MovingImage	Motion-Picture-of-Rotating-Earth_256
 565	Undetermined	The-Zincali-An-Account-of-the-Gypsies-of-Spain_565
@@ -41,7 +41,7 @@
 676	Undetermined	The-Battle-of-Life_676
 745	Dataset	One-Divided-by-Pi--To-1-Million-Digits-_745
 757	Undetermined	Fifty-Bab-Ballads-Much-Sound-and-Little-Sense_757
-758	StillImage
+758	StillImage	
 771	Undetermined	Biographical-Notes-on-the-Pseudonymous-Bells_771
 772	Undetermined	Moral-Emblems_772
 835	Undetermined	The-Grey-Brethren-and-Other-Fragments-in-Prose-and-Verse_835
@@ -49,26 +49,26 @@
 933	Undetermined	More-Bab-Ballads_933
 934	Undetermined	Songs-of-a-Savoyard_934
 1018	Undetermined	The-Water-Babies_1018
-1070	Unused
-1071	Unused
-1072	Unused
-1073	Unused
+1070	Unused	
+1071	Unused	
+1072	Unused	
+1073	Unused	
 1255	Unused	No-title_1255
 1464	Undetermined	Contributions-to-All-The-Year-Round_1464
-1647	Unused
-1648	Unused
-1691	Reserved
-1766	Unused
-1767	Unused
-1789	Unused
-1914	Reserved
-1964	Reserved
-1984	Reserved
-2001	Reserved
-2091	Reserved
+1647	Unused	
+1648	Unused	
+1691	Reserved	
+1766	Unused	
+1767	Unused	
+1789	Unused	
+1914	Reserved	
+1964	Reserved	
+1984	Reserved	
+2001	Reserved	
+2091	Reserved	
 2152	Undetermined	On-the-Makaloa-MatIsland-Tales_2152
 2184	Undetermined	Unbeaten-Tracks-in-Japan_2184
-2200	Reserved
+2200	Reserved	
 2201	Dataset	Human-Genome-Project-rough-draft-Chromosome-Number-01_2201
 2202	Dataset	Human-Genome-Project-rough-draft-Chromosome-Number-02_2202
 2203	Dataset	Human-Genome-Project-rough-draft-Chromosome-Number-03_2203
@@ -95,86 +95,86 @@
 2224	Dataset	Human-Genome-Project-rough-draft-Chromosome-Y-Number-24_2224
 2421	Undetermined	The-Beggar-s-Opera_2421
 2576	Undetermined	Alps-and-Sanctuaries-of-Piedmont-and-the-Canton-Ticino_2576
-2623	Reserved
-2624	Reserved
-2625	Reserved
-2626	Reserved
+2623	Reserved	
+2624	Reserved	
+2625	Reserved	
+2626	Reserved	
 2720	Undetermined	The-Pension-Beaurepas_2720
 2733	Undetermined	Romano-Lavo-Lil-Word-Book-of-the-Romany-Or-English-Gypsy-Language-With-Specimens-of-Gypsy-Poet__2733
-2738	Unused
+2738	Unused	
 2869	Undetermined	The-Point-of-View_2869
-2877	Unused
-2879	Unused
-3002	Sound
-3018	Unused
+2877	Unused	
+2879	Unused	
+3002	Sound	
+3018	Unused	
 3057	Copyright	The-Common-Edition-New-Testament_3057
 3169	Undetermined	Cambridge-Pieces_3278
-3201	Dataset
+3201	Dataset	
 3279	Undetermined	Canterbury-Pieces_3279
 3500	Undetermined	Ceiriog_3500
-3501	Dataset
-3502	Dataset
-3503	Dataset
-3504	Dataset
-3505	Dataset
-3506	Dataset
-3507	Dataset
-3508	Dataset
-3509	Dataset
-3510	Dataset
-3511	Dataset
-3512	Dataset
-3513	Dataset
-3514	Dataset
-3515	Dataset
-3516	Dataset
-3517	Dataset
-3518	Dataset
-3519	Dataset
-3520	Dataset
-3521	Dataset
-3522	Dataset
-3523	Dataset
-3524	Dataset
+3501	Dataset	
+3502	Dataset	
+3503	Dataset	
+3504	Dataset	
+3505	Dataset	
+3506	Dataset	
+3507	Dataset	
+3508	Dataset	
+3509	Dataset	
+3510	Dataset	
+3511	Dataset	
+3512	Dataset	
+3513	Dataset	
+3514	Dataset	
+3515	Dataset	
+3516	Dataset	
+3517	Dataset	
+3518	Dataset	
+3519	Dataset	
+3520	Dataset	
+3521	Dataset	
+3522	Dataset	
+3523	Dataset	
+3524	Dataset	
 3541	Undetermined	What-to-Do-Thoughts-Evoked-By-the-Census-of-Moscow_3541
 3651	Dataset	The-Square-Root-of-4-to-a-Million-Places_3651
 3680	Undetermined	Cartrefi-Cymru_3680
 3696	Undetermined	The-Prince-and-the-Page-A-Story-of-the-Last-Crusade_3696
 4366	Undetermined	Can-Such-Things-Be_4366
 4387	Undetermined	Present-at-a-Hanging-and-Other-Ghost-Stories_4387
-4749	Image
-4750	Image
-4751	Image
-4949	Image
-4950	Image
-4951	Image
-5188	Image
-5189	Image
-5190	Image
+4749	Image	
+4750	Image	
+4751	Image	
+4949	Image	
+4950	Image	
+4951	Image	
+5188	Image	
+5189	Image	
+5190	Image	
 5212	MovingImage	Film--Trinity-Shot--first-US-Atomic-Test-_5212
 5213	MovingImage	Film--the-Bikini-Island-ABLE-Atomic-Test_5213
 5214	MovingImage	Film--the-Bikini-Island-BAKER-Atomic-Test_5214
 5215	MovingImage	Film--Several-Different-Atomic-Detonations_5215
 5216	MovingImage	Film--Set-of-4-Atomic-Bomb-Test-Films_5216
-5613	Reserved
-5627	Image
-5634	Image
-5635	Image
-5714	Image
+5613	Reserved	
+5627	Image	
+5634	Image	
+5635	Image	
+5714	Image	
 5884	Sound	The-Flying-Saucers-are-Real_5884
-5885	Image
-5886	Image
-6084	Image
-6161	Dataset
-6348	Dataset
-6349	Dataset
-6419	Dataset
-6420	Dataset
+5885	Image	
+5886	Image	
+6084	Image	
+6161	Dataset	
+6348	Dataset	
+6349	Dataset	
+6419	Dataset	
+6420	Dataset	
 6532	Sound	Tarzan-of-the-Apes_6532
 6533	Sound	A-Connecticut-Yankee-in-King-Arthur-s-Court_6533
 6534	Sound	Dracula_6534
 6535	Sound	The-Atomic-Bombings-of-Hiroshima-and-Nagasaki_6535
-6536	Sound
+6536	Sound	
 6537	Sound	Riders-of-the-Purple-Sage_6537
 6538	Sound	20-000-Leagues-under-the-Sea_6538
 6539	Sound	The-Hunchback-of-Notre-Dame_6539
@@ -196,15 +196,15 @@
 6556	Sound	The-Jungle_6556
 6557	Sound	The-Fall-of-the-House-of-Usher_6557
 6620	Sound	The-Time-Machine_6620
-6871	Image
+6871	Image	
 6937	Undetermined	A-Biography-of-Edmund-Spenser_6937
 6951	Sound	Journal-of-Researches-into-the-Natural-History-and-Geology-of-the-Countries-Visited-During-the__6951
 7053	Undetermined	Pages-from-a-Journal-with-Other-Papers_7053
-7092	Image
-7093	Image
+7092	Image	
+7093	Image	
 7094	Sound	Don-Quixote_7094
-7507	Image
-7536	Unused
+7507	Image	
+7536	Unused	
 7869	Sound	A-Tale-of-Two-Cities_7869
 7872	Sound	Dubliners_7872
 7873	Sound	The-Insidious-Dr.-Fu-Manchu_7873
@@ -351,35 +351,35 @@
 9113	Sound	Before-Adam_9113
 9114	Sound	Burning-Daylight_9114
 9115	Sound	The-Call-of-the-Wild_9115
-9116	Lost
-9117	Lost
-9118	Lost
-9119	Lost
-9120	Lost
-9121	Lost
-9122	Lost
-9123	Lost
-9124	Lost
-9125	Lost
-9126	Lost
-9127	Lost
-9128	Lost
-9129	Lost
-9130	Lost
-9131	Lost
-9132	Lost
-9133	Lost
-9134	Lost
-9135	Lost
-9136	Lost
-9137	Lost
-9138	Lost
-9139	Lost
-9140	Lost
-9141	Lost
-9142	Lost
+9116	Lost	
+9117	Lost	
+9118	Lost	
+9119	Lost	
+9120	Lost	
+9121	Lost	
+9122	Lost	
+9123	Lost	
+9124	Lost	
+9125	Lost	
+9126	Lost	
+9127	Lost	
+9128	Lost	
+9129	Lost	
+9130	Lost	
+9131	Lost	
+9132	Lost	
+9133	Lost	
+9134	Lost	
+9135	Lost	
+9136	Lost	
+9137	Lost	
+9138	Lost	
+9139	Lost	
+9140	Lost	
+9141	Lost	
+9142	Lost	
 9143	Sound	The-Valley-of-the-Moon_9143
-9144	Lost
+9144	Lost	
 9145	Sound	White-Fang_9145
 9146	Sound	I-and-my-Chimney_9146
 9147	Sound	Moby-Dick_9147
@@ -435,7 +435,7 @@
 9359	Sound	Under-Western-Eyes_9359
 9360	Sound	Within-the-Tides_9360
 9361	Sound	Youth_9361
-9392	Image
+9392	Image	
 9416	Sound	A-Changed-Man-and-Other-Tales_9416
 9417	Sound	Far-from-the-Madding-Crowd_9417
 9418	Sound	Desperate-Remedies_9418
@@ -747,32 +747,32 @@
 10802	Collection	Project-Gutenberg--10K--DVD_10802
 11001	Image	String-Quartet-No.-05-in-A-major-Opus-18_11001
 11002	Image	String-Quartet-No.-11-in-F-minor-Opus-95--Serioso-_11002
-11220	Collection
+11220	Collection	
 11755	Image	String-Quartet-No.-10-in-E-flat-major-Opus-74--Harp-_11755
-11775	Dataset
-11776	Dataset
-11777	Dataset
-11778	Dataset
-11779	Dataset
-11780	Dataset
-11781	Dataset
-11782	Dataset
-11783	Dataset
-11784	Dataset
-11785	Dataset
-11786	Dataset
-11787	Dataset
-11788	Dataset
-11789	Dataset
-11790	Dataset
-11791	Dataset
-11792	Dataset
-11793	Dataset
-11794	Dataset
-11795	Dataset
-11796	Dataset
-11797	Dataset
-11798	Dataset
+11775	Dataset	
+11776	Dataset	
+11777	Dataset	
+11778	Dataset	
+11779	Dataset	
+11780	Dataset	
+11781	Dataset	
+11782	Dataset	
+11783	Dataset	
+11784	Dataset	
+11785	Dataset	
+11786	Dataset	
+11787	Dataset	
+11788	Dataset	
+11789	Dataset	
+11790	Dataset	
+11791	Dataset	
+11792	Dataset	
+11793	Dataset	
+11794	Dataset	
+11795	Dataset	
+11796	Dataset	
+11797	Dataset	
+11798	Dataset	
 11799	Dataset	Human-Genome-Project-Build-34-Human-Genome-Supplemental-Data_11799
 12149	Image	String-Quartet-No.-03-in-D-major-Opus-18_12149
 12237	Image	String-Quartet-No.-16-in-F-major-Opus-135_12237

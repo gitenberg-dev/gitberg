@@ -9,6 +9,7 @@ import requests
 
 from .book import Book
 from . import actions
+from .util.catalog import missing_pgid
 
 logger = logging.getLogger(__name__)
 
@@ -31,6 +32,9 @@ def upload_all_books(book_id_start, book_id_end, rdf_library=None):
         cache = {}
         errors = 0
         try:
+            if int(book_id) in missing_pgid:
+                print(u'missing\t{}'.format(book_id))
+                continue
             upload_book(book_id, rdf_library=rdf_library, cache=cache)
         except Exception as e:
             print(u'error\t{}'.format(book_id))
@@ -46,11 +50,15 @@ def upload_list(book_id_list, rdf_library=None):
     with open(book_id_list, 'r') as f:
         cache = {}
         for book_id in f:
+            book_id = book_id.strip()
             try:
-                upload_book(book_id.strip(), rdf_library=rdf_library, cache=cache)
+                if int(book_id) in missing_pgid:
+                    print(u'missing\t{}'.format(book_id))
+                    continue
+                upload_book(book_id, rdf_library=rdf_library, cache=cache)
             except Exception as e:
-                print(u'error\t{}'.format(book_id.strip()))
-                logger.error(u"Error processing: {}\r{}".format(book_id.strip(), e))
+                print(u'error\t{}'.format(book_id))
+                logger.error(u"Error processing: {}\r{}".format(book_id, e))
 
 
 def upload_book(book_id, rdf_library=None, cache={}):
@@ -74,13 +82,16 @@ def apply_list(arg_action, id_list):
     action = getattr(actions, arg_action)
     cache = {}
     for book_id in id_list:
-        #try:
-        book = action(book_id, cache=cache)
-        print(u'{}\t{}'.format(arg_action, book_id))
-        book.remove()
-        #except Exception as e:
-            #print(u'error\t{}'.format(book_id))
-            #logger.error(u"Error processing: {}\r{}".format(book_id, e))
+        try:
+            if book_id in missing_pgid:
+                print(u'missing\t{}'.format(book_id))
+                continue
+            book = action(book_id, cache=cache)
+            print(u'{}\t{}'.format(arg_action, book_id))
+            book.remove()
+        except Exception as e:
+            print(u'error\t{}'.format(book_id))
+            logger.error(u"Error processing: {}\r{}".format(book_id, e))
 
 
 def apply_to_repos(action, args=None, kwargs=None, repos=None):

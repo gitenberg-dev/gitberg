@@ -35,6 +35,12 @@ with open(os.path.join(os.path.dirname(__file__), '../data/GITenberg_repo_list.t
         repo_list.append(row)
 repo_for_pgid = {int(pgid): value for (pgid, value) in repo_list}
 
+missing_list = []
+with open(os.path.join(os.path.dirname(__file__), '../data/missing.tsv')) as missingfile:
+    for row in csv.reader(missingfile, delimiter='\t', quotechar='"'):
+        missing_list.append(row)
+missing_pgid = {int(pgid): value for (pgid, reason, value) in missing_list}
+
 def get_all_repo_names():
     """Yields the full names of all the book repositories."""
     for repo in repo_for_pgid.values():

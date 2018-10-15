@@ -2,6 +2,14 @@
 
 History
 -------
+0.5.3 (2018-10-15)
+==================
+* fixed some greek repo names that were all dashes
+* added "rights_note" to description
+* start using missing list when iterating a range of book numbers
+* suppress some debug messages
+
+
 0.5.2 (2018-10-04)
 ==================
 * added handling for an api cache to avoid running out of github calls

@@ -2,6 +2,13 @@
 
 History
 -------
+0.5.4 (2018-10-19)
+==================
+* wikidata occasionally lies about ids- now catching the exception
+* improved README template to reflect that not all books are public domain
+* update repo lists, removing audio and greek (will add back greek with better names)
+
+
 0.5.3 (2018-10-15)
 ==================
 * fixed some greek repo names that were all dashes

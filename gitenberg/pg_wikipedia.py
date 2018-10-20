@@ -28,6 +28,9 @@ def get_item_summary(wd_id, lang='en'):
     except ValueError:
         #not JSON
         return ""
+    except KeyError:
+        logger.warning(u"couldn't get wikidata key {}".format(wd_id))
+        return ""
 
 def get_links(wd_id):
     r = requests.get(u'https://www.wikidata.org/wiki/Special:EntityData/{}.json'.format(wd_id))

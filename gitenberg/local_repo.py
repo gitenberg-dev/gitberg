@@ -11,6 +11,7 @@ from .util.filetypes import IGNORE_FILES
 
 logger = logging.getLogger(__name__)
 img_exts = ('jpg', 'jpeg', 'png', 'gif')
+old_files = ['.travis.yml', '.travis.deploy.api_key.txt']
 
 class LocalRepo(object):
     """ A class for interacting with a git repo """
@@ -40,6 +41,15 @@ class LocalRepo(object):
         logger.debug(u'Staging the following files: ' + str(untracked_files))
         self.git.index.add(untracked_files)
         return len(untracked_files)
+
+    def remove_old_files(self):
+        message = ''
+        for old_file in old_files:
+            path = os.path.join(self.repo_path, old_file)
+            if os.path.exists(path):
+                self.git.git.rm(path)
+                message = 'Removed old files. '
+        return message
 
     def commit(self, message):
         # Creates a new git commit based on files in the stage with `message`<str>

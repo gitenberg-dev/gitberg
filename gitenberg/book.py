@@ -322,14 +322,14 @@ class Book():
                 new_covers.append(
                         {"image_path": cover_files[0], "cover_type":"archival"}
                     )
-                comment = " added archival cover"
+                comment = "Added archival cover. "
             else:
                 with open('{}/cover.png'.format(self.local_path), 'w+') as cover:
                     self.generate_cover().save(cover)
                     new_covers.append(
                             {"image_path": "cover.png", "cover_type":"generated"}
                         )
-                comment =  " generated cover"
+                comment =  "Generated cover. "
             if '_version' in self.meta.metadata:
                 self.meta.metadata['_version'] =  semver.bump_minor(self.meta._version)
             else:

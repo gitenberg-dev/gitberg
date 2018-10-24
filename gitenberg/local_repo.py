@@ -53,7 +53,7 @@ class LocalRepo(object):
 
     def commit(self, message):
         # Creates a new git commit based on files in the stage with `message`<str>
-        self.git.index.commit(message)
+        return self.git.index.commit(message)
 
     def update(self, message):
         self.git.git.add(update=True)

@@ -65,9 +65,9 @@ def refresh_repo(repo_name, cache={}):
     comment = book.add_covers()
     comment += book.local_repo.remove_old_files()
     num_changed = book.local_repo.add_all_files()
-    comment = comment + 'added {} file. '.format(num_changed) if num_changed else comment
+    comment = comment + 'Added {} files. '.format(num_changed) if num_changed else comment
     commit = book.local_repo.commit(comment)
-    if commit or book.local_repo.no_tags():
+    if commit or book.local_repo.no_tags() or comment:
         book.github_repo.tag('bump', message=comment)
     return book
 

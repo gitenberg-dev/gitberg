@@ -37,7 +37,7 @@ class NewFilesHandler():
             **self.book.meta.metadata
         )
 
-        readme_path = "{0}/{1}".format(
+        readme_path = os.path.join(
             self.book.local_path,
             self.README_FILENAME
         )
@@ -74,4 +74,4 @@ class NewFilesHandler():
             self.book.meta.metadata["_version"] = "0.0.1"
 
         self.book.meta.dump_file(os.path.join(self.book.local_path, 'metadata.yaml'))
-        
+

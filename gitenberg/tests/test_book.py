@@ -35,7 +35,7 @@ class TestBookPath(unittest.TestCase):
             self.book = Book(7)
             self.assertEqual(
                 self.book.remote_path,
-                "7/"
+                "0/7/"
             )
 
     @patch('os.makedirs')

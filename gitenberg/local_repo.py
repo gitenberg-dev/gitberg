@@ -58,6 +58,8 @@ class LocalRepo(object):
         return True
 
     def mod_date(self, path):
+        if not path:
+            return dateutil.parser.parse('1901-01-01 00:00:00+00:00')
         return dateutil.parser.parse(self.git.git.log('-1', '--format=%aI', '--', path))
 
     def cover_files(self):

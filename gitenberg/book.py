@@ -163,7 +163,10 @@ class Book():
         """ turns an ebook_id into a path on PG's server(s)
             4443  -> 4/4/4/4443/ """
         # TODO: move this property into independent object for PG
-        path_parts = list(self.book_id[:-1])
+        if len(self.book_id) > 1:
+            path_parts = list(self.book_id[:-1])
+        else:
+            path_parts = ['0']
         path_parts.append(self.book_id)
         return os.path.join(*path_parts) + '/'
 

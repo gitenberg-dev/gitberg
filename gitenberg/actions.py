@@ -46,6 +46,16 @@ def add_generated_cover(repo_name, tag=False, cache={}):
         book.local_repo.commit(result)
     return book
 
+def addfiles(repo_name, cache={}):
+    book = get_cloned_book(repo_name, cache=cache)
+    filemaker = NewFilesHandler(book)
+    num_changed = book.local_repo.add_all_files()
+    comment = 'Added {} files. '.format(num_changed) if num_changed else ''
+    commit = book.local_repo.commit(comment)
+    if commit or book.local_repo.no_tags() or comment:
+        book.github_repo.tag('bump', message=comment)
+    return book
+
 def refresh_repo(repo_name, cache={}):
     book = get_cloned_book(repo_name, cache=cache)
     if book.meta.pg_modified() > book.source_mod_date():

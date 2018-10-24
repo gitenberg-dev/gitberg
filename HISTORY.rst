@@ -2,6 +2,22 @@
 
 History
 -------
+0.5.5 (2018-10-23)
+==================
+* update repo lists
+  * add back ____ repos with new names
+  * add 57972-58151
+  * remove 3 junk repos
+* fix mod_date bug when repo has no ebook file
+* add list of files to remove
+* addfiles action. To use this, 
+  1. clone
+  2. add files by hand
+  3. run addfiles
+* fix filepath handling of repos 1-9
+* improve commit messages
+
+
 0.5.4 (2018-10-19)
 ==================
 * wikidata occasionally lies about ids- now catching the exception

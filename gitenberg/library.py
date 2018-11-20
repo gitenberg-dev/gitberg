@@ -37,4 +37,3 @@ def main():
         print("rdf library is up-to-date")
     else:
         print("rdf library could not be updated")
-

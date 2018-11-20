@@ -4,16 +4,17 @@
 
 """
 import csv
+import errno
 import json
 import logging
 import os
-import pytz
 import re
 import shutil
 import tarfile
 import time
 
 import dateutil.parser
+import pytz
 import requests
 
 from .. import pg_wikipedia
@@ -23,18 +24,18 @@ from ..metadata.pg_rdf import pg_rdf_to_json, htm_modified
 from ..parameters import GITHUB_ORG
 
 RDF_URL = "https://www.gutenberg.org/cache/epub/feeds/rdf-files.tar.bz2"
-RDF_PATH = "/tmp/rdf.tar.bz2" 
+RDF_PATH = "/tmp/rdf.tar.bz2"
 # 1 day
 RDF_MAX_AGE = 60 * 60 * 24
 
 # sourced from http://www.gutenberg.org/MIRRORS.ALL
 MIRRORS = {'default': 'ftp://gutenberg.pglaf.org/mirrors/gutenberg/'}
-utc=pytz.UTC
+utc = pytz.UTC
 
-with open(
-        os.path.join(os.path.dirname(__file__),
-        '../data/gutenberg_descriptions.json')
-    ) as descfile:
+with open(os.path.join(
+    os.path.dirname(__file__),
+    '../data/gutenberg_descriptions.json'
+)) as descfile:
     DESCS = json.load(descfile)
 
 descs = {}
@@ -59,7 +60,7 @@ def get_all_repo_names():
         yield '%s/%s' % (GITHUB_ORG, repo)
 
 def get_repo_name(repo_name):
-    if re.match( r'^\d+$', repo_name):
+    if re.match(r'^\d+$', repo_name):
         try:
             repo_name = repo_for_pgid[int(repo_name)]
         except KeyError:
@@ -79,7 +80,7 @@ class BookMetadata(Pandata):
             return
         self.book = book
         try:
-            assert(os.path.exists(rdf_library))
+            assert os.path.exists(rdf_library)
         except Exception as e:
             raise NotConfigured(e)
         self.rdf_path = "{0}/{1}/pg{1}.rdf".format(
@@ -97,7 +98,7 @@ class BookMetadata(Pandata):
         except IOError as e:
             raise NoRDFError(e)
 
-        if len(self.authnames()) == 0:
+        if not self.authnames():
             self.author = ''
         elif len(self.authnames()) == 1:
             self.author = self.authnames()[0]
@@ -122,22 +123,21 @@ class BookMetadata(Pandata):
 
 class Rdfcache(object):
     downloading = False
+
     def __init__(self, rdf_library='./rdf_library'):
         if rdf_library.endswith('/cache/epub'):
             # because unzipping the archive creates ./cache/epub
-            self.rdf_library_dir = rdf_library[0:-11] 
+            self.rdf_library_dir = rdf_library[0:-11]
         else:
             self.rdf_library_dir = rdf_library
-            
-    
-    
+
     def download_rdf(self):
         """Ensures a fresh-enough RDF file is downloaded and extracted.
 
         Returns True on error."""
         if self.downloading:
             return True
-        
+
         if (os.path.exists(RDF_PATH) and
                 (time.time() - os.path.getmtime(RDF_PATH)) < RDF_MAX_AGE):
             return False

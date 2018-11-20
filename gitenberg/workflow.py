@@ -5,7 +5,6 @@ submodule which holds workflow methods
 """
 from __future__ import print_function
 import logging
-import requests
 
 from .book import Book
 from . import actions
@@ -92,10 +91,7 @@ def apply_list(arg_action, id_list):
             logger.error(u"Error processing: {}\r{}".format(book_id, e))
 
 
-def apply_to_repos(action, args=None, kwargs=None, repos=None):
-
-    if repos is None:
-        repos = all_repos
+def apply_to_repos(action, args=None, kwargs=None, repos=[]):
 
     if args is None:
         args = []
@@ -105,7 +101,7 @@ def apply_to_repos(action, args=None, kwargs=None, repos=None):
 
     for repo in repos:
         try:
-            result = action (repo, *args, **kwargs)
+            result = action(repo, *args, **kwargs)
         except Exception as e:
             result = e
         yield result

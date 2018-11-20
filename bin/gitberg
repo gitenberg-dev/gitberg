@@ -20,7 +20,7 @@ Arguments:
     <book_repo_name> -- The name of a repo in Gitenberg, `Frankenstein_84`. If you supply only a
                         number, it will be construed as a book_id, and the repo_name will be looked
                         up from a table.
-    <action> -- Action to apply to repo. Accepts either the full repo name or the Gutenberg id.         
+    <action> -- Action to apply to repo. Accepts either the full repo name or the Gutenberg id.
                 Available actions: get_cloned_book, delete, add_generated_cover, config_travis,
                 refresh_repo, refresh_repo_desc
     <book_id_list> -- a filename for a list of book_id (one per line)
@@ -32,8 +32,8 @@ Options:
     -x LIMIT max number to retrieve
     -m message
 """
-# TODO  use `--` to separate arguments and files
-#       ex: `git checkout -b foo -- file file1 file2
+
+
 from __future__ import print_function
 import logging
 
@@ -78,7 +78,7 @@ if __name__ == '__main__':
     arguments = docopt(__doc__, version=__version__)
 
     logger = setup_logging(arguments)
-    if ('-m') in arguments:
+    if '-m' in arguments:
         # if
         message = arguments['-m']
     else:
@@ -91,7 +91,6 @@ if __name__ == '__main__':
         if not rdf_library:
             cf = config.ConfigFile()
             rdf_library = cf.data.get('rdf_library', None)
-            print (rdf_library)
 
         book_repo_name = arguments.get('<book_repo_name>', None)
         repo_name = arguments['-n'] if '-n' in arguments else None
@@ -145,14 +144,14 @@ if __name__ == '__main__':
 
         elif arguments['clone']:
             book.clone_from_github()
-     
+
         elif arguments['apply']:
             arg_action = arguments['<action>']
             try:
                 action = getattr(actions, arg_action)
                 action(book_repo_name)
             except AttributeError:
-                print("{} is not a supported action".format(arg_action))   
+                print("{} is not a supported action".format(arg_action))
 
         elif arguments['apply_all']:
             workflow.apply_all(arguments['<action>'], arguments['BOOKID'], arguments['BOOKIDEND'])

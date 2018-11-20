@@ -2,6 +2,15 @@
 
 History
 -------
+0.6.0 (2018-11-20)
+==================
+* add auto-updating of the rdf library - use "library" command, which now reports number of repos in the local library, not the list of repos
+* add "new" command to facilitate regular addition of books from PG
+* update repo lists
+  * add 58152-58308
+* fix a bug where the config global gets wiped before use
+* delint
+
 0.5.5 (2018-10-23)
 ==================
 * update repo lists

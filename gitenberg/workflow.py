@@ -13,9 +13,6 @@ from .util.catalog import missing_pgid, Rdfcache
 
 logger = logging.getLogger(__name__)
 
-# extend this to all repos when ready
-REPOS_LIST_URL = "https://raw.githubusercontent.com/gitenberg-dev/Second-Folio/master/list_of_repos.txt"
-
 def upload_all_books(book_id_start, book_id_end, rdf_library=None):
     """ Uses the fetch, make, push subcommands to
         mirror Project Gutenberg to a github3 api
@@ -113,10 +110,6 @@ def apply_to_repos(action, args=None, kwargs=None, repos=None):
             result = e
         yield result
 
-try:
-    all_repos = requests.get(REPOS_LIST_URL).content.strip().split("\n")
-except requests.ConnectionError:
-    all_repos = []
 def upload_new_books(rdf_library=None):
     rdf = Rdfcache(rdf_library=rdf_library)
     to_upload = rdf.get_repos_to_upload()

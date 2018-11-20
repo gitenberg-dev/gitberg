@@ -9,7 +9,7 @@ import requests
 
 from .book import Book
 from . import actions
-from .util.catalog import missing_pgid
+from .util.catalog import missing_pgid, Rdfcache
 
 logger = logging.getLogger(__name__)
 
@@ -65,6 +65,7 @@ def upload_book(book_id, rdf_library=None, cache={}):
     logger.info("--> Beginning {0}".format(book_id))
     book = Book(book_id, rdf_library=rdf_library, cache=cache)
     book.all()
+    return (book_id, book.repo_name)
 
 def apply_file(action, book_id_file, limit=10):
     book_list = []
@@ -116,3 +117,14 @@ try:
     all_repos = requests.get(REPOS_LIST_URL).content.strip().split("\n")
 except requests.ConnectionError:
     all_repos = []
+def upload_new_books(rdf_library=None):
+    rdf = Rdfcache(rdf_library=rdf_library)
+    to_upload = rdf.get_repos_to_upload()
+    cache = {}
+    for book_id in to_upload:
+        try:
+            (pg_id, repo_name) = upload_book(book_id, rdf_library=rdf_library, cache=cache)
+            print("{}\t{}".format(pg_id, repo_name))
+        except Exception as e:
+            print(u'error\t{}'.format(book_id))
+            logger.error(u"Error processing: {}\r{}".format(book_id, e))

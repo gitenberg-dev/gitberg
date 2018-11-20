@@ -4,6 +4,7 @@
 Usage:
     gitberg config
     gitberg library [status]
+    gitberg new
     gitberg clone <book_id>
     gitberg (fetch | make | push | upload | metadata | tag) [<book_id>] [options]
     gitberg get <book_id> [options]
@@ -87,8 +88,10 @@ if __name__ == '__main__':
     try:
         if '--rdf_library' in arguments:
             rdf_library = arguments['--rdf_library']
-        else:
-            rdf_library = config.data.get('rdf_library', None)
+        if not rdf_library:
+            cf = config.ConfigFile()
+            rdf_library = cf.data.get('rdf_library', None)
+            print (rdf_library)
 
         book_repo_name = arguments.get('<book_repo_name>', None)
         repo_name = arguments['-n'] if '-n' in arguments else None
@@ -130,6 +133,9 @@ if __name__ == '__main__':
 
         elif arguments['library']:
             library()
+
+        elif arguments['new']:
+            workflow.upload_new_books(rdf_library=rdf_library)
 
         elif arguments['update']:
             book.update()

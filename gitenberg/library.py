@@ -7,21 +7,34 @@ from __future__ import print_function
 import os
 
 from . import config
+from .util.catalog import Rdfcache
 
 class GitbergLibraryManager(object):
     """ A god object for managing a collection of Gitberg style books
     """
     def __init__(self):
         # by default, loads the default config location
-        self.config = config.ConfigFile()
+        config.ConfigFile()
 
     def book_directories(self):
         """ Returns a list of book directories in the library folder """
         return os.listdir(config.data['library_path'])
 
+    def update_rdf(self):
+        rdf = Rdfcache(rdf_library=config.data['rdf_library'])
+        rdf.download_rdf()
 
 def main():
-    # FIXME: stupid simple implementation of library status
     glm = GitbergLibraryManager()
+    numbooks = 0
     for folder in glm.book_directories():
-        print(folder)
+        path = os.path.join(config.data['library_path'], folder)
+        if os.path.isdir(path):
+            numbooks += 1
+    print("{} book repos in library".format(numbooks))
+    rdf_good = not glm.update_rdf()
+    if rdf_good:
+        print("rdf library is up-to-date")
+    else:
+        print("rdf library could not be updated")
+

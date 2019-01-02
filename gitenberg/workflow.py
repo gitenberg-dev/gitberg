@@ -108,6 +108,7 @@ def apply_to_repos(action, args=None, kwargs=None, repos=[]):
 
 def upload_new_books(rdf_library=None):
     rdf = Rdfcache(rdf_library=rdf_library)
+    rdf.download_rdf()
     to_upload = rdf.get_repos_to_upload()
     cache = {}
     for book_id in to_upload:

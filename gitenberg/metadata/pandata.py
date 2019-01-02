@@ -7,6 +7,7 @@ import copy
 import requests
 import httplib
 import datetime
+import unicodedata
 from .utils import plural
 
 class TypedSubject(tuple):
@@ -71,6 +72,16 @@ def unreverse(name):
     (first, rest) = rest.split(',', 1)
     return '%s %s, %s' % (first.strip(), last.strip(), rest.strip())
 
+def strip_controls(_string):
+    out = []
+    _string = unicode(_string)
+    for ch in _string:
+        if unicodedata.category(ch)[0] != 'C': # not a control character
+            out.append(ch)
+        elif ch in u'\r\n\t': # allow whitespace
+            out.append(ch)
+    return u''.join(out)
+
 # wrapper class for the json object
 class Pandata(object):
     def __init__(self, datafile=None):
@@ -93,8 +104,8 @@ class Pandata(object):
     def __getattr__(self, name):
         if name in PANDATA_STRINGFIELDS:
             value = self.metadata.get(name, '')
-            if isinstance(value, str):
-                return value
+            if isinstance(value, (str, unicode)):
+                return strip_controls(value)
         if name in PANDATA_LISTFIELDS:
             return self.metadata.get(name, [])
         if name in PANDATA_DICTFIELDS:

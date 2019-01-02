@@ -87,7 +87,7 @@ class GithubRepo():
 
     def format_desc(self):
         if hasattr(self.book, 'meta'):
-            title = re.sub(r'[\r\n ]+', ' ', self.book.meta.title)
+            title = re.sub(r'[\r\n \t]+', ' ', self.book.meta.title)
             author = u' by {}'.format(self.book.meta.authors_short())
         else:
             title = self.book.repo_name

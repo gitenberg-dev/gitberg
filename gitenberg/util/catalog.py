@@ -131,14 +131,14 @@ class Rdfcache(object):
         else:
             self.rdf_library_dir = rdf_library
 
-    def download_rdf(self):
+    def download_rdf(self, force=False):
         """Ensures a fresh-enough RDF file is downloaded and extracted.
 
         Returns True on error."""
         if self.downloading:
             return True
 
-        if (os.path.exists(RDF_PATH) and
+        if not force and (os.path.exists(RDF_PATH) and
                 (time.time() - os.path.getmtime(RDF_PATH)) < RDF_MAX_AGE):
             return False
         self.downloading = True

@@ -20,11 +20,11 @@ class GitbergLibraryManager(object):
         """ Returns a list of book directories in the library folder """
         return os.listdir(config.data['library_path'])
 
-    def update_rdf(self):
+    def update_rdf(self, force=False):
         rdf = Rdfcache(rdf_library=config.data['rdf_library'])
-        rdf.download_rdf()
+        rdf.download_rdf(force=force)
 
-def main():
+def main(force=False):
     glm = GitbergLibraryManager()
     numbooks = 0
     for folder in glm.book_directories():
@@ -32,7 +32,7 @@ def main():
         if os.path.isdir(path):
             numbooks += 1
     print("{} book repos in library".format(numbooks))
-    rdf_good = not glm.update_rdf()
+    rdf_good = not glm.update_rdf(force=force)
     if rdf_good:
         print("rdf library is up-to-date")
     else:

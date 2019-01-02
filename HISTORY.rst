@@ -2,6 +2,16 @@
 
 History
 -------
+0.6.1 (2019-01-01)
+==================
+* added -f option to "library" command, which forces an rdf library update
+* "new" command includes rdf library update
+* update repo lists
+  * add 58309-58591
+* fix an issue caused by control characters in metadata
+* stop excluding mp3 in rsync
+
+
 0.6.0 (2018-11-20)
 ==================
 * add auto-updating of the rdf library - use "library" command, which now reports number of repos in the local library, not the list of repos

@@ -153,6 +153,7 @@ class Book():
             return 'existing repo'
         if self.book_id:
             self.repo_name = get_repo_name(self.book_id)
+            self.meta.metadata['_repo'] = self.repo_name
             if self.repo_name != self.book_id:
                 return 'redone repo'
         self.repo_name = self.format_title()

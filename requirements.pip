@@ -18,8 +18,8 @@ PyYAML==3.13
 #added for rdf conversion
 SPARQLWrapper==1.6.4
 html5lib==1.0.1
-isodate==0.5.1
-pyparsing==2.1.10
+isodate==0.6.0
+pyparsing==2.3.0
 rdflib==4.2.2
 rdflib-jsonld==0.4.0
 pytz>=2016.6.1

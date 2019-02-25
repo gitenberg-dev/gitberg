@@ -325,7 +325,7 @@ class Book():
                     )
                 comment = "Added archival cover. "
             else:
-                with open('{}/cover.png'.format(self.local_path), 'w+') as cover:
+                with open('{}/cover.png'.format(self.local_path), 'wb+') as cover:
                     self.generate_cover().save(cover)
                     new_covers.append(
                             {"image_path": "cover.png", "cover_type":"generated"}

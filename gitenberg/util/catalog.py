@@ -187,5 +187,8 @@ class Rdfcache(object):
                 pg_ids.append(pg_id)
                 pg_id += 1
             else:
-                more = False
+                if pg_id in missing_pgid:
+                    pg_id += 1
+                else:
+                    more = False
         return pg_ids

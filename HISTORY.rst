@@ -2,6 +2,15 @@
 
 History
 -------
+0.6.2 (2019-05-02)
+==================
+* update repo lists
+  * add 58592-59370
+* handle missing ids in new command
+* add .sib, .mus, .mxl to audiofile list
+* update requirements
+* fix bug setting _repo_name rebuilding a deleted repo with a previously assigned slug
+
 0.6.1 (2019-01-01)
 ==================
 * added -f option to "library" command, which forces an rdf library update

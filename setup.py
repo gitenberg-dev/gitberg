@@ -14,12 +14,15 @@ with open('gitenberg/__init__.py', 'r') as fd:
         if m:
             __version__ = m.group(1)
             break
+with open('./LICENSE') as fd2:
+    long_description = fd2.read()
 
 setup(name='gitberg',
       version=__version__,
       description="A library and command for interacting with the GITenberg books project",
-      long_description=open('README.md').read(),
-      license=open('./LICENSE').read(),
+      long_description=long_description,
+      long_description_content_type='text/markdown',
+      license='GPLv3',
       author='Seth Woodworth',
       author_email='seth@sethish.com',
       url='https://github.com/gitenberg-dev/gitberg',

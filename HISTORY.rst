@@ -2,6 +2,12 @@
 
 History
 -------
+0.6.3 (2019-08-12)
+==================
+* update repo lists
+  * add 59371-60077
+* update pyparsing requirement
+
 0.6.2 (2019-05-02)
 ==================
 * update repo lists

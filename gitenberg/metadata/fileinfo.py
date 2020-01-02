@@ -1,5 +1,6 @@
 import rdflib
 from datetime import datetime
+from six import text_type as unicodestr
 from rdflib_jsonld import serializer
 from .pg_rdf import unblank_node, context
 
@@ -34,7 +35,7 @@ def htm_modified(file_path):
         try:
             #
             if obj[u'@type']== u'pgterms:file':
-                if unicode(obj[u'@id']).endswith('.htm'):
+                if unicodestr(obj[u'@id']).endswith('.htm'):
                     return obj[u'dcterms:modified' ][u'@value']
                 
         except:

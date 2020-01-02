@@ -1,5 +1,6 @@
 from __future__ import print_function
 import os
+import six
 import unittest
 import gitenberg.metadata.marc as marc
 import pymarc
@@ -46,7 +47,7 @@ class Yaml2MarcTest(unittest.TestCase):
 
     def test_marc(self):
         record = marc.stub(self.pandata)
-        open(TESTDATA_MARCFILENAME,"w+").write(pymarc.record_to_xml(record))
+        open(TESTDATA_MARCFILENAME,"w+").write(six.text_type(pymarc.record_to_xml(record)))
         for field in record.get_fields('650'):
             
             self.assertEqual(field.get_subfields('a')[0],  'Science fiction')

@@ -31,23 +31,23 @@ class TestLocalRepo(unittest.TestCase):
         self._touch_file('foof')
         self.local_repo.add_file('foof')
         self.assertEqual(
-            self.local_repo.git.index.entries.keys(),
-            [(u'foof', 0)]
+            set(self.local_repo.git.index.entries.keys()),
+            {(u'foof', 0)}
         )
 
     def test_add_all_files(self):
-        map(self._touch_file, ['foof', 'offo.txt', 'fofo.md'])
+        [self._touch_file(f) for f in ['foof', 'offo.txt', 'fofo.md']]
         self.local_repo.add_all_files()
         self.assertEqual(
-            self.local_repo.git.index.entries.keys(),
-            [(u'fofo.md', 0), (u'offo.txt', 0), (u'foof', 0)]
+            set(self.local_repo.git.index.entries.keys()),
+            {(u'fofo.md', 0), (u'offo.txt', 0), (u'foof', 0)}
         )
 
     def test_add_all_files_filters_ignore_list(self):
-        map(self._touch_file, ['offo.txt', 'fofo.ogg', 'zoom'])
+        [self._touch_file(f) for f in ['offo.txt', 'fofo.ogg', 'zoom']]
         self.local_repo.add_all_files()
         self.assertEqual(
-            self.local_repo.git.index.entries.keys(),
+            list(self.local_repo.git.index.entries.keys()),
             [(u'offo.txt', 0), (u'zoom', 0)]
         )
 

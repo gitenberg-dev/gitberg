@@ -52,8 +52,11 @@ def get_pg_links(pg_id):
     return get_links(get_wd_id(pg_id))
     
 try:
-    pg_wd_file =  requests.get('https://raw.githubusercontent.com/gitenberg-dev/pg-wikipedia/master/pg-wd.csv')
-    csvreader= csv.reader(pg_wd_file.iter_lines(),delimiter=',', quotechar='"')
+    pg_wd_file = requests.get(
+        'https://raw.githubusercontent.com/gitenberg-dev/pg-wikipedia/master/pg-wd.csv'
+    )
+    lines = (line.decode('utf-8') for line in pg_wd_file.iter_lines())
+    csvreader = csv.reader(lines, delimiter=',' , quotechar='"')
 except requests.ConnectionError:
     csvreader =  []
 for (pg_id,wd_id) in csvreader:

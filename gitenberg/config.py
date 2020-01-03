@@ -96,7 +96,7 @@ def check_config():
     """
     configfile = ConfigFile()
     global data
-    if data.keys() > 0:
+    if data:
         # FIXME: run a better check of this file
         print("gitberg config file exists")
         print("\twould you like to edit your gitberg config file?")

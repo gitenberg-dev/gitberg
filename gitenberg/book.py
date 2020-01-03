@@ -11,6 +11,7 @@ import github3
 import semver
 import sh
 from re import sub
+from six import text_type as unicodestr
 import unicodedata
 
 from . import config
@@ -265,7 +266,7 @@ class Book():
 
     def format_title(self):
         def asciify(_title):
-            _title = unicodedata.normalize('NFD', unicode(_title))
+            _title = unicodedata.normalize('NFD', unicodestr(_title))
             ascii = True
             out = []
             ok = u"1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM- ',"

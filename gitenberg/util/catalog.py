@@ -151,7 +151,7 @@ class Rdfcache(object):
                 raise
 
         try:
-            with open(RDF_PATH, 'w') as f:
+            with open(RDF_PATH, 'wb') as f:
                 with requests.get(RDF_URL, stream=True) as r:
                     shutil.copyfileobj(r.raw, f)
         except requests.exceptions.RequestException as e:

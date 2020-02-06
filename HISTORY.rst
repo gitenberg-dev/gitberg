@@ -2,6 +2,20 @@
 
 History
 -------
+0.7.0 (2020-01-17)
+==================
+* update repo lists
+  * add 60078-61120
+* clean up dependencies in setup.py
+* fix many problems with py 3 compatibility
+  * print function
+  * unicode vs. str
+  * read binary
+  * dictionary iterators
+  * function iterators
+  * imports
+  
+
 0.6.3 (2019-08-12)
 ==================
 * update repo lists

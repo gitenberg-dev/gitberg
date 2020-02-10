@@ -2,6 +2,20 @@
 
 History
 -------
+0.7.2 (2020-02-06)
+==================
+* updated appdirs dependency to resolve conflicts
+* add __str__ method to pandata
+* update repo lists
+  * add 61121-61334
+  * missing
+  * removed
+  
+0.7.1 (2020-02-06)
+==================
+* updated requirements
+  * pyepub has been factored into gitberg-autoupdate
+
 0.7.0 (2020-01-17)
 ==================
 * update repo lists

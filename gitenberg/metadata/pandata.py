@@ -248,4 +248,7 @@ class Pandata(object):
     def __unicode__(self):
         return yaml.safe_dump(self.metadata, default_flow_style=False, allow_unicode=True)
 
-        
+    def __str__(self):
+        return self.__unicode__()
+
+       

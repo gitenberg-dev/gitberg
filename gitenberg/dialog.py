@@ -28,6 +28,9 @@ class ConfigGenerator(object):
             answer = input( prompt )
         self.answers[key] = answer if answer else self.current.get(key,None)
 
+    def ask_token(self):
+        self.ask_generic('gh_access_token', "What is your GitHub personal access token?")
+
     def ask_username(self):
         self.ask_generic('gh_user', "What is your GitHub username?")
 
@@ -52,8 +55,10 @@ class ConfigGenerator(object):
 
     def ask(self):
         self.ask_library()
-        self.ask_username()
-        self.ask_email()
-        if self.answers['gh_user']:
-            self.ask_password()
+        self.ask_token()
+        if not self.answers['gh_access_token']:
+            self.ask_username()
+            self.ask_email()
+            if self.answers['gh_user']:
+                self.ask_password()
         self.ask_rdf_library()

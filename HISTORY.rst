@@ -2,6 +2,14 @@
 
 History
 -------
+
+0.7.3 (2020-08-01)
+==================
+* update repo lists
+  * add 61334-62774
+  * missing
+* switch to using github personal access tokens
+
 0.7.2 (2020-02-06)
 ==================
 * updated appdirs dependency to resolve conflicts

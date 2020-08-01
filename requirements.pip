@@ -11,7 +11,6 @@ beautifulsoup4>=4.6.0
 wikipedia==1.4.0
 appdirs==1.4.0
 six>=1.10.0
-pyepub==0.3.2
 pymarc==3.0.3
 PyYAML==3.13
 

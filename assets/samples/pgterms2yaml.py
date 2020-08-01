@@ -23,6 +23,7 @@ import sys
 import xml.sax
 import xml.sax.handler
 
+from __future__ import print_function
 
 
 
@@ -38,10 +39,10 @@ class Handler(xml.sax.handler.ContentHandler):
         self.result = dict()
 
     def startDocument(self):
-        print '-----'
+        print('-----')
 
     def endDocument(self):
-        print '-----'
+        print('-----')
 
     
     def startElement(self, name, attrs):
@@ -68,24 +69,24 @@ class Handler(xml.sax.handler.ContentHandler):
        
     def printResults(self):
 
-        print "Results:"
-        print ""
-        print "{0}\t{1}\t{2}\t{3}".format(
+        print("Results:")
+        print("")
+        print("{0}\t{1}\t{2}\t{3}".format(
                 "path",
                 "found total",
                 "min(found in parent)",
                 "max(found in parent)")
-
+        )
         keys = self.stats.stats.keys()
         keys.sort()
         for p in keys:
             el = self.stats.stats[p]
-            print "{0}\t{1}\t{2}\t{3}".format(
+            print("{0}\t{1}\t{2}\t{3}".format(
                     p,
                     el.times_total,
                     el.times_min,
                     el.times_max)
-        
+            )
         # Some debugging:
         #for p in keys:
         #    print(p)
@@ -107,16 +108,16 @@ def main(argv):
 
     # process all arguments as filenames:
     for f in argv:
-        print "Processing {0}...".format(f)
+        print("Processing {0}...".format(f))
         parser.parse(f)
     
-    print ""
+    print("")
     handler.printResults()
 
 
 def usage():
 
-    print "Usage: $ python pgterms2yaml.py FILE [FILE] [FILE] ..."
+    print("Usage: $ python pgterms2yaml.py FILE [FILE] [FILE] ...")
 
 
 

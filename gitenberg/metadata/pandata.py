@@ -2,12 +2,14 @@
 A wrapper class that makes it easier to work with json or yaml formatted metadata for books
 '''
 import re
+import six
 import yaml
 import copy
 import requests
-import httplib
 import datetime
 import unicodedata
+from six import text_type as unicodestr
+from six.moves import http_client as httplib
 from .utils import plural
 
 class TypedSubject(tuple):
@@ -74,7 +76,7 @@ def unreverse(name):
 
 def strip_controls(_string):
     out = []
-    _string = unicode(_string)
+    _string = unicodestr(_string)
     for ch in _string:
         if unicodedata.category(ch)[0] != 'C': # not a control character
             out.append(ch)
@@ -96,7 +98,7 @@ class Pandata(object):
                     self.metadata = {}
                     return
             else:
-                self.metadata = yaml.safe_load(file(datafile, 'r').read())
+                self.metadata = yaml.safe_load(open(datafile, 'r').read())
             self.set_edition_id()
         else:
             self.metadata = {}
@@ -104,7 +106,7 @@ class Pandata(object):
     def __getattr__(self, name):
         if name in PANDATA_STRINGFIELDS:
             value = self.metadata.get(name, '')
-            if isinstance(value, (str, unicode)):
+            if isinstance(value, (str, unicodestr)):
                 return strip_controls(value)
         if name in PANDATA_LISTFIELDS:
             return self.metadata.get(name, [])
@@ -131,14 +133,14 @@ class Pandata(object):
 
     def set_edition_id(self):
         # set a (hopefully globally unique) edition identifier
-        if not self.metadata.has_key('edition_identifiers'):
+        if not 'edition_identifiers' in self.metadata:
             self.metadata['edition_identifiers'] = {}
         base = self.url
         if not base:
             try:
-                base = unicode(self.identifiers.keys[0])+':'+unicode(self.identifiers.values[0])
+                base = unicodestr(self.identifiers.keys[0]) + ':' + unicodestr(self.identifiers.values[0])
             except:
-                base = u'repo:' + unicode(self._repo)
+                base = u'repo:' + unicodestr(self._repo)
         self.metadata['edition_identifiers']['edition_id'] =  base + '#' + self._edition
 
     def agents(self, agent_type):
@@ -210,7 +212,7 @@ class Pandata(object):
             return get_one(self.metadata[id_name])
         if self.identifiers.get(id_name,''):
             return get_one(self.identifiers[id_name])
-        if self.edition_identifiers.has_key(id_name):
+        if id_name in self.edition_identifiers:
             return get_one(self.edition_identifiers[id_name])
         return ''
 
@@ -221,9 +223,9 @@ class Pandata(object):
     @property
     def _edition(self):
         if self.metadata.get("_edition", ''):
-            return unicode(self.metadata["_edition"])
+            return unicodestr(self.metadata["_edition"])
         elif self.get_one_identifier('isbn'):
-            return unicode(self.get_one_identifier('isbn'))  #use first isbn if available
+            return unicodestr(self.get_one_identifier('isbn'))  #use first isbn if available
         elif self._repo:
             return edition_name_from_repo(self._repo)
         else:
@@ -246,4 +248,7 @@ class Pandata(object):
     def __unicode__(self):
         return yaml.safe_dump(self.metadata, default_flow_style=False, allow_unicode=True)
 
-        
+    def __str__(self):
+        return self.__unicode__()
+
+       

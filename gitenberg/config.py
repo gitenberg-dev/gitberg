@@ -78,7 +78,7 @@ class ConfigFile(object):
 
     def parse(self):
         global data
-        data = yaml.load(self.read())
+        data = yaml.full_load(self.read())
         data = {} if data is None else data
         for key, value in os.environ.items():
             lower_key = key.lower()
@@ -96,7 +96,7 @@ def check_config():
     """
     configfile = ConfigFile()
     global data
-    if data.keys() > 0:
+    if data:
         # FIXME: run a better check of this file
         print("gitberg config file exists")
         print("\twould you like to edit your gitberg config file?")

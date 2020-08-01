@@ -2,6 +2,42 @@
 
 History
 -------
+
+0.7.3 (2020-08-01)
+==================
+* update repo lists
+  * add 61334-62774
+  * missing
+* switch to using github personal access tokens
+
+0.7.2 (2020-02-06)
+==================
+* updated appdirs dependency to resolve conflicts
+* add __str__ method to pandata
+* update repo lists
+  * add 61121-61334
+  * missing
+  * removed
+  
+0.7.1 (2020-02-06)
+==================
+* updated requirements
+  * pyepub has been factored into gitberg-autoupdate
+
+0.7.0 (2020-01-17)
+==================
+* update repo lists
+  * add 60078-61120
+* clean up dependencies in setup.py
+* fix many problems with py 3 compatibility
+  * print function
+  * unicode vs. str
+  * read binary
+  * dictionary iterators
+  * function iterators
+  * imports
+  
+
 0.6.3 (2019-08-12)
 ==================
 * update repo lists

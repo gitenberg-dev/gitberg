@@ -4,17 +4,11 @@
 Syncs a local git book repo to a remote git repo (by default, github)
 """
 
-import base64
-import datetime
 import logging
 import re
 
-from cryptography.hazmat.backends import default_backend
-from cryptography.hazmat.primitives import serialization
-from cryptography.hazmat.primitives.asymmetric import padding
 import git
 import github3
-import requests
 import semver
 
 from . import config
@@ -28,8 +22,7 @@ class GithubRepo():
         self.org_name = GITHUB_ORG
         self.org_homepage = ORG_HOMEPAGE
         self.book = book
-        self._repo_token = None
-        self._github_token = None
+        self.repo = None
         if not config.data:
             config.ConfigFile()
         self.create_api_handler()
@@ -61,34 +54,38 @@ class GithubRepo():
                 version = '0.0.1'
         while version in self.book.local_repo.git.tags:
             version = semver.bump_patch(version)
-        self.book.meta.metadata['_version'] =  version
+        self.book.meta.metadata['_version'] = version
         self.book.save_meta()
         self.update('tag: {}. {}'.format(version, message))
         ref = self.book.local_repo.tag(version)
         self.push()
-        logger.info("tagged and pushed " + str(ref))
+        logger.info("tagged and pushed %s" % str(ref))
 
 
     def create_api_handler(self):
         """ Creates an api handler and sets it on self """
         try:
-            self.github = github3.login(username=config.data['gh_user'],
-                                    password=config.data['gh_password'])
+            if 'gh_access_token' in config.data:
+                self.github = github3.login(token=config.data['gh_access_token'])
+            else:
+                self.github = github3.login(username=config.data['gh_user'],
+                                            password=config.data['gh_password'])
+            remaining = self.github.ratelimit_remaining
+            logger.info("ratelimit remaining: %s" % remaining)
         except KeyError as e:
             raise config.NotConfigured(e)
-        logger.info("ratelimit remaining: {}".format(self.github.ratelimit_remaining))
         if hasattr(self.github, 'set_user_agent'):
             self.github.set_user_agent('{}: {}'.format(self.org_name, self.org_homepage))
         try:
             self.org = self.github.organization(self.org_name)
         except github3.GitHubError:
             logger.error("Possibly the github ratelimit has been exceeded")
-            logger.info("ratelimit: " + str(self.github.ratelimit_remaining))
+            logger.info("ratelimit: %s" % str(self.github.ratelimit_remaining))
 
     def format_desc(self):
         if hasattr(self.book, 'meta'):
             title = re.sub(r'[\r\n \t]+', ' ', self.book.meta.title)
-            author = u' by {}'.format(self.book.meta.authors_short())
+            author = ' by {}'.format(self.book.meta.authors_short())
         else:
             title = self.book.repo_name
             author = ''
@@ -105,7 +102,7 @@ class GithubRepo():
                 has_wiki=False
             )
         except github3.GitHubError as e:
-            logger.warning(u"repo already created?: {}".format(e))
+            logger.warning("repo already created?: %s" % e)
             self.repo = self.github.repository(self.org_name, self.book.repo_name)
 
     def update_repo(self):
@@ -121,42 +118,12 @@ class GithubRepo():
                 has_downloads=True
             )
         except github3.GitHubError as e:
-            logger.warning(u"couldn't edit repo: {}".format(e))
+            logger.warning("couldn't edit repo: %s" % e)
 
     def add_remote_origin_to_local_repo(self):
         try:
             origin = self.book.local_repo.git.create_remote('origin', self.repo.ssh_url)
-        except git.exc.GitCommandError:
+        except git.exc.GitCommandError as e:
             logger.warning("We may have already added a remote origin to this repo")
             return self.book.local_repo.git.remote('origin')
         return origin
-
-
-    def github_token(self):
-
-        if self._github_token is not None:
-            return self._github_token
-
-        token = github3.authorize(config.data['gh_user'], config.data['gh_password'],
-                             scopes=('read:org', 'user:email', 'repo_deployment',
-                                     'repo:status', 'write:repo_hook'), note=token_note)
-
-        self._github_token = token.token
-        return self._github_token
-
-    def repo_token(self):
-        if self._repo_token is not None:
-            return self._repo_token
-        token_note = "automatic releases for {} {}".format(
-            self.repo_id,datetime.datetime.utcnow().isoformat()
-        )
-
-        token = github3.authorize(
-            config.data['gh_user'],
-            config.data['gh_password'],
-            scopes=('public_repo'),
-            note=token_note
-        )
-        self._repo_token = token.token
-        return self._repo_token
-

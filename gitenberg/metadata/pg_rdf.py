@@ -1,6 +1,8 @@
 import rdflib
 import string
 import yaml
+import six
+from six import text_type as unicodestr
 
 from .licenses import CCLicense
 from .marc import plural, marc_rels
@@ -36,7 +38,7 @@ def get_url(key, val, entities=None):
     if isinstance(val,list):
         return (key,[get_url(key, item, entities=None)[1] for item in val])
     try:
-        return (key, unicode(val['@id']))
+        return (key, unicodestr(val['@id']))
     except KeyError:
         return None
     
@@ -69,7 +71,7 @@ def pgimagepath(val):
     return val[val.find("files/")+6:]
     
 def get_imagefile(key, val, entities=None) : 
-    if isinstance(val,unicode):
+    if isinstance(val,unicodestr):
         return (key, {"image_path": pgimagepath(val)})
     elif isinstance(val,list):
         images=[]
@@ -86,7 +88,7 @@ def get_imagefile(key, val, entities=None) :
 
 def set_entity(key, val, entities=None) :  
     uri = val.get('@id',None)
-    if entities and entities.has_key(uri):
+    if entities and uri in entities:
         if uri.startswith("http://www.gutenberg.org/2009/agents/"):
             entities[uri]["gutenberg_agent_id"] = uri[37:]
         return (key, entities[uri])
@@ -168,7 +170,7 @@ def add_by_path(value,target,path):
     path = str(path)
     if '/' in path:
         keys = path.split('/')
-        newpath = string.join(keys[1:],'/')
+        newpath = '/'.join(keys[1:])
         newdict = target.get(keys[0],{})
         add_by_path(value,newdict,newpath)
         target[keys[0]]=newdict
@@ -180,12 +182,12 @@ def add_by_path(value,target,path):
             target[path] = value
 
 def get_id(key, val, entities=None) :
-    return (key,unicode(val))
+    return (key,unicodestr(val))
 
 def mapdata(node, mapping, entities):
     if isinstance(node, dict):
         mapped={}
-        for (k,v) in node.iteritems():
+        for (k,v) in six.iteritems(node):
             try:
                 mapping_v=mapping[k]
                 if isinstance(mapping_v,str):
@@ -296,7 +298,7 @@ def pg_rdf_to_json(file_path):
                 continue
             elif obj['@type']== 'pgterms:ebook':
                 top = obj
-            elif obj.has_key('@id') and (unicode(obj['@id'])=='http://www.gutenberg.org/'):
+            elif '@id' in obj and (unicodestr(obj['@id'])=='http://www.gutenberg.org/'):
                 continue
             else:
                 newnodes.append(obj)
@@ -350,7 +352,7 @@ def htm_modified(file_path):
         try:
             #
             if obj[u'@type']== u'pgterms:file':
-                obj_id = unicode(obj[u'@id'])
+                obj_id = unicodestr(obj[u'@id'])
                 if obj_id.endswith('.htm') or obj_id.endswith('.txt') or obj_id.endswith('.pdf'):
                     new_mod = obj[u'dcterms:modified' ][u'@value']
                     mod_date = new_mod if new_mod > mod_date else mod_date

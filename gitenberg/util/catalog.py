@@ -12,7 +12,7 @@ import re
 import shutil
 import tarfile
 import time
-
+from six import text_type as unicodestr
 import dateutil.parser
 import pytz
 import requests
@@ -151,7 +151,7 @@ class Rdfcache(object):
                 raise
 
         try:
-            with open(RDF_PATH, 'w') as f:
+            with open(RDF_PATH, 'wb') as f:
                 with requests.get(RDF_URL, stream=True) as r:
                     shutil.copyfileobj(r.raw, f)
         except requests.exceptions.RequestException as e:
@@ -180,7 +180,7 @@ class Rdfcache(object):
                 self.rdf_library_dir,
                 'cache',
                 'epub',
-                unicode(pg_id),
+                unicodestr(pg_id),
                 'pg{}.rdf'.format(pg_id)
             )
             if os.path.exists(new_rdffile):

@@ -18,6 +18,7 @@ logs/*
 *.coverage
 */.ipynb_checkpoints/*
 *.ipynb_checkpoints/*
+.python-version
 
 # IDE vim ignore files
 *.swp

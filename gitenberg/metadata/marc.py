@@ -7,8 +7,9 @@ MARC records for the unglued pandata (in .xml and .mrc formats).
 import pymarc
 
 from datetime import datetime
+from six import text_type as unicodestr
 
-import licenses
+from . import licenses
 
 from .utils import marc_rels, inverse_marc_rels, plural, reverse_name
 
@@ -157,7 +158,7 @@ def stub(pandata):
             ]
         )
         if publication_date:
-            field260.add_subfield('c', unicode(publication_date))
+            field260.add_subfield('c', unicodestr(publication_date))
         record.add_ordered_field(field260)
         
     if pandata.description:

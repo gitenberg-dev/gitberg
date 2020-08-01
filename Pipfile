@@ -1,0 +1,18 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+pymarc = "==3.2.0"
+nose = "*"
+gitpython = "==2.1.13"
+pylint = "*"
+gitberg = {editable = true,path = "."}
+twine = "*"
+appdirs = ">=1.4.3"
+
+[requires]
+python_version = "3.6"

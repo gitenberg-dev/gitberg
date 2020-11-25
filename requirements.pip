@@ -33,4 +33,4 @@ python-dateutil>=2.6.0
 pyasn1>=0.4.2
 pyOpenSSL>=0.13
 certifi>=2017.4.17
-cryptography>=2.1.4
+cryptography>=3.2

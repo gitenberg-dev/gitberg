@@ -8,11 +8,11 @@ verify_ssl = true
 [packages]
 pymarc = "==3.2.0"
 nose = "*"
-gitpython = "==2.1.13"
 pylint = "*"
 gitberg = {editable = true,path = "."}
 twine = "*"
 appdirs = ">=1.4.3"
+gitpython = "*"
 
 [requires]
 python_version = "3.6"

@@ -2,6 +2,13 @@
 
 History
 -------
+0.7.5 (2021-03-25)
+==================
+* update repo lists
+  * add 63880 - 64912
+  * missing
+* update requirements
+
 0.7.4 (2020-11-25)
 ==================
 * update repo lists

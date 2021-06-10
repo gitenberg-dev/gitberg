@@ -189,7 +189,7 @@
             ],
             "version": "==4.0.7"
         },
-        "github3.py": {
+        "github3-py": {
             "hashes": [
                 "sha256:7e153e5dc559f27e4d15c91571a2d6e1522c9faa4406e188459d9731f0b98875",
                 "sha256:8dd4ac612fd60cb277eaf6e2ce02f68dda54aba06870ca6fa2b28369bf39aa14"
@@ -518,13 +518,15 @@
             ],
             "version": "==1.5.0"
         },
-        "semver": {
+        "secretstorage": {
             "hashes": [
-                "sha256:76bbf4422c53d938c194201698a911c8cbc41fa974e1ef9f88d1e8e614c29f5c"
+                "sha256:422d82c36172d88d6a0ed5afdec956514b189ddbfb72fefab0c8a1cee4eaf71f",
+                "sha256:fd666c51a6bf200643495a04abb261f83229dcb6fd8472ec393df7ffc8b6f195"
             ],
-            "version": "==2.2.0"
+            "markers": "sys_platform == 'linux'",
+            "version": "==3.3.1"
         },
-        "sh": {
+        "semver": {
             "hashes": [
                 "sha256:4921ac9c1a77ec8084bdfaf152fe14138e2b3557cc740002c1a97076321fce8a",
                 "sha256:9d7bd0334d494b2a4609fe521b2107438cdb21c0e469ffeeb191489883d6fe0d"

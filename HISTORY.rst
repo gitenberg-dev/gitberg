@@ -2,6 +2,14 @@
 
 History
 -------
+0.7.7 (2021-09-15)
+==================
+* update repo lists
+  * add 65660-66263
+  * missing
+* update requirements
+
+
 0.7.6 (2021-06-11)
 ==================
 * update repo lists

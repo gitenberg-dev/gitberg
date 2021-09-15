@@ -38,9 +38,10 @@ missing), these commands will ask for the config values again.
 Main config values:
 
     gh_user: <your github account name>
-    gh_password: <your github account password>
+    gh_password: <your github account password> #deprecated
     library_path: '~/data/library'
-    rdf_library: location of your cache of the PG RDF demp
+    rdf_library: <location of your cache of the PG RDF demp>
+    gh_access_token: <a github access token> # use instead of the password
     
 To push to github, you will need to configure SSH keys. See [Github's documentation}(https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
 

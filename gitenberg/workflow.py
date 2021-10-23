@@ -23,7 +23,8 @@ def upload_all_books(book_id_start, book_id_end, rdf_library=None):
             book_id_start, book_id_end
         )
     )
-
+    if not book_id_end:
+        book_id_end = book_id_start
     for book_id in range(int(book_id_start), int(book_id_end) + 1):
         cache = {}
         errors = 0

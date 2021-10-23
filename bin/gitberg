@@ -10,7 +10,7 @@ Usage:
     gitberg get <book_id> [options]
     gitberg metadata <book_id> [options]
     gitberg update <book_repo_name> [options]
-    gitberg all BOOKID BOOKIDEND [options]
+    gitberg all BOOKID [BOOKIDEND] [options]
     gitberg list <book_id_list> [options]
     gitberg apply <action> <book_repo_name>
     gitberg apply_all <action>  BOOKID BOOKIDEND [options]

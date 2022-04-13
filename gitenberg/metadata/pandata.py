@@ -108,6 +108,8 @@ class Pandata(object):
             value = self.metadata.get(name, '')
             if isinstance(value, (str, unicodestr)):
                 return strip_controls(value)
+            elif isinstance(value, list):
+                return strip_controls('\n'.join(value))
         if name in PANDATA_LISTFIELDS:
             return self.metadata.get(name, [])
         if name in PANDATA_DICTFIELDS:

@@ -2,6 +2,15 @@
 
 History
 -------
+0.8.1 (2022-09-26)
+==================
+* changed deprecated rdflib method
+* download a single rdf file if not in library
+* update repo lists
+  * add 67825-69023
+  * missing
+
+
 0.8.0 (2022-04-13)
 ==================
 * Update all dependencies to support Python 3.7 and 3.8

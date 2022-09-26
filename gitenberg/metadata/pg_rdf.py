@@ -267,7 +267,7 @@ def pg_rdf_to_yaml(file_path, repo_name=None):
     
 def pg_rdf_to_json(file_path):
     g=rdflib.Graph()
-    g.load(file_path)
+    g.parse(file_path)
 
     #print(g.serialize(format='json-ld', indent=4, context=context))
     ld = serializer.from_rdf(g, context_data=context, base=None,

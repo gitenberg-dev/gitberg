@@ -96,7 +96,11 @@ class BookMetadata(Pandata):
         try:
             self.metadata = pg_rdf_to_json(self.rdf_path)
         except IOError as e:
-            raise NoRDFError(e)
+            self.rdf_path = f'https://www.gutenberg.org/cache/epub/{self.book.book_id}/pg{self.book.book_id}.rdf'
+            try:
+                self.metadata = pg_rdf_to_json(self.rdf_path)
+            except:
+                raise NoRDFError(e)
 
         if not self.authnames():
             self.author = ''

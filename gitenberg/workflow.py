@@ -23,7 +23,8 @@ def upload_all_books(book_id_start, book_id_end, rdf_library=None):
             book_id_start, book_id_end
         )
     )
-
+    if not book_id_end:
+        book_id_end = book_id_start
     for book_id in range(int(book_id_start), int(book_id_end) + 1):
         cache = {}
         errors = 0
@@ -31,7 +32,8 @@ def upload_all_books(book_id_start, book_id_end, rdf_library=None):
             if int(book_id) in missing_pgid:
                 print(u'missing\t{}'.format(book_id))
                 continue
-            upload_book(book_id, rdf_library=rdf_library, cache=cache)
+            book_id, repo_name = upload_book(book_id, rdf_library=rdf_library, cache=cache)
+            print("%s\t%s" % (book_id, repo_name))
         except Exception as e:
             print(u'error\t{}'.format(book_id))
             logger.error(u"Error processing: {}\r{}".format(book_id, e))

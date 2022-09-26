@@ -2,6 +2,29 @@
 
 History
 -------
+0.8.0 (2022-04-13)
+==================
+* Update all dependencies to support Python 3.7 and 3.8
+* fix making new config files with py3
+* handle lists in pandata string fields
+* rdflib-jsonld is now part of rdflib
+* update repo lists
+  * add 66543-67824
+
+0.7.8 (2021-10-23)
+==================
+* update repo lists
+  * add 66264-66542
+  * missing
+* allow gitberg all to have only one #, print its resulting repo names
+
+0.7.7 (2021-09-15)
+==================
+* update repo lists
+  * add 65660-66263
+  * missing
+* update requirements
+
 0.7.6 (2021-06-11)
 ==================
 * update repo lists

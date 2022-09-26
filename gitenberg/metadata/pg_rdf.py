@@ -8,7 +8,8 @@ from .licenses import CCLicense
 from .marc import plural, marc_rels
 from .pandata import TypedSubject
 
-from rdflib_jsonld import serializer
+from rdflib.plugins.serializers import jsonld as serializer
+
 
 def unblank_node(node, bnodes):
     if isinstance(node,dict):

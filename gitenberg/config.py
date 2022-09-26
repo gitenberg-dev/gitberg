@@ -60,7 +60,7 @@ class ConfigFile(object):
     def write(self):
         # FIXME: VVV
         # self.check_self()
-        with open(self.file_path, 'wb') as self.file:
+        with open(self.file_path, 'w') as self.file:
             self.file.write(self.yaml)
         return True
 

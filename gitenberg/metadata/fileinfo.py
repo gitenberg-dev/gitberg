@@ -1,7 +1,7 @@
 import rdflib
 from datetime import datetime
 from six import text_type as unicodestr
-from rdflib_jsonld import serializer
+from rdflib.plugins.serializers import jsonld as serializer
 from .pg_rdf import unblank_node, context
 
 # get the modified data for the htm file from PG RDF

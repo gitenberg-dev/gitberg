@@ -261,7 +261,7 @@ class Book():
         gc.collect()
         if self.local_repo:
             self.local_repo.git.git.clear_cache()
-        
+            self.local_repo = None
             shutil.rmtree(self.local_path)
 
     def format_title(self):

@@ -2,6 +2,11 @@
 
 History
 -------
+0.8.2 (2022-12-01)
+==================
+* fixed long authorname issue
+
+
 0.8.1 (2022-09-26)
 ==================
 * changed deprecated rdflib method

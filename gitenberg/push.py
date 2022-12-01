@@ -89,6 +89,11 @@ class GithubRepo():
         else:
             title = self.book.repo_name
             author = ''
+
+        # total length < 255
+        excess = len(title) + len(author) - 212
+        if excess > 0:
+            title = title[0:- excess] + '…'
         return u'{0}{1} is a Project Gutenberg book, now on Github.'.format(title, author)
 
     def create_repo(self):

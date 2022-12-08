@@ -34,7 +34,7 @@ setup(name='gitberg',
       ],
       install_requires=[
           'requests>=2.7',
-          'github3.py>=1.0.0',
+          'github3.py>=3.2.0',
           'GitPython>=2.1.8',
           'docopt>=0.6',
           'sh>=1',

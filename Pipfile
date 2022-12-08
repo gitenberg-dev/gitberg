@@ -9,12 +9,13 @@ verify_ssl = true
 pymarc = "==3.2.0"
 nose = "*"
 pylint = "*"
-gitberg = {editable = true, path = "."}
 twine = "*"
 appdirs = ">=1.4.3"
 gitpython = "*"
 urllib3 = ">=1.26.5"
 semver = "==2.2.0"
+gitberg = {editable = true, path = "."}
+pyjwt = {version = ">=2.4.0", extras = ["crypto"]}
 
 [requires]
 python_version = "3.8"

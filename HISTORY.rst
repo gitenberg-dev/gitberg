@@ -2,7 +2,7 @@
 
 History
 -------
-0.8.2 (2022-12-01)
+0.8.2 (2022-12-07)
 ==================
 * fixed long authorname issue
 * update repo lists

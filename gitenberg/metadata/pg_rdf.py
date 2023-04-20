@@ -325,7 +325,7 @@ def pg_rdf_to_json(file_path):
 def htm_modified(file_path):
     g = rdflib.Graph()
     try:
-        g.load(file_path)
+        g.parse(source=file_path)
     except IOError:
         return None
 

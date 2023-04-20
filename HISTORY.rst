@@ -2,6 +2,10 @@
 
 History
 -------
+0.8.3 (2023-04-20)
+==================
+* fix opening rdf files and reading mod date
+
 0.8.2 (2022-12-07)
 ==================
 * fixed long authorname issue

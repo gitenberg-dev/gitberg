@@ -5,6 +5,8 @@ History
 0.8.3 (2023-04-20)
 ==================
 * fix opening rdf files and reading mod date
+* update repo lists
+  * add 69347-70401
 
 0.8.2 (2022-12-07)
 ==================

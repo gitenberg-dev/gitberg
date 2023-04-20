@@ -8,7 +8,7 @@ from .pg_rdf import unblank_node, context
 def htm_modified(file_path):
     g=rdflib.Graph()
     try:
-        g.load(file_path)
+        g.parse(source=file_path)
     except IOError:
         return None
 

@@ -16,6 +16,9 @@ from .parameters import GITHUB_ORG, ORG_HOMEPAGE
 
 logger = logging.getLogger(__name__)
 
+class RateLimitError(github3.GitHubError):
+    pass
+
 class GithubRepo():
 
     def __init__(self, book):
@@ -107,6 +110,8 @@ class GithubRepo():
                 has_wiki=False
             )
         except github3.GitHubError as e:
+            if '403' in str(e):
+                raise RateLimitError(e)
             logger.warning("repo already created?: %s" % e)
             self.repo = self.github.repository(self.org_name, self.book.repo_name)
 

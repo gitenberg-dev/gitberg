@@ -2,6 +2,12 @@
 
 History
 -------
+0.8.4 (2023-07-31)
+==================
+* try to stop making new when ratelimit comes in
+* update repo lists
+  * add 70402-71226
+
 0.8.3 (2023-04-20)
 ==================
 * fix opening rdf files and reading mod date

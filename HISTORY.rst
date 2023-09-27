@@ -2,6 +2,12 @@
 
 History
 -------
+0.8.5 (2023-09-27)
+==================
+* update cryptography and gitpython
+* update repo lists
+  * add 71227-71617
+
 0.8.4 (2023-07-31)
 ==================
 * try to stop making new when ratelimit comes in

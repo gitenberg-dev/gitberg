@@ -2,6 +2,12 @@
 
 History
 -------
+0.8.6 (2023-10-11)
+==================
+* update urllib3
+* update repo lists
+  * add 71617-71847
+
 0.8.5 (2023-09-27)
 ==================
 * update cryptography and gitpython

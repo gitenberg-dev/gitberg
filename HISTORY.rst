@@ -6,6 +6,9 @@ History
 ==================
 * add all marc roles from PG
 * update urllib3
+* update repo lists
+  * add 71848-72934
+  * missing
 
 0.8.6 (2023-10-11)
 ==================

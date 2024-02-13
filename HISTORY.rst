@@ -5,6 +5,7 @@ History
 0.8.7 (2024-02-13)
 ==================
 * add all marc roles from PG
+* update urllib3
 
 0.8.6 (2023-10-11)
 ==================

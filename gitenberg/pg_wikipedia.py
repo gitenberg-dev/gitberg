@@ -41,7 +41,42 @@ def get_links(wd_id):
         #not JSON
         return ""
 
+PG_WD_URL = 'https://raw.githubusercontent.com/gitenberg-dev/pg-wikipedia/master/pg-wd.csv'
+_table_loaded = False
+
+def _load_table():
+    """Lazily fetch the PG id -> Wikidata id mapping (one attempt per process).
+
+    This used to happen at import time, which meant any application importing
+    the gitenberg package performed a network fetch just to load its code —
+    and a bad response (rate-limited/error/truncated, i.e. anything that isn't
+    the expected 2-column CSV) raised out of the import and left the importing
+    process broken. Under mod_wsgi that poisoned a web worker into serving
+    only 500s until manually killed (Gluejar/regluit#1204, 2026-07-06).
+
+    Now the fetch happens on first lookup, failures are logged and tolerated
+    (lookups just return None), and malformed rows are skipped.
+    """
+    global _table_loaded
+    if _table_loaded:
+        return
+    _table_loaded = True  # one attempt per process, success or not
+    try:
+        pg_wd_file = requests.get(PG_WD_URL, timeout=10)
+        if pg_wd_file.status_code != 200:
+            logger.warning(u"couldn't load %s: HTTP %s", PG_WD_URL, pg_wd_file.status_code)
+            return
+        lines = (line.decode('utf-8') for line in pg_wd_file.iter_lines())
+        for row in csv.reader(lines, delimiter=',', quotechar='"'):
+            if len(row) == 2:
+                _table[row[0]] = row[1]
+            elif row:
+                logger.warning(u"skipping malformed row in pg-wd.csv: %r", row)
+    except Exception:
+        logger.warning(u"couldn't load %s", PG_WD_URL, exc_info=True)
+
 def get_wd_id(pg_id):
+    _load_table()
     pg_id = str(pg_id)
     return _table.get(pg_id, None)
 
@@ -51,13 +86,3 @@ def get_pg_summary(pg_id):
 def get_pg_links(pg_id):
     return get_links(get_wd_id(pg_id))
     
-try:
-    pg_wd_file = requests.get(
-        'https://raw.githubusercontent.com/gitenberg-dev/pg-wikipedia/master/pg-wd.csv'
-    )
-    lines = (line.decode('utf-8') for line in pg_wd_file.iter_lines())
-    csvreader = csv.reader(lines, delimiter=',' , quotechar='"')
-except requests.ConnectionError:
-    csvreader =  []
-for (pg_id,wd_id) in csvreader:
-    _table[pg_id]=wd_id
